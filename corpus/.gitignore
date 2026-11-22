@@ -1,0 +1,4 @@
+# RBI documents are "© Reserve Bank of India. All Rights Reserved." Keep local copies only;
+# commit the manifest and checksums so every teammate can verify they have identical files.
+real/**/*.pdf
+real/**/*.PDF
