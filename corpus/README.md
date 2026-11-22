@@ -39,9 +39,16 @@ To add a document, append a row to `sources.csv` and re-run the script.
 
 | Document | Why it matters | Where |
 |---|---|---|
-| KFS annexes A, B, C | Annex B has the APR illustration (EMI ₹970, APR 17.07%) for the calculator demo | Same pattern as Annex A: `https://rbidocs.rbi.org.in/rdocs/content/pdfs/CIRCULARKFS1504242_A.pdf` (swap `_A` for `_B`, `_C`) |
-| Annex list of withdrawn circulars | Source for WITHDRAWS edges and the 9,445 count | Linked from the withdrawal circular's page (`html_url` in `sources.csv`) |
-| Co-operative bank pre-payment directions (RBI id 13013) | Tier 3 vs Tier 4 demo | Not yet located; find it on rbi.org.in |
-| *(optional)* 7 May 2014 foreclosure-charges circular | Shows the old rule in the amendment chain | `https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/DBC070514DF.pdf` (unverified) |
+| *(optional)* List of the 9,445 withdrawn circulars | Source for WITHDRAWS edges and the 9,445 count | **There is no PDF.** The circular's "Annex" link goes to the [Circulars Withdrawn web page](https://www.rbi.org.in/Scripts/NotificationUserWithdrawnCircular.aspx), a tabbed HTML table. Click the **"Department of Regulation"** tab and save the page (Cmd+S, "Web Page, HTML only") into `corpus/real/rbi/`. Use it as data for edges, not as a citable PDF. Printing it captures only the default RRA 2.0 tab. |
+
+The UCB Directions now come from RBI's official PDF (128 pages), replacing the earlier browser print.
+
+## Verified content worth knowing
+
+- **UCB RBC Directions (RBI/DOR/2025-26/292), paras 260 (p.80) and 261 (p.81)**:
+  - The 31-Dec-2025 gap exists for co-op banks too: para 260 covers loans "sanctioned before December 31, 2025", and para 261 covers loans "sanctioned or renewed on or after January 1, 2026".
+  - The Tier 3 vs Tier 4 rule for business loans to individuals and MSEs: a Tier 4 UCB may not levy pre-payment charges; a Tier 3 UCB may not levy them on loans up to ₹50 lakh.
+- **KFS Annex B** contains the APR illustration (₹20,000, EMI ₹970, interest ₹3,274, net disbursed ₹19,600, APR 17.07%). **Annex C** has the 24-row repayment schedule.
+- **KFS Annexes A–C and the 2014 circular** were saved through the browser's PDF viewer (producer "PDFium"). The text is intact. A teammate who downloads the original files gets different checksums, so either share these copies or re-run the script.
 
 RBI content is © Reserve Bank of India; cite RBI as the source wherever these documents are shown.
