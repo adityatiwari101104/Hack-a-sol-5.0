@@ -60,7 +60,23 @@ def run(formula, inputs):
         raise ValueError(f"missing inputs {missing}")
     value = fn({n: inputs[n] for n in names})
     display = f"{value}%" if formula == "APR_IRR" else f"₹{value:,.2f}"
-    return {"value": str(value), "display": display, "formula_text": text}
+    out = {"value": str(value), "display": display, "formula_text": text}
+    if formula in ("EMI", "TOTAL_INTEREST"):
+        out["working"] = schedule(inputs["principal"], inputs["annual_rate_pct"], inputs["months"], rows=3)
+    return out
+
+
+def schedule(principal, annual_rate_pct, months, rows=3):
+    """First rows of the amortisation schedule: opening balance, interest = balance × r, principal = EMI − interest."""
+    e, bal, r = emi(principal, annual_rate_pct, months), D(principal), D(annual_rate_pct) / Decimal(1200)
+    out = []
+    for i in range(1, rows + 1):
+        interest = bal * r
+        prin = e - interest
+        out.append({"n": i, "opening": str(money(bal)), "interest": str(money(interest)), "principal": str(money(prin)),
+                    "emi": str(money(e)), "closing": str(money(bal - prin))})
+        bal -= prin
+    return out
 
 
 ALIASES = {"principal": ["principal", "loan_amount", "amount", "sanctioned_amount", "p"],

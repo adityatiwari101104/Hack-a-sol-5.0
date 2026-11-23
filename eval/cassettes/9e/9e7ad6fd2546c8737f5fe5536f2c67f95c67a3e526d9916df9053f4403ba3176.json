@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "In Example UCB Retail Loan Policy v3 (FICTIONAL), section 3.3, the policy sets requirements to obtain credit information reports for each borrower, co-borrower, and guarantor prior to loan sanction."}, "usage": {"prompt_tokens": 156, "completion_tokens": 57}}

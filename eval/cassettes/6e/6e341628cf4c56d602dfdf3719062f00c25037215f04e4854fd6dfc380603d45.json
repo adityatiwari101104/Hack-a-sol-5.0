@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "In UCB Responsible Business Conduct Directions, 2025, Section “Table 4 > Debit entries” (p. 40), this specifies debit entries for the creation of term deposit/recurring deposit accounts, including receipt number and account name."}, "usage": {"prompt_tokens": 192, "completion_tokens": 61}}

@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "Under RBI's UCB responsible lending directions, for a retail borrower taking a non-business loan, can we levy a higher default charge than we would impose on a corporate customer for the same breach?", "answer_key": "shall not be higher"}, "usage": {"prompt_tokens": 253, "completion_tokens": 87}}

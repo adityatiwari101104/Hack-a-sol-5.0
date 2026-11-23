@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 9.4, states GST recovery on fees and charges, introducing the transition to the monitoring requirements."}, "usage": {"prompt_tokens": 145, "completion_tokens": 42}}

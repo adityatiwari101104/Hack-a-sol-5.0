@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "A 2% pre-payment charge on Rs 2,400,000 would be Rs 48,000.", "source": "S5", "quote": "Pre-payment charge 2% of principal outstanding"}]}, "usage": {"prompt_tokens": 556, "completion_tokens": 134}}

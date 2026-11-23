@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The outstanding principal at the start of instalment 2 is Rupees 19,280 in the illustrative repayment schedule.", "cites": ["E9"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 3188, "completion_tokens": 118}}

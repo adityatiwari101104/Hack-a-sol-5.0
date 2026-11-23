@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 4.4 (Loans to individuals for business purposes, including proprietors of MSEs), describes appraisal using business cash flows and applying Loan Policy exposure limits."}, "usage": {"prompt_tokens": 172, "completion_tokens": 54}}

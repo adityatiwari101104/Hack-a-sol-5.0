@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "In Example UCB Retail Loan Policy v3, Section “table 1” (Version | Effective date | Summary of changes, p. 4), the Version 2.1 row records that effective 1 April 2021, Gold loans were brought under the Policy."}, "usage": {"prompt_tokens": 193, "completion_tokens": 67}}

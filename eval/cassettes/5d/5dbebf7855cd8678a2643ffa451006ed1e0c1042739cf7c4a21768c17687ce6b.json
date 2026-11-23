@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section para 11.1, sets branch responsibilities for monitoring end-use of funds and managing security creation and insurance renewal for retail loans."}, "usage": {"prompt_tokens": 146, "completion_tokens": 47}}

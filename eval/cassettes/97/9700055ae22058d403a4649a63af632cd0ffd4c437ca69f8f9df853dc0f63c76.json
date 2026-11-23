@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "In our Key Facts Statement, what APR is disclosed for this loan product?", "answer_key": "8.70%"}, "usage": {"prompt_tokens": 230, "completion_tokens": 62}}

@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 6.6, discusses quarterly borrower statements for UCB retail loans covering principal/interest recovered, EMI details, remaining EMIs, and the annualised interest rate."}, "usage": {"prompt_tokens": 173, "completion_tokens": 55}}

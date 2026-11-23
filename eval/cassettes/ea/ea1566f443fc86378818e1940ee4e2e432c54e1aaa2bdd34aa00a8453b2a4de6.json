@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "Under our retail lending policy, does the scope also cover credit granted to natural persons for business use?", "answer_key": "loans to individuals for business purposes"}, "usage": {"prompt_tokens": 238, "completion_tokens": 67}}

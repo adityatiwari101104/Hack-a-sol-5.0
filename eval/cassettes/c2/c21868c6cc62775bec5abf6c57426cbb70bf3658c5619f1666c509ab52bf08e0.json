@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "In the Key Facts Statement, how will loan funds be released relative to the seller's payment milestones?", "answer_key": "In tranches linked to the payment schedule of the seller"}, "usage": {"prompt_tokens": 239, "completion_tokens": 84}}

@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 2.3 (Definitions), defines “KFS” as the Key Facts Statement for retail borrowers’ loan terms, including APR, fees/charges, and repayment schedule."}, "usage": {"prompt_tokens": 178, "completion_tokens": 56}}

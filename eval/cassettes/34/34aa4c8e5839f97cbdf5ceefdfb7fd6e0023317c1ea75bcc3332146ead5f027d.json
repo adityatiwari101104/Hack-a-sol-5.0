@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 8.5, addresses non-performing asset accounts, recovery initiation, and enforcement of security interest after borrower notice for retail borrowers/loans."}, "usage": {"prompt_tokens": 169, "completion_tokens": 50}}

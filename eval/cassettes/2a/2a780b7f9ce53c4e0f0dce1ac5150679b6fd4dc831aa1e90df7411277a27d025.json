@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "A registered mortgage must be created over the commercial unit purchased out of the loan.", "source": "S3", "quote": "1.8 Security: Registered mortgage of the commercial unit purchased out of the loan."}]}, "usage": {"prompt_tokens": 342, "completion_tokens": 107}}

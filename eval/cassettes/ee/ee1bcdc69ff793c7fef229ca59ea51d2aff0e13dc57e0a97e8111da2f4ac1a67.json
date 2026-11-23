@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 6.1, sets the reset frequency for interest rates on floating rate retail loans."}, "usage": {"prompt_tokens": 145, "completion_tokens": 39}}

@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence explicitly states that the “Pre-payment charge” is “3% of principal outstanding” and that it is payable “on pre-payment or foreclosure,” matching the claim."}, "usage": {"prompt_tokens": 362, "completion_tokens": 52}}

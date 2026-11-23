@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "Under our home loan agreement, if external recovery personnel are used, what advance communication must the bank provide to the customer?", "answer_key": "informed to the Borrower in advance"}, "usage": {"prompt_tokens": 225, "completion_tokens": 72}}

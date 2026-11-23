@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "UCB Responsible Business Conduct Directions 2025, Section on table 4 (Debit entries), specifically the “Transactions at POS” row describing POS transaction date, time, and identification number."}, "usage": {"prompt_tokens": 168, "completion_tokens": 49}}

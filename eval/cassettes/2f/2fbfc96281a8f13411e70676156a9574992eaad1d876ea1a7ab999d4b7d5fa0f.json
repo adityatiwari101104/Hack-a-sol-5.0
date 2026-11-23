@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Home Loan Agreement (FICTIONAL), Section 3.1, describes the floating interest rate terms for the sanctioned home loan, linking the rate to the bank’s external benchmark and the policy repo rate plus a sanction-letter spread."}, "usage": {"prompt_tokens": 178, "completion_tokens": 57}}

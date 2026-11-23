@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "In Example UCB Retail Loan Policy v3, Section 2.6 defines the term “Floating rate loan,” describing how the loan’s interest rate links to a benchmark and resets during the loan tenor."}, "usage": {"prompt_tokens": 161, "completion_tokens": 52}}

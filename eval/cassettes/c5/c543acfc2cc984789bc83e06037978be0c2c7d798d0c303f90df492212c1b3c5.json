@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 8.2, sets the rule for charging penal interest on overdue instalments for retail borrowers and loan accounts."}, "usage": {"prompt_tokens": 153, "completion_tokens": 44}}

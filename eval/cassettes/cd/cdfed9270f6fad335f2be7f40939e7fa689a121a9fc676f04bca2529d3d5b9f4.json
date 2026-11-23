@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Table 1 on page 4, summarizes policy version and effective-date changes covering retail loan categories including vehicle, education, and gold loans."}, "usage": {"prompt_tokens": 206, "completion_tokens": 48}}

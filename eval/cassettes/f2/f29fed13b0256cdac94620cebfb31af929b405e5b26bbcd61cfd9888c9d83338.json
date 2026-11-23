@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 11.2 (Credit Monitoring Cell) on monthly review of retail loan accounts with overdues beyond 30 days."}, "usage": {"prompt_tokens": 161, "completion_tokens": 46}}

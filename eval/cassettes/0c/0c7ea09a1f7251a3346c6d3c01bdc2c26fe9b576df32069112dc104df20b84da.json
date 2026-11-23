@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 3.2, sets the repayment-capacity assessment criteria for retail borrowers by limiting total EMIs relative to documented net monthly income."}, "usage": {"prompt_tokens": 173, "completion_tokens": 48}}

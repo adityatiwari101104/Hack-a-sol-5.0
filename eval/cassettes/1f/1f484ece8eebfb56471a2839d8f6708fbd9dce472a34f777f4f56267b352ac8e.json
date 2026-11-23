@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "In UCB Responsible Business Conduct Directions 2025, section on Table 3 (time to report fraudulent transactions), this chunk specifies customer liability for reporting within 4 to 7 working days, capped by Table 1 amounts."}, "usage": {"prompt_tokens": 238, "completion_tokens": 57}}

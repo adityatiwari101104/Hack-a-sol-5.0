@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section Table 1 (Version | Effective date | Summary of changes, p.4), row for Version 3.0 (effective 1 April 2023) noting updated definitions and new floating rate reset provisions."}, "usage": {"prompt_tokens": 197, "completion_tokens": 64}}

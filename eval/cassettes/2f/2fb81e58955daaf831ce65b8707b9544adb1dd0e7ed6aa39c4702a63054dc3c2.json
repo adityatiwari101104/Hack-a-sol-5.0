@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 2.10 “Sanctioning Authority,” defines the bank’s empowered official or committee responsible for sanctioning retail loan approvals under Delegation of Financial Powers."}, "usage": {"prompt_tokens": 158, "completion_tokens": 53}}

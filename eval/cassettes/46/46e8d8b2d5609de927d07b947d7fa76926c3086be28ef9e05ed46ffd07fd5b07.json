@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "In the Home Loan Agreement (copy) > Table 1 on p. 6, this row specifies the repayment account for the home loan: Savings Account No. 0102-SB-0045678 (IFSC EXUC0001234)."}, "usage": {"prompt_tokens": 203, "completion_tokens": 62}}

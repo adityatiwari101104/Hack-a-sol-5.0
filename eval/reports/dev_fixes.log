@@ -1,0 +1,110 @@
+W1123 14:03:23.797000 32106 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6325.48it/s]
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 3102.95it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 29150.75it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (533 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 50,
+ "labels": {
+  "Accurate": 40,
+  "Incomplete": 9,
+  "Hallucinated": 1
+ },
+ "accurate_rate": 0.8,
+ "accurate_ci95": [
+  0.67,
+  0.888
+ ],
+ "hallucinated_rate": 0.02,
+ "fabricated_quotes": 0,
+ "quotes_checked": 144,
+ "fabricated_upper95_rule_of_three": 0.021,
+ "abstention_precision": 0.5,
+ "abstention_recall": 0.444,
+ "answer_rate": 0.84,
+ "over_refusal": 0.108,
+ "point_in_time_accuracy": 0.667,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 0.25,
+ "calc_accuracy": 1.0,
+ "draft_faithfulness_mean": 0.701,
+ "latency_p50_ms": 11131,
+ "latency_p95_ms": 49855,
+ "spend_usd_upper_bound": 0.2801,
+ "cost_per_query_usd_upper_bound": 0.0056,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 4,
+   "Incomplete": 1,
+   "Hallucinated": 1
+  },
+  "calculation": {
+   "Accurate": 3,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 0,
+   "Incomplete": 4,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 4,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 4,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "hindi": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "multi_doc": {
+   "Accurate": 5,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 7,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 4,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 5,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q011 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: That same APR figure also appears in the UCB Responsible Business Conduct Directions illustration for retail and MSME loans. The 2024 Key Facts Statement circular cited for APR illustration is no long
+- q022 amendment_point_in_time Hallucinated: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=True cites=True forbid=['may, at its option'] :: Yes: at the time of reset of interest rates, the lender shall provide EMI based floating rate personal loan borrowers the option to switch over to a fixed rate as per the lender’s Board-approved polic
+- q030 amendment_point_in_time Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=True cites=True forbid=[] :: For term loans, if a pre-payment charge is levied by a UCB, it must be based on the amount being prepaid.  The evidence does not show a rule that clearly answers whether a Tier 3 UCB may levy a pre-pa
+- q033 contradiction_true Incomplete: outcome PARTIAL (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: For a UCB, the current RBI rule says that any penalty for non-repayment within the due date shall be levied only as penal charges and not as penal interest, and the UCB rules also say penal interest i
+- q038 contradiction_different_condition Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: The in-force UCB directions do not prohibit pre-payment charges for cases outside the specifically listed categories in paragraph 261(1) and 261(2), because paragraph 261(5) says such charges, if any,
+- q040 contradiction_different_condition Incomplete: outcome PARTIAL (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The product note’s “no foreclosure charge” position matches the RBI direction for individual borrowers on floating rate loans for non-business purposes, but that RBI text is limited to existing floati
+- q051 out_of_scope Incomplete: outcome PARTIAL (want ['ABSTAIN']) facts=True cites=True forbid=[] :: No weather information for Raipur today is provided in the evidence, and the documents supplied are about banking directions, loan terms, and RBI notices rather than weather data.
+- q057 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q070 contradiction_different_condition Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL']) facts=True cites=True forbid=[] :: The loan agreement describes the item as a penal charge of ₹500 per month of default, not as penal interest added to the rate of interest. For this UCB, the applicable rule says penalty for non-compli
+- q071 contradiction_different_condition Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The bank policy’s option to offer a switch to a fixed rate at reset matches the RBI UCB rule that a UCB may, at its option, provide borrowers a choice to switch over to a fixed rate as per its Board-a
+elapsed 179s; total ledger $2.435

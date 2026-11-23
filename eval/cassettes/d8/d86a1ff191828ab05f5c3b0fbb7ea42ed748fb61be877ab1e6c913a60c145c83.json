@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, para 3.4 on customer due diligence (KYC/AML), covering how borrowers must complete KYC/AML before account opening for retail loan products and limits."}, "usage": {"prompt_tokens": 158, "completion_tokens": 54}}

@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "In the Home Loan Agreement (copy), section 8.1, it sets the insurance obligation for the Borrower to keep the Property insured for the loan’s duration, listing the Bank as mortgagee."}, "usage": {"prompt_tokens": 165, "completion_tokens": 52}}

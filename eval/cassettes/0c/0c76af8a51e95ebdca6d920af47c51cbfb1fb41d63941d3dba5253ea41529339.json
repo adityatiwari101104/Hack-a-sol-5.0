@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "In our home loan agreement, what was the EMI amount recorded at the time the loan was sanctioned?", "answer_key": "₹21,696"}, "usage": {"prompt_tokens": 227, "completion_tokens": 66}}

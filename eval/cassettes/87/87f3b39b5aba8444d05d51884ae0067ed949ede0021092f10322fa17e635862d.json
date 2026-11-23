@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section Table 1 (Version history), p. 4: identifies Version 1.0 effective 1 April 2019 and notes first Retail Loan Policy approval by the Board."}, "usage": {"prompt_tokens": 197, "completion_tokens": 57}}

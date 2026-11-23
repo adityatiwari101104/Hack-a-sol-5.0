@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "The provided FAQ sources do not mention any pre-payment percentage for the gold loan.", "source": "S2", "quote": "Frequently asked questions for customers"}]}, "usage": {"prompt_tokens": 461, "completion_tokens": 90}}

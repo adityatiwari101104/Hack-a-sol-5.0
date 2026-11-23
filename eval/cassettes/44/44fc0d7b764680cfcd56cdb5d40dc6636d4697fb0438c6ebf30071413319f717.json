@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 1.2, defines the Policy’s scope for all retail term and demand loans, including housing, vehicle, personal, education, loans against deposits and gold, and individual business loans."}, "usage": {"prompt_tokens": 176, "completion_tokens": 59}}

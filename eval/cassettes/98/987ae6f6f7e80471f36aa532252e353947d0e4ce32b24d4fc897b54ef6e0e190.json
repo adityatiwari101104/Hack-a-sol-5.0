@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 5.4: Floating-rate loans—benchmark rate changes passed to borrowers from the next reset date with notification via SMS, email, or letter."}, "usage": {"prompt_tokens": 173, "completion_tokens": 51}}

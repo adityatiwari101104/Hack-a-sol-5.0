@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 7.3, covers obligations upon full repayment, specifically the borrower’s loan file and the Bank’s release of original property documents and charge removals."}, "usage": {"prompt_tokens": 155, "completion_tokens": 52}}

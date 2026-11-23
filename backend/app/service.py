@@ -147,7 +147,29 @@ def build_evidence(plan, question, as_of, profile, limit=config.MAX_EVIDENCE):
             "located": reconstructed or locate(x["text"], row["text"]),
             "bboxes": _bboxes(x["words"]), "tuple_ids": [t["tuple_id"] for t in tuples],
         }
-    return pack, best, docs
+    return _prefer_in_force(pack, question), best, docs
+
+
+HISTORICAL = re.compile(r"\b(was|were|earlier|previous|previously|still in force|withdrawn|repealed|superseded|history|"
+                        r"old|replaced|before (the|it)|201\d|2020|2021|2022|2023)\b", re.I)
+
+
+def _prefer_in_force(pack, question):
+    """Drop withdrawn/superseded sentences whose rule is restated by an in-force sentence in the pack (e.g. a
+    withdrawn circular vs the Master Direction that consolidated it), unless the question asks about history.
+    Then number in-force evidence first so the drafter sees it first."""
+    from .verify import coverage
+    items = list(pack.values())
+    if not HISTORICAL.search(question):
+        live = [e for e in items if e["status"] == "IN_FORCE"]
+        items = [e for e in items if e["status"] == "IN_FORCE" or not any(
+            coverage(e["text"], f["text"]) >= 0.6 for f in live)]
+    items.sort(key=lambda e: (e["status"] != "IN_FORCE", e["doc_id"], e["chunk_id"]))
+    out = {}
+    for n, e in enumerate(items, start=1):
+        e = dict(e, eid=f"E{n}")
+        out[e["eid"]] = e
+    return out
 
 
 def _version_sentence(version_text, sentence):
@@ -170,15 +192,21 @@ def rule_findings(plan, as_of, profile, docs, pack=None):
     rows = [dict(r) for r in con.execute(
         "SELECT t.*, c.clause_key, c.text AS chunk_text, c.breadcrumb FROM value_tuples t JOIN chunks c USING(chunk_id) WHERE t.verified=1")]
     findings, gaps = {}, []
-    per_subject = {}
+    per_subject, residual = {}, []
     for t in rows:
         doc = docs[t["doc_id"]]
+        if (not doc["is_synthetic"] and t["subject"] in subjects and _doc_applies(doc, profile) and t["value_text"]
+                and re.search(r"other than|cases other", t["value_text"] + " " + t["quote"], re.I)):
+            residual.append(t)  # e.g. 261(5): "In cases other than those mentioned at 261(1) and (2) ... as per Board policy"
+            continue
         if doc["is_synthetic"] or t["subject"] not in subjects or not _doc_applies(doc, profile) or t["value_text"]:
             continue  # value_text holds a special circumstance: not a general rule for this case
         if applicability.product_mismatch(f"{t['breadcrumb']} {t['chunk_text'][:300]}", plan["english_question"]):
             continue  # e.g. a microfinance-only rule for a home-loan question
         if con.execute("SELECT COUNT(*) FROM provision_versions WHERE chunk_id=?", (t["chunk_id"],)).fetchone()[0] > 1:
             continue  # amended clause: its versions are handled as evidence with per-version status
+        if t["permitted"] == "not_applicable":
+            continue
         if t["permitted"] == "yes" and not t["value_num"]:
             continue  # a bare 'permitted' extracted from RBI text is not a usable rule (e.g. 'irrespective of source of funds')
         v = con.execute("SELECT valid_from, valid_to FROM provision_versions WHERE chunk_id=? ORDER BY valid_from DESC LIMIT 1",
@@ -220,6 +248,21 @@ def rule_findings(plan, as_of, profile, docs, pack=None):
                                  "doc_id": t["doc_id"], "clause": t["clause_key"], "chunk_id": t["chunk_id"],
                                  "quote": t["quote"], "page": t["page"], "verified": bool(t["verified"]), "subject": subj,
                                  "condition": cond}
+        # residual clause: the specific rules of a paragraph do not apply -> its "in cases other than" clause does
+        blocked_tops = {t["clause_key"].split("(")[0] for t, _, v, _, _ in items if v == "DOES_NOT_APPLY"}
+        if not any(v == "APPLIES" and t2["permitted"] in ("yes", "no") for t2, _, v, _, _ in items):
+            for r in residual:
+                if r["subject"] == subj and r["clause_key"].split("(")[0] in blocked_tops and not (
+                        applicability.evaluate(json.loads(r["condition_json"]), plan["case"], profile)[0] == "DOES_NOT_APPLY"):
+                    n += 1
+                    why = "; ".join(sorted({x for t2, _, v, rs, _ in items if v == "DOES_NOT_APPLY" for x in rs if x}))[:240]
+                    findings[f"R{n}"] = {"rid": f"R{n}", "verdict": "APPLIES", "permitted": r["permitted"], "doc_id": r["doc_id"],
+                                         "clause": r["clause_key"], "chunk_id": r["chunk_id"], "quote": r["quote"],
+                                         "page": r["page"], "verified": True, "subject": subj, "condition": {},
+                                         "statement": f"{docs[r['doc_id']]['title'].split(' (')[0]}, para {r['clause_key']} "
+                                                      f"(residual clause) applies because the specific rules of para "
+                                                      f"{r['clause_key'].split('(')[0]} do not ({why}): \"{r['quote'][:200]}\""}
+                    break
         # gap: case fully known, all non-date conditions satisfied somewhere, but no rule covers the sanction date
         sd = plan["case"].get("sanction_date")
         if sd and not any(v == "APPLIES" for _, _, v, _, _ in items):
@@ -369,6 +412,7 @@ def fill_calc(text, cards):
 
 def ask(question, as_of=None, bank_profile="ucb_tier3", slots=None):
     t0 = time.time()
+    verify._judge_budget.set(3)
     qid = uuid.uuid4().hex[:12]
     as_of = date.fromisoformat(as_of) if isinstance(as_of, str) else (as_of or date.today())
     profile = config.BANK_PROFILES[bank_profile]
@@ -416,7 +460,10 @@ def ask(question, as_of=None, bank_profile="ucb_tier3", slots=None):
         c = cards[999]
         shown.insert(0, {"text": f"{c['formula'].replace('_', ' ').title()} computed by code: {c['result']['display']} "
                                  f"(inputs from your question: {', '.join(f'{k}={v:g}' if isinstance(v, float) else f'{k}={v}' for k, v in c['inputs'].items())}; "
-                                 f"formula {c['result']['formula_text']}).",
+                                 f"formula {c['result']['formula_text']})."
+                                 + (f" Working, instalment 1: interest ₹{c['result']['working'][0]['interest']} on opening balance "
+                                    f"₹{c['result']['working'][0]['opening']}, principal ₹{c['result']['working'][0]['principal']}."
+                                    if c["result"].get("working") else ""),
                          "type": "calc", "core": True, "cites": [], "verdict": "PASS", "reason": "",
                          "checks": ["e:calc (code, inputs from question)"], "citations": []})
     named = mentioned_bank_docs(plan["english_question"] + " " + question, docs)
@@ -426,7 +473,8 @@ def ask(question, as_of=None, bank_profile="ucb_tier3", slots=None):
     missing = [dict(m, closest=_closest(pack)) for m in d["missing"]] + [dict(g, closest=[]) for g in gaps]
     REFUSAL = re.compile(r"do(es)? not (include|contain|state|cover|mention|provide|address|specify)|no (information|"
                          r"evidence|rule|provision) |cannot (determine|answer|confirm)|not (stated|specified|covered|"
-                         r"mentioned|provided)|outside (the|these)", re.I)
+                         r"mentioned|provided|available)|outside (the|these)|\bno\b.{0,40}\b(information|evidence|data|details)\b|"
+                         r"is not (in|part of) the (evidence|documents)|cannot be answered", re.I)
     core = [s for s in shown if s.get("core")]
     core_ok = bool(core) and not all(REFUSAL.search(s["text"]) for s in core)  # refusals alone are an abstention
     if gaps:

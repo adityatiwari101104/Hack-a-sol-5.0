@@ -53,7 +53,8 @@ def facts(text: str) -> set:
 
     Used by the verifier: every fact in an answer sentence must appear in its cited evidence
     (or in the user's question, or in a calculation result)."""
-    t = norm_text(text).lower()
+    t = unicodedata.normalize("NFKC", text).lower().replace("–", "-").replace("—", "-")
+    t = re.sub(r"\s+", " ", t)  # no digit-joining here: table rows like "2 19,280 729" must stay separate numbers
     t = re.sub(r"(?<=\d),(?=\d)", "", t)
     out = set()
     consumed = []

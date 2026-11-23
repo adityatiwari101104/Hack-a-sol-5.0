@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "Under our home loan agreement, over how many monthly payments is the borrower required to repay the loan?", "answer_key": "240 monthly instalments"}, "usage": {"prompt_tokens": 232, "completion_tokens": 55}}

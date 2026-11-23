@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "KFS Annex B (Table 1, Sr. No. 3) in the APR computation illustration specifies the borrower’s interest rate type as Fixed (KFS template Part 1, Sl. No. 6)."}, "usage": {"prompt_tokens": 210, "completion_tokens": 56}}

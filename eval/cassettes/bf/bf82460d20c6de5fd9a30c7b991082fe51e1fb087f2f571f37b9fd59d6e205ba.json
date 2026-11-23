@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "Under our sanction letter for the MSE business loan, what collateral must be created over the property financed by the facility?", "answer_key": "Registered mortgage"}, "usage": {"prompt_tokens": 204, "completion_tokens": 69}}

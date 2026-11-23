@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 2.2 (Borrower) defines “Borrower” as a Bank member, including nominal members, who has taken a loan under the Policy."}, "usage": {"prompt_tokens": 155, "completion_tokens": 52}}

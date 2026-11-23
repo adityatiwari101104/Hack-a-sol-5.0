@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "In the KFS Annex B illustration, what is the overall rupee amount the customer is required to repay in total?", "answer_key": "23,2749"}, "usage": {"prompt_tokens": 271, "completion_tokens": 120}}

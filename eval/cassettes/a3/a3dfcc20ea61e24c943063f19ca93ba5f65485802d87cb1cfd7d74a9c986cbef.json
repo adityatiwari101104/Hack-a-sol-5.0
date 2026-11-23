@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 7.5, specifies timeline requirements for issuing foreclosure statements when a UCB retail loan is taken over by another lender, moving into overdue/default/recovery topics."}, "usage": {"prompt_tokens": 163, "completion_tokens": 54}}

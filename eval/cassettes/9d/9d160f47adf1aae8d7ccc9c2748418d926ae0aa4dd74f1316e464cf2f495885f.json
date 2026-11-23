@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 7.2 (pre-payments): explains that partial or full pre-payments reduce principal outstanding and adjust either the EMI or remaining tenor for affected borrowers."}, "usage": {"prompt_tokens": 157, "completion_tokens": 53}}

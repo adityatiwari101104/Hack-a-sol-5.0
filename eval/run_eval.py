@@ -116,7 +116,8 @@ def main():
     split = next((a for a in args if a in ("dev", "test", "canary", "all")), "dev")
     workers = int(args[args.index("--workers") + 1]) if "--workers" in args else 4
     baseline = "--baseline" in args
-    items = [json.loads(l) for l in (HERE / "gold.jsonl").read_text().splitlines() if l.strip()]
+    gold = args[args.index("--gold") + 1] if "--gold" in args else "gold.jsonl"
+    items = [json.loads(l) for l in (HERE / gold).read_text().splitlines() if l.strip()]
     for it in items:
         it["question"] = it.pop("q")
     if split == "canary":
@@ -144,7 +145,7 @@ def main():
     with ThreadPoolExecutor(workers) as ex:
         rows = list(ex.map(one, items))
     summ = summarize(rows, llm.spent() - start_spend)
-    name = f"{split}{'_baseline' if baseline else ''}"
+    name = f"{'fresh' if gold != 'gold.jsonl' else split}{'_baseline' if baseline else ''}"
     out = HERE / "reports"
     out.mkdir(exist_ok=True)
     (out / f"{name}.json").write_text(json.dumps({"summary": summ, "rows": rows}, indent=1, ensure_ascii=False))

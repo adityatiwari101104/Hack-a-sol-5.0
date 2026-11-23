@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 8.3, sets the branch requirement to notify retail borrowers of overdue instalments via SMS or letter within a specified timeframe."}, "usage": {"prompt_tokens": 151, "completion_tokens": 47}}

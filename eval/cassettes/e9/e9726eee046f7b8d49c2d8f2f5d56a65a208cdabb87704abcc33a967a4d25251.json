@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "The borrower is required to repay the loan over 240 monthly payments (monthly instalments).", "source": "S2", "quote": "\"The Loan shall be repaid in 240 monthly instalments.\""}]}, "usage": {"prompt_tokens": 454, "completion_tokens": 103}}

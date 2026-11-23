@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "From what date do our UCB responsible lending rules on handing back original pledged or mortgaged documents start applying when the return becomes due?", "answer_key": "December 1, 2023"}, "usage": {"prompt_tokens": 279, "completion_tokens": 99}}

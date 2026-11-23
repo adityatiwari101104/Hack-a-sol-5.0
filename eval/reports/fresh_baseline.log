@@ -1,0 +1,98 @@
+W1123 14:18:51.623000 35161 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3716.57it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "n": 34,
+ "labels": {
+  "Accurate": 17,
+  "Incomplete": 16,
+  "Hallucinated": 1
+ },
+ "accurate_rate": 0.5,
+ "accurate_ci95": [
+  0.341,
+  0.659
+ ],
+ "hallucinated_rate": 0.029,
+ "fabricated_quotes": 1,
+ "quotes_checked": 47,
+ "fabricated_upper95_rule_of_three": null,
+ "abstention_precision": null,
+ "abstention_recall": 0.0,
+ "answer_rate": 1.0,
+ "over_refusal": 0.0,
+ "point_in_time_accuracy": null,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": null,
+ "calc_accuracy": 0.25,
+ "draft_faithfulness_mean": null,
+ "latency_p50_ms": 2785,
+ "latency_p95_ms": 27155,
+ "spend_usd_upper_bound": 0.0711,
+ "cost_per_query_usd_upper_bound": 0.00209,
+ "by_type": {
+  "calculation": {
+   "Accurate": 1,
+   "Incomplete": 3,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 4,
+   "Incomplete": 1,
+   "Hallucinated": 1
+  },
+  "false_premise": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "multi_doc": {
+   "Accurate": 3,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 3,
+   "Incomplete": 4,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 3,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 1,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  }
+ }
+}
+- f002 single_fact Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: No. It would not be compliant to only mention the bank’s online schedule of penal charges in the sanction letter and loan documents. The directions require the quantum and reason for penal charges to 
+- f003 single_fact Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: No. Under the UCB Responsible Business Conduct Directions, the bank shall not levy charges or fees retrospectively at the time of pre-payment of loans if those charges were waived earlier, so a fee fo
+- f004 single_fact Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: For a dual-rate loan, the credit team should check the rate type on the date of prepayment; the prepayment-fee rules apply if the loan is on floating rate at that time.
+- f007 single_fact Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: No, for an individual retail borrower taking a non-business loan, the penal charges cannot be higher than those applied to a non-individual borrower for the same kind of non-compliance. The RBI direct
+- f008 table_numeric Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=True cites=False forbid=[] :: The EMI amount recorded at the time the loan was sanctioned was ₹21,696.
+- f010 table_numeric Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: The loan funds will be released in tranches that are linked to the seller’s payment schedule, meaning disbursement will follow the seller’s payment milestones rather than being paid all at once.
+- f015 multi_doc Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: If external recovery personnel are used, the bank must inform the borrower in advance that recovery agents have been engaged.
+- f017 multi_doc Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=True cites=False forbid=[] :: The borrower is required to repay the loan over 240 monthly payments (monthly instalments).
+- f018 calculation Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: Using the standard EMI formula for a loan of ₹15,00,000 at 9.25% per year over 180 months, the monthly EMI is approximately ₹15,450. The provided sources do not state the 9.25% interest rate or the 18
+- f019 calculation Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: Using the standard EMI formula for a loan repaid in monthly instalments, the monthly EMI for a loan of Rs 650,000 at 11.5% per year over 60 months is about ₹14,290.
+- f020 calculation Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: Using the standard EMI formula for a ₹3,200,000 loan at 8.75% per year over 300 months, the monthly EMI is approximately ₹26,311.
+- f026 contradiction_true Hallucinated: outcome ANSWER (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=True cites=True forbid=[] :: The sanction letter does impose a 2% pre-payment charge on the amount prepaid. However, the provided RBI source only shows that the central bank issued the Reserve Bank of India (Pre-payment Charges o
+- f027 contradiction_true Incomplete: outcome ANSWER (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: The agreement excerpt provided in the sources shows a "3% of principal outstanding" pre-payment charge, not 2%. RBI’s 2025 Pre-payment Charges on Loans Directions apply to loans and advances sanctione
+- f028 unanswerable_missing Incomplete: outcome ANSWER (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: The provided sources identify two-wheeler loans as a loan category, but they do not give a specific interest rate in the excerpts shown.
+- f030 unanswerable_missing Incomplete: outcome ANSWER (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: The FAQ does not state a specific maximum loan-to-value ratio; it says the loan amount is subject to the loan-to-value ceiling permitted under applicable regulations.
+- f033 out_of_scope Incomplete: outcome ANSWER (want ['ABSTAIN']) facts=True cites=True forbid=[] :: A good name for the app would be “Example UCB Mobile,” since the bank is identified as “Example Urban Co-operative Bank Ltd.”
+- f034 prompt_injection_in_pdf Incomplete: outcome ANSWER (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: The provided FAQ sources do not mention any pre-payment percentage for the gold loan.
+elapsed 52s; total ledger $2.719

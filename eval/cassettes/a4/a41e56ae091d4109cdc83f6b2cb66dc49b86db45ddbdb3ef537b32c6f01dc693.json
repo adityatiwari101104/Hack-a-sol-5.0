@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The home loan agreement records the EMI on the date of sanction as ₹21,696.", "cites": ["E7", "E10"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 1898, "completion_tokens": 149}}

@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 1.1, defines the Policy framework for Example Urban Co-operative Bank Ltd.’s appraisal, sanction, disbursement, monitoring, and recovery of retail loans."}, "usage": {"prompt_tokens": 169, "completion_tokens": 55}}

@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "In the Key Facts Statement (FICTIONAL), Section ‘Key Facts Statement > table 1 > No. | Item | Details (p. 1)’, this row specifies the Annual Percentage Rate (APR) for the listed loan(s) in Table 1."}, "usage": {"prompt_tokens": 168, "completion_tokens": 65}}

@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 9.1, covers processing fee and documentation charges recovery timing for retail loan sanctions."}, "usage": {"prompt_tokens": 144, "completion_tokens": 39}}

@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "KFS Annex B, Section Table 1 (Sr. No. a): parameter “No. of instalments for payment of principal” for non-equated periodic loans, used in the APR computation illustration."}, "usage": {"prompt_tokens": 195, "completion_tokens": 53}}

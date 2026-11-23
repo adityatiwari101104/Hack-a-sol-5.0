@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, Section 12.1, addresses how complaints for retail loans are handled, directing them to the Bank’s Grievance Redressal Policy."}, "usage": {"prompt_tokens": 152, "completion_tokens": 49}}

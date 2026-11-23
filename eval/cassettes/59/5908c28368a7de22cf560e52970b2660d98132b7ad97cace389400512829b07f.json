@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "The Key Facts Statement discloses an Annual Percentage Rate (APR) of 8.70% for this loan product.", "source": "S1", "quote": "9 Annual Percentage Rate (APR) 8.70%"}]}, "usage": {"prompt_tokens": 534, "completion_tokens": 111}}

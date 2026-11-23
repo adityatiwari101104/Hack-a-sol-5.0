@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, para 4.2–4.3, outlines eligibility and sanction limits for vehicle loans (two-wheelers/four-wheelers) and personal loans for salaried borrowers."}, "usage": {"prompt_tokens": 195, "completion_tokens": 55}}

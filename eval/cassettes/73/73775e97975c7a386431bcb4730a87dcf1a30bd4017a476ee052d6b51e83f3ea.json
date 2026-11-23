@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "KFS Annex B, Section “Table 1” (p. 1), row 4 specifies the Rate of Interest used in the APR computation example (KFS template-Part 1) for the illustrative borrower/loan."}, "usage": {"prompt_tokens": 199, "completion_tokens": 57}}

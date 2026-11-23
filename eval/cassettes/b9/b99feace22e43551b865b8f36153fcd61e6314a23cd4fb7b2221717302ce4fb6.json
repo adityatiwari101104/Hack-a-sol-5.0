@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "Under our home loan agreement, how frequently must the bank provide the borrower with an updated loan statement covering recoveries, EMI details, and the interest rate?", "answer_key": "at the end of each quarter"}, "usage": {"prompt_tokens": 236, "completion_tokens": 132}}

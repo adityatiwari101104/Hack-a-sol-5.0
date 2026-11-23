@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Gold Loan FAQ > para 4.2 explains borrower auction notification, stating the Bank will send written notice of auction before it occurs and include the amount due, auction date, and location."}, "usage": {"prompt_tokens": 166, "completion_tokens": 49}}

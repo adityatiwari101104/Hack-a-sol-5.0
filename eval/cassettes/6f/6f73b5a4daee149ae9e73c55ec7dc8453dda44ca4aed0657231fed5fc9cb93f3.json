@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "The overall rupee amount the customer is required to repay in total is ₹23,274.", "source": "S2", "quote": "8 Total amount to be paid by the borrower (sum of 1 and 5) 23,2749 (in Rupees)"}]}, "usage": {"prompt_tokens": 870, "completion_tokens": 136}}

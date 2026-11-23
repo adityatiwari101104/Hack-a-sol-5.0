@@ -1,0 +1,1 @@
+{"request_name": "fresh_qa", "model": "gpt-5.4-2026-03-05", "output": {"question": "In our home loan agreement, what annual interest rate is specified for this facility?", "answer_key": "8.50% per annum"}, "usage": {"prompt_tokens": 247, "completion_tokens": 78}}

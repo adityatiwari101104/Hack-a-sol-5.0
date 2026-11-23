@@ -56,7 +56,7 @@ ITEMS = [
          outcome=A_, facts=[r"27,?06,?939|2,?706,?939"], cites=[]),
     # ---- point in time / amendment chains ----
     dict(type="amendment_point_in_time", q="At the time of interest rate reset, must the lender offer EMI-based personal loan borrowers the option to switch to a fixed rate?",
-         as_of="2025-09-15", outcome=A_, facts=[r"\bshall\b|must|requir|mandatory"], forbid=[r"may, at its option"], cites=[("RBI-EMI-RESET-2023", "2(ii)")]),
+         as_of="2025-09-15", outcome=A_, facts=[r"\bshall\b|must|requir|mandatory"], forbid=[r"(RBI|rule|direction|circular|lender)[^.]{0,60}may, at its option"], cites=[("RBI-EMI-RESET-2023", "2(ii)")]),
     dict(type="amendment_point_in_time", q="At the time of interest rate reset, must the lender offer EMI-based personal loan borrowers the option to switch to a fixed rate?",
          as_of="2025-10-15", outcome=A_, facts=[r"may, at its option|option(al)?|not (required|mandatory)|choice"], cites=[("RBI-EMI-RESET-2023", "2(ii)")]),
     dict(type="amendment_point_in_time", q="At reset of floating rates, does a UCB have to give borrowers a choice to switch to a fixed rate?",

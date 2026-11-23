@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS pages (
 CREATE TABLE IF NOT EXISTS chunks (
   chunk_id TEXT PRIMARY KEY, doc_id TEXT NOT NULL, clause_key TEXT, kind TEXT, breadcrumb TEXT,
   text TEXT NOT NULL, pages_json TEXT NOT NULL, words_json TEXT NOT NULL, seq INTEGER,
-  context TEXT  -- lead-in text inherited from parent clauses, e.g. '(2) For all floating rate loans ... MSEs:'
+  context TEXT, -- lead-in text inherited from parent clauses, e.g. '(2) For all floating rate loans ... MSEs:'
+  prefix TEXT    -- LLM-written situating sentence used only for search (Contextual Retrieval)
 );
 CREATE TABLE IF NOT EXISTS provision_versions (
   version_id TEXT PRIMARY KEY, clause_key TEXT NOT NULL, chunk_id TEXT, doc_id TEXT NOT NULL,

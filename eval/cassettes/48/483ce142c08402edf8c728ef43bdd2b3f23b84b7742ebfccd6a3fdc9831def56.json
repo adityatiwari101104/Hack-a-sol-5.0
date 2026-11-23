@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence explicitly states: “Pre-payment charges: 2% of the amount prepaid.” This matches the claim that the bank’s documents state the pre-payment charge is 2% of the amount prepaid (E8, E9)."}, "usage": {"prompt_tokens": 190, "completion_tokens": 64}}

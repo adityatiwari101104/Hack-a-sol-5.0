@@ -60,10 +60,11 @@ def index():
         rows = [dict(r) for r in con.execute(
             "SELECT c.*, d.title, d.doc_type, d.issuer, d.is_synthetic FROM chunks c JOIN documents d USING(doc_id) "
             "WHERE c.kind != 'footnote' ORDER BY c.doc_id, c.seq")]
-        sig = hashlib.sha256(("|".join(r["chunk_id"] + str(len(r["text"])) for r in rows) + config.EMBED_MODEL).encode()).hexdigest()[:16]
+        sig = hashlib.sha256(("|".join(r["chunk_id"] + str(len(r["text"])) + str(len(r.get("prefix") or "")) for r in rows)
+                              + config.EMBED_MODEL).encode()).hexdigest()[:16]
         if _state.get("sig") == sig:
             return _state
-        docs = [f"{r['breadcrumb']}. {r['context'] or ''} {r['text']}" for r in rows]
+        docs = [f"{r['breadcrumb']}. {r.get('prefix') or ''} {r['context'] or ''} {r['text']}" for r in rows]
         cache = config.DATA / f"emb_{sig}.npy"
         emb = np.load(cache) if cache.exists() else embed(docs)
         if not cache.exists():

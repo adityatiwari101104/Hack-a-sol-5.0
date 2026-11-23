@@ -1,0 +1,1 @@
+{"request_name": "chunk_prefix", "model": "gpt-5.4-nano-2026-03-17", "output": {"context": "Example UCB Retail Loan Policy v3, section 1.4, explains that the current policy supersedes version 2.1 and introduces the section’s definitions for the policy’s retail loan borrowers."}, "usage": {"prompt_tokens": 151, "completion_tokens": 52}}

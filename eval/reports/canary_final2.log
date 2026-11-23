@@ -1,0 +1,98 @@
+W1123 15:08:32.090000 40848 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4970.12it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 9976.35it/s]
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 32228.64it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (533 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 14,
+ "labels": {
+  "Accurate": 11,
+  "Incomplete": 3,
+  "Hallucinated": 0
+ },
+ "accurate_rate": 0.786,
+ "accurate_ci95": [
+  0.524,
+  0.924
+ ],
+ "hallucinated_rate": 0.0,
+ "fabricated_quotes": 0,
+ "quotes_checked": 55,
+ "fabricated_upper95_rule_of_three": 0.055,
+ "abstention_precision": 0.5,
+ "abstention_recall": 0.667,
+ "answer_rate": 0.714,
+ "over_refusal": 0.2,
+ "point_in_time_accuracy": 0.667,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 0.0,
+ "calc_accuracy": 1.0,
+ "draft_faithfulness_mean": 0.762,
+ "latency_p50_ms": 4559,
+ "latency_p95_ms": 21517,
+ "spend_usd_upper_bound": 0.0,
+ "cost_per_query_usd_upper_bound": 0.0,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 2,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "calculation": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 1,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "multi_doc": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q030 amendment_point_in_time Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=True cites=True forbid=[] :: For term loans, if a pre-payment charge is levied by a UCB, it must be based on the amount being prepaid.  The evidence does not show a rule that clearly answers whether a Tier 3 UCB may levy a pre-pa
+- q033 contradiction_true Incomplete: outcome PARTIAL (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: For a UCB, the current RBI rule says that any penalty for non-repayment within the due date shall be levied only as penal charges and not as penal interest, and the UCB rules also say penal interest i
+- q038 contradiction_different_condition Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: The in-force UCB directions do not prohibit pre-payment charges for cases outside the specifically listed categories in paragraph 261(1) and 261(2), because paragraph 261(5) says such charges, if any,
+elapsed 44s; total ledger $2.719

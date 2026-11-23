@@ -270,6 +270,10 @@ def _table_chunks(doc_id, pages, title):
                             f"{title} > table {ti} > " + " | ".join(header) + f" (p. {part['page']})")
                 rc.add_words(part["page"], rw)
                 rc.lead = "Table columns: " + " | ".join(h for h in header if h)
+                # labelled form of the row ("Outstanding Principal: 19,280; Interest: 241") for search and checking
+                pairs = [f"{h}: {c}" for h, c in zip(header, cells) if h and c]
+                if pairs:
+                    rc.lead += ". Row: " + "; ".join(pairs)
                 out.append(rc)
                 tc.add_words(part["page"], rw)
         tc.lead = "Table columns: " + " | ".join(h for h in header if h)

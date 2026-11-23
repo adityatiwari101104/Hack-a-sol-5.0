@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence states that upon pre-payment (in full or in part) or foreclosure, the Borrower must pay a pre-payment charge equal to 2% of the principal outstanding."}, "usage": {"prompt_tokens": 266, "completion_tokens": 53}}
