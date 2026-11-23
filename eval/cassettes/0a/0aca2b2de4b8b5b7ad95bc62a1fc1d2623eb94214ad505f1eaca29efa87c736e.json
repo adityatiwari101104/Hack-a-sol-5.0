@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "fees_not_in_kfs", "permitted": "no", "reason": "The quote expressly says that no fee or charge other than those listed in the Schedule may be levied, which prohibits any fees not included there."}, "usage": {"prompt_tokens": 276, "completion_tokens": 98}}

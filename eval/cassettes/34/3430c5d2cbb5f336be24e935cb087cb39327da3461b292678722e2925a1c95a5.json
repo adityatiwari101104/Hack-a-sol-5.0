@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "prepayment_charge", "permitted": "no", "reason": "The quote explicitly prohibits pre-payment charges for all floating rate loans granted for purposes other than business to individuals, so the extracted fact is correct."}, "usage": {"prompt_tokens": 334, "completion_tokens": 87}}

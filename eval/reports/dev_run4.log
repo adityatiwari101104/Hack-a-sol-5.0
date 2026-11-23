@@ -1,0 +1,101 @@
+W1123 05:56:10.607000 25039 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 8380.02it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 37619.62it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 22153.21it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 24993.76it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 5762.88it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (562 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 33,
+ "labels": {
+  "Accurate": 29,
+  "Incomplete": 4,
+  "Hallucinated": 0
+ },
+ "accurate_rate": 0.879,
+ "accurate_ci95": [
+  0.727,
+  0.952
+ ],
+ "hallucinated_rate": 0.0,
+ "fabricated_quotes": 0,
+ "quotes_checked": 97,
+ "fabricated_upper95_rule_of_three": 0.031,
+ "abstention_precision": 0.75,
+ "abstention_recall": 0.5,
+ "answer_rate": 0.879,
+ "over_refusal": 0.04,
+ "point_in_time_accuracy": 1.0,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 0.0,
+ "calc_accuracy": 0.5,
+ "draft_faithfulness_mean": 0.623,
+ "latency_p50_ms": 4203,
+ "latency_p95_ms": 12682,
+ "spend_usd_upper_bound": 0.1803,
+ "cost_per_query_usd_upper_bound": 0.00546,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 6,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "calculation": {
+   "Accurate": 1,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 0,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 4,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "hindi": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 5,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 4,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 4,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q002 single_fact Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: Those in-force directions apply to all fresh loans availed from April 1, 2024 onwards, and the earlier 2023 penal-charges circulars are no longer in force as of 2026-11-23. 
+- q020 calculation Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: 
+- q038 contradiction_different_condition Incomplete: outcome PARTIAL (want ['ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: The bank’s note says a 2% pre-payment charge applies on foreclosure or pre-payment of the loan. For loans and advances sanctioned or renewed on or after 1 January 2026, a UCB shall not levy pre-paymen
+- q040 contradiction_different_condition Incomplete: outcome PARTIAL (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: type=fact The product note says that for individual borrowers on floating rate loans for non-business purposes, no foreclosure charge applies. type=fact The current RBI directions say that, for existi
+elapsed 44s; total ledger $0.979

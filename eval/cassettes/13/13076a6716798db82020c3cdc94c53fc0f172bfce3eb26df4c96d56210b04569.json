@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The EMI is ₹21,696 for the ₹25,00,000 home loan at 8.50% per annum over 240 months.", "cites": ["E5", "E6", "E10", "E11", "E12"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2405, "completion_tokens": 185}}

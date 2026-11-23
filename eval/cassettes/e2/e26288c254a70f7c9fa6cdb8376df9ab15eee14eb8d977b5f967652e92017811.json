@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "prepayment_charge", "permitted": "no", "reason": "The quote expressly states that no pre-payment charge shall be levied on microfinance loans, which prohibits such charges."}, "usage": {"prompt_tokens": 283, "completion_tokens": 75}}

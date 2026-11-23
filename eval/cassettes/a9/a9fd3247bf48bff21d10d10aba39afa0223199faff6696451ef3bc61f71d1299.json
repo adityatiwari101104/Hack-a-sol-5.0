@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "prepayment_charge", "permitted": "no", "reason": "The quote directly prohibits levy of pre-payment charges on eligible loans up to ₹50 lakh for the listed lenders, so the extracted subject and 'permitted=no' are correct."}, "usage": {"prompt_tokens": 373, "completion_tokens": 97}}

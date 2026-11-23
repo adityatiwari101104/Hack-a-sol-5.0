@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "documentation_fee", "permitted": "conditional", "reason": "The quote allows documentation charges to be recovered, but only "}, "usage": {"prompt_tokens": 279, "completion_tokens": 101}}

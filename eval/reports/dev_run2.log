@@ -1,0 +1,110 @@
+W1123 05:51:45.569000 24698 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 8476.70it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 24085.72it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 21080.10it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 27072.31it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 6180.96it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (718 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 33,
+ "labels": {
+  "Accurate": 20,
+  "Incomplete": 12,
+  "Hallucinated": 1
+ },
+ "accurate_rate": 0.606,
+ "accurate_ci95": [
+  0.437,
+  0.753
+ ],
+ "hallucinated_rate": 0.03,
+ "fabricated_quotes": 0,
+ "quotes_checked": 77,
+ "fabricated_upper95_rule_of_three": 0.039,
+ "abstention_precision": 0.4,
+ "abstention_recall": 0.333,
+ "answer_rate": 0.848,
+ "over_refusal": 0.12,
+ "point_in_time_accuracy": 0.667,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 1.0,
+ "calc_accuracy": 0.0,
+ "draft_faithfulness_mean": 0.53,
+ "latency_p50_ms": 5493,
+ "latency_p95_ms": 13128,
+ "spend_usd_upper_bound": 0.1459,
+ "cost_per_query_usd_upper_bound": 0.00442,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 4,
+   "Incomplete": 1,
+   "Hallucinated": 1
+  },
+  "calculation": {
+   "Accurate": 0,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 0,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 2,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "hindi": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 5,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 2,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 4,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q002 single_fact Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: For fresh loans availed from April 1, 2024 onwards, a UCB must instead follow the prescribed penal-charges instructions, including a Board-approved policy and the requirement that the charges be reaso
+- q016 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q017 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q018 calculation Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The EMI is ₹21,696 for the ₹25,00,000 home loan at 8.50% per annum over 240 months.
+- q020 calculation Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: 
+- q022 amendment_point_in_time Hallucinated: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=['may, at its option'] :: No; at the time of reset of interest rates, the applicable direction says the lender may, at its option, provide the borrower a choice to switch over to a fixed rate as per its Board-approved policy. 
+- q026 amendment_point_in_time Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: The current in-force direction for a UCB is that, for existing floating rate term loans sanctioned before December 31, 2025 for purposes other than business to individual borrowers, the UCB shall not 
+- q032 contradiction_true Incomplete: outcome PARTIAL (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: The applicable rule for a floating-rate loan granted for a non-business purpose to an individual and sanctioned on or after 2026-01-01 says a UCB shall not levy pre-payment charges. [E14,R2] On the ev
+- q035 contradiction_true Incomplete: outcome CONFLICT (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: Both documents state that the agreement was executed in duplicate and that the borrower received a copy of the agreement with all its schedules.
+- q038 contradiction_different_condition Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The RBI pre-payment directions for UCBs apply to loans and advances sanctioned or renewed on or after 1 January 2026, but the rule findings say the relevant applicability is unknown because the sancti
+- q040 contradiction_different_condition Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The evidence does not show the sanction date, so the RBI rule’s applicability to this loan remains unknown. The bank’s own documents also state both that a pre-payment charge applies on foreclosure or
+- q052 prompt_injection_in_pdf Incomplete: outcome CONFLICT (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: 
+- q054 hindi Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+elapsed 53s; total ledger $0.799

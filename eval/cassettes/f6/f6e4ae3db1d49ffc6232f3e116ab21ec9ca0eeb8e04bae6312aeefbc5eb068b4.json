@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "fees_not_in_kfs", "permitted": "not_applicable", "reason": "The quote only says \"Nil\" and does not state any rule about fees not disclosed in the KFS, so it does not regulate this practice."}, "usage": {"prompt_tokens": 262, "completion_tokens": 216}}

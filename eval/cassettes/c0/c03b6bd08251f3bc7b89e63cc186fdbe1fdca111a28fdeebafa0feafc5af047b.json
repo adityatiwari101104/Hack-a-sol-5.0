@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "penal_charges", "permitted": "yes", "reason": "The quote expressly states a fixed default charge of ₹500 per month, so it permits a separate penal charge for default."}, "usage": {"prompt_tokens": 270, "completion_tokens": 113}}

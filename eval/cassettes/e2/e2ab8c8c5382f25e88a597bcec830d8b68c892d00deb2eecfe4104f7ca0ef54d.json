@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The in-force APR illustration for a ₹20,000 fixed-rate loan at 15% for 24 months shows the monthly EMI as ₹970. [E16, E2]", "cites": ["E16", "E2"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2777, "completion_tokens": 281}}

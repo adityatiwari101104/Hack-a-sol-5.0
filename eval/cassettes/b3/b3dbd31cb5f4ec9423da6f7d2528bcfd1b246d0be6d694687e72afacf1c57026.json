@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "penal_interest", "permitted": "no", "reason": "The quote explicitly says that any penalty for default shall be levied only as penal charges and not as penal interest, so charging penal interest is prohibited."}, "usage": {"prompt_tokens": 371, "completion_tokens": 81}}

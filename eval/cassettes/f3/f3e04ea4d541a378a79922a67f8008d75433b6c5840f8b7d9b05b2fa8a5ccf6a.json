@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "documentation_fee", "permitted": "yes", "reason": "The quote explicitly states a documentation fee of ₹500 charged once at execution, so the fee is allowed by the document."}, "usage": {"prompt_tokens": 263, "completion_tokens": 77}}

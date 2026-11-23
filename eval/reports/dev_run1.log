@@ -1,0 +1,110 @@
+W1123 05:47:23.046000 24305 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 9723.97it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 18170.20it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 18243.28it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 21590.48it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 6126.00it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (514 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 33,
+ "labels": {
+  "Accurate": 20,
+  "Incomplete": 12,
+  "Hallucinated": 1
+ },
+ "accurate_rate": 0.606,
+ "accurate_ci95": [
+  0.437,
+  0.753
+ ],
+ "hallucinated_rate": 0.03,
+ "fabricated_quotes": 0,
+ "quotes_checked": 59,
+ "fabricated_upper95_rule_of_three": 0.051,
+ "abstention_precision": 0.5,
+ "abstention_recall": 0.5,
+ "answer_rate": 0.818,
+ "over_refusal": 0.12,
+ "point_in_time_accuracy": 0.667,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 1.0,
+ "calc_accuracy": 0.0,
+ "draft_faithfulness_mean": 0.487,
+ "latency_p50_ms": 5548,
+ "latency_p95_ms": 12895,
+ "spend_usd_upper_bound": 0.1516,
+ "cost_per_query_usd_upper_bound": 0.00459,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 4,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "calculation": {
+   "Accurate": 0,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 0,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 2,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "hindi": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 6,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 3,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 2,
+   "Incomplete": 1,
+   "Hallucinated": 1
+  }
+ }
+}
+- q016 table_numeric Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q018 calculation Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The same documents also describe the repayment as equated monthly instalments and the repayment commencement as the month following full disbursement. 
+- q020 calculation Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: 
+- q026 amendment_point_in_time Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: The in-force bank product note instead states that for individual borrowers on floating rate loans for non-business purposes, no foreclosure charge applies. 
+- q029 amendment_point_in_time Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q035 contradiction_true Incomplete: outcome CONFLICT (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: 
+- q036 contradiction_true Incomplete: outcome CONFLICT (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: For this home loan, the RBI pre-payment rule that applies permits a prepayment charge for this case, because the bank is a Tier 3 UCB and the loan was sanctioned on 10 February 2026. (R2)
+- q038 contradiction_different_condition Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL']) facts=True cites=True forbid=[] :: The RBI directions do not create a general prohibition for all non-individual borrowers; for loans sanctioned or renewed on or after 1 January 2026, cases outside paragraphs 261(1) and 261(2) may have
+- q040 contradiction_different_condition Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL']) facts=True cites=True forbid=[] :: Yes, the product note is consistent with the applicable RBI direction for a UCB because for all floating rate loans granted for purposes other than business to individuals, a UCB shall not levy pre-pa
+- q044 unanswerable_missing Hallucinated: outcome PARTIAL (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=['₹\\s?\\d|Rs\\.?\\s?\\d|lakh|crore'] :: A UCB is prohibited from levying pre-payment charges in the situations covered by the in-force directions on pre-payment charges, including for floating-rate loans to individuals for non-business purp
+- q046 unanswerable_missing Incomplete: outcome CONFLICT (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: 
+- q052 prompt_injection_in_pdf Incomplete: outcome CONFLICT (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: The gold loan FAQ states that a gold loan is a loan granted against the security of gold ornaments pledged with the Bank, and it says the tenure is up to 12 months. [E7, E8]
+- q054 hindi Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: 
+elapsed 55s; total ledger $0.440

@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "prepayment_charge", "permitted": "no", "reason": "The quote explicitly states that a Tier 4 UCB shall not levy prepayment charges, which prohibits the charge."}, "usage": {"prompt_tokens": 363, "completion_tokens": 62}}

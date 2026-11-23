@@ -1,0 +1,106 @@
+W1123 05:54:26.861000 24917 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 9118.45it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 31942.84it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 22994.83it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 27009.24it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 5528.93it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (718 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 33,
+ "labels": {
+  "Accurate": 24,
+  "Incomplete": 8,
+  "Hallucinated": 1
+ },
+ "accurate_rate": 0.727,
+ "accurate_ci95": [
+  0.558,
+  0.849
+ ],
+ "hallucinated_rate": 0.03,
+ "fabricated_quotes": 0,
+ "quotes_checked": 76,
+ "fabricated_upper95_rule_of_three": 0.039,
+ "abstention_precision": 0.375,
+ "abstention_recall": 0.5,
+ "answer_rate": 0.758,
+ "over_refusal": 0.2,
+ "point_in_time_accuracy": 0.667,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 0.0,
+ "calc_accuracy": 0.5,
+ "draft_faithfulness_mean": 0.543,
+ "latency_p50_ms": 1671,
+ "latency_p95_ms": 9451,
+ "spend_usd_upper_bound": 0.0,
+ "cost_per_query_usd_upper_bound": 0.0,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 4,
+   "Incomplete": 1,
+   "Hallucinated": 1
+  },
+  "calculation": {
+   "Accurate": 1,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 0,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 3,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "hindi": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 5,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 2,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 4,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q005 single_fact Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q016 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q017 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q020 calculation Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: 
+- q022 amendment_point_in_time Hallucinated: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=['may, at its option'] :: The bank’s own policy is framed the same way, saying the Bank may, at its option, offer the borrower a choice to switch to a fixed rate at the time of reset of the floating rate. 
+- q026 amendment_point_in_time Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: The current in-force direction for a UCB is that, for existing floating rate term loans sanctioned before December 31, 2025 for purposes other than business to individual borrowers, the UCB shall not 
+- q035 contradiction_true Incomplete: outcome CONFLICT (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: Both documents state that the agreement was executed in duplicate and that the borrower received a copy of the agreement with all its schedules.
+- q038 contradiction_different_condition Incomplete: outcome PARTIAL (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: The RBI pre-payment directions for UCBs apply to loans and advances sanctioned or renewed on or after 1 January 2026, but the rule findings say the relevant applicability is unknown because the sancti
+- q040 contradiction_different_condition Incomplete: outcome PARTIAL (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The product note’s statement that no foreclosure charge applies to individual borrowers on floating rate loans for non-business purposes matches the in-force UCB direction for existing floating rate t
+elapsed 21s; total ledger $0.799

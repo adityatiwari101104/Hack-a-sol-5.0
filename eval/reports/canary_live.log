@@ -1,0 +1,94 @@
+W1123 06:00:03.210000 25332 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 24377.65it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 26132.33it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 19120.05it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 30746.18it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 26278.35it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (562 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 13,
+ "labels": {
+  "Accurate": 11,
+  "Incomplete": 2,
+  "Hallucinated": 0
+ },
+ "accurate_rate": 0.846,
+ "accurate_ci95": [
+  0.578,
+  0.957
+ ],
+ "hallucinated_rate": 0.0,
+ "fabricated_quotes": 0,
+ "quotes_checked": 45,
+ "fabricated_upper95_rule_of_three": 0.067,
+ "abstention_precision": 0.667,
+ "abstention_recall": 0.667,
+ "answer_rate": 0.769,
+ "over_refusal": 0.111,
+ "point_in_time_accuracy": 1.0,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 0.0,
+ "calc_accuracy": 0.0,
+ "draft_faithfulness_mean": 0.635,
+ "latency_p50_ms": 1741,
+ "latency_p95_ms": 10028,
+ "spend_usd_upper_bound": 0.013,
+ "cost_per_query_usd_upper_bound": 0.001,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 3,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "calculation": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q020 calculation Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: The bank documents state a pre-payment charge of 2% of the amount prepaid or principal outstanding, depending on the document used. 
+- q038 contradiction_different_condition Incomplete: outcome PARTIAL (want ['ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: The bank’s note says a 2% pre-payment charge applies on foreclosure or pre-payment of the loan. For loans and advances sanctioned or renewed on or after 1 January 2026, a UCB shall not levy pre-paymen
+elapsed 12s; total ledger $1.148

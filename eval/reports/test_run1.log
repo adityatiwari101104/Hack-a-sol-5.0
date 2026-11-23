@@ -1,0 +1,99 @@
+W1123 05:57:06.590000 25114 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 22631.95it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 18211.83it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 19865.92it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 26178.22it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 5574.12it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (744 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 21,
+ "labels": {
+  "Accurate": 14,
+  "Incomplete": 7,
+  "Hallucinated": 0
+ },
+ "accurate_rate": 0.667,
+ "accurate_ci95": [
+  0.454,
+  0.828
+ ],
+ "hallucinated_rate": 0.0,
+ "fabricated_quotes": 0,
+ "quotes_checked": 52,
+ "fabricated_upper95_rule_of_three": 0.058,
+ "abstention_precision": 0.25,
+ "abstention_recall": 0.25,
+ "answer_rate": 0.81,
+ "over_refusal": 0.188,
+ "point_in_time_accuracy": 1.0,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 0.0,
+ "calc_accuracy": 0.0,
+ "draft_faithfulness_mean": 0.623,
+ "latency_p50_ms": 5653,
+ "latency_p95_ms": 13720,
+ "spend_usd_upper_bound": 0.1516,
+ "cost_per_query_usd_upper_bound": 0.00722,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 4,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "calculation": {
+   "Accurate": 0,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 4,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 0,
+   "Incomplete": 3,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q012 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q013 table_numeric Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: In the APR illustration, the net disbursed amount is ₹20,000, which is the loan amount shown in the hypothetical example.
+- q014 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q019 calculation Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: 
+- q021 calculation Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The loan amount is ₹25,00,000, the interest rate is 8.5% p.a., and the repayment term is 240 months. [E6, E2]
+- q047 false_premise Incomplete: outcome PARTIAL (want ['ANSWER', 'PARTIAL', 'ABSTAIN']) facts=False cites=True forbid=[] :: The same in-force directions say penal charges must be treated as penal charges and not as penal interest, and additional or fresh penal charges shall not be levied on the earlier outstanding amount o
+- q050 out_of_scope Incomplete: outcome PARTIAL (want ['ABSTAIN']) facts=True cites=True forbid=[] :: The rule findings provided are about withdrawn or in-force banking directions and do not cover cricket or tournament outcomes.
+elapsed 41s; total ledger $1.131

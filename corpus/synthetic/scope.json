@@ -1,0 +1,13 @@
+{
+  "_note": "Loan-account metadata for the fictional bank's documents (what a core-banking system would supply). Merged into a bank clause's conditions where the clause itself is silent. Policies and product notes have no loan scope.",
+  "EUCB-S2": {"base": {"rate_type": "floating", "borrower": "individual", "purpose": "non_business", "facility": "term_loan",
+                       "amount_min_inr": "2500000", "amount_max_inr": "2500000", "sanction_from": "2026-02-10", "sanction_before": "2026-02-11"}},
+  "EUCB-S3": {"base": {"rate_type": "floating", "borrower": "individual", "purpose": "non_business", "facility": "term_loan",
+                       "amount_min_inr": "2500000", "amount_max_inr": "2500000", "sanction_from": "2026-02-10", "sanction_before": "2026-02-11"}},
+  "EUCB-S4": {"base": {"rate_type": "floating", "borrower": "individual", "purpose": "non_business", "facility": "term_loan",
+                       "amount_min_inr": "2500000", "amount_max_inr": "2500000", "sanction_from": "2026-02-10", "sanction_before": "2026-02-11"}},
+  "EUCB-S5": {"base": {"rate_type": "floating", "borrower": "mse", "purpose": "business", "facility": "term_loan",
+                       "sanction_from": "2026-03-15", "sanction_before": "2026-03-16"},
+              "pages": {"1": {"amount_min_inr": "4000000", "amount_max_inr": "4000000"},
+                        "2": {"amount_min_inr": "8000000", "amount_max_inr": "8000000"}}}
+}

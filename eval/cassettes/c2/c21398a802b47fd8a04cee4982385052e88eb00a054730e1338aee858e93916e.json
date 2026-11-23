@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "The net disbursed amount in RBI’s KFS APR illustration is ₹19,600.", "source": "S1", "quote": "7 Net disbursed amount (1-6) (in Rupees) 19,600"}]}, "usage": {"prompt_tokens": 1234, "completion_tokens": 83}}

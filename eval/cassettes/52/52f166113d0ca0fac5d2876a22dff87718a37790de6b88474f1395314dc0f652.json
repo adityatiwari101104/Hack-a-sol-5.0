@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "fees_not_in_kfs", "permitted": "no", "reason": "The quote specifically bars any pre-payment charges that were not disclosed as required, so undisclosed fees are prohibited."}, "usage": {"prompt_tokens": 285, "completion_tokens": 123}}

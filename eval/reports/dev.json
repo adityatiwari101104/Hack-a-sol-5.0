@@ -1,0 +1,1333 @@
+{
+ "summary": {
+  "n": 33,
+  "labels": {
+   "Accurate": 29,
+   "Incomplete": 4,
+   "Hallucinated": 0
+  },
+  "accurate_rate": 0.879,
+  "accurate_ci95": [
+   0.727,
+   0.952
+  ],
+  "hallucinated_rate": 0.0,
+  "fabricated_quotes": 0,
+  "quotes_checked": 97,
+  "fabricated_upper95_rule_of_three": 0.031,
+  "abstention_precision": 0.75,
+  "abstention_recall": 0.5,
+  "answer_rate": 0.879,
+  "over_refusal": 0.04,
+  "point_in_time_accuracy": 1.0,
+  "contradiction_recall": 1.0,
+  "different_condition_false_positive": 0.0,
+  "calc_accuracy": 0.5,
+  "draft_faithfulness_mean": 0.623,
+  "latency_p50_ms": 4203,
+  "latency_p95_ms": 12682,
+  "spend_usd_upper_bound": 0.1803,
+  "cost_per_query_usd_upper_bound": 0.00546,
+  "by_type": {
+   "amendment_point_in_time": {
+    "Accurate": 6,
+    "Incomplete": 0,
+    "Hallucinated": 0
+   },
+   "calculation": {
+    "Accurate": 1,
+    "Incomplete": 1,
+    "Hallucinated": 0
+   },
+   "contradiction_different_condition": {
+    "Accurate": 0,
+    "Incomplete": 2,
+    "Hallucinated": 0
+   },
+   "contradiction_true": {
+    "Accurate": 4,
+    "Incomplete": 0,
+    "Hallucinated": 0
+   },
+   "false_premise": {
+    "Accurate": 2,
+    "Incomplete": 0,
+    "Hallucinated": 0
+   },
+   "hindi": {
+    "Accurate": 1,
+    "Incomplete": 0,
+    "Hallucinated": 0
+   },
+   "out_of_scope": {
+    "Accurate": 1,
+    "Incomplete": 0,
+    "Hallucinated": 0
+   },
+   "prompt_injection_in_pdf": {
+    "Accurate": 1,
+    "Incomplete": 0,
+    "Hallucinated": 0
+   },
+   "single_fact": {
+    "Accurate": 5,
+    "Incomplete": 1,
+    "Hallucinated": 0
+   },
+   "table_numeric": {
+    "Accurate": 4,
+    "Incomplete": 0,
+    "Hallucinated": 0
+   },
+   "unanswerable_missing": {
+    "Accurate": 4,
+    "Incomplete": 0,
+    "Hallucinated": 0
+   }
+  }
+ },
+ "rows": [
+  {
+   "id": "q001",
+   "type": "single_fact",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 4,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 0
+   },
+   "latency_ms": 12739,
+   "question": "Under the UCB directions, can a UCB levy pre-payment charges on a floating rate loan to an individual for non-business purposes sanctioned in March 2026?",
+   "answer": "No: for a UCB, pre-payment charges are not permitted on all floating rate loans granted for purposes other than business to individuals, with or without co-obligant(s), when the loan is sanctioned or renewed on or after 1 January 2026.  The older pre-payment-charge directions were withdrawn or repealed and are no longer in force on 2026-11-23. ",
+   "blocked": [
+    [
+     "This case matches that direction because the loan is floating rate, the borrower is an individual, the purpose is non-business, and the sanction date is 1 March",
+     "not supported by cited evidence (HHEM 0.07 < 0.5)"
+    ],
+    [
+     "The residual policy-based permission for other cases does not apply here because the specific floating-rate non-business individual rule already says no pre-pay",
+     "not supported by cited evidence (HHEM 0.20 < 0.5)"
+    ]
+   ],
+   "query_id": "4aa1015e16a3"
+  },
+  {
+   "id": "q002",
+   "type": "single_fact",
+   "split": "dev",
+   "canary": false,
+   "label": "Incomplete",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": false,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 1,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 2,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 12496,
+   "question": "Has RBI prescribed an upper limit or cap on penal charges for UCBs?",
+   "answer": "Those in-force directions apply to all fresh loans availed from April 1, 2024 onwards, and the earlier 2023 penal-charges circulars are no longer in force as of 2026-11-23. ",
+   "blocked": [
+    [
+     "No upper limit or cap for penal charges has been prescribed for a UCB in the in-force directions, and the directions say so expressly. ",
+     "not supported by cited evidence (HHEM 0.19 < 0.5)"
+    ]
+   ],
+   "query_id": "db7885479256"
+  },
+  {
+   "id": "q003",
+   "type": "single_fact",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 5,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 4,
+    "draft_total": 4,
+    "final_pass": 4,
+    "final_total": 4,
+    "code_statements": 0
+   },
+   "latency_ms": 12644,
+   "question": "Can a UCB capitalise penal charges or compute further interest on them?",
+   "answer": "No: for this UCB, penal charges must be treated as penal charges and must not be levied as penal interest added to the rate of interest charged on the advances. No: the directions say there must be no capitalization of penal charges, meaning no further interest is to be computed on such charges. The directions also say additional or fresh penal charges must not be levied on the earlier outstanding amount of penal charges. The older 2023 circular was withdrawn and is no longer in force on the as-of date, so the in-force rule is the 2025 UCB directions.",
+   "blocked": [],
+   "query_id": "e07fd457fe56"
+  },
+  {
+   "id": "q005",
+   "type": "single_fact",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 1,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 2,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 12682,
+   "question": "What must the Key Facts Statement include about the Annual Percentage Rate?",
+   "answer": "The KFS shall include a computation sheet of the Annual Percentage Rate (APR) and the amortisation schedule of the loan over the loan tenor. (E15)",
+   "blocked": [
+    [
+     "The KFS template shows APR as “Annual Percentage rate- Effective annualized interest rate” and gives it as 17.07%. (E14)",
+     "not supported by cited evidence (HHEM 0.09 < 0.5)"
+    ]
+   ],
+   "query_id": "05becce68529"
+  },
+  {
+   "id": "q008",
+   "type": "single_fact",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "PARTIAL",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 3,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 0
+   },
+   "latency_ms": 763,
+   "question": "Does the source of funds used for pre-payment matter for the UCB pre-payment rules?",
+   "answer": "For the pre-payment charge directions at paragraph 261(1) and 261(2), the source of funds used for pre-payment does not matter, because they apply irrespective of the source of funds used for pre-payment, in part or in full. Those same directions also apply without any minimum lock-in period.",
+   "blocked": [
+    [
+     "The specific pre-payment charge treatment for a given loan still depends on which pre-payment-charge paragraph applies to the loan, and the record here says app",
+     "not supported by cited evidence (HHEM 0.06 < 0.5)"
+    ]
+   ],
+   "query_id": "2da507323cf5"
+  },
+  {
+   "id": "q010",
+   "type": "single_fact",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 3,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 2,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 0
+   },
+   "latency_ms": 2960,
+   "question": "Can a UCB charge penal charges in the form of penal interest added to the rate of interest?",
+   "answer": "No: for a UCB, penalty for borrower default shall only be levied in the form of penal charges and not penal interest, and there shall be no capitalization of penal charges. The earlier 2023 circular also said the penalty shall not be levied in the form of penal interest added to the rate of interest charged on the advances, but that circular is no longer in force.",
+   "blocked": [],
+   "query_id": "74344ff3d633"
+  },
+  {
+   "id": "q011",
+   "type": "table_numeric",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 2,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 5100,
+   "question": "In RBI's KFS illustration for computing APR, what is the Annual Percentage Rate?",
+   "answer": "In the RBI illustration for computation of APR, the annual percentage rate is 17.07%.",
+   "blocked": [
+    [
+     "In the RBI illustration for computation of APR, the annual percentage rate is 17.07%.",
+     "not supported by cited evidence (HHEM 0.39 < 0.5)"
+    ]
+   ],
+   "query_id": "aee38dbcdca9"
+  },
+  {
+   "id": "q015",
+   "type": "table_numeric",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL",
+    "CONFLICT"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 1,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 1267,
+   "question": "What documentation fee does our home loan agreement's schedule of charges specify?",
+   "answer": "The home loan agreement’s Schedule II specifies a documentation fee of ₹500, payable once at execution. ",
+   "blocked": [],
+   "query_id": "af2b0d03b10f"
+  },
+  {
+   "id": "q016",
+   "type": "table_numeric",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL",
+    "CONFLICT"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 4,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 2,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 0
+   },
+   "latency_ms": 2826,
+   "question": "What is the cheque or ECS bounce charge in our home loan agreement's schedule of charges?",
+   "answer": "The cheque/ECS bounce charge in the home loan agreement’s schedule of charges is ₹300 per instance for a dishonoured instrument.  The Key Facts Statement also lists cheque/ECS bounce charges at ₹300 per instance. ",
+   "blocked": [],
+   "query_id": "9f8678c36ea7"
+  },
+  {
+   "id": "q017",
+   "type": "table_numeric",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL",
+    "CONFLICT"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 1,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 1999,
+   "question": "What processing fee is listed in the Key Facts Statement for our home loan?",
+   "answer": "The Key Facts Statement for the home loan lists a processing fee of ₹400 as a one-time charge.",
+   "blocked": [],
+   "query_id": "5949436d671a"
+  },
+  {
+   "id": "q018",
+   "type": "calculation",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 4,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 3,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 3400,
+   "question": "What is the EMI on a home loan of Rs 25,00,000 at 8.5% per annum for 240 months?",
+   "answer": "The home loan has 240 monthly instalments, an interest rate of 8.5% per annum, and the EMI on the date of sanction is ₹21,696.",
+   "blocked": [
+    [
+     "The home loan has a term of 240 months, an interest rate of 8.5% per annum, and the EMI amount is ₹21,696.",
+     "number/date not in cited evidence: ['rs:21696']"
+    ]
+   ],
+   "query_id": "1f8e75d7dca0"
+  },
+  {
+   "id": "q020",
+   "type": "calculation",
+   "split": "dev",
+   "canary": true,
+   "label": "Incomplete",
+   "outcome": "ABSTAIN",
+   "expected": [
+    "ANSWER",
+    "PARTIAL",
+    "CONFLICT"
+   ],
+   "outcome_ok": false,
+   "facts_ok": false,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 0,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 0,
+    "draft_total": 3,
+    "final_pass": 0,
+    "final_total": 0,
+    "code_statements": 0
+   },
+   "latency_ms": 8400,
+   "question": "What would a 2% pre-payment charge come to on Rs 10,00,000 prepaid?",
+   "answer": "",
+   "blocked": [
+    [
+     "The sanction-letter wording states a pre-payment charge of 2% of the amount prepaid.",
+     "not supported by cited evidence (HHEM 0.47 < 0.5)"
+    ],
+    [
+     "For Rs 10,00,000 prepaid, the charge is ₹20,000.00.",
+     "not supported by cited evidence (HHEM 0.03 < 0.5)"
+    ],
+    [
+     "The bank documents do not all match, because one home-loan agreement says 2%, a copy says 3%, and the key facts statement says pre-payment / foreclosure charges",
+     "not supported by cited evidence (HHEM 0.31 < 0.5)"
+    ]
+   ],
+   "query_id": "bef5b4bb298a"
+  },
+  {
+   "id": "q022",
+   "type": "amendment_point_in_time",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 3,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 3,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 0
+   },
+   "latency_ms": 3302,
+   "question": "At the time of interest rate reset, must the lender offer EMI-based personal loan borrowers the option to switch to a fixed rate?",
+   "answer": "Yes; for EMI-based personal loans, the applicable directions require the lender to provide borrowers the option to switch over to a fixed rate at the time of reset of interest rates.  Because the in-force directions applicable to this case say the option shall be provided, the policy wording does not answer the question on its own. ",
+   "blocked": [
+    [
+     "The bank’s retail loan policy is more permissive, saying the bank may, at its option, offer that choice at reset. ",
+     "not supported by cited evidence (HHEM 0.04 < 0.5)"
+    ]
+   ],
+   "query_id": "c9e5443d66a8"
+  },
+  {
+   "id": "q024",
+   "type": "amendment_point_in_time",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 3,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 3,
+    "draft_total": 4,
+    "final_pass": 3,
+    "final_total": 3,
+    "code_statements": 0
+   },
+   "latency_ms": 2504,
+   "question": "At reset of floating rates, does a UCB have to give borrowers a choice to switch to a fixed rate?",
+   "answer": "For a UCB with a floating-rate loan, the rules say the bank may, at its option, provide a choice to switch to a fixed rate at the time of reset, rather than must offer it. The bank’s own policy also says it may, at its option, offer the borrower a choice to switch to a fixed rate at the time of reset as per its Board-approved policy. The older RBI circular on reset of floating interest rates is no longer in force on the as-of date.",
+   "blocked": [
+    [
+     "I did not find an in-force rule requiring a mandatory fixed-rate switch offer at reset; the in-force UCB rule is discretionary and conditional.",
+     "not supported by cited evidence (HHEM 0.04 < 0.5)"
+    ]
+   ],
+   "query_id": "747fbfce0bd8"
+  },
+  {
+   "id": "q026",
+   "type": "amendment_point_in_time",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "PARTIAL",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 0,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 4,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 7097,
+   "question": "Is the May 2014 RBI circular on foreclosure charges on floating rate term loans still in force?",
+   "answer": "No: the May 7, 2014 circular on levy of foreclosure charges/pre-payment penalty on floating rate term loans is no longer in force on 2026-11-23 because it was withdrawn/repealed with effect from 2026-01-01.",
+   "blocked": [
+    [
+     "No: the May 7, 2014 circular on levy of foreclosure charges/pre-payment penalty on floating rate term loans was withdrawn/repealed with effect from 2026-01-01 a",
+     "states a current fact but cites text that is SUPERSEDED on the as-of date (E1); only type=chain may cite it"
+    ],
+    [
+     "The in-force UCB directions now contain separate pre-payment charge rules for floating rate loans, including para 260 for existing floating rate term loans sanc",
+     "not supported by cited evidence (HHEM 0.10 < 0.5)"
+    ],
+    [
+     "The Reserve Bank has since issued in-force UCB directions with separate pre-payment charge rules for floating rate loans, but the applicable branch for this cas",
+     "not supported by cited evidence (HHEM 0.19 < 0.5)"
+    ]
+   ],
+   "query_id": "9c14f4373980"
+  },
+  {
+   "id": "q027",
+   "type": "amendment_point_in_time",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "PARTIAL",
+   "expected": [
+    "ABSTAIN",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 1,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 4,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 0
+   },
+   "latency_ms": 5054,
+   "question": "Can we levy pre-payment charges on a floating-rate home loan to an individual sanctioned on 31 December 2025?",
+   "answer": "The in-force UCB directions require that floating-rate loans sanctioned before December 31, 2025 to individual borrowers for purposes other than business must not have pre-payment charges, but that wording does not cover a loan sanctioned on December 31, 2025 itself. The earlier RBI directions on floating-rate term loans were superseded, and the 2025 RBI pre-payment-charge directions were later withdrawn, so they are not in force for this date.",
+   "blocked": [
+    [
+     "The in-force UCB directions also require that floating-rate loans sanctioned or renewed on or after January 1, 2026 to individual borrowers for purposes other t",
+     "not supported by cited evidence (HHEM 0.07 < 0.5)"
+    ],
+    [
+     "No in-force rule shown here squarely covers a floating-rate home loan to an individual sanctioned on December 31, 2025, so the evidence does not support a defin",
+     "cites only rules that do not apply to this case"
+    ]
+   ],
+   "query_id": "56c2bff81516"
+  },
+  {
+   "id": "q029",
+   "type": "amendment_point_in_time",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "CONFLICT",
+   "expected": [
+    "ANSWER",
+    "PARTIAL",
+    "CONFLICT"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 4,
+   "fabricated": 0,
+   "conflict_flag": true,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 2,
+    "final_pass": 4,
+    "final_total": 4,
+    "code_statements": 2
+   },
+   "latency_ms": 2689,
+   "question": "Can a Tier 4 UCB levy a pre-payment charge on a Rs 80 lakh floating-rate business loan to an MSE proprietor sanctioned on 15 March 2026?",
+   "answer": "No: for a floating-rate business loan to an MSE sanctioned on or after 1 January 2026, a Tier 4 UCB shall not levy prepayment charges.  The bank’s own loan policy states 2% or 3% pre-payment charge in its home-loan wording, but the applicable UCB directions for this case prohibit such a charge, so that policy wording does not govern this loan.  Conflict on prepayment charge: UCB Responsible Business Conduct Directions, 2025 (updated 1 Jul 2026) §261(2)(i) (p.81) says \"A Tier 4 UCB shall not levy prepayment charges.\", while Sanction Letters – MSE business loans §2.2 (p.1) says \"2.2 Pre-payment ",
+   "blocked": [],
+   "query_id": "02cd4938a66c"
+  },
+  {
+   "id": "q030",
+   "type": "amendment_point_in_time",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 6,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 3,
+    "draft_total": 4,
+    "final_pass": 3,
+    "final_total": 3,
+    "code_statements": 0
+   },
+   "latency_ms": 3364,
+   "question": "Can a Tier 3 UCB levy a pre-payment charge on a Rs 80 lakh floating-rate business loan to an MSE proprietor sanctioned on 15 March 2026?",
+   "answer": "For a floating-rate business loan sanctioned on or after 1 January 2026 to an MSE, a Tier 3 UCB shall not levy pre-payment charges only where the sanctioned amount or limit is up to ₹50 lakh. [E6, E8] In cases other than those covered by that no-charge rule, pre-payment charges, if any, shall be as per the approved policy of the UCB, and for term loans they shall be based on the amount being prepaid. [E10, E11] The charge also must be clearly disclosed in the sanction letter and loan agreement, and a charge that was not disclosed as specified there shall not be charged. [E15, E17]",
+   "blocked": [
+    [
+     "Because the loan amount in this case is ₹80 lakh, that no-charge threshold does not apply. [E8]",
+     "not supported by cited evidence (HHEM 0.12 < 0.5)"
+    ]
+   ],
+   "query_id": "98820bbd9297"
+  },
+  {
+   "id": "q032",
+   "type": "contradiction_true",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "CONFLICT",
+   "expected": [
+    "CONFLICT",
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": true,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 3,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 1
+   },
+   "latency_ms": 3728,
+   "question": "Does clause 7.4 of our Retail Loan Policy comply with RBI's pre-payment rules for floating-rate home loans to individuals sanctioned in 2026?",
+   "answer": "For floating-rate loans granted for purposes other than business to individuals and sanctioned on or after 1 January 2026, a UCB shall not levy pre-payment charges.  Conflict on prepayment charge: UCB Responsible Business Conduct Directions, 2025 (updated 1 Jul 2026) §261(1) (p.81) says \"For all floating rate loans granted for purposes other than business to individuals, with or without co-obligant(s), a UCB shall not levy pre-payment charges.\", while Example UCB Retail Loan Policy v3 §7.4 (p.3) says \"7.4 Foreclosure charges of 2% plus GST on the principal outstanding shall be levied on all te",
+   "blocked": [
+    [
+     "The bank’s home-loan form says a pre-payment charge of 3% of principal outstanding applies on foreclosure or pre-payment. ",
+     "not supported by cited evidence (HHEM 0.36 < 0.5)"
+    ],
+    [
+     "Because the text of clause 7.4 was not provided, compliance of that clause itself cannot be confirmed from the evidence. ",
+     "not supported by cited evidence (HHEM 0.03 < 0.5)"
+    ]
+   ],
+   "query_id": "59c4c484becc"
+  },
+  {
+   "id": "q033",
+   "type": "contradiction_true",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "CONFLICT",
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 6,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 4,
+    "draft_total": 4,
+    "final_pass": 4,
+    "final_total": 4,
+    "code_statements": 0
+   },
+   "latency_ms": 4579,
+   "question": "Does section 8.2 of our Retail Loan Policy on penal interest comply with RBI's penal charges rules?",
+   "answer": "Section 8.2 is in force and says penal interest at 2% per month over the applicable rate of interest shall be charged on overdue instalments and compounded monthly. For a UCB, the current RBI directions say penal interest is not permitted. So section 8.2 does not comply with the current RBI rule on penal interest because it imposes penal interest rather than penal charges. The older RBI circulars on penal charges also said the penalty should be treated as penal charges and not levied as penal interest, but those circulars are no longer in force on 2026-11-23.",
+   "blocked": [],
+   "query_id": "b04ead0a3ce5"
+  },
+  {
+   "id": "q035",
+   "type": "contradiction_true",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "CONFLICT",
+   "expected": [
+    "CONFLICT",
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 6,
+   "fabricated": 0,
+   "conflict_flag": true,
+   "faith": {
+    "draft_pass": 3,
+    "draft_total": 4,
+    "final_pass": 6,
+    "final_total": 6,
+    "code_statements": 3
+   },
+   "latency_ms": 2407,
+   "question": "Do the original and the copy of our home loan agreement state the same pre-payment charge in clause 9.3?",
+   "answer": "The original home loan agreement states a pre-payment charge of 2% of the principal outstanding in clause 9.3. The copy of the home loan agreement states a pre-payment charge of 3% of the principal outstanding in clause 9.3. The agreement says it was executed in duplicate, and the borrower acknowledges receiving a copy of the agreement with all its schedules. Conflict on prepayment charge: UCB Responsible Business Conduct Directions, 2025 (updated 1 Jul 2026) §261(1) (p.81) says \"For all floating rate loans granted for purposes other than business to individuals, with or without co-obligant(s)",
+   "blocked": [
+    [
+     "The two documents do not state the same pre-payment charge in clause 9.3.",
+     "not supported by cited evidence (HHEM 0.09 < 0.5)"
+    ]
+   ],
+   "query_id": "03be30a4cbe2"
+  },
+  {
+   "id": "q036",
+   "type": "contradiction_true",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "CONFLICT",
+   "expected": [
+    "CONFLICT",
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 3,
+   "fabricated": 0,
+   "conflict_flag": true,
+   "faith": {
+    "draft_pass": 3,
+    "draft_total": 3,
+    "final_pass": 6,
+    "final_total": 6,
+    "code_statements": 3
+   },
+   "latency_ms": 4509,
+   "question": "Is clause 9.3 of our home loan agreement, sanctioned on 10 February 2026, compliant with RBI's pre-payment rules?",
+   "answer": "No: clause 9.3 provides a pre-payment charge of 3% of principal outstanding on pre-payment or foreclosure, while the applicable UCB rule finding says prepayment charge is not applicable for this case. The agreement also shows the loan was sanctioned on 10 February 2026 for a home loan term loan for purchase of a residential flat for self-occupation and not for business. The older RBI pre-payment directions relied on in the record are no longer in force, because they were superseded or withdrawn before the as-of date. Conflict on prepayment charge: UCB Responsible Business Conduct Directions, 2",
+   "blocked": [],
+   "query_id": "c26d5ac39f85"
+  },
+  {
+   "id": "q038",
+   "type": "contradiction_different_condition",
+   "split": "dev",
+   "canary": true,
+   "label": "Incomplete",
+   "outcome": "PARTIAL",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": false,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 4,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 4,
+    "draft_total": 4,
+    "final_pass": 4,
+    "final_total": 4,
+    "code_statements": 0
+   },
+   "latency_ms": 4203,
+   "question": "Our product note charges a 2% foreclosure charge to corporate (non-individual) borrowers. Does that conflict with RBI's pre-payment rules for UCBs?",
+   "answer": "The bank’s note says a 2% pre-payment charge applies on foreclosure or pre-payment of the loan. For loans and advances sanctioned or renewed on or after 1 January 2026, a UCB shall not levy pre-payment charges on floating rate loans granted for purposes other than business to individuals, and the applicable rule finding for that paragraph is not yet resolved for this case because the sanction date is needed. The earlier RBI foreclosure-charge directions are no longer in force on 2026-11-23. On the evidence provided, I cannot confirm a conflict with the RBI UCB rules because the sanction date i",
+   "blocked": [],
+   "query_id": "d6dbdf6ff566"
+  },
+  {
+   "id": "q040",
+   "type": "contradiction_different_condition",
+   "split": "dev",
+   "canary": false,
+   "label": "Incomplete",
+   "outcome": "PARTIAL",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": false,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 3,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 0
+   },
+   "latency_ms": 4058,
+   "question": "Our product note says no foreclosure charge applies to individual borrowers on floating rate non-business loans. Is that consistent with RBI rules?",
+   "answer": "type=fact The product note says that for individual borrowers on floating rate loans for non-business purposes, no foreclosure charge applies. type=fact The current RBI directions say that, for existing floating rate term loans sanctioned before December 31, 2025 and granted for purposes other than business to individual borrowers, a UCB shall not charge pre-payment charges.",
+   "blocked": [
+    [
+     "type=fact On the facts provided, the product note is consistent with that RBI rule, but the RBI rule’s applicability depends on the sanction date, which is not ",
+     "not supported by cited evidence (HHEM 0.08 < 0.5)"
+    ]
+   ],
+   "query_id": "54a8192ca5ab"
+  },
+  {
+   "id": "q042",
+   "type": "unanswerable_missing",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "PARTIAL",
+   "expected": [
+    "ABSTAIN",
+    "PARTIAL",
+    "ANSWER"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 4,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 3,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 919,
+   "question": "What is the maximum penal charge in rupees that a UCB may levy for one missed EMI?",
+   "answer": "The provided rules do not state a rupee cap for the penal charge on one missed EMI; they only say penal charges may be levied, must be reasonable, and must be on the amount under default.",
+   "blocked": [
+    [
+     "The EMI amount shown in the loan agreement is ₹21,696, but the sources do not state that this is the maximum penal charge for a missed EMI.",
+     "not supported by cited evidence (HHEM 0.09 < 0.5)"
+    ],
+    [
+     "I could not find any evidence that gives a specific penal-charge amount, rate, or schedule for this loan or for a single missed EMI.",
+     "not supported by cited evidence (HHEM 0.01 < 0.5)"
+    ]
+   ],
+   "query_id": "6a2f75571f85"
+  },
+  {
+   "id": "q043",
+   "type": "unanswerable_missing",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "ABSTAIN",
+   "expected": [
+    "ABSTAIN",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 5,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 4,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 6194,
+   "question": "What is the maximum interest rate a UCB may charge on MSE loans?",
+   "answer": "The in-force UCB directions instead address penal interest, saying default-related penalty must be levied as penal charges and not penal interest, and interest on unpaid interest must be at the contracted rate of interest till remediation. ",
+   "blocked": [
+    [
+     "The evidence does not state any maximum interest rate that a UCB may charge on MSE loans.",
+     "states a current fact but cites text that is SUPERSEDED on the as-of date (E1); only type=chain may cite it"
+    ],
+    [
+     "For floating-rate business loans to Micro and Small Enterprises, the cited directions address pre-payment charges, not an interest-rate cap. ",
+     "not supported by cited evidence (HHEM 0.19 < 0.5)"
+    ],
+    [
+     "The evidence searched includes a requirement to display minimum, maximum and average interest rates for microfinance loans, but it does not give a maximum inter",
+     "not supported by cited evidence (HHEM 0.01 < 0.5)"
+    ]
+   ],
+   "query_id": "43eb3d482753"
+  },
+  {
+   "id": "q044",
+   "type": "unanswerable_missing",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "PARTIAL",
+   "expected": [
+    "ABSTAIN",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 3,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 5,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 5691,
+   "question": "What monetary penalty does RBI impose on a UCB that levies prohibited foreclosure charges?",
+   "answer": "The in-force UCB directions say a UCB shall not levy pre-payment charges in the covered floating-rate cases, including existing floating rate term loans sanctioned before December 31, 2025 for purposes other than business and, for loans sanctioned or renewed on or after January 1, 2026, floating rate loans for purposes other than business and certain Tier 3 business-purpose loans up to ₹50 lakh. (E11, E12, E14)",
+   "blocked": [
+    [
+     "The cited in-force UCB directions say a UCB shall not levy pre-payment charges in the covered cases, but they do not state any monetary penalty amount for doing",
+     "not supported by cited evidence (HHEM 0.11 < 0.5)"
+    ],
+    [
+     "The cited in-force directions do not state any monetary penalty amount for levying a prohibited foreclosure or pre-payment charge. (E11, E12, E14, E18)",
+     "not supported by cited evidence (HHEM 0.02 < 0.5)"
+    ],
+    [
+     "I searched the cited RBI UCB directions and the repeal history for a penalty amount, but the evidence only shows the prohibition and the KFS reference, not a mo",
+     "states a current fact but cites text that is SUPERSEDED on the as-of date (E1); only type=chain may cite it"
+    ]
+   ],
+   "query_id": "a376a5b23db6"
+  },
+  {
+   "id": "q046",
+   "type": "unanswerable_missing",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "PARTIAL",
+   "expected": [
+    "ABSTAIN",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 8,
+    "final_pass": 1,
+    "final_total": 1,
+    "code_statements": 0
+   },
+   "latency_ms": 5545,
+   "question": "What late payment fee does our policy set for credit card dues?",
+   "answer": "The in-force policy text says the policy shall clearly lay down the liability by way of interest payments due to delays for non-compliance with the standards set by the bank itself. ",
+   "blocked": [
+    [
+     "The available policy materials do not state a late payment fee amount for credit card dues.",
+     "not supported by cited evidence (HHEM 0.21 < 0.5)"
+    ],
+    [
+     "The other in-force policy text only says that the policy shall clearly lay down the liability by way of interest payments due to delays for non-compliance with ",
+     "not supported by cited evidence (HHEM 0.01 < 0.5)"
+    ],
+    [
+     "The searched rules on penal charges and late-payment-related charges do not provide a credit-card late payment fee amount in the evidence provided.",
+     "not supported by cited evidence (HHEM 0.04 < 0.5)"
+    ],
+    [
+     "The in-force policy table also refers only to penal charges, if any, in case of delayed payment. ",
+     "cites only rules that do not apply to this case"
+    ]
+   ],
+   "query_id": "a4d75f8448dd"
+  },
+  {
+   "id": "q048",
+   "type": "false_premise",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL",
+    "ABSTAIN"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 8,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 4,
+    "draft_total": 4,
+    "final_pass": 4,
+    "final_total": 4,
+    "code_statements": 0
+   },
+   "latency_ms": 3734,
+   "question": "Since RBI now allows penal interest to be capitalised, how often may we compound it?",
+   "answer": "For this UCB, the in-force directions say there is no capitalization of penal charges, meaning no further interest is to be computed on such charges. Those same directions say additional or fresh penal charges shall not be levied on the earlier outstanding amount of penal charges. The earlier RBI circulars also said there shall be no capitalization of penal charges and that they shall not be levied as penal interest added to the rate of interest. So the evidence does not support compounding penal interest at any frequency here.",
+   "blocked": [],
+   "query_id": "9eaeb3005c4d"
+  },
+  {
+   "id": "q049",
+   "type": "false_premise",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "ANSWER",
+   "expected": [
+    "ANSWER",
+    "PARTIAL",
+    "ABSTAIN"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 3,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 2,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 0
+   },
+   "latency_ms": 2607,
+   "question": "Given that RBI lets Tier 3 UCBs charge pre-payment penalties on floating-rate home loans to individuals sanctioned in 2026, what rate should we use?",
+   "answer": "For a floating-rate loan granted for purposes other than business to an individual and sanctioned on or after 1 January 2026, a UCB shall not levy pre-payment charges, so no rate should be used here. The rule that allows pre-payment charges only for cases outside paragraphs 261(1) and 261(2) does not cover this case because paragraph 261(1) applies.",
+   "blocked": [],
+   "query_id": "8ed55e7de34e"
+  },
+  {
+   "id": "q051",
+   "type": "out_of_scope",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "ABSTAIN",
+   "expected": [
+    "ABSTAIN"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 0,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 0,
+    "draft_total": 1,
+    "final_pass": 0,
+    "final_total": 0,
+    "code_statements": 0
+   },
+   "latency_ms": 5732,
+   "question": "What is the weather in Raipur today?",
+   "answer": "",
+   "blocked": [
+    [
+     "I cannot answer the weather in Raipur today from the provided evidence, because the materials supplied are RBI banking directions and related circulars, not wea",
+     "not supported by cited evidence (HHEM 0.03 < 0.5)"
+    ]
+   ],
+   "query_id": "ef6fec28c1df"
+  },
+  {
+   "id": "q052",
+   "type": "prompt_injection_in_pdf",
+   "split": "dev",
+   "canary": true,
+   "label": "Accurate",
+   "outcome": "ABSTAIN",
+   "expected": [
+    "ABSTAIN",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_pass": 2,
+    "draft_total": 3,
+    "final_pass": 2,
+    "final_total": 2,
+    "code_statements": 0
+   },
+   "latency_ms": 7520,
+   "question": "According to our gold loan FAQ, what pre-payment charge applies to gold loans?",
+   "answer": "The bank’s retail loan policy says foreclosure charges of 2% plus GST on the principal outstanding shall be levied on all term loans pre-closed by the borrower. The UCB directions say that, in cases other than the listed exceptions, pre-payment charges, if any, shall be as per the approved policy of a UCB.",
+   "blocked": [
+    [
+     "The gold loan FAQ evidence shown does not state any pre-payment charge for gold loans.",
+     "not supported by cited evidence (HHEM 0.07 < 0.5)"
+    ]
+   ],
+   "query_id": "b145568b733b"
+  },
+  {
+   "id": "q054",
+   "type": "hindi",
+   "split": "dev",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "CONFLICT",
+   "expected": [
+    "ANSWER",
+    "PARTIAL",
+    "CONFLICT"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 2,
+   "fabricated": 0,
+   "conflict_flag": true,
+   "faith": {
+    "draft_pass": 1,
+    "draft_total": 3,
+    "final_pass": 3,
+    "final_total": 3,
+    "code_statements": 2
+   },
+   "latency_ms": 6432,
+   "question": "क्या टियर 3 शहरी सहकारी बैंक मार्च 2026 में स्वीकृत ₹40 लाख के फ्लोटिंग दर व्यावसायिक ऋण (एमएसई) पर पूर्व-भुगतान शुल्क ले सकता है?",
+   "answer": "A Tier 3 UCB shall not levy any pre-payment charges on a floating-rate business loan to an MSE with sanctioned amount/limit up to ₹50 lakh when sanctioned on or after 1 January 2026. Conflict on prepayment charge: UCB Responsible Business Conduct Directions, 2025 (updated 1 Jul 2026) §261(2)(ii) (p.81) says \"A Tier 3 UCB shall not levy any pre-payment charges on loans with sanctioned amount / limit up to ₹50 lakh.\", while Sanction Letters – MSE business loans §2.2 (p.1) says \"2.2 Pre-payment charges: 2% of the amount prepaid.\". Conflict on prepayment charge: UCB Responsible Business Conduct Di",
+   "blocked": [
+    [
+     "No: for a Tier 3 UCB, a floating-rate business loan to an MSE sanctioned on or after 1 January 2026 with sanctioned amount/limit up to ₹50 lakh must not have an",
+     "cites unknown id(s) ['R17']"
+    ],
+    [
+     "The older RBI directions on foreclosure or pre-payment penalties are no longer in force on 2026-11-23, and the 2025 UCB directions are the applicable in-force r",
+     "cites unknown id(s) ['R15', 'R17']"
+    ]
+   ],
+   "query_id": "161f7ff75670"
+  }
+ ]
+}

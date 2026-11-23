@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The illustrative repayment schedule for the hypothetical loan shows 766 as the interest component in the first instalment.", "cites": ["E14", "E16"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2993, "completion_tokens": 255}}
