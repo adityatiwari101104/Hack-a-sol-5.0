@@ -1,0 +1,102 @@
+W1123 06:06:08.092000 25828 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 8357.45it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 26797.65it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 17786.87it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 9440.75it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 25561.23it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (965 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 30,
+ "labels": {
+  "Accurate": 25,
+  "Incomplete": 5,
+  "Hallucinated": 0
+ },
+ "accurate_rate": 0.833,
+ "accurate_ci95": [
+  0.664,
+  0.927
+ ],
+ "hallucinated_rate": 0.0,
+ "fabricated_quotes": 0,
+ "quotes_checked": 70,
+ "fabricated_upper95_rule_of_three": 0.043,
+ "abstention_precision": 0.5,
+ "abstention_recall": 0.6,
+ "answer_rate": 0.8,
+ "over_refusal": 0.13,
+ "point_in_time_accuracy": 1.0,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 0.0,
+ "calc_accuracy": 0.667,
+ "draft_faithfulness_mean": 0.614,
+ "latency_p50_ms": 4822,
+ "latency_p95_ms": 8080,
+ "spend_usd_upper_bound": 0.1575,
+ "cost_per_query_usd_upper_bound": 0.00525,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 4,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "calculation": {
+   "Accurate": 2,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 3,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 1,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "multi_doc": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 5,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 1,
+   "Incomplete": 3,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 3,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q012 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q013 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q014 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q021 calculation Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The loan amount is ₹25,00,000, the interest rate is 8.5% per annum, and the loan term is 240 months.
+- q047 false_premise Incomplete: outcome PARTIAL (want ['ANSWER', 'PARTIAL', 'ABSTAIN']) facts=False cites=True forbid=[] :: The current UCB directions instead require penal charges, if charged, to be treated as penal charges and not as penal interest, and they must not be levied on the earlier outstanding amount of penal c
+elapsed 38s; total ledger $1.638

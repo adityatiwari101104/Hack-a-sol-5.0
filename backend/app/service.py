@@ -383,7 +383,11 @@ def ask(question, as_of=None, bank_profile="ucb_tier3", slots=None):
     for c in conflicts[:3]:
         shown.append(_conflict_sentence(c, docs))
     missing = [dict(m, closest=_closest(pack)) for m in d["missing"]] + [dict(g, closest=[]) for g in gaps]
-    core_ok = any(s.get("core") for s in shown)
+    REFUSAL = re.compile(r"do(es)? not (include|contain|state|cover|mention|provide|address|specify)|no (information|"
+                         r"evidence|rule|provision) |cannot (determine|answer|confirm)|not (stated|specified|covered|"
+                         r"mentioned|provided)|outside (the|these)", re.I)
+    core = [s for s in shown if s.get("core")]
+    core_ok = bool(core) and not all(REFUSAL.search(s["text"]) for s in core)  # refusals alone are an abstention
     if gaps:
         outcome = "PARTIAL" if core_ok else "ABSTAIN"
     elif conflicts and plan["subjects"]:

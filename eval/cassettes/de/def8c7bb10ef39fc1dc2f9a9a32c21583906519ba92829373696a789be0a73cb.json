@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "penal_capitalisation", "permitted": "no", "reason": "The quote explicitly says there shall be no capitalisation of penal charges and no further interest may be computed on such charges, so this practice is prohibited."}, "usage": {"prompt_tokens": 310, "completion_tokens": 93}}

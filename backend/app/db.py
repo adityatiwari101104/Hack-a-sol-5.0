@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS incidents (incident_id INTEGER PRIMARY KEY, trace_que
 
 def connect():
     config.DATA.mkdir(parents=True, exist_ok=True)
-    con = sqlite3.connect(config.DB_PATH)
+    con = sqlite3.connect(config.DB_PATH, timeout=30)
     con.row_factory = sqlite3.Row
     con.executescript(SCHEMA)
     return con

@@ -136,6 +136,7 @@ def main():
         except llm.BudgetExceeded:
             raise
         except Exception as e:  # a crash is graded as Incomplete, never silently dropped
+            print(f"ERROR {it['id']}: {type(e).__name__}: {str(e)[:200]}", file=sys.stderr)
             r = {"outcome": "ERROR", "sentences": [], "blocked": [], "missing": [], "conflicts": [],
                  "faithfulness": {}, "latency_ms": 0, "error": repr(e)[:200]}
         return grade(it, r)

@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The Key Facts Statement lists a one-time processing fee of ₹400.", "cites": ["E7", "E9"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2728, "completion_tokens": 91}}

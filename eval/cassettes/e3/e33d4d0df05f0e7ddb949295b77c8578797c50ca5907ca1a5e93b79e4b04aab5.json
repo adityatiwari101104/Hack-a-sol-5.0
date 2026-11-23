@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "penal_interest", "permitted": "no", "reason": "The quote explicitly says penal charges shall not be levied in the form of 'penal interest' added to the rate of interest on advances, so this practice is prohibited."}, "usage": {"prompt_tokens": 300, "completion_tokens": 85}}

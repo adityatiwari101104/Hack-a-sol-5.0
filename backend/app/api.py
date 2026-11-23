@@ -149,3 +149,24 @@ def incident(body: IncidentIn):
 @app.get("/impact/{report_id}/export.md", response_class=PlainTextResponse)
 def export_md(report_id: str, doc_id: str, profile: str = "ucb_tier3"):
     return impact.export_markdown(impact.run(doc_id, profile, suggest_fixes=False))
+
+
+@app.get("/obligations")
+def obligations(doc_id: str | None = None, profile: str = "ucb_tier3"):
+    """Obligation register: normative RBI tuples (with verified quotes) applicable to the bank profile."""
+    from .applicability import ENTITY_OK, product_scope
+    prof = config.BANK_PROFILES[profile]
+    con = db.connect()
+    rows = con.execute("SELECT t.*, c.clause_key, c.breadcrumb, d.title, d.withdrawn_on FROM value_tuples t JOIN chunks c USING(chunk_id) "
+                       "JOIN documents d USING(doc_id) WHERE d.is_synthetic=0 AND t.verified=1 AND t.permitted IN ('no','conditional','yes')"
+                       + (" AND t.doc_id=?" if doc_id else ""), (doc_id,) if doc_id else ())
+    out = []
+    for r in rows:
+        cond = json.loads(r["condition_json"])
+        if not ENTITY_OK.get(cond.get("entity", "any"), lambda p: True)(prof) or product_scope(r["breadcrumb"]):
+            continue
+        out.append({"doc_id": r["doc_id"], "title": r["title"], "clause": r["clause_key"], "page": r["page"],
+                    "subject": r["subject"], "modality": r["modality"], "permitted": r["permitted"], "condition": cond,
+                    "special_circumstance": r["value_text"], "quote": r["quote"],
+                    "register_status": "repealed" if r["withdrawn_on"] else "in_force"})
+    return out

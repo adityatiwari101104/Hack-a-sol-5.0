@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "The Key Facts Statement lists penal charges of ₹500 per month of default.", "source": "S2", "quote": "10.1 Penal charges ₹500 per month of default"}]}, "usage": {"prompt_tokens": 399, "completion_tokens": 98}}

@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "prepayment_charge", "permitted": "yes", "reason": "The quote explicitly lists a pre-payment charge of 2% of principal outstanding, payable on pre-payment or foreclosure, so the charge is permitted by the document."}, "usage": {"prompt_tokens": 286, "completion_tokens": 82}}

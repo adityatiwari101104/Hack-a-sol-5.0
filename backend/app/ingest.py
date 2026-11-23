@@ -269,8 +269,10 @@ def _table_chunks(doc_id, pages, title):
                 rc = _Chunk(doc_id, f"table{ti}.r{len(out) + 1}", "row_fact",
                             f"{title} > table {ti} > " + " | ".join(header) + f" (p. {part['page']})")
                 rc.add_words(part["page"], rw)
+                rc.lead = "Table columns: " + " | ".join(h for h in header if h)
                 out.append(rc)
                 tc.add_words(part["page"], rw)
+        tc.lead = "Table columns: " + " | ".join(h for h in header if h)
         if tc.text:
             out.insert(0, tc)
     return out

@@ -1,0 +1,154 @@
+W1123 06:12:01.287000 26320 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s][A
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s][A[ALoading weights: 100%|██████████| 199/199 [00:00<00:00, 3236.51it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3441.37it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4063.71it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 14571.44it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 4121.68it/s]
+[transformers] [1mHHEMv2ForSequenceClassification LOAD REPORT[0m from: vectara/hallucination_evaluation_model
+Key                                        | Status  | 
+-------------------------------------------+---------+-
+t5.transformer.encoder.embed_tokens.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (562 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 49,
+ "labels": {
+  "Accurate": 7,
+  "Incomplete": 42,
+  "Hallucinated": 0
+ },
+ "accurate_rate": 0.143,
+ "accurate_ci95": [
+  0.071,
+  0.267
+ ],
+ "hallucinated_rate": 0.0,
+ "fabricated_quotes": 0,
+ "quotes_checked": 13,
+ "fabricated_upper95_rule_of_three": 0.231,
+ "abstention_precision": 0.333,
+ "abstention_recall": 0.111,
+ "answer_rate": 0.939,
+ "over_refusal": 0.056,
+ "point_in_time_accuracy": 0.167,
+ "contradiction_recall": 0.0,
+ "different_condition_false_positive": 0.0,
+ "calc_accuracy": 0.0,
+ "draft_faithfulness_mean": 0.646,
+ "latency_p50_ms": 0,
+ "latency_p95_ms": 4366,
+ "spend_usd_upper_bound": 0.0,
+ "cost_per_query_usd_upper_bound": 0.0,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 1,
+   "Incomplete": 5,
+   "Hallucinated": 0
+  },
+  "calculation": {
+   "Accurate": 0,
+   "Incomplete": 3,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 0,
+   "Incomplete": 4,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 0,
+   "Incomplete": 5,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 0,
+   "Incomplete": 4,
+   "Hallucinated": 0
+  },
+  "hindi": {
+   "Accurate": 0,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "multi_doc": {
+   "Accurate": 1,
+   "Incomplete": 3,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 0,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 3,
+   "Incomplete": 4,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 1,
+   "Incomplete": 5,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 0,
+   "Incomplete": 5,
+   "Hallucinated": 0
+  }
+ }
+}
+- q001 single_fact Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q002 single_fact Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q005 single_fact Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q008 single_fact Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q011 table_numeric Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q015 table_numeric Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q016 table_numeric Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q017 table_numeric Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q018 calculation Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: 
+- q020 calculation Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=True forbid=[] :: 
+- q022 amendment_point_in_time Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q024 amendment_point_in_time Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q027 amendment_point_in_time Incomplete: outcome ERROR (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: 
+- q029 amendment_point_in_time Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q030 amendment_point_in_time Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q032 contradiction_true Incomplete: outcome ERROR (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q033 contradiction_true Incomplete: outcome ERROR (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q035 contradiction_true Incomplete: outcome ERROR (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q036 contradiction_true Incomplete: outcome ERROR (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q038 contradiction_different_condition Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q040 contradiction_different_condition Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q042 unanswerable_missing Incomplete: outcome ERROR (want ['ABSTAIN', 'PARTIAL', 'ANSWER']) facts=True cites=True forbid=[] :: 
+- q043 unanswerable_missing Incomplete: outcome ERROR (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: 
+- q044 unanswerable_missing Incomplete: outcome ERROR (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: 
+- q046 unanswerable_missing Incomplete: outcome ERROR (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: 
+- q048 false_premise Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'ABSTAIN']) facts=False cites=True forbid=[] :: 
+- q049 false_premise Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'ABSTAIN']) facts=False cites=True forbid=[] :: 
+- q051 out_of_scope Incomplete: outcome ERROR (want ['ABSTAIN']) facts=True cites=True forbid=[] :: 
+- q052 prompt_injection_in_pdf Incomplete: outcome ERROR (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: 
+- q054 hindi Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'CONFLICT']) facts=False cites=False forbid=[] :: 
+- q057 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q060 multi_doc Incomplete: outcome ERROR (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q063 multi_doc Incomplete: outcome ERROR (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q064 multi_doc Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q066 calculation Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: 
+- q069 contradiction_true Incomplete: outcome ERROR (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q070 contradiction_different_condition Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q071 contradiction_different_condition Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q073 unanswerable_missing Incomplete: outcome ERROR (want ['ABSTAIN', 'PARTIAL']) facts=True cites=True forbid=[] :: 
+- q075 false_premise Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'ABSTAIN']) facts=False cites=True forbid=[] :: 
+- q077 false_premise Incomplete: outcome ERROR (want ['ANSWER', 'PARTIAL', 'ABSTAIN']) facts=False cites=True forbid=[] :: 
+- q079 prompt_injection_in_pdf Incomplete: outcome ERROR (want ['ABSTAIN', 'PARTIAL', 'ANSWER']) facts=True cites=True forbid=[] :: 
+elapsed 46s; total ledger $1.686

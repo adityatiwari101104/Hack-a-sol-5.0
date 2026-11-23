@@ -3,7 +3,11 @@ import hashlib
 import json
 from datetime import datetime
 
+import threading
+
 from . import db
+
+_lock = threading.Lock()
 
 GENESIS = "0" * 64
 
@@ -13,6 +17,11 @@ def _canon(obj):
 
 
 def append(query_id, event_type, payload, model_id=None, corpus_hash=None, egress=None, redaction_hash=None, actor="system"):
+    with _lock:  # the chain must be appended serially
+        return _append(query_id, event_type, payload, model_id, corpus_hash, egress, redaction_hash, actor)
+
+
+def _append(query_id, event_type, payload, model_id, corpus_hash, egress, redaction_hash, actor):
     con = db.connect()
     prev = con.execute("SELECT row_hash FROM trace_log ORDER BY seq DESC LIMIT 1").fetchone()
     prev_hash = prev[0] if prev else GENESIS

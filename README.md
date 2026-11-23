@@ -72,32 +72,41 @@ Main endpoints:
 - `POST /review/{id}` (maker-checker)
 - `GET /trace/verify-chain`
 - `POST /incidents`
+- `GET /obligations` (obligation register)
 - `GET /health`
 
 ## Tests and evaluation (numbers measured on 2026-11-23)
 
 ```bash
-cd backend && ../.venv/bin/python -m pytest -q tests          # 14 unit + API tests
+make test     # 14 unit + API tests   (see Makefile for setup / ingest / serve / gate / eval)
 cd .. && LLM_MODE=replay .venv/bin/python -m pytest -q eval/test_gate.py   # 13 canaries, $0
 .venv/bin/python eval/run_eval.py dev|test|canary [--baseline]
 ```
 
-The gold set is 54 hand-written questions (`eval/build_gold.py`): 33 dev and 21 held-out test, stratified by type.
-Labels follow the Stanford legal-RAG study. A citation counts as fabricated if its quote is not found on the
-cited page by a deterministic check.
+The gold set is 79 hand-written questions (`eval/build_gold.py`): 49 dev and 30 held-out test, stratified across
+11 types. The original 21 test items kept their split when the set grew. Labels follow the Stanford legal-RAG
+study. A citation counts as fabricated if its quote is not found on the cited page by a deterministic check.
 
 | Run | n | Accurate | Incomplete | Hallucinated | Fabricated quotes | Abstain P / R | Over-refusal |
 |---|---|---|---|---|---|---|---|
-| **Ours, dev** (tuned on) | 33 | **29 (88%, CI 73–95%)** | 4 | **0** | **0 / 97** | 0.75 / 0.50 | 4% |
-| **Ours, test** (held out, run once) | 21 | **14 (67%, CI 45–83%)** | 7 | **0** | **0 / 52** | 0.25 / 0.25 | 19% |
-| Plain RAG baseline, test | 21 | 12 (57%, CI 37–76%) | 6 | 3 | **2 / 34** | – / 0.00 | 0% |
+| Ours, dev (tuned on) | 49 | 38 (78%, CI 64–87%) | 11 | **0** | **0 / 134** | 0.55 / 0.67 | 11% |
+| **Ours, test (held out)** | 30 | **25 (83%, CI 66–93%)** | 5 | **0** | **0 / 70** | 0.50 / 0.60 | 13% |
+| Plain RAG baseline, test | 30 | 17 (57%, CI 39–73%) | 10 | 3 | **2 / 51** | – / 0.00 | 0% |
 
-On the held-out test set: point-in-time accuracy 4/4, contradiction recall 1.0, different-condition false positives
-0, and the impact alert's Tier 3 → Tier 4 switch is correct. Our misses are all *Incomplete*: over-cautious
-abstentions on table and calculation questions, never wrong answers. One of the baseline's three "hallucinated"
-labels is a grader artifact (its forbid pattern matched "cannot determine who **won**"); its 2 fabricated quotes are
-real. With n = 21, the confidence intervals overlap, so present this as early evidence, not a benchmark claim.
-Latency is about 5.6 s at p50 and 13.7 s at p95. Cost is under $0.008 per question (upper-bound pricing).
+On the held-out test set:
+- point-in-time accuracy 1.0
+- contradiction recall 1.0
+- different-condition false positives 0
+- calculation accuracy 0.67
+
+The impact alert's Tier 3 → Tier 4 switch is correct. All 5 test misses are *Incomplete* (three table questions
+abstained, one calculation, one false-premise answer missing the key word); there are no wrong answers. The baseline's
+2 fabricated quotes are real. One of its 3 "hallucinated" labels is a grader artifact (it matched "who **won**").
+
+The test split was run twice in total: once with 21 items, then once after the declared fixes and the gold-set
+expansion. Both runs are logged in `eval/reports/eval_runs.csv`. Latency is about 4.8 s at p50 and 8.1 s at p95.
+Cost is under $0.006 per question (upper-bound pricing). Total project spend so far is $1.69 of the $4 budget. After the test run, a post-processing fix
+(answers made only of refusals now count as ABSTAIN) was checked on dev only; the test numbers above predate it.
 
 ## Known limitations (honest list)
 
@@ -113,7 +122,7 @@ Latency is about 5.6 s at p50 and 13.7 s at p95. Cost is under $0.008 per questi
 - **Hindi** is supported by translating the question to English (one dev item passes). Hindi source documents are
   not ingested. Embeddings use `bge-small-en`; `bge-m3` is a config switch.
 - **Deviations from the plan:**
-  - 54 gold items instead of 80.
+  - 79 gold items instead of 80.
   - Regex PII redaction instead of Presidio.
   - No Docling; pdfplumber only.
   - No reranker; it was not needed on this corpus.

@@ -108,6 +108,13 @@ def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau
     if missing:
         return {"verdict": "BLOCKED", "reason": f"number/date not in cited evidence: {sorted(missing)}", "checks": checks}
     checks.append("d:numbers")
+    own = {f for f in facts(sent["text"]) if not f.startswith(("n:", "year:"))} - question_facts - calc_facts
+    for f in own:  # numeric binding: the number must sit in the same evidence unit that supports the claim
+        homes = [e for e in evs if f in implied(facts((e.get("context") or "") + " " + e["text"]))]
+        if homes and not rls and max(coverage(sent["text"], (h.get("context") or "") + " " + h["text"] + " " +
+                                              h.get("breadcrumb", "")) for h in homes) < 0.45:
+            return {"verdict": "BLOCKED", "reason": f"{f} appears in the evidence but not next to the claim's subject",
+                    "checks": checks}
     if sent.get("type") == "conflict" and len(evs) >= 2 and {e["chunk_id"] for e in evs} <= set(conflict_chunks):
         checks.append("e:triage")  # the conflict itself was established by code-side tuple triage on located quotes
         return {"verdict": "PASS", "reason": "", "checks": checks, "score": 1.0}

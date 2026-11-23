@@ -29,11 +29,15 @@ def expand_query(q):
     return q + (" " + " ".join(extra) if extra else "")
 
 
+_model_lock = threading.Lock()
+
+
 def model():
-    if "model" not in _state:
-        from sentence_transformers import SentenceTransformer
-        _state["model"] = SentenceTransformer(config.EMBED_MODEL)
-    return _state["model"]
+    with _model_lock:  # parallel first calls must not load the model twice
+        if "model" not in _state:
+            from sentence_transformers import SentenceTransformer
+            _state["model"] = SentenceTransformer(config.EMBED_MODEL)
+        return _state["model"]
 
 
 _embed_lock = threading.Lock()

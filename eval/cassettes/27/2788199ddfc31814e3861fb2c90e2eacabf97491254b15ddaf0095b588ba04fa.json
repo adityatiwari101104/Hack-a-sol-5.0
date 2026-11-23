@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The EMI is ₹21,696 for the ₹25,00,000 home loan with a 240-month term and 8.5% per annum floating interest rate.", "cites": ["E6", "E12", "E5"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2557, "completion_tokens": 133}}
