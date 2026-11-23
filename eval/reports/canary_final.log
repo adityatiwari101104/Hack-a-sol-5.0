@@ -1,0 +1,97 @@
+W1123 11:56:29.607000 27627 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 14253.67it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 13790.63it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (541 > 512). Running this sequence through the model will result in indexing errors
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 30163.83it/s]
+{
+ "n": 14,
+ "labels": {
+  "Accurate": 12,
+  "Incomplete": 2,
+  "Hallucinated": 0
+ },
+ "accurate_rate": 0.857,
+ "accurate_ci95": [
+  0.601,
+  0.96
+ ],
+ "hallucinated_rate": 0.0,
+ "fabricated_quotes": 0,
+ "quotes_checked": 28,
+ "fabricated_upper95_rule_of_three": 0.107,
+ "abstention_precision": 0.75,
+ "abstention_recall": 1.0,
+ "answer_rate": 0.714,
+ "over_refusal": 0.0,
+ "point_in_time_accuracy": 0.667,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 0.0,
+ "calc_accuracy": 1.0,
+ "draft_faithfulness_mean": 0.501,
+ "latency_p50_ms": 7965,
+ "latency_p95_ms": 17203,
+ "spend_usd_upper_bound": 0.0,
+ "cost_per_query_usd_upper_bound": 0.0,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 2,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "calculation": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 1,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "multi_doc": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q022 amendment_point_in_time Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: Yes: at the time of reset of interest rates, the applicable RBI rule requires the lender to provide borrowers the option to switch over to a fixed rate as per the lender’s Board-approved policy. 
+- q033 contradiction_true Incomplete: outcome PARTIAL (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: For a Tier 3 UCB, the current applicable rule says penal interest is not permitted, while penal charges are permitted only under the stated conditions.  The older RBI penal-charges circulars are no lo
+elapsed 32s; total ledger $1.834

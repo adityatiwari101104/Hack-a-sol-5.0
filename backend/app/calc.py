@@ -61,3 +61,24 @@ def run(formula, inputs):
     value = fn({n: inputs[n] for n in names})
     display = f"{value}%" if formula == "APR_IRR" else f"₹{value:,.2f}"
     return {"value": str(value), "display": display, "formula_text": text}
+
+
+ALIASES = {"principal": ["principal", "loan_amount", "amount", "sanctioned_amount", "p"],
+           "annual_rate_pct": ["annual_rate_pct", "rate", "annual_rate", "interest_rate", "rate_pct", "roi"],
+           "months": ["months", "tenure", "tenure_months", "term", "term_months", "n", "instalments", "number_of_instalments"],
+           "net_disbursed": ["net_disbursed", "net_disbursed_amount", "disbursed"],
+           "instalment": ["instalment", "installment", "emi", "epi"],
+           "amount": ["amount", "amount_prepaid", "prepaid_amount", "prepayment_amount", "outstanding"],
+           "rate_pct": ["rate_pct", "rate", "charge_rate", "prepayment_rate", "percentage"]}
+
+
+def canonical_inputs(formula, raw):
+    """Map the drafter's input names onto the formula's names (e.g. loan_amount -> principal)."""
+    names = FORMULAS[formula][0]
+    out = {}
+    for n in names:
+        for alias in ALIASES.get(n, [n]):
+            if alias in raw:
+                out[n] = raw[alias]
+                break
+    return out

@@ -33,6 +33,21 @@ def entail(premise, hypothesis):
         return float(nli_model().predict([(premise, hypothesis)])[0])
 
 
+def minicheck(premise, hypothesis):
+    """MiniCheck-DeBERTa-v3-Large (Apache-2.0): P(supported), document first, claim second."""
+    if not config.NLI2_MODEL:
+        return 0.0
+    with _nli_lock:
+        if "mc" not in _nli:
+            from transformers import AutoModelForSequenceClassification, AutoTokenizer
+            _nli["mc_tok"] = AutoTokenizer.from_pretrained(config.NLI2_MODEL)
+            _nli["mc"] = AutoModelForSequenceClassification.from_pretrained(config.NLI2_MODEL).eval()
+        import torch
+        x = _nli["mc_tok"](premise, hypothesis, return_tensors="pt", truncation="only_first", max_length=512)
+        with torch.no_grad():
+            return float(torch.softmax(_nli["mc"](**x).logits, -1)[0, 1])
+
+
 def expand_abbr(text, glossary):
     for abbr, full in glossary.items():
         text = re.sub(rf"\b{re.escape(abbr)}\b", f"{full} ({abbr})", text)
@@ -102,6 +117,7 @@ def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau
     premise = " ".join(((e.get("context") or "") + " " + e["text"]).strip() for e in evs)
     rule_text = " ".join(r["statement"] for r in rls)
     allowed = implied(facts(premise) | facts(rule_text) | question_facts | calc_facts)
+    allowed |= {"rs:" + f[2:] for f in allowed if f.startswith("n:") and f[2:].replace(".", "").isdigit()}
     missing = {f for f in facts(sent["text"]) if f not in allowed and not f.startswith("n:")}
     missing |= {f for f in facts(sent["text"]) if f.startswith("n:") and f not in allowed and
                 not any(f[2:] in x for x in allowed)}
@@ -110,9 +126,10 @@ def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau
     checks.append("d:numbers")
     own = {f for f in facts(sent["text"]) if not f.startswith(("n:", "year:"))} - question_facts - calc_facts
     for f in own:  # numeric binding: the number must sit in the same evidence unit that supports the claim
-        homes = [e for e in evs if f in implied(facts((e.get("context") or "") + " " + e["text"]))]
+        homes = [e for e in evs if f in implied(facts((e.get("context") or "") + " " + e["text"])) |
+                 {"rs:" + x[2:] for x in facts(e["text"]) if x.startswith("n:")}]
         if homes and not rls and max(coverage(sent["text"], (h.get("context") or "") + " " + h["text"] + " " +
-                                              h.get("breadcrumb", "")) for h in homes) < 0.45:
+                                              h.get("breadcrumb", "")) for h in homes) < 0.3:
             return {"verdict": "BLOCKED", "reason": f"{f} appears in the evidence but not next to the claim's subject",
                     "checks": checks}
     if sent.get("type") == "conflict" and len(evs) >= 2 and {e["chunk_id"] for e in evs} <= set(conflict_chunks):
@@ -140,6 +157,11 @@ def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau
     if score >= tau:
         checks.append(f"e:hhem {score:.2f}")
         return {"verdict": "PASS", "reason": "", "checks": checks, "score": round(score, 3)}
+    mc = minicheck(p[-2500:], h)
+    if mc >= 0.5:
+        checks.append(f"e:minicheck {mc:.2f} (hhem {score:.2f})")
+        return {"verdict": "PASS", "reason": "", "checks": checks, "score": round(mc, 3)}
+    score = max(score, mc)
     if rls and all(r["verified"] for r in rls) and _polarity_ok(sent["text"], rls):
         checks.append(f"e:rule ({score:.2f})")
         return {"verdict": "PASS", "reason": "", "checks": checks, "score": round(score, 3)}

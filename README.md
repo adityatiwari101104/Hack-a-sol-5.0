@@ -83,13 +83,13 @@ cd .. && LLM_MODE=replay .venv/bin/python -m pytest -q eval/test_gate.py   # 13 
 .venv/bin/python eval/run_eval.py dev|test|canary [--baseline]
 ```
 
-The gold set is 79 hand-written questions (`eval/build_gold.py`): 49 dev and 30 held-out test, stratified across
+The gold set is 80 hand-written questions (`eval/build_gold.py`): 50 dev and 30 held-out test, stratified across
 11 types. The original 21 test items kept their split when the set grew. Labels follow the Stanford legal-RAG
 study. A citation counts as fabricated if its quote is not found on the cited page by a deterministic check.
 
 | Run | n | Accurate | Incomplete | Hallucinated | Fabricated quotes | Abstain P / R | Over-refusal |
 |---|---|---|---|---|---|---|---|
-| Ours, dev (tuned on) | 49 | 38 (78%, CI 64–87%) | 11 | **0** | **0 / 134** | 0.55 / 0.67 | 11% |
+| Ours, dev (tuned on; final, with MiniCheck + Presidio) | 50 | 43 (86%, CI 74–93%) | 7 | **0** | **0 / 114** | 0.60 / 0.67 | 8% |
 | **Ours, test (held out)** | 30 | **25 (83%, CI 66–93%)** | 5 | **0** | **0 / 70** | 0.50 / 0.60 | 13% |
 | Plain RAG baseline, test | 30 | 17 (57%, CI 39–73%) | 10 | 3 | **2 / 51** | – / 0.00 | 0% |
 
@@ -105,14 +105,17 @@ abstained, one calculation, one false-premise answer missing the key word); ther
 
 The test split was run twice in total: once with 21 items, then once after the declared fixes and the gold-set
 expansion. Both runs are logged in `eval/reports/eval_runs.csv`. Latency is about 4.8 s at p50 and 8.1 s at p95.
-Cost is under $0.006 per question (upper-bound pricing). Total project spend so far is $1.69 of the $4 budget. After the test run, a post-processing fix
-(answers made only of refusals now count as ABSTAIN) was checked on dev only; the test numbers above predate it.
+Cost is under $0.006 per question (upper-bound pricing). Total project spend so far is $1.83 of the $4 budget. The test numbers above are from
+the second (final) test run. The later changes — refusal-only answers count as ABSTAIN, MiniCheck second opinion,
+code-side calculations from question inputs, Presidio redaction — were measured on dev only (calculation accuracy on
+dev 1.0), to keep the test split honest.
 
 ## Known limitations (honest list)
 
 - **Over-refusal on tables and calculations.** This is the main gap; see the test-set misses in `eval/reports/test.md`.
-- **Entailment checking.** HHEM-2.1 (English, 0.1B) produces false negatives on legal phrasing. That is why the
-  deterministic coverage check exists. MiniCheck as a second opinion is not wired in yet.
+- **Entailment checking.** HHEM-2.1 (English, 0.1B) produces false negatives on legal phrasing, so the verifier also
+  asks MiniCheck-DeBERTa-v3-Large (second opinion) and a deterministic coverage check. Both models still miss some
+  concessive sentences ("Although no upper limit … has been prescribed").
 - **Value tuples** are LLM-extracted (nano) and then audited (mini), which corrected 31 of 99. Some noise remains.
   Rules limited to a special situation or product (microfinance, deposits) are filtered by code.
 - **Bank documents' loan scope** (borrower, amount, sanction date) comes from `corpus/synthetic/scope.json`, which
@@ -122,10 +125,9 @@ Cost is under $0.006 per question (upper-bound pricing). Total project spend so 
 - **Hindi** is supported by translating the question to English (one dev item passes). Hindi source documents are
   not ingested. Embeddings use `bge-small-en`; `bge-m3` is a config switch.
 - **Deviations from the plan:**
-  - 79 gold items instead of 80.
-  - Regex PII redaction instead of Presidio.
   - No Docling; pdfplumber only.
-  - No reranker; it was not needed on this corpus.
+  - Reranker implemented but off: on dev it found the gold paragraph 28/32 times with or without it
+    (`eval/retrieval_ab.py`), so it only added latency. `RERANK=1` turns it on.
   - Modules are grouped into fewer files than the plan's layout.
 
 ## Models and credits
@@ -135,6 +137,8 @@ Cost is under $0.006 per question (upper-bound pricing). Total project spend so 
 | OpenAI `gpt-5.4-mini-2026-03-17`, `gpt-5.4-nano-2026-03-17` | drafting, extraction, tuple audit (organizer-approved) | API |
 | `vectara/hallucination_evaluation_model` (HHEM-2.1-Open) | entailment check | Apache-2.0 |
 | `BAAI/bge-small-en-v1.5` | embeddings | MIT |
+| `lytang/MiniCheck-DeBERTa-v3-Large` | second-opinion entailment | see model card |
+| Microsoft Presidio + spaCy `en_core_web_sm` | PII redaction (+ our IFSC/account recognizers) | MIT |
 | pdfplumber, pypdf, bm25s, rapidfuzz, sentence-transformers, FastAPI | parsing, retrieval, matching, API | MIT / BSD / Apache-2.0 |
 | Ideas adapted (no code copied) | ClauseTrace (MIT) checker/impact patterns; ALCE citation metrics; LongCite sentence-ID citations; CRAG retrieval gate; Stanford legal-RAG labels | — |
 

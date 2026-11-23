@@ -23,6 +23,7 @@ SPEND_CAP_USD = float(os.getenv("SPEND_CAP_USD", "3.50"))  # whole-project budge
 EMBED_MODEL = os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5")  # bge-m3 for Hindi/multilingual if RAM allows
 NLI_MODEL = "vectara/hallucination_evaluation_model"
 NLI_REVISION = os.getenv("NLI_REVISION", "main")
+NLI2_MODEL = os.getenv("NLI2_MODEL", "lytang/MiniCheck-DeBERTa-v3-Large")  # second opinion; "" disables
 
 TAU_ENTAIL = float(os.getenv("TAU_ENTAIL", "0.5"))
 TAU_LEXICAL = float(os.getenv("TAU_LEXICAL", "90"))     # token-set similarity for near-verbatim sentences

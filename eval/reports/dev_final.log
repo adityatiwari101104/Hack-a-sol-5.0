@@ -1,0 +1,107 @@
+W1123 11:54:59.803000 27604 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6365.57it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 4482.92it/s]
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 34316.72it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (541 > 512). Running this sequence through the model will result in indexing errors
+{
+ "n": 50,
+ "labels": {
+  "Accurate": 43,
+  "Incomplete": 7,
+  "Hallucinated": 0
+ },
+ "accurate_rate": 0.86,
+ "accurate_ci95": [
+  0.738,
+  0.93
+ ],
+ "hallucinated_rate": 0.0,
+ "fabricated_quotes": 0,
+ "quotes_checked": 114,
+ "fabricated_upper95_rule_of_three": 0.026,
+ "abstention_precision": 0.6,
+ "abstention_recall": 0.667,
+ "answer_rate": 0.8,
+ "over_refusal": 0.081,
+ "point_in_time_accuracy": 0.833,
+ "contradiction_recall": 1.0,
+ "different_condition_false_positive": 0.25,
+ "calc_accuracy": 1.0,
+ "draft_faithfulness_mean": 0.613,
+ "latency_p50_ms": 5148,
+ "latency_p95_ms": 23045,
+ "spend_usd_upper_bound": 0.1378,
+ "cost_per_query_usd_upper_bound": 0.00276,
+ "by_type": {
+  "amendment_point_in_time": {
+   "Accurate": 5,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "calculation": {
+   "Accurate": 3,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "contradiction_different_condition": {
+   "Accurate": 2,
+   "Incomplete": 2,
+   "Hallucinated": 0
+  },
+  "contradiction_true": {
+   "Accurate": 4,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "false_premise": {
+   "Accurate": 3,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "hindi": {
+   "Accurate": 1,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "multi_doc": {
+   "Accurate": 5,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "out_of_scope": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "prompt_injection_in_pdf": {
+   "Accurate": 2,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  },
+  "single_fact": {
+   "Accurate": 6,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "table_numeric": {
+   "Accurate": 5,
+   "Incomplete": 1,
+   "Hallucinated": 0
+  },
+  "unanswerable_missing": {
+   "Accurate": 5,
+   "Incomplete": 0,
+   "Hallucinated": 0
+  }
+ }
+}
+- q005 single_fact Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q022 amendment_point_in_time Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: Yes: at the time of reset of interest rates, the applicable RBI rule requires the lender to provide borrowers the option to switch over to a fixed rate as per the lender’s Board-approved policy. 
+- q033 contradiction_true Incomplete: outcome PARTIAL (want ['CONFLICT', 'ANSWER', 'PARTIAL']) facts=True cites=False forbid=[] :: For a Tier 3 UCB, the current applicable rule says penal interest is not permitted, while penal charges are permitted only under the stated conditions.  The older RBI penal-charges circulars are no lo
+- q057 table_numeric Incomplete: outcome ABSTAIN (want ['ANSWER', 'PARTIAL']) facts=False cites=False forbid=[] :: 
+- q070 contradiction_different_condition Incomplete: outcome CONFLICT (want ['ANSWER', 'PARTIAL']) facts=True cites=True forbid=[] :: For a Primary Urban Co-operative Bank, penal interest is not permitted, and any penalty for non-compliance of loan terms must be treated as penal charges rather than added to the rate of interest.  Th
+- q071 contradiction_different_condition Incomplete: outcome ANSWER (want ['ANSWER', 'PARTIAL']) facts=False cites=True forbid=[] :: The RBI’s current UCB rule allows a UCB, at its option, to provide borrowers a choice to switch to a fixed rate at the time of reset, as per its Board-approved policy. The bank’s retail loan policy sa
+- q075 false_premise Incomplete: outcome PARTIAL (want ['ANSWER', 'PARTIAL', 'ABSTAIN']) facts=False cites=True forbid=[] :: The same in-force direction says that, in cases other than those covered by paragraph 261(1) and 261(2), any pre-payment charges shall be as per the approved policy of the UCB. [E16]
+elapsed 89s; total ledger $1.834

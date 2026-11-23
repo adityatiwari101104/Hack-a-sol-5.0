@@ -322,6 +322,7 @@ def run_calcs(requests, pack, question_facts=frozenset()):
             inputs[i["name"]] = val
             cites.append(i["cite"])
         try:
+            inputs = calc.canonical_inputs(r["formula"], inputs)
             res = calc.run(r["formula"], inputs) if not problems else None
         except ValueError as e:
             res, problems = None, problems + [str(e)]
@@ -330,6 +331,33 @@ def run_calcs(requests, pack, question_facts=frozenset()):
         if res:
             calc_facts |= facts(res["display"])
     return cards, calc_facts
+
+
+def direct_calc(q):
+    """If the question states every input (amount, rate, months / instalment), compute in code; inputs cite the question."""
+    ql = q.lower()
+    amts = [float(f[3:]) for f in facts(q) if f.startswith("rs:")]
+    pcts = [float(f.split(":")[1].rstrip("pm")) for f in facts(q) if f.startswith("pct:")]
+    months = [int(m) for m in re.findall(r"(\d+)\s*(?:months|monthly instalments|emis|instalments)", ql)]
+    try:
+        if "apr" in ql and len(amts) >= 2 and months:
+            nd, inst = max(amts), min(amts)
+            return {"id": 999, "formula": "APR_IRR", "inputs": {"net_disbursed": nd, "instalment": inst, "months": months[0]},
+                    "cites": ["question"], "problems": [], "result": calc.run("APR_IRR", {"net_disbursed": nd, "instalment": inst, "months": months[0]})}
+        if ("emi" in ql or "instalment" in ql) and amts and pcts and months:
+            i = {"principal": amts[0], "annual_rate_pct": pcts[0], "months": months[0]}
+            return {"id": 999, "formula": "EMI", "inputs": i, "cites": ["question"], "problems": [], "result": calc.run("EMI", i)}
+        if "total interest" in ql and amts and pcts and months:
+            i = {"principal": amts[0], "annual_rate_pct": pcts[0], "months": months[0]}
+            return {"id": 999, "formula": "TOTAL_INTEREST", "inputs": i, "cites": ["question"], "problems": [],
+                    "result": calc.run("TOTAL_INTEREST", i)}
+        if ("charge" in ql or "penalty" in ql) and amts and pcts and not months:
+            i = {"amount": amts[0], "rate_pct": pcts[0]}
+            return {"id": 999, "formula": "PREPAY_CHARGE", "inputs": i, "cites": ["question"], "problems": [],
+                    "result": calc.run("PREPAY_CHARGE", i)}
+    except (ValueError, ZeroDivisionError):
+        return None
+    return None
 
 
 def fill_calc(text, cards):
@@ -364,6 +392,10 @@ def ask(question, as_of=None, bank_profile="ucb_tier3", slots=None):
     if plan["case"].get("sanction_date"):
         qfacts.add(f"date:{plan['case']['sanction_date']}")
     cards, calc_facts = run_calcs(d["calc_requests"], pack, qfacts)
+    direct = direct_calc(plan["english_question"] or question)
+    if direct:
+        cards[999] = direct
+        calc_facts |= facts(direct["result"]["display"])
     conflicts = _conflicts_for(pack, plan, profile, docs, as_of)
     conflict_chunks = {x[k]["chunk_id"] for x in conflicts for k in ("a", "b")}
     shown, blocked = _verify_all(d["sentences"], cards, pack, rules, qfacts, calc_facts, glossary, conflict_chunks)
@@ -380,6 +412,15 @@ def ask(question, as_of=None, bank_profile="ucb_tier3", slots=None):
                 d["sentences"] = d["sentences"] + d2["sentences"]
         except (llm.BudgetExceeded, llm.CacheMiss):
             pass
+    if cards.get(999):
+        c = cards[999]
+        shown.insert(0, {"text": f"{c['formula'].replace('_', ' ').title()} computed by code: {c['result']['display']} "
+                                 f"(inputs from your question: {', '.join(f'{k}={v:g}' if isinstance(v, float) else f'{k}={v}' for k, v in c['inputs'].items())}; "
+                                 f"formula {c['result']['formula_text']}).",
+                         "type": "calc", "core": True, "cites": [], "verdict": "PASS", "reason": "",
+                         "checks": ["e:calc (code, inputs from question)"], "citations": []})
+    named = mentioned_bank_docs(plan["english_question"] + " " + question, docs)
+    conflicts.sort(key=lambda c: -len({c["a"]["doc_id"], c["b"]["doc_id"]} & named))
     for c in conflicts[:3]:
         shown.append(_conflict_sentence(c, docs))
     missing = [dict(m, closest=_closest(pack)) for m in d["missing"]] + [dict(g, closest=[]) for g in gaps]

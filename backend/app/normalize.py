@@ -44,6 +44,10 @@ def iso(d):
     return d.isoformat() if d else None
 
 
+def _rs(v):
+    return f"rs:{v:.0f}" if abs(v - round(v)) < 0.005 else f"rs:{v:.2f}"
+
+
 def facts(text: str) -> set:
     """Normalised numeric facts in a sentence: rs:<rupees>, pct:<value>[pm|pa], date:<iso>, n:<int>.
 
@@ -55,13 +59,13 @@ def facts(text: str) -> set:
     consumed = []
     for m in re.finditer(r"(?:₹|rs\.?|inr|rupees)\s*(\d+(?:\.\d+)?)\s*(lakh|lakhs|crore|crores)?", t):
         mult = {"lakh": 1e5, "lakhs": 1e5, "crore": 1e7, "crores": 1e7}.get(m.group(2) or "", 1)
-        out.add(f"rs:{float(m.group(1)) * mult:.0f}")
+        out.add(_rs(float(m.group(1)) * mult))
         consumed.append(m.span())
     for m in re.finditer(r"(\d+(?:\.\d+)?)\s*(lakh|lakhs|crore|crores)\b", t):
         if any(a <= m.start() < b for a, b in consumed):
             continue
         mult = 1e5 if m.group(2).startswith("lakh") else 1e7
-        out.add(f"rs:{float(m.group(1)) * mult:.0f}")
+        out.add(_rs(float(m.group(1)) * mult))
         consumed.append(m.span())
     for m in re.finditer(r"(\d+(?:\.\d+)?)\s*(?:%|per\s?cent|percent)(\s*(?:p\.?\s?m\.?|per month|p\.?\s?a\.?|per annum))?", t):
         per = m.group(2) or ""

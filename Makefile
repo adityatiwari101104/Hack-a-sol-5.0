@@ -1,5 +1,5 @@
 PY=.venv/bin/python
-setup:      ; python3 -m venv .venv && .venv/bin/pip install -r backend/requirements.txt
+setup:      ; python3 -m venv .venv && .venv/bin/pip install -r backend/requirements.txt && .venv/bin/python -m spacy download en_core_web_sm
 manifest:   ; $(PY) corpus/tools/build_manifest.py ~/Downloads
 synthetic:  ; $(PY) corpus/synthetic/build_pdfs.py
 ingest:     ; cd backend && ../$(PY) -m app.pipeline --reset
