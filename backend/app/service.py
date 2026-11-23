@@ -443,6 +443,8 @@ def ask(question, as_of=None, bank_profile="ucb_tier3", slots=None):
     conflicts = _conflicts_for(pack, plan, profile, docs, as_of)
     conflict_chunks = {x[k]["chunk_id"] for x in conflicts for k in ("a", "b")}
     shown, blocked = _verify_all(d["sentences"], cards, pack, rules, qfacts, calc_facts, glossary, conflict_chunks)
+    for s in shown + blocked:
+        s["attempt"] = 1
     if blocked and not any(s.get("core") for s in shown):
         try:  # one repair round: tell the drafter exactly why each sentence was blocked
             d2, _, _, _ = draft(plan, plan["english_question"], pack, rules, as_of, profile,
@@ -450,6 +452,8 @@ def ask(question, as_of=None, bank_profile="ucb_tier3", slots=None):
             c2, f2 = run_calcs(d2["calc_requests"], pack, qfacts)
             cards.update({k + 100: v for k, v in c2.items()})
             s2, b2 = _verify_all(d2["sentences"], c2, pack, rules, qfacts, calc_facts | f2, glossary, conflict_chunks)
+            for s in s2 + b2:
+                s["attempt"] = 2
             if any(s.get("core") for s in s2):
                 shown, blocked = s2, blocked + b2
                 d["missing"] = d2["missing"]

@@ -12,9 +12,9 @@ def show(r):
           f"latency {r['latency_ms']}ms  case={r['plan']['case']}")
     for s in r["sentences"]:
         cites = ", ".join(f"{c.get('eid', c.get('rid'))}:{c['doc_id']} p.{c['page']} {c.get('clause','')} [{c['status']}]" for c in s["citations"])
-        print(f"  [{s['verdict']}] {s['text']}\n           <- {cites}  {s.get('checks')}")
+        print(f"  [Draft {s.get('attempt', 1)} {s['verdict']}] {s['text']}\n           <- {cites}  {s.get('checks')}")
     for s in r["blocked"]:
-        print(f"  [BLOCKED] {s['text']}\n           reason: {s['reason']}")
+        print(f"  [Draft {s.get('attempt', 1)} BLOCKED] {s['text']}\n           reason: {s['reason']}")
     for m in r["missing"]:
         print(f"  MISSING: {m['slot']} | searched: {m['searched'][:160]}")
     for c in r["conflicts"][:4]:
