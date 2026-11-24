@@ -1,4 +1,4 @@
-# Proof-or-Silence UI
+# Docuhelp UI
 
 Vite + React + TypeScript. react-pdf 11 renders the evidence viewer. IBM Plex fonts are bundled through @fontsource.
 

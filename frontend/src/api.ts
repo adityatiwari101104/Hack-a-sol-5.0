@@ -1,4 +1,4 @@
-// Typed client for the Proof-or-Silence FastAPI backend (backend/app/api.py, service._result).
+// Typed client for the Docuhelp FastAPI backend (backend/app/api.py, service._result).
 // Fields marked optional may not exist yet in the backend; every screen degrades when they are missing.
 
 export type Outcome = 'ANSWER' | 'PARTIAL' | 'CONFLICT' | 'ABSTAIN' | 'NEEDS_INFO'
@@ -394,6 +394,8 @@ export class ApiError extends Error {
   }
 }
 
+import { scrubResponse } from './lib/brandless'
+
 const BASE = '/api'
 
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
@@ -415,7 +417,7 @@ async function req<T>(path: string, init?: RequestInit): Promise<T> {
     throw new ApiError(r.status, msg)
   }
   const ct = r.headers.get('content-type') ?? ''
-  return (ct.includes('json') ? r.json() : r.text()) as Promise<T>
+  return (ct.includes('json') ? r.json().then((j) => scrubResponse(j)) : r.text()) as Promise<T>
 }
 
 export const api = {
@@ -451,7 +453,7 @@ export const api = {
         }
         if (!lines.length) continue
         let data: Record<string, unknown>
-        try { data = JSON.parse(lines.join('\n')) } catch { continue }
+        try { data = scrubResponse(JSON.parse(lines.join('\n'))) } catch { continue }
         if (event === 'error') throw new ApiError(Number(data.status ?? 500), String(data.detail ?? data.message ?? 'stream error'))
         const maybe = (data.result ?? data) as AskResult
         if (maybe && typeof maybe === 'object' && 'outcome' in maybe && 'sentences' in maybe && 'query_id' in maybe) final = maybe
@@ -470,7 +472,7 @@ export const api = {
     let r: Response
     try { r = await fetch(BASE + '/documents', { method: 'POST', body: fd }) } catch { throw new ApiError(0, 'The API is not reachable.') }
     if (!r.ok) { let m = r.statusText; try { const j = await r.json(); m = typeof j.detail === 'string' ? j.detail : JSON.stringify(j.detail ?? j) } catch { /* */ } throw new ApiError(r.status, m) }
-    return r.json() as Promise<UploadStatus>
+    return r.json().then((j) => scrubResponse(j)) as Promise<UploadStatus>
   },
   docStatus: (docId: string) => req<UploadStatus>(`/documents/${encodeURIComponent(docId)}/status`),
   uploads: () => req<UploadRow[]>('/documents?source=upload'),

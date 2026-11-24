@@ -38,8 +38,8 @@ export function XrayDrawer({ r, open, onClose }: { r: AskResult; open: boolean; 
   try { egress = JSON.parse(trace?.egress_manifest_json ?? '[]') } catch { /* */ }
   const f = r.faithfulness ?? {}
   const replay = health?.llm_mode === 'replay'
-  const draftModel = r.model_ids?.[1] ?? 'gpt-5.4-mini'
-  const planModel = r.model_ids?.[0] ?? 'gpt-5.4-nano'
+  const draftModel = 'The drafting model'
+  const planModel = 'The planning model'
   const ruleCounts = ['APPLIES', 'DOES_NOT_APPLY', 'STATUS'].map((v) => [v, r.rules.filter((x) => x.verdict === v).length] as const).filter(([, n]) => n)
 
   const stages: Stage[] = [
@@ -117,7 +117,7 @@ export function XrayDrawer({ r, open, onClose }: { r: AskResult; open: boolean; 
               <div className="st-body">
                 <div className="st-top">
                   <span className="st-name">{s.name}</span>
-                  <span className={`who who-${s.who}`}>{s.who === 'model' ? 'OpenAI' : s.who === 'local' ? 'local model' : 'code'}</span>
+                  <span className={`who who-${s.who}`}>{s.who === 'model' ? 'hosted model' : s.who === 'local' ? 'local model' : 'code'}</span>
                   {s.ms != null && <span className="st-ms tnum">{s.ms < 1000 ? `${s.ms} ms` : `${(s.ms / 1000).toFixed(1)} s`}</span>}
                 </div>
                 {s.ms != null && <div className="st-bar"><span style={{ width: `${Math.max(2, (s.ms / maxMs) * 100)}%` }} /></div>}

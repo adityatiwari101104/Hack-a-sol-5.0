@@ -344,6 +344,12 @@ export function StickGraph({ reducedMotion = false }: { reducedMotion?: boolean 
         role="img" aria-label={`Interactive graph of ${data.hubs.length} documents and ${data.clauses.length} clauses as of ${fmtDate(asOf)}. Drag to rotate; select a node for its text.`}>
         <canvas ref={canvas} />
         <span className="sg-corner tl" /><span className="sg-corner tr" /><span className="sg-corner bl" /><span className="sg-corner br" />
+        {/* legend and hint live inside the frame (user: "too much text below the graph") */}
+        <div className="sg-legend" aria-hidden="true">
+          <span><i className="lg-sq" />RBI</span><span><i className="lg-sq lg-bank" />Bank</span><span><i className="lg-dot" />clause</span>
+          {showAll && <span><i className="lg-ln lg-ref" />refers to</span>}<span><i className="lg-ln lg-amd" />amends</span><span><i className="lg-ln lg-conf" />conflict</span>
+        </div>
+        <span className="sg-hint" aria-hidden="true">Drag to rotate · tap a node</span>
         {fn && tip && fs !== 'future' && (
           <div className="sg-tip" style={{ left: Math.min(tip.x + 14, (wrap.current?.clientWidth ?? 600) - 290), top: Math.max(8, tip.y - 20) }}>
             <div className="sg-tip-h">{fn.hub ? (fh?.bank ? 'Example UCB document' : 'RBI document') : 'Clause'} <span className={`sg-st sg-st-${fs}`}>{fs === 'withdrawn' ? 'withdrawn' : 'in force'}</span></div>
@@ -354,19 +360,18 @@ export function StickGraph({ reducedMotion = false }: { reducedMotion?: boolean 
         )}
       </div>
       <div className="sg-phases">
-        <ol className="sg-steps" aria-label="Build the graph step by step">
-          {PHASES.map((p, k) => (
-            <li key={p.title}><button type="button" className={`sg-step ${phaseNow > k ? 'done' : ''} ${phaseNow === k + 1 ? 'now' : ''}`} onClick={() => { setCap(k + 1); setPhaseNow(k + 1); phaseRef.current = k + 1 }}
-              aria-current={phaseNow === k + 1 ? 'step' : undefined}><span className="sg-step-n">{k + 1}</span>{p.title}</button></li>
-          ))}
-          <li><button type="button" className="sg-replay" onClick={replay}>Replay</button></li>
-        </ol>
+        <div className="sg-bar">
+          <ol className="sg-steps" aria-label="Build the graph step by step">
+            {PHASES.map((p, k) => (
+              <li key={p.title}><button type="button" className={`sg-step ${phaseNow > k ? 'done' : ''} ${phaseNow === k + 1 ? 'now' : ''}`} onClick={() => { setCap(k + 1); setPhaseNow(k + 1); phaseRef.current = k + 1 }}
+                aria-current={phaseNow === k + 1 ? 'step' : undefined}><span className="sg-step-n">{k + 1}</span>{p.title}</button></li>
+            ))}
+          </ol>
+          <button type="button" className="sg-replay" onClick={replay} aria-label="Replay the build" title="Replay">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.6-3.7M13 2.5v3h-3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </button>
+        </div>
         <p className="sg-caption" aria-live="polite" key={phaseNow}>{phaseNow === 0 ? ' ' : PHASES[phaseNow - 1].caption}</p>
-      </div>
-      <div className="sg-legend">
-        <span><i className="lg-sq" />RBI document</span><span><i className="lg-sq lg-bank" />Bank document</span><span><i className="lg-dot" />clause</span>
-        {showAll && <span><i className="lg-ln lg-ref" />refers to</span>}<span><i className="lg-ln lg-amd" />amends / withdraws</span><span><i className="lg-ln lg-conf" />conflict</span>
-        <span className="sg-hint">Drag to rotate · select a node</span>
       </div>
     </div>
   )

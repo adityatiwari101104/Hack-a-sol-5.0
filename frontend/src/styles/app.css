@@ -1,4 +1,4 @@
-/* Proof-or-Silence — paper, hairlines, one ink accent. See frontend/DESIGN.md for the research behind each rule. */
+/* Docuhelp — paper, hairlines, one ink accent. See frontend/DESIGN.md for the research behind each rule. */
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body, #root { height: 100%; }
@@ -1546,3 +1546,66 @@ body::before, .landing::before {
   .lhero-ctas { justify-content: center; }
   .ltry { margin: 0 auto; justify-content: center; }
 }
+.brand-or { color: var(--accent); padding: 0 0 0 1px; }
+/* hero: the miniature answer under the CTAs fills the left column with the product itself */
+.lproof { margin: 28px 0 0; width: min(560px, 100%); padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px -12px rgba(0,0,0,.12); text-align: left; }
+.lproof-q { font-size: 13px; color: var(--ink-2); line-height: 1.45; margin-bottom: 12px; }
+.lproof-k { display: block; font-size: 11px; letter-spacing: .04em; color: var(--ink-3); margin-bottom: 3px; }
+.lproof-row { display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: start; padding: 10px 0 0; border-top: 1px solid var(--line); }
+.lproof-row + .lproof-row { margin-top: 10px; }
+.lproof-row p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink); }
+.lproof-ic { width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
+.lproof-ic.ok { background: var(--ok-tint, rgba(46,125,80,.12)); color: var(--ok, #2e7d50); }
+.lproof-ic.no { background: var(--conflict-tint); color: var(--conflict); }
+.lproof-chip { display: inline-flex; align-items: center; gap: 5px; margin-left: 4px; padding: 1px 8px; border: 1px solid var(--line-strong); border-radius: 6px; font-size: 11.5px; color: var(--ink-2); white-space: nowrap; vertical-align: 1px; }
+.lproof-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ok, #2e7d50); }
+.lproof-held p { color: var(--ink-3); }
+.lproof-held s { text-decoration-color: var(--ink-3); }
+.lproof-why { display: block; margin-top: 4px; font-size: 12px; color: var(--conflict); }
+@media (max-width: 1180px) { .lproof { margin-left: auto; margin-right: auto; } }
+
+/* ===== stick graph footer, compact (user: "too much text below the graph, restyle those buttons") =====
+   One segmented control for the five steps (+ an icon Replay), one caption line; legend and hint sit inside the frame. */
+.sg-phases { gap: 10px; margin-top: 4px; }
+.sg-bar { display: flex; align-items: center; gap: 8px; }
+.sg-steps { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px; padding: 3px; border-radius: 12px; background: var(--m-fill); flex-wrap: nowrap; }
+.sg-steps li { min-width: 0; }
+.sg-step { width: 100%; justify-content: center; gap: 6px; padding: 6px 8px; border-radius: 9px; font-size: 12.5px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: background .15s, color .15s; }
+.sg-step-n { width: 16px; height: 16px; font-size: 10px; flex: none; }
+.sg-step.done { color: var(--ink-2); }
+.sg-step.done .sg-step-n { background: var(--ink-3); border-color: var(--ink-3); color: var(--surface); }
+.sg-step.now { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 0 0 .5px var(--line-strong); }
+.sg-step.now .sg-step-n { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.sg-step:hover:not(.now) { color: var(--ink); background: var(--m-fill-2); }
+.sg-step:focus-visible, .sg-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--m-ring); }
+.sg-replay { flex: none; width: 34px; height: 34px; padding: 0; justify-content: center; border-radius: 10px; background: var(--m-fill); color: var(--ink-2); }
+.sg-replay:hover { text-decoration: none; background: var(--m-fill-2); color: var(--ink); }
+.sg-caption { text-align: center; font-size: 13px; color: var(--ink-3); min-height: 19px; }
+.sg-canvas .sg-legend { position: absolute; left: 26px; bottom: 6px; z-index: 2; gap: 4px 12px; font-size: 10.5px; color: var(--ink-4, var(--ink-3)); pointer-events: none; opacity: .85; }
+.sg-canvas .sg-hint { position: absolute; right: 26px; bottom: 6px; z-index: 2; margin: 0; font-size: 10.5px; color: var(--ink-4, var(--ink-3)); pointer-events: none; opacity: .85; }
+@media (max-width: 1280px) { .sg-step { font-size: 11.5px; padding: 6px 4px; gap: 4px; } }
+@media (max-width: 560px) { .sg-step { font-size: 0; gap: 0; } .sg-step-n { font-size: 10px; } .sg-canvas .sg-hint { display: none; } }
+/* hero card v2: compact, clickable, two quiet rows (user: left half "very busy") */
+.lhero-ctas { margin-bottom: 0; }
+.lproof { display: grid; gap: 0; margin-top: 36px; padding: 14px 16px 12px; cursor: pointer; font: inherit; color: inherit; transition: border-color .15s, box-shadow .15s, transform .15s; }
+.lproof:hover { border-color: var(--line-strong); box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 12px 28px -14px rgba(0,0,0,.22); }
+.lproof:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--m-ring); }
+.lproof-q { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 600; color: var(--ink); margin: 0 0 10px; }
+.lproof-k { display: inline; margin: 0; font-weight: 400; font-size: 11.5px; letter-spacing: 0; color: var(--ink-3); white-space: nowrap; }
+.lproof-row { display: grid; grid-template-columns: 16px minmax(0, 1fr); column-gap: 10px; row-gap: 4px; padding: 9px 0; border-top: 1px solid var(--line); align-items: start; }
+.lproof-row + .lproof-row { margin-top: 0; }
+.lproof-ic { width: 16px; height: 16px; margin-top: 2px; }
+.lproof-t { font-size: 13.5px; line-height: 1.5; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.lproof-held .lproof-t { -webkit-line-clamp: 1; color: var(--ink-3); }
+.lproof-chip, .lproof-why { grid-column: 2; justify-self: start; margin: 0; }
+.lproof-why { font-size: 11.5px; }
+.lproof-go { margin-top: 8px; font-size: 12.5px; font-weight: 600; color: var(--accent); }
+.lproof:hover .lproof-go { text-decoration: underline; }
+/* hero v3: proof points, no card */
+.lhero-h { font-size: clamp(40px, 4vw, 60px); }
+.lpoints { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 14px; }
+.lpoints li { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--ink-2); line-height: 1.4; }
+.lpt-ic { flex: none; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+.lpt-ic.ok { background: var(--ok-tint); color: var(--ok); }
+.lpt-ic.no { background: var(--conflict-tint); color: var(--conflict); }
+@media (max-width: 1180px) { .lpoints { justify-content: center; width: max-content; max-width: 100%; margin-left: auto; margin-right: auto; } }

@@ -38,16 +38,16 @@ export function GovernancePage() {
       <header className="page-head">
         <div>
           <h1 className="page-h">AI governance</h1>
-          <p className="page-sub">How Proof-or-Silence maps to RBI’s FREE-AI framework (Framework for Responsible and Ethical Enablement of AI, 13 Aug 2025) and the June 2026 draft guidance on model risk. FREE-AI-aligned by design; not a certification.</p>
+          <p className="page-sub">How Docuhelp maps to RBI’s FREE-AI framework (Framework for Responsible and Ethical Enablement of AI, 13 Aug 2025) and the June 2026 draft guidance on model risk. FREE-AI-aligned by design; not a certification.</p>
         </div>
       </header>
 
       <div className="disclosure">
         <IShield size={18} />
         <div>
-          <div className="disc-t">This system uses OpenAI models, with the organiser’s permission.</div>
-          <p>The Hackasol 5.0 organisers explicitly allowed an OpenAI API key for this problem statement. OpenAI models only <b>draft</b> sentences and extract structure; they never decide what you see. Our code verifies each sentence and withholds anything it cannot prove. Staff are told when text is AI-drafted: every answer shows which checker passed each sentence.</p>
-          <p>Only redacted evidence sentences and the redacted question leave the machine; every verifier runs locally. The model endpoint is configurable (<span className="mono">LLM_BASE_URL</span>), so an on-premises OpenAI-compatible server can replace it, and replay mode runs a demo with no network at all.</p>
+          <div className="disc-t">This system uses a hosted language model, with the organiser’s permission.</div>
+          <p>The Hackasol 5.0 organisers explicitly allowed a hosted model API for this problem statement. The model only <b>drafts</b> sentences and extract structure; they never decide what you see. Our code verifies each sentence and withholds anything it cannot prove. Staff are told when text is AI-drafted: every answer shows which checker passed each sentence.</p>
+          <p>Only redacted evidence sentences and the redacted question leave the machine; every verifier runs locally. The model endpoint is configurable (<span className="mono">LLM_BASE_URL</span>), so an on-premises compatible server can replace it, and replay mode runs a demo with no network at all.</p>
         </div>
       </div>
 
@@ -76,15 +76,15 @@ export function GovernancePage() {
       </div>
 
       <section className="sec">
-        <header className="sec-head"><h3>Model inventory</h3><span className="sec-note">Pinned versions; FREE-AI / draft MRM “model inventory”</span></header>
+        <header className="sec-head"><h3>Model inventory</h3><span className="sec-note">Versions pinned in the backend config; FREE-AI / draft MRM “model inventory”</span></header>
         <table className="tbl">
           <thead><tr><th>Model</th><th>Role</th><th>Where it runs</th><th>Decides what is shown?</th></tr></thead>
           <tbody>
-            <tr><td className="mono">{health?.models?.[1] ?? 'gpt-5.4-mini-2026-03-17'}</td><td>Drafts answer sentences (≤ 4, one claim each, cites evidence ids); suggests clause fixes as drafts</td><td>OpenAI API, <span className="mono">store=false</span></td><td>No</td></tr>
-            <tr><td className="mono">{health?.models?.[0] ?? 'gpt-5.4-nano-2026-03-17'}</td><td>Plans the query (sub-queries, case facts, Hindi→English); 3rd-tier judge, at most 3 per answer, labelled “AI judge”</td><td>OpenAI API</td><td>Only as the last support tier, after code checks</td></tr>
-            <tr><td className="mono">{health?.nli_model ?? 'vectara/hallucination_evaluation_model'}</td><td>HHEM-2.1 entailment check (≥ 0.5)</td><td>Local</td><td>Yes (with code)</td></tr>
+            <tr><td>Drafting model</td><td>Drafts answer sentences (≤ 4, one claim each, cites evidence ids); suggests clause fixes as drafts</td><td>Hosted API, <span className="mono">store=false</span></td><td>No</td></tr>
+            <tr><td>Planning model</td><td>Plans the query (sub-queries, case facts, Hindi→English); 3rd-tier judge, at most 3 per answer, labelled “AI judge”</td><td>Hosted API</td><td>Only as the last support tier, after code checks</td></tr>
+            <tr><td className="mono">{health?.nli_model ?? 'HHEM-2.1'}</td><td>HHEM-2.1 entailment check (≥ 0.5)</td><td>Local</td><td>Yes (with code)</td></tr>
             <tr><td className="mono">MiniCheck-DeBERTa-L</td><td>Second entailment check when HHEM is unsure</td><td>Local</td><td>Yes (with code)</td></tr>
-            <tr><td className="mono">{health?.embed_model ?? 'BAAI/bge-small-en-v1.5'}</td><td>Dense retrieval (with BM25, fused by RRF)</td><td>Local</td><td>No</td></tr>
+            <tr><td className="mono">{health?.embed_model ?? 'bge-small-en-v1.5'}</td><td>Dense retrieval (with BM25, fused by RRF)</td><td>Local</td><td>No</td></tr>
             <tr><td className="mono">Presidio + Indian recognisers</td><td>Redacts identifiers before any model call</td><td>Local</td><td>No</td></tr>
           </tbody>
         </table>

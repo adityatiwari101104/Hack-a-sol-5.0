@@ -15,7 +15,6 @@ import { useApp } from '../state'
 
 const LawOverTime = lazy(() => import('../components/LawOverTime').then((m) => ({ default: m.LawOverTime })))
 
-const STORY_Q = REHEARSED.filter((r) => /^\d/.test(r.group))
 
 
 const STEPS: [string, string, string][] = [
@@ -97,12 +96,6 @@ export function Landing({ onStart, onOpen }: { onStart: (r: Rehearsed) => void; 
   const nodes = Object.fromEntries(graph.nodes.map((n) => [n.id, n]))
   const rbiCount = docs.filter((d) => !d.is_synthetic).length || 15
   const start = () => onStart(REHEARSED.find((r) => r.id === 'q028')!)
-  const [qi, setQi] = useState(0)
-  useEffect(() => {
-    if (reducedMotion) return
-    const id = window.setInterval(() => setQi((i) => (i + 1) % STORY_Q.length), 4200)
-    return () => window.clearInterval(id)
-  }, [reducedMotion])
   useEffect(() => {
     const el = document.querySelector('.landing')
     const on = () => setScrolled((el?.scrollTop ?? 0) > 40)
@@ -118,7 +111,7 @@ export function Landing({ onStart, onOpen }: { onStart: (r: Rehearsed) => void; 
     <div className="landing">
       <nav className={`lnav ${scrolled ? 'scrolled' : ''}`} aria-label="Landing">
         <div className="lnav-bar">
-          <span className="lnav-brand"><span className="brand-mark" aria-hidden="true"><svg viewBox="0 0 20 20" width="20" height="20"><rect width="20" height="20" rx="5" fill="currentColor" /><path d="M5.5 10.3l3 3 6-6.6" fill="none" stroke="var(--paper)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span><span>Proof<span className="brand-or">-or-</span>Silence</span></span>
+          <span className="lnav-brand"><span className="brand-mark" aria-hidden="true"><svg viewBox="0 0 20 20" width="20" height="20"><rect width="20" height="20" rx="5" fill="currentColor" /><path d="M5.5 10.3l3 3 6-6.6" fill="none" stroke="var(--paper)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span><span>Docu<span className="brand-or">help</span></span></span>
           <span className="lnav-links">
             <button type="button" onClick={() => go('earn')}>Withheld</button>
             <button type="button" onClick={() => go('law')}>Law over time</button>
@@ -145,12 +138,13 @@ export function Landing({ onStart, onOpen }: { onStart: (r: Rehearsed) => void; 
               <button type="button" className="mbtn mbtn-primary mbtn-pill mbtn-lg" onClick={start}>Ask a question</button>
               <button type="button" className="mbtn mbtn-gray mbtn-pill mbtn-lg" onClick={() => go('earn')}>See what we withhold</button>
             </div>
-            {/* one quiet line instead of a second search box: the hero CTA already opens Ask (user: hero "too crowded") */}
-            <button type="button" className="ltry" onClick={() => onStart(STORY_Q[qi])} title={STORY_Q[qi].q}>
-              <span className="ltry-k">Try a recorded question, $0:</span>
-              <span className="ltry-q" key={qi}>{STORY_Q[qi].q}</span>
-              <span className="ltry-go" aria-hidden="true">→</span>
-            </button>
+            {/* a real answer in miniature (user: "left half of hero feels empty"): one proven sentence, one withheld */}
+            {/* three proof points instead of a sample-answer card (user: "that card is not looking good") */}
+            <ul className="lpoints">
+              <li><span className="lpt-ic ok" aria-hidden="true"><ICheck size={11} /></span>A verbatim quote, with page and clause, for every sentence</li>
+              <li><span className="lpt-ic ok" aria-hidden="true"><ICheck size={11} /></span>Only rules in force on the date you choose</li>
+              <li><span className="lpt-ic no" aria-hidden="true"><IX size={11} /></span>Anything it can’t prove is withheld, with the reason</li>
+            </ul>
           </div>
           <div className="lhero-graph">
             <StickGraph reducedMotion={reducedMotion} />
@@ -168,7 +162,7 @@ export function Landing({ onStart, onOpen }: { onStart: (r: Rehearsed) => void; 
       <section className="lsec" id="earn">
         <div className="lsec-head">
           <h2 className="lsec-h serif">Every sentence has to earn its place.</h2>
-          <p className="lsec-p">Most compliance AI writes an answer and adds citations. Proof-or-Silence starts from the citations, and drops any sentence it can’t prove. This is a recorded answer, replayed sentence by sentence.</p>
+          <p className="lsec-p">Most compliance AI writes an answer and adds citations. Docuhelp starts from the citations, and drops any sentence it can’t prove. This is a recorded answer, replayed sentence by sentence.</p>
         </div>
         <EarnItsPlace />
       </section>
@@ -240,7 +234,7 @@ export function Landing({ onStart, onOpen }: { onStart: (r: Rehearsed) => void; 
       </section>
       <footer className="lfoot">
         <JaaliPattern id="jaali-foot" />
-        <p>Example UCB is a fictional bank created for this demo. RBI documents are public circulars. Not affiliated with or endorsed by the Reserve Bank of India. Not legal advice. OpenAI models draft sentences, with the Hackasol 5.0 organisers’ permission; code decides what is shown.</p>
+        <p>Example UCB is a fictional bank created for this demo. RBI documents are public circulars. Not affiliated with or endorsed by the Reserve Bank of India. Not legal advice. A hosted language model drafts sentences, with the Hackasol 5.0 organisers’ permission; code decides what is shown.</p>
         <p className="lfoot-corpus mono">{(docs.length ? docs.filter((d) => !d.is_synthetic) : []).map((d) => d.circular_no).filter(Boolean).join(' · ') || graph.nodes.filter((n) => n.lane === 'rbi' && n.circular).map((n) => n.circular).filter((v, i, a) => a.indexOf(v) === i).join(' · ')}</p>
       </footer>
     </div>
