@@ -1,4 +1,4 @@
-// Capture 2x screenshots of the Proof-or-Silence UI for the deck (read-only; replay API on a scratch DB).
+// Capture 2x screenshots of the DocuHelp UI for the deck (read-only; replay API on a scratch DB).
 // Usage: node scripts/capture.mjs <step-name ...>   (UI on :5180, API on :8010)
 import { chromium } from 'playwright-core'
 const BASE = process.env.UI ?? 'http://localhost:5180'

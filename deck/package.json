@@ -1,7 +1,7 @@
 {
   "name": "proof-or-silence-deck",
   "private": true,
-  "description": "Builds the Proof-or-Silence pitch deck (.pptx) with pptxgenjs",
+  "description": "Builds the DocuHelp pitch deck (.pptx) with pptxgenjs",
   "scripts": {
     "build": "node build_deck.js"
   },

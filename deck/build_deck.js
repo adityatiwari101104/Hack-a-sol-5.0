@@ -1,4 +1,4 @@
-// Proof-or-Silence pitch deck: 8 slides (+ appendix in a separate file). Build: `node build_deck.js` in deck/.
+// DocuHelp pitch deck: 8 slides (+ appendix in a separate file). Build: `node build_deck.js` in deck/.
 // Palette: research_notes/Winning hackathon deck/colour_theory_and_palette.md (product tokens, contrast-fixed).
 // Diagrams are native shapes (editable in PowerPoint). Screens are real 2x captures in assets/crops/.
 const pptxgen = require('pptxgenjs')
@@ -27,7 +27,7 @@ const W = 13.333, H = 7.5, M = 0.6
 const TOTAL = 8
 
 const THEME = {
-  name: 'Proof-or-Silence', headFontFace: F.head, bodyFontFace: F.body,
+  name: 'DocuHelp', headFontFace: F.head, bodyFontFace: F.body,
   colors: { dk1: P.ink, lt1: P.surface, dk2: P.accent, lt2: P.paper, accent1: P.accent, accent2: P.proven,
     accent3: P.withheld, accent4: P.conflict, accent5: P.abstain, accent6: P.rbi, hlink: P.accent, folHlink: P.ink2 },
 }
@@ -35,7 +35,7 @@ const THEME = {
 function newDeck(title) {
   const pres = new pptxgen()
   pres.layout = 'LAYOUT_WIDE'
-  pres.author = 'Team Proof-or-Silence (Gaurav, Tiwari)'
+  pres.author = 'Team DocuHelp (Gaurav, Tiwari)'
   pres.title = title
   pres.theme = { headFontFace: F.head, bodyFontFace: F.body }
   pres.defineSlideMaster({ title: 'LIGHT', background: { color: P.paper }, objects: [] })
@@ -51,7 +51,7 @@ function title(s, text, o = {}) {
 function footer(s, n, src, dark = false) {
   const c = dark ? P.onNavy2 : P.ink3
   if (src) T(s, src, { x: M, y: 7.0, w: 10.6, h: 0.32, fontSize: 10.5, color: c, valign: 'bottom' })
-  T(s, `Proof-or-Silence · ${n}/${TOTAL}`, { x: W - M - 2.4, y: 7.0, w: 2.4, h: 0.32, fontSize: 10.5, color: c, align: 'right', valign: 'bottom' })
+  T(s, `DocuHelp · ${n}/${TOTAL}`, { x: W - M - 2.4, y: 7.0, w: 2.4, h: 0.32, fontSize: 10.5, color: c, align: 'right', valign: 'bottom' })
 }
 function box(s, x, y, w, h, o = {}) {
   s.addShape('roundRect', { x, y, w, h, rectRadius: o.r ?? 0.06, fill: { color: o.fill ?? P.surface }, line: { color: o.line ?? P.line, width: o.lw ?? 1, dashType: o.dash ?? 'solid' }, ...(o.shadow ? { shadow: { type: 'outer', color: '000000', opacity: 0.12, blur: 6, offset: 2, angle: 90 } } : {}) })
@@ -87,7 +87,7 @@ module.exports = { P, F, W, H, M, THEME, newDeck, T, title, footer, box, arrow, 
 
 // ---------- the 8 slides ----------
 async function main() {
-  const pres = newDeck('Proof-or-Silence: every sentence proven, or nothing said')
+  const pres = newDeck('DocuHelp: every sentence proven, or nothing said')
 
   // 1 ── Hook ───────────────────────────────────────────────────────────────
   {
@@ -96,7 +96,7 @@ async function main() {
     T(s, 'A bank can’t act on an answer it can’t prove.', { x: M, y: 1.0, w: 5.75, h: 1.5, bold: true, fontFace: F.head, fontSize: 38, color: P.onNavy, lineSpacingMultiple: 0.95, valign: 'top' })
     s.addShape('rect', { x: M, y: 2.78, w: 5.75, h: 1.18, fill: { color: P.hl }, line: { color: P.hl, width: 0 } })
     T(s, [
-      { text: 'Proof-or-Silence ', options: { bold: true, fontFace: F.head } },
+      { text: 'DocuHelp ', options: { bold: true, fontFace: F.head } },
       { text: 'shows every sentence with its quote, page and in-force date — or withholds it and says why.' },
     ], { x: M + 0.22, y: 2.78, w: 5.35, h: 1.18, fontSize: 19, color: P.ink, valign: 'middle' })
     const items = [
@@ -110,7 +110,7 @@ async function main() {
       T(s, t, { x: M + 0.6, y: y - 0.05, w: 5.15, h: 0.48, fontSize: 16, color: P.onNavy, valign: 'middle' })
     })
     T(s, 'Team: Gaurav · Tiwari', { x: M, y: 6.55, w: 4, h: 0.3, fontSize: 13, color: P.onNavy2 })
-    const r = img(s, 'hero-withheld.png', 7.05, 0.95, 5.68, 5.75, { dark: true, frameColor: P.navyLine, alt: 'Proof-or-Silence answer: two proven sentences with citation chips and a Withheld tray showing a struck-through sentence and its reason' })
+    const r = img(s, 'hero-withheld.png', 7.05, 0.95, 5.68, 5.75, { dark: true, frameColor: P.navyLine, alt: 'DocuHelp answer: two proven sentences with citation chips and a Withheld tray showing a struck-through sentence and its reason' })
     const C = JSON.parse(fs.readFileSync(path.join(__dirname, 'assets', 'crops', 'callouts.json'), 'utf8'))['hero-withheld.png']
     C.forEach(([n, fx, fy]) => dot(s, n, ...r.at(fx, fy), { fill: P.hl, color: P.ink, ring: P.navy }))
     T(s, 'Real screen · EMI-reset question, as of 15-Sep-2025 · replayed', { x: r.x, y: r.y + r.h + 0.12, w: r.w, h: 0.28, fontSize: 10.5, color: P.onNavy2, align: 'right' })
@@ -158,7 +158,7 @@ async function main() {
     ], { x: M + 0.2, y: 3.88, w: 5.6, h: 1.0, fontSize: 14, valign: 'middle' })
     box(s, M + 6.18, 3.88, 5.95, 1.0, { fill: P.provenTint, line: P.proven, lw: 1.25 })
     T(s, [
-      { text: 'Proof-or-Silence:  ', options: { bold: true, fontFace: F.head, color: P.proven } },
+      { text: 'DocuHelp:  ', options: { bold: true, fontFace: F.head, color: P.proven } },
       { text: '“No: as of 2026-11-23, the 2023 circular on penal charges and its timeline extension have been withdrawn and are no longer in force.”', options: { fontFace: F.serif, color: P.ink } },
     ], { x: M + 6.38, y: 3.88, w: 5.6, h: 1.0, fontSize: 14, valign: 'middle' })
     // evidence cells
@@ -247,8 +247,8 @@ async function main() {
     title(s, 'The AI only drafts. Code decides what you see')
     const cols = [0.6, 2.48, 4.36, 6.24, 8.12, 11.08], bw = 1.6
     // lane labels
-    T(s, 'PLAIN RAG', { x: M, y: 1.42, w: 3, h: 0.28, bold: true, fontFace: F.head, fontSize: 12, color: P.ink3, charSpacing: 1 })
-    T(s, 'PROOF-OR-SILENCE', { x: M, y: 2.78, w: 3, h: 0.28, bold: true, fontFace: F.head, fontSize: 12, color: P.accent, charSpacing: 1 })
+    T(s, 'Plain RAG', { x: M, y: 1.38, w: 3, h: 0.32, bold: true, fontFace: F.head, fontSize: 14, color: P.ink3, charSpacing: 1 })
+    T(s, 'DocuHelp', { x: M, y: 2.74, w: 3, h: 0.32, bold: true, fontFace: F.head, fontSize: 14, color: P.accent, charSpacing: 1 })
     // plain RAG lane (grey)
     const ry = 1.75, rh = 0.62
     const rag = [[cols[1], 'Search'], [cols[3], 'AI writes answer + quotes'], [cols[5], 'Shown as written']]
@@ -326,18 +326,18 @@ async function main() {
     catLabel('Shown sentences not supported by their quote', 4.9 + 1.45 * 0.5)
     T(s, 'Higher is better', { x: M, y: 1.45, w: 4, h: 0.3, bold: true, fontFace: F.head, fontSize: 13, color: P.ink3 })
     s.addChart('bar', [
-      { name: 'Proof-or-Silence', labels: ['Correct · 34 fresh questions', 'Red-team attacks handled · 22'], values: [85, 100] },
+      { name: 'DocuHelp', labels: ['Correct · 34 fresh questions', 'Red-team attacks handled · 22'], values: [85, 100] },
       { name: 'Plain RAG', labels: ['Correct · 34 fresh questions', 'Red-team attacks handled · 22'], values: [50, 45] },
     ], { x: CX, y: 1.75, w: CW, h: 2.75, ...chartOpts() })
     T(s, 'Lower is better', { x: M, y: 4.6, w: 4, h: 0.3, bold: true, fontFace: F.head, fontSize: 13, color: P.ink3 })
     s.addChart('bar', [
-      { name: 'Proof-or-Silence', labels: ['Shown sentences not supported by their quote'], values: [2.8] },
+      { name: 'DocuHelp', labels: ['Shown sentences not supported by their quote'], values: [2.8] },
       { name: 'Plain RAG', labels: ['Shown sentences not supported by their quote'], values: [10.6] },
     ], { x: CX, y: 4.9, w: CW, h: 1.45, ...chartOpts({ showValue: false, valAxisMaxVal: 20 }) })
     ;[[2.8, 5.34], [10.6, 5.91]].forEach(([v, cy]) => T(s, v.toFixed(1) + '%', { x: CX + CW * 0.36 + (v / 20) * CW * 0.58 + 0.06, y: cy - 0.17, w: 0.9, h: 0.34, fontSize: 13, color: P.ink, valign: 'middle' }))
     // legend (direct)
     s.addShape('rect', { x: M, y: 6.48, w: 0.26, h: 0.2, fill: { color: P.accent }, line: { color: P.accent, width: 0 } })
-    T(s, 'Proof-or-Silence', { x: M + 0.34, y: 6.43, w: 1.8, h: 0.3, fontSize: 12.5, color: P.ink, valign: 'middle' })
+    T(s, 'DocuHelp', { x: M + 0.34, y: 6.43, w: 1.8, h: 0.3, fontSize: 12.5, color: P.ink, valign: 'middle' })
     s.addShape('rect', { x: M + 2.2, y: 6.48, w: 0.26, h: 0.2, fill: { color: P.supersededMark }, line: { color: P.supersededMark, width: 0 } })
     T(s, 'Plain RAG: same AI, no checks', { x: M + 2.54, y: 6.43, w: 5.2, h: 0.3, fontSize: 12.5, color: P.ink, valign: 'middle' })
     // KPI column
@@ -375,7 +375,7 @@ async function main() {
       ['Axiom Engine (open source)', Y('Yes'), No('“never silent”'), Pa('no time or condition'), No()],
       ['RBI RAG repos (2 on GitHub)', Pa('id check only'), Pa('confidence gate'), No(), Pa('“updated as on” badge')],
       ['Lexis+ AI, Westlaw AI', Pa('links only'), No('not claimed'), No(), Pa('case-law flags')],
-      ['Proof-or-Silence', Y('Yes, with box'), Y('Yes'), Y('Yes, typed'), Y('Yes, per date')],
+      ['DocuHelp', Y('Yes, with box'), Y('Yes'), Y('Yes, typed'), Y('Yes, per date')],
     ]
     const cell = (v, bold, fill) => ({ text: typeof v === 'string' ? v : [v], options: { bold: !!bold, fontFace: F.body, fontSize: 12.5, color: P.ink, fill: { color: fill }, valign: 'middle', margin: [0.04, 0.08, 0.04, 0.08] } })
     const tableRows = [hdr.map((h) => ({ text: h, options: { bold: true, fontFace: F.head, fontSize: 12, color: P.ink2, fill: { color: P.paper }, valign: 'bottom', margin: [0.04, 0.08, 0.06, 0.08] } }))]
@@ -405,14 +405,14 @@ async function main() {
       T(s, a, { x: px, y: y + 0.08, w: pw, h: 0.3, bold: true, fontFace: F.head, fontSize: 14, color: P.ink })
       T(s, b, { x: px, y: y + 0.4, w: pw, h: 0.48, fontSize: 12, color: P.ink2 })
     })
-    footer(s, 7, 'Sources: competitor survey (reports/Proof or Silence next steps.md); cost and FREE-AI mapping (reports/Banking judge critique and evals.md).')
+    footer(s, 7, 'Sources: competitor survey (repo reports, Nov 2026); cost and FREE-AI mapping (reports/Banking judge critique and evals.md).')
     s.addNotes(N.s7)
   }
 
   // 8 ── Close ──────────────────────────────────────────────────────────────
   {
     const s = pres.addSlide({ masterName: 'DARK' })
-    T(s, 'Proof, or silence.', { x: M, y: 0.7, w: 8, h: 1.0, bold: true, fontFace: F.head, fontSize: 50, color: P.onNavy, valign: 'middle' })
+    T(s, 'DocuHelp: proof, or silence.', { x: M, y: 0.7, w: W - 2 * M, h: 1.0, bold: true, fontFace: F.head, fontSize: 46, color: P.onNavy, valign: 'middle' })
     T(s, 'For a co-operative bank, “I can’t prove that” is safer than a confident guess.', { x: M, y: 1.75, w: 9.5, h: 0.5, fontSize: 20, color: P.onNavy2 })
     T(s, 'PLAN · NEXT 90 DAYS', { x: M, y: 2.75, w: 5, h: 0.3, bold: true, fontFace: F.head, fontSize: 12.5, color: P.navyAccent, charSpacing: 1 })
     const steps = [
@@ -432,12 +432,12 @@ async function main() {
     T(s, [{ text: 'Our ask: ', options: { bold: true, fontFace: F.head } }, { text: 'one co-operative bank compliance desk for a shadow pilot.' }], { x: M + 0.25, y: 5.0, w: W - 2 * M - 0.5, h: 0.82, fontSize: 20, color: P.ink, valign: 'middle' })
     const nums = ['89.5% on 114 questions', '0 hallucinated answers', 'red-team 22/22', '≈ ₹0.38 per answer']
     T(s, nums.join('   ·   '), { x: M, y: 6.1, w: W - 2 * M, h: 0.4, bold: true, fontFace: F.head, fontSize: 16, color: P.onNavy })
-    T(s, 'Team Proof-or-Silence: Gaurav · Tiwari', { x: M, y: 6.6, w: 6, h: 0.3, fontSize: 13, color: P.onNavy2 })
+    T(s, 'Team DocuHelp: Gaurav · Tiwari', { x: M, y: 6.6, w: 6, h: 0.3, fontSize: 13, color: P.onNavy2 })
     footer(s, 8, null, true)
     s.addNotes(N.s8)
   }
 
-  const out = path.join(__dirname, 'Proof-or-Silence-pitch.pptx')
+  const out = path.join(__dirname, 'DocuHelp-pitch.pptx')
   await pres.writeFile({ fileName: out })
   const { applyTheme } = require('./scripts/apply_theme.js')
   await applyTheme(out, THEME)

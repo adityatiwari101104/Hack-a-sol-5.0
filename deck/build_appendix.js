@@ -15,7 +15,7 @@ function table(s, rows, o) {
 }
 
 async function main() {
-  const pres = newDeck('Proof-or-Silence: judge Q&A appendix')
+  const pres = newDeck('DocuHelp: judge Q&A appendix')
   const add = () => pres.addSlide({ masterName: 'LIGHT' })
 
   // A1 method and numbers
@@ -23,7 +23,7 @@ async function main() {
     const s = add()
     title(s, 'How we measured: every number replays at $0')
     table(s, [
-      ['Test', 'Proof-or-Silence', 'Plain RAG (no checks)', 'What it means'],
+      ['Test', 'DocuHelp', 'Plain RAG (no checks)', 'What it means'],
       ['Gold set, 114 questions (strict grader)', '102/114 = 89.5% · CI 82.5–93.9 · 0 hallucinated', '—', 'Accurate = right outcome, right facts, right citation'],
       ['Held-out test, 30', '27/30', '—', 'Frozen split, never tuned on'],
       ['Fresh, 34 new questions', '29/34 = 85%', '17/34 = 50%', 'Run once; same questions for both'],
@@ -185,7 +185,7 @@ async function main() {
     foot(s, 8, 'Real screens, replay mode. Insurance documents are fictional (corpus/demo).')
   }
 
-  const out = path.join(__dirname, 'Proof-or-Silence-appendix.pptx')
+  const out = path.join(__dirname, 'DocuHelp-appendix.pptx')
   await pres.writeFile({ fileName: out })
   await applyTheme(out, THEME)
   console.log('wrote', out)

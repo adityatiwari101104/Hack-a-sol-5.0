@@ -2,7 +2,7 @@
 module.exports = {
   s1: `[0:00–0:15] SPEAKER A
 Bank staff answer loan-rule questions every day, and a wrong answer becomes a complaint.
-Proof-or-Silence answers only with proof, or it stays silent.
+DocuHelp answers only with proof, or it stays silent.
 (1) Code checks every drafted sentence five ways.
 (2) Every sentence carries a verbatim quote, the page and the date it was in force.
 (3) What fails is never shown as an answer. It goes to this Withheld tray, with the reason.`,
@@ -48,7 +48,7 @@ Others cite sources. Open-source RAG links chunks. Legal AI links cases. Nobody 
 And it is practical for a small co-op bank: about 38 paise an answer, personal data redacted first, and an on-prem path for the drafting step.`,
 
   s8: `[2:50–3:00]
-Proof, or silence. For a co-operative bank, "I can't prove that" is safer than a confident guess.
+DocuHelp: proof, or silence. For a co-operative bank, "I can't prove that" is safer than a confident guess.
 Our plan: shadow one compliance desk read-only, then assist inside maker-checker, then move drafting on-prem.
 Our ask: one co-op bank compliance desk for a shadow pilot. Thank you.`,
 }
