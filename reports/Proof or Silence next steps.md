@@ -211,3 +211,54 @@ The plan assumes about 2.5 working days to code freeze, one person per track. If
 | Unallocated | ~$0.28 under the cap (~$0.55 if the cap is raised to the $4 project limit) |
 
 For judging, set `SPEND_CAP_USD` to the current ledger plus $0.30, run the demo in replay with the rehearsed-questions whitelist, and allow live mode only for judge-typed questions.
+
+---
+
+## Addendum (24 Nov 2026): Mobbin and Pinterest references
+
+This completes the UI research. The first pass could not open Mobbin because it was logged out. Notes: `research_notes/Proof or Silence next steps/ui_mobbin_flows.md` (about 30 observations) and `ui_pinterest_refs.md` (19 references). Each entry there gives its source URL, separates observation from inference, and has a "Copy:" line.
+
+**Blocked:** Mobbin is on the free plan. Perplexity's "Source" flow, ChatGPT's answer screens, Claude's answer screens and NotebookLM's citation screens sit behind Pro. No citation hover preview or highlighted split view was seen there. Pinterest had no pin showing withheld sentences, a hash-chain check or a bilingual Hindi/English app UI, so those remain ours to design.
+
+**What to copy, by screen** (references observed; mapping is our recommendation):
+
+| Screen | Reference | Copy |
+|---|---|---|
+| ABSTAIN state | Intercom Copilot "couldn't find an answer" (Mobbin); "No data yet" filing-cabinet line drawing (Pinterest) | A neutral card, not styled as an error: what was searched, plus "closest sources that might help →". A line illustration tinted slate-blue. |
+| As-of date | Lovable "Viewing: version · Back to latest" (Mobbin); timeline scrubber with "‹ 11:30 AM ›" pill (Pinterest); Granola time-scope chip in the composer (Mobbin) | A chip in the question box, plus a sticky bar "Viewing law as of 01-Apr-2025 · Back to today" whenever the date is not today. |
+| Clause history / diff | Plane "Compare versions" (Mobbin); Draftable side-by-side compare with a change map in the scrollbar (Pinterest) | A strip "Comparing v1 (2023) vs in force (2025)", serif panes, tinted inserts, struck-through deletions and tick marks in the scrollbar. |
+| Citations / evidence | ChatGPT deep research "Citations · 23" sheet (Mobbin); Scite reference cards with supporting/contrasting counts (Pinterest); Research Analysis Tool with serif text and amber highlights (Pinterest) | A provenance line ("Verified 3 of 5 drafted sentences · 7 sources · 4.2 s"), an evidence sheet with a third **Withheld** tab, and IN_FORCE / SUPERSEDED badges on every card. |
+| Pipeline progress | Rox "Step 3 of 3" with progress bar; Perplexity expandable status lines; ChatGPT "Mapping data sources · 29 sources" (Mobbin) | Stage lines: Understanding → Searching → Checking 12 quotes → Verified. Stream only verified sentences. |
+| Review queue (maker-checker) | Deputy approvals with "Pending 11 · Approved 2" tab counts (Mobbin); Control review flow "changes requested → resubmitted → approved" (Pinterest) | Tabs with counts, status pills, a named maker and checker on each item, and a red triangle on conflicts. |
+| Audit trail | Discord audit log rows with Filter by User/Action (Mobbin); monochrome Activity Timeline (Pinterest) | One sentence per event with a bold verb and a hash column; failed or tampered rows greyed with ×. |
+| Conflicts board / pitch | Beamline kanban with mono IDs and an "Over limit" banner; sans + italic-serif headline (Pinterest) | Mono clause IDs, an amber CONFLICT banner, and a sans + italic-serif pitch headline. |
+
+**Avoid:** footnote-only source lists that lose the link between each claim and its source (Grok "Key Citations"), audit logs buried in settings (Zendesk), and dark neon "regtech" dashboards.
+
+## Addendum (24 Nov 2026): chat-with-PDF landscape, UI showcase and banking features
+
+Notes: `research_notes/Proof or Silence next steps/chatpdf_landscape_and_showcase.md`. It compares 21 products, maps each backend feature to a UI component, gives a 3-minute storyboard and ranks new banking features.
+
+**Landscape.** None of the 21 products publicly claims any of the following: verifying each sentence before showing it, abstaining with reasons, giving an in-force date for each source, or triaging contradictions. The closest cases (vendor claims):
+- Anthropic's citations API guarantees only "valid pointers".
+- Gemini's Double-check runs after the answer and checks against web search, not your documents.
+- Acrobat finds "contradictions" only when you prompt for them.
+- AlphaSense claims "multi-step filtering".
+
+**Top recommendations (all $0 unless noted):**
+1. Make the verifier the hero: five check badges per sentence, a Withheld tray with `blocked[].reason`, and a Proof Meter showing drafted → passed → shown.
+2. Citation chips with an IN_FORCE/SUPERSEDED pip that open the PDF with the quote boxed. This needs a small endpoint returning page width and height from the `pages` table.
+3. A pipeline X-ray drawer. This needs a `timings{}` field in `/ask`; that changes no prompts, so the cassettes still replay.
+4. An as-of time machine: EMI reset "shall" → "may, at its option". Pre-record both dates.
+5. A conflict card leading to the impact feed and maker-checker: flip Tier 3 → Tier 4, and show a same-person sign-off being blocked.
+6. Tamper the audit log live and watch the chain turn red. This needs a dev-only tamper/restore endpoint.
+7. An inspection-ready evidence pack per answer or impact report, tied to RBI's UCB compliance-function directions, DAKSH and FREE-AI.
+8. A code-only rule simulator: a thin `POST /rules` that skips drafting.
+9. Hindi answers, a PS bonus: translate the verified English sentences after verification, keep quotes verbatim, and label the translation as unverified. About $0.001 per answer.
+10. An AI-governance page mapped to FREE-AI: model inventory, kill switch, incident log, audit chain and privacy lens. It should state openly that the organizer allowed OpenAI.
+
+**Next in the ranking:**
+- A KFS/sanction-letter checker on the documents already ingested.
+- A complaint-reply drafter built on `/ask`.
+
+**Skip for now:** KYC, IRAC and PSL. They need new RBI PDFs and live ingest spend.
