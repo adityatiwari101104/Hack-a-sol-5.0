@@ -10,7 +10,7 @@ import threading
 
 from rapidfuzz import fuzz
 
-from . import config, llm
+from . import config, hindi, llm
 from .normalize import facts, implied, norm_text
 
 _nli = {}
@@ -93,6 +93,66 @@ def minicheck(premise, hypothesis):
         x = _nli["mc_tok"](premise, hypothesis, return_tensors="pt", truncation="only_first", max_length=512)
         with torch.no_grad():
             return float(torch.softmax(_nli["mc"](**x).logits, -1)[0, 1])
+
+
+# ---------- Hindi evidence ----------
+_mt_cache = {}
+
+
+def mt_hi_en(text):
+    """Local Hindi -> English translation (config.MT_HI_EN: NLLB-200 distilled 600M or opus-mt-hi-en), sentence by sentence at the danda,
+    cached. Used only to let the English entailment checkers read Hindi evidence; the quote shown stays Hindi."""
+    text = hindi.normalize(text)
+    if text in _mt_cache:
+        return _mt_cache[text]
+    with _nli_lock:
+        nllb = "nllb" in config.MT_HI_EN
+        if "mt" not in _nli:
+            from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+            _nli["mt_tok"] = AutoTokenizer.from_pretrained(config.MT_HI_EN, **({"src_lang": "hin_Deva"} if nllb else {}))
+            _nli["mt"] = AutoModelForSeq2SeqLM.from_pretrained(config.MT_HI_EN).eval()
+        import torch
+        parts = [x.strip() for x in re.split(r"(?<=[।;])\s*", text) if x.strip()]
+        x = _nli["mt_tok"](parts, return_tensors="pt", padding=True, truncation=True, max_length=256)
+        extra = {"forced_bos_token_id": _nli["mt_tok"].convert_tokens_to_ids("eng_Latn")} if nllb else {}
+        with torch.no_grad():
+            out = _nli["mt"].generate(**x, num_beams=4, max_new_tokens=256, **extra)
+        en = " ".join(_nli["mt_tok"].batch_decode(out, skip_special_tokens=True))
+    _mt_cache[text] = en
+    return en
+
+
+def nli_ml(premise, hypothesis):
+    """Alternative gate e for Hindi evidence: multilingual NLI (mDeBERTa-v3 XNLI), Hindi premise, English claim.
+    P(entailment). Kept for the comparison in eval/hindi_gate_e.py; the default path is translate-then-check."""
+    with _nli_lock:
+        if "mnli" not in _nli:
+            from transformers import AutoModelForSequenceClassification, AutoTokenizer
+            _nli["mnli_tok"] = AutoTokenizer.from_pretrained(config.NLI_ML_MODEL)
+            _nli["mnli"] = AutoModelForSequenceClassification.from_pretrained(config.NLI_ML_MODEL).eval()
+        import torch
+        x = _nli["mnli_tok"](premise, hypothesis, return_tensors="pt", truncation="only_first", max_length=512)
+        with torch.no_grad():
+            p = torch.softmax(_nli["mnli"](**x).logits, -1)[0]
+        lab = {v.lower(): k for k, v in _nli["mnli"].config.id2label.items()}
+        return float(p[lab["entailment"]])
+
+
+def _is_hi(e):
+    return e.get("lang") == "hi"  # set only for evidence from a Hindi document (not English letterheads)
+
+
+def _fact_view(e):
+    """Evidence text as the number check reads it: Hindi digits, months, 'प्रतिशत', 'लाख' made readable."""
+    t = ((e.get("context") or "") + " " + e["text"]).strip()
+    return hindi.fact_text(t) if _is_hi(e) else t
+
+
+def _en_view(e):
+    """Evidence as the English entailment models read it: Hindi evidence through the local translation."""
+    if not _is_hi(e):
+        return ((e.get("context") or "") + " " + e["text"]).strip()
+    return mt_hi_en(((e.get("context") or "") + " " + e["text"]).strip())
 
 
 def expand_abbr(text, glossary):
@@ -201,6 +261,9 @@ def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau
             return {"verdict": "BLOCKED", "reason": f"{e['eid']}: quote not located on page", "checks": checks}
     checks.append("c:quote")
     premise = " ".join(((e.get("context") or "") + " " + e["text"]).strip() for e in evs)
+    hi_ev = any(_is_hi(e) for e in evs)
+    if hi_ev:
+        premise = " ".join(_fact_view(e) for e in evs)  # Hindi numbers/dates readable by facts(); text unchanged
     rule_text = " ".join(r["statement"] for r in rls)
     allowed = implied(facts(premise) | facts(rule_text) | question_facts | calc_facts)
     allowed |= {"rs:" + f[2:] for f in allowed if f.startswith("n:") and f[2:].replace(".", "").isdigit()}
@@ -216,15 +279,20 @@ def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau
     checks.append("d:numbers")
     own = {f for f in facts(sent["text"]) if not f.startswith(("n:", "year:"))} - question_facts - calc_facts
     for f in own:  # numeric binding: the number must sit in the same evidence unit that supports the claim
-        homes = [e for e in evs if f in implied(facts((e.get("context") or "") + " " + e["text"])) |
-                 {"rs:" + x[2:] for x in facts(e["text"]) if x.startswith("n:")}]
-        if homes and not rls and max(coverage(sent["text"], (h.get("context") or "") + " " + h["text"] + " " +
-                                              h.get("breadcrumb", "")) for h in homes) < 0.3:
+        homes = [e for e in evs if f in implied(facts(_fact_view(e) if hi_ev else (e.get("context") or "") + " " + e["text"])) |
+                 {"rs:" + x[2:] for x in facts(hindi.fact_text(e["text"]) if hi_ev and _is_hi(e) else e["text"])
+                  if x.startswith("n:")}]
+        if hi_ev and all(_is_hi(x) for x in homes):
+            continue  # Hindi evidence: binding is judged by gate e (entailment), not by word overlap with a translation
+        if homes and not rls and max(coverage(sent["text"], (_en_view(h) if hi_ev else (h.get("context") or "") + " " + h["text"])
+                                              + " " + h.get("breadcrumb", "")) for h in homes) < 0.3:
             return {"verdict": "BLOCKED", "reason": f"{f} appears in the evidence but not next to the claim's subject",
                     "checks": checks}
     if sent.get("type") == "conflict" and len(evs) >= 2 and {e["chunk_id"] for e in evs} <= set(conflict_chunks):
         checks.append("e:triage")  # the conflict itself was established by code-side tuple triage on located quotes
         return {"verdict": "PASS", "reason": "", "checks": checks, "score": 1.0}
+    if hi_ev:
+        return _verify_hindi_e(sent, evs, rls, rule_text, glossary, tau, checks)
     full_premise = (premise + " " + rule_text).strip()
     meta_words = " ".join(e.get("title", "") + " " + e.get("breadcrumb", "") for e in evs)
     cov = coverage(sent["text"], full_premise + " " + meta_words)
@@ -261,6 +329,52 @@ def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau
         checks.append(f"e:rule ({score:.2f})")
         return {"verdict": "PASS", "reason": "", "checks": checks, "score": round(score, 3)}
     return {"verdict": "BLOCKED", "reason": f"not supported by cited evidence (HHEM {score:.2f} < {tau})",
+            "checks": checks, "score": round(score, 3)}
+
+
+def hindi_gate_e(hi_premise, en_premise, claim, tau=None, mode=None):
+    """(passed, label, score) for an English claim over Hindi evidence, by config.HI_GATE_E:
+    mt   - HHEM, then MiniCheck, on the local translation of the evidence
+    mnli - multilingual NLI on the Hindi evidence itself
+    both - (default) both must agree. Measured on eval/hindi_gate_e.py: the strictest (fewest false passes)."""
+    tau = config.TAU_ENTAIL if tau is None else tau
+    mode = mode or config.HI_GATE_E
+    mt_ok, mt_s, mt_label = False, 0.0, ""
+    if mode in ("mt", "both"):
+        mt_s = entail(en_premise[-3000:], claim)
+        mt_ok, mt_label = mt_s >= tau, f"hhem-mt {mt_s:.2f}"
+        if not mt_ok:
+            mc = minicheck(en_premise[-2500:], claim)
+            mt_ok, mt_label, mt_s = mc >= 0.5, f"minicheck-mt {mc:.2f} (hhem {mt_s:.2f})", max(mt_s, mc)
+        if mode == "mt":
+            return mt_ok, mt_label, mt_s
+    ml = nli_ml(hi_premise[-2500:], claim)
+    if mode == "mnli":
+        return ml >= tau, f"mnli-hi {ml:.2f}", ml
+    return (mt_ok and ml >= tau), f"{mt_label} + mnli-hi {ml:.2f}", min(mt_s, ml)
+
+
+def _verify_hindi_e(sent, evs, rls, rule_text, glossary, tau, checks):
+    """Gate e when the cited evidence is Hindi. No coverage/lexical shortcut (a translation is model output, not the
+    verbatim text): hindi_gate_e (local models); then the LLM judge on the original Hindi, whose supporting span must
+    be found verbatim in it; then verified rule findings."""
+    premise_en = (" ".join(_en_view(e) for e in evs) + " " + rule_text).strip()
+    h = expand_abbr(sent["text"], glossary)
+    p = expand_abbr(premise_en, glossary)
+    hi_premise = " ".join(((e.get("context") or "") + " " + e["text"]).strip() for e in evs)
+    ok, label, score = hindi_gate_e(hi_premise, p, h, tau)
+    if ok:
+        checks.append(f"e:{label}")
+        return {"verdict": "PASS", "reason": "", "checks": checks, "score": round(score, 3)}
+    ok, why = (False, "") if _judge_budget.get() <= 0 else llm_judge(hi_premise, sent["text"])
+    _judge_budget.set(_judge_budget.get() - 1)
+    if ok:
+        checks.append(f"e:llm-judge-hi ({score:.2f}){' ' + why if why.startswith('span') else ''}")
+        return {"verdict": "PASS", "reason": "", "checks": checks, "score": round(score, 3)}
+    if rls and all(r["verified"] for r in rls) and _polarity_ok(sent["text"], rls):
+        checks.append(f"e:rule ({score:.2f})")
+        return {"verdict": "PASS", "reason": "", "checks": checks, "score": round(score, 3)}
+    return {"verdict": "BLOCKED", "reason": f"not supported by the cited Hindi evidence (translated check {score:.2f} < {tau})",
             "checks": checks, "score": round(score, 3)}
 
 

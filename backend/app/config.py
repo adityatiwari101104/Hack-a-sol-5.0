@@ -20,7 +20,15 @@ LLM_MODE = os.getenv("LLM_MODE", "live")  # live: call API on cache miss; replay
 PRICES = {"gpt-5.4-mini": (0.75 * 1.2, 4.50 * 1.2), "gpt-5.4-nano": (0.20 * 1.2, 1.25 * 1.2)}
 SPEND_CAP_USD = float(os.getenv("SPEND_CAP_USD", "3.50"))  # whole-project budget is $4; keep a margin
 
-EMBED_MODEL = os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5")  # bge-m3 for Hindi/multilingual if RAM allows
+EMBED_MODEL = os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5")  # the English corpus (recorded answers depend on it)
+# Hindi documents only: multilingual embedder, and the shift that puts its cosine on bge-small's scale for the
+# retrieval / off-topic gates (calibrated on the Hindi-document eval questions).
+EMBED_MODEL_ML = os.getenv("EMBED_MODEL_ML", "BAAI/bge-m3")  # optional: skipped if it cannot be loaded
+ML_SIM_SHIFT = float(os.getenv("ML_SIM_SHIFT", "0.0"))
+# Hindi evidence, gate e: translate it to English locally, then run the English entailment models on the translation
+MT_HI_EN = os.getenv("MT_HI_EN", "Helsinki-NLP/opus-mt-hi-en")
+HI_GATE_E = os.getenv("HI_GATE_E", "both")  # mt | mnli | both (both must agree; strictest, see eval/hindi_gate_e.py)
+NLI_ML_MODEL = os.getenv("NLI_ML_MODEL", "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7")
 NLI_MODEL = "vectara/hallucination_evaluation_model"
 NLI_REVISION = os.getenv("NLI_REVISION", "main")
 NLI2_MODEL = os.getenv("NLI2_MODEL", "lytang/MiniCheck-DeBERTa-v3-Large")  # second opinion; "" disables

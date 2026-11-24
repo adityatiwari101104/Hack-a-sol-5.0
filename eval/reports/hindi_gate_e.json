@@ -1,0 +1,594 @@
+{
+ "summary": {
+  "mt: translate (opus-mt) + HHEM/MiniCheck": {
+   "supported_passed": "5/11",
+   "unsupported_passed (false pass)": "2/13"
+  },
+  "mnli: multilingual NLI (mDeBERTa XNLI)": {
+   "supported_passed": "10/11",
+   "unsupported_passed (false pass)": "4/13"
+  },
+  "both must agree (default)": {
+   "supported_passed": "4/11",
+   "unsupported_passed (false pass)": "1/13"
+  }
+ },
+ "rows": [
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "2(क)",
+   "claim": "No pre-payment charge will be levied on floating rate loans sanctioned to individuals for non-business purposes.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.05 (hhem 0.12)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "2(क)",
+   "claim": "A pre-payment charge may be levied on floating rate loans sanctioned to individuals for non-business purposes.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.03 (hhem 0.09)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "2(ख)",
+   "claim": "No pre-payment charge will be levied on floating rate loans of up to ₹50 lakh sanctioned to micro and small enterprises.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.02)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "2(ख)",
+   "claim": "Micro and small enterprises must pay a pre-payment charge on floating rate loans of up to ₹50 lakh.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.01 (hhem 0.01)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "2(ग)",
+   "claim": "The pre-payment charge on fixed rate loans will not exceed 2 per cent of the outstanding principal.",
+   "supported": true,
+   "passed": true,
+   "scores": "hhem-mt 0.56"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "2(ग)",
+   "claim": "The pre-payment charge on fixed rate loans will be at least 2 per cent of the outstanding principal.",
+   "supported": false,
+   "passed": true,
+   "scores": "hhem-mt 0.60"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "2(ग)",
+   "claim": "No pre-payment charge can be levied on fixed rate loans.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.11)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "3(क)",
+   "claim": "Penal charges for breach of loan terms will not be added to the interest rate.",
+   "supported": true,
+   "passed": true,
+   "scores": "hhem-mt 0.69"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "3(क)",
+   "claim": "No interest will be charged on penal charges.",
+   "supported": true,
+   "passed": true,
+   "scores": "hhem-mt 0.84"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "3(क)",
+   "claim": "Penal charges will be added to the rate of interest.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.03 (hhem 0.23)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "3(ख)",
+   "claim": "The maximum penal charge is ₹5,000 per month.",
+   "supported": true,
+   "passed": true,
+   "scores": "hhem-mt 0.55"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "3(ख)",
+   "claim": "The minimum penal charge is ₹5,000 per month.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.01 (hhem 0.13)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "4(क)",
+   "claim": "All original property documents must be returned to the borrower within 30 days of full repayment.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.23)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "4(क)",
+   "claim": "Original property documents must be returned within 30 days of the loan being sanctioned.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.11)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "4(ख)",
+   "claim": "For a delay, the bank will pay the borrower compensation of ₹5,000 for each day of delay.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.10 (hhem 0.18)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "4(ख)",
+   "claim": "For a delay, the borrower must pay the bank ₹5,000 for each day of delay.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.10 (hhem 0.23)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "4(ख)",
+   "claim": "For a delay, the bank will pay a one-time compensation of ₹5,000.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.01 (hhem 0.08)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "5",
+   "claim": "The borrower must be given a Key Facts Statement before the loan agreement for all retail and MSME loans.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.12)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "5",
+   "claim": "The Key Facts Statement is given only after the loan agreement is signed.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.08 (hhem 0.03)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "6",
+   "claim": "At an interest rate reset, the borrower is offered the option to increase the EMI, extend the tenor, or a combination of both.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.21 (hhem 0.26)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "6",
+   "claim": "At an interest rate reset, the bank may increase the EMI without offering the borrower any option.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.04)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "7",
+   "claim": "Complaints can be sent to the nodal officer, who will reply within 15 working days.",
+   "supported": true,
+   "passed": true,
+   "scores": "minicheck-mt 0.51 (hhem 0.44)"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "7",
+   "claim": "Complaints can be sent to the nodal officer, who will reply within 15 calendar days.",
+   "supported": false,
+   "passed": true,
+   "scores": "hhem-mt 0.88"
+  },
+  {
+   "checker": "mt: translate (opus-mt) + HHEM/MiniCheck",
+   "clause": "7",
+   "claim": "Complaints must be sent to the RBI Ombudsman.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.01 (hhem 0.01)"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "2(क)",
+   "claim": "No pre-payment charge will be levied on floating rate loans sanctioned to individuals for non-business purposes.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 0.99"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "2(क)",
+   "claim": "A pre-payment charge may be levied on floating rate loans sanctioned to individuals for non-business purposes.",
+   "supported": false,
+   "passed": false,
+   "scores": "mnli-hi 0.01"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "2(ख)",
+   "claim": "No pre-payment charge will be levied on floating rate loans of up to ₹50 lakh sanctioned to micro and small enterprises.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 1.00"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "2(ख)",
+   "claim": "Micro and small enterprises must pay a pre-payment charge on floating rate loans of up to ₹50 lakh.",
+   "supported": false,
+   "passed": false,
+   "scores": "mnli-hi 0.01"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "2(ग)",
+   "claim": "The pre-payment charge on fixed rate loans will not exceed 2 per cent of the outstanding principal.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 0.99"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "2(ग)",
+   "claim": "The pre-payment charge on fixed rate loans will be at least 2 per cent of the outstanding principal.",
+   "supported": false,
+   "passed": false,
+   "scores": "mnli-hi 0.03"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "2(ग)",
+   "claim": "No pre-payment charge can be levied on fixed rate loans.",
+   "supported": false,
+   "passed": false,
+   "scores": "mnli-hi 0.00"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "3(क)",
+   "claim": "Penal charges for breach of loan terms will not be added to the interest rate.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 0.99"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "3(क)",
+   "claim": "No interest will be charged on penal charges.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 0.86"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "3(क)",
+   "claim": "Penal charges will be added to the rate of interest.",
+   "supported": false,
+   "passed": false,
+   "scores": "mnli-hi 0.00"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "3(ख)",
+   "claim": "The maximum penal charge is ₹5,000 per month.",
+   "supported": true,
+   "passed": false,
+   "scores": "mnli-hi 0.17"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "3(ख)",
+   "claim": "The minimum penal charge is ₹5,000 per month.",
+   "supported": false,
+   "passed": false,
+   "scores": "mnli-hi 0.01"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "4(क)",
+   "claim": "All original property documents must be returned to the borrower within 30 days of full repayment.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 0.97"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "4(क)",
+   "claim": "Original property documents must be returned within 30 days of the loan being sanctioned.",
+   "supported": false,
+   "passed": true,
+   "scores": "mnli-hi 0.97"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "4(ख)",
+   "claim": "For a delay, the bank will pay the borrower compensation of ₹5,000 for each day of delay.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 0.97"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "4(ख)",
+   "claim": "For a delay, the borrower must pay the bank ₹5,000 for each day of delay.",
+   "supported": false,
+   "passed": true,
+   "scores": "mnli-hi 0.72"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "4(ख)",
+   "claim": "For a delay, the bank will pay a one-time compensation of ₹5,000.",
+   "supported": false,
+   "passed": true,
+   "scores": "mnli-hi 0.94"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "5",
+   "claim": "The borrower must be given a Key Facts Statement before the loan agreement for all retail and MSME loans.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 0.89"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "5",
+   "claim": "The Key Facts Statement is given only after the loan agreement is signed.",
+   "supported": false,
+   "passed": false,
+   "scores": "mnli-hi 0.00"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "6",
+   "claim": "At an interest rate reset, the borrower is offered the option to increase the EMI, extend the tenor, or a combination of both.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 0.99"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "6",
+   "claim": "At an interest rate reset, the bank may increase the EMI without offering the borrower any option.",
+   "supported": false,
+   "passed": false,
+   "scores": "mnli-hi 0.00"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "7",
+   "claim": "Complaints can be sent to the nodal officer, who will reply within 15 working days.",
+   "supported": true,
+   "passed": true,
+   "scores": "mnli-hi 0.99"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "7",
+   "claim": "Complaints can be sent to the nodal officer, who will reply within 15 calendar days.",
+   "supported": false,
+   "passed": true,
+   "scores": "mnli-hi 0.98"
+  },
+  {
+   "checker": "mnli: multilingual NLI (mDeBERTa XNLI)",
+   "clause": "7",
+   "claim": "Complaints must be sent to the RBI Ombudsman.",
+   "supported": false,
+   "passed": false,
+   "scores": "mnli-hi 0.01"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "2(क)",
+   "claim": "No pre-payment charge will be levied on floating rate loans sanctioned to individuals for non-business purposes.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.05 (hhem 0.12) + mnli-hi 0.99"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "2(क)",
+   "claim": "A pre-payment charge may be levied on floating rate loans sanctioned to individuals for non-business purposes.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.03 (hhem 0.09) + mnli-hi 0.01"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "2(ख)",
+   "claim": "No pre-payment charge will be levied on floating rate loans of up to ₹50 lakh sanctioned to micro and small enterprises.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.02) + mnli-hi 1.00"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "2(ख)",
+   "claim": "Micro and small enterprises must pay a pre-payment charge on floating rate loans of up to ₹50 lakh.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.01 (hhem 0.01) + mnli-hi 0.01"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "2(ग)",
+   "claim": "The pre-payment charge on fixed rate loans will not exceed 2 per cent of the outstanding principal.",
+   "supported": true,
+   "passed": true,
+   "scores": "hhem-mt 0.56 + mnli-hi 0.99"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "2(ग)",
+   "claim": "The pre-payment charge on fixed rate loans will be at least 2 per cent of the outstanding principal.",
+   "supported": false,
+   "passed": false,
+   "scores": "hhem-mt 0.60 + mnli-hi 0.03"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "2(ग)",
+   "claim": "No pre-payment charge can be levied on fixed rate loans.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.11) + mnli-hi 0.00"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "3(क)",
+   "claim": "Penal charges for breach of loan terms will not be added to the interest rate.",
+   "supported": true,
+   "passed": true,
+   "scores": "hhem-mt 0.69 + mnli-hi 0.99"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "3(क)",
+   "claim": "No interest will be charged on penal charges.",
+   "supported": true,
+   "passed": true,
+   "scores": "hhem-mt 0.84 + mnli-hi 0.86"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "3(क)",
+   "claim": "Penal charges will be added to the rate of interest.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.03 (hhem 0.23) + mnli-hi 0.00"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "3(ख)",
+   "claim": "The maximum penal charge is ₹5,000 per month.",
+   "supported": true,
+   "passed": false,
+   "scores": "hhem-mt 0.55 + mnli-hi 0.17"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "3(ख)",
+   "claim": "The minimum penal charge is ₹5,000 per month.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.01 (hhem 0.13) + mnli-hi 0.01"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "4(क)",
+   "claim": "All original property documents must be returned to the borrower within 30 days of full repayment.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.23) + mnli-hi 0.97"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "4(क)",
+   "claim": "Original property documents must be returned within 30 days of the loan being sanctioned.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.11) + mnli-hi 0.97"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "4(ख)",
+   "claim": "For a delay, the bank will pay the borrower compensation of ₹5,000 for each day of delay.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.10 (hhem 0.18) + mnli-hi 0.97"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "4(ख)",
+   "claim": "For a delay, the borrower must pay the bank ₹5,000 for each day of delay.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.10 (hhem 0.23) + mnli-hi 0.72"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "4(ख)",
+   "claim": "For a delay, the bank will pay a one-time compensation of ₹5,000.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.01 (hhem 0.08) + mnli-hi 0.94"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "5",
+   "claim": "The borrower must be given a Key Facts Statement before the loan agreement for all retail and MSME loans.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.12) + mnli-hi 0.89"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "5",
+   "claim": "The Key Facts Statement is given only after the loan agreement is signed.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.08 (hhem 0.03) + mnli-hi 0.00"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "6",
+   "claim": "At an interest rate reset, the borrower is offered the option to increase the EMI, extend the tenor, or a combination of both.",
+   "supported": true,
+   "passed": false,
+   "scores": "minicheck-mt 0.21 (hhem 0.26) + mnli-hi 0.99"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "6",
+   "claim": "At an interest rate reset, the bank may increase the EMI without offering the borrower any option.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.02 (hhem 0.04) + mnli-hi 0.00"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "7",
+   "claim": "Complaints can be sent to the nodal officer, who will reply within 15 working days.",
+   "supported": true,
+   "passed": true,
+   "scores": "minicheck-mt 0.51 (hhem 0.44) + mnli-hi 0.99"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "7",
+   "claim": "Complaints can be sent to the nodal officer, who will reply within 15 calendar days.",
+   "supported": false,
+   "passed": true,
+   "scores": "hhem-mt 0.88 + mnli-hi 0.98"
+  },
+  {
+   "checker": "both must agree (default)",
+   "clause": "7",
+   "claim": "Complaints must be sent to the RBI Ombudsman.",
+   "supported": false,
+   "passed": false,
+   "scores": "minicheck-mt 0.01 (hhem 0.01) + mnli-hi 0.01"
+  }
+ ]
+}

@@ -103,6 +103,8 @@ def build_evidence(plan, question, as_of, profile, limit=config.MAX_EVIDENCE, ti
     t_retrieve.__enter__()
     con = db.connect()
     queries = [plan["english_question"]] + plan["sub_queries"][:3]
+    if doc_ids is not None and re.search(r"[\u0900-\u097F]", question or "") and retrieve.index(doc_ids).get("hi"):
+        queries.append(question)  # a Hindi document in scope: search with the Hindi wording too (BM25 + bge-m3)
     cand, seen = [], set()
     for q in queries:
         for h in retrieve.search(q, k=config.TOP_K_CHUNKS, doc_ids=doc_ids):
@@ -135,9 +137,10 @@ def _evidence_pack(con, cand, queries, plan, question, as_of, profile, limit, fl
     flagged = flagged if flagged is not None else []
     docs = {r["doc_id"]: dict(r) for r in con.execute("SELECT * FROM documents")}
     sents = []
+    hi_doc_ids = {c.split(":")[0] for c in retrieve.index(doc_ids).get("hi_ids", ())} if doc_ids is not None else set()
     for row in cand:
         words = json.loads(row["words_json"])
-        for s, e in _split_long(row["text"], retrieve.split_sentences(row["text"])):
+        for s, e in _split_long(row["text"], retrieve.split_sentences(row["text"], row["doc_id"] in hi_doc_ids)):
             ws = [w for w in words if w["e"] > s and w["s"] < e]
             text = row["text"][s:e].strip()
             hidden = bool(ws) and sum(w["h"] for w in ws) > len(ws) / 2
@@ -168,6 +171,17 @@ def _evidence_pack(con, cand, queries, plan, question, as_of, profile, limit, fl
         qv = retrieve.embed(queries, query=True)
         sv = retrieve.embed([f"{x['row']['context'] or ''} {x['text']}"[-600:] for x in sents])
         sim = (sv @ qv.T).max(axis=1)
+        hi_ids = retrieve.index(doc_ids).get("hi_ids", set()) if doc_ids is not None else set()
+        hi = [i for i, x in enumerate(sents) if x["row"]["chunk_id"] in hi_ids]  # rows of Hindi documents only
+        if hi:  # Hindi sentences: bge-small on their local English translation (same scale as English sentences);
+            from .verify import mt_hi_en  # with bge-m3 present, the better of that and the shifted bge-m3 similarity
+            sim = sim.copy()
+            st = retrieve.embed([mt_hi_en(sents[i]["text"]) for i in hi])
+            sim[hi] = (st @ qv.T).max(axis=1)
+            if retrieve.ml_available():
+                qm = retrieve.embed_ml(queries)
+                sm = retrieve.embed_ml([f"{sents[i]['row']['context'] or ''} {sents[i]['text']}"[-600:] for i in hi])
+                sim[hi] = np.maximum(sim[hi], (sm @ qm.T).max(axis=1) + config.ML_SIM_SHIFT)
         order = np.argsort(-sim)
         best = float(sim[order[0]])
         picked = []
@@ -220,6 +234,8 @@ def _evidence_pack(con, cand, queries, plan, question, as_of, profile, limit, fl
             pack[f"E{n}"]["ocr"] = True  # text read by OCR: the UI says "check the page image"
         if doc.get("source") == "upload":
             pack[f"E{n}"]["uploaded"] = True
+        if doc_ids is not None and row["chunk_id"] in retrieve.index(doc_ids).get("hi_ids", ()):
+            pack[f"E{n}"]["lang"] = "hi"  # verbatim Hindi quote; gate e checks it through a local translation
     return _prefer_in_force(pack, question), best, docs
 
 
@@ -912,6 +928,8 @@ def _decorate(r, ctx):
     lang = ctx.get("lang") or (r.get("plan") or {}).get("lang") or "en"
     if lang == "en" and (re.search(r"[\u0900-\u097F]", q) or translate.is_hinglish(q)):
         lang = "hi"  # code check: Devanagari or romanised Hindi (Hinglish) in the question
+    if lang == "en" and any(c.get("lang") == "hi" for s in r.get("sentences") or [] for c in s.get("citations") or []):
+        lang = "hi"  # answered from a Hindi document: the Hindi answer is shown with the verified English as its gloss
     r["lang"] = lang
     for s in r.get("sentences") or []:
         s.setdefault("text_hi", None)
@@ -1296,9 +1314,12 @@ def _conflict_sentence(c, docs):
 
 
 def _cite(e):
-    return {k: e.get(k) for k in ("eid", "doc_id", "title", "clause", "page", "pages", "text", "status", "applicability",
-                                  "version_id", "valid_from", "valid_to", "reconstructed", "located", "bboxes",
-                                  "breadcrumb", "context")}
+    c = {k: e.get(k) for k in ("eid", "doc_id", "title", "clause", "page", "pages", "text", "status", "applicability",
+                               "version_id", "valid_from", "valid_to", "reconstructed", "located", "bboxes",
+                               "breadcrumb", "context")}
+    if e.get("lang"):
+        c["lang"] = e["lang"]
+    return c
 
 
 def _rule_cite(r):

@@ -14,6 +14,7 @@ from collections import Counter
 
 import pdfplumber
 
+from . import hindi
 from .normalize import norm_text
 
 CHAPTER = re.compile(r"^(Chapter\s+[IVXLC]+\s*[–-]\s*.+)$")
@@ -21,6 +22,9 @@ SECTION = re.compile(r"^([A-H])\.\s+([A-Z][^.]{3,90})$")
 CLAUSE = re.compile(r"^(\d{1,3}\.\d{1,2}(?:\.\d{1,2})?|\d{1,3}(?=[.)]))[.)]?\s*(\((?:[ivx]{1,5}|\d{1,2}|[a-h])\))?\s+(\S.*)$")
 PLAIN_FOOTNOTE = re.compile(r"^(\d{1,2})\s+[A-Z]")
 SUBCLAUSE = re.compile(r"^\(((?:[ivx]{1,5})|(?:\d{1,2})|(?:[a-h]))\)\s+\S")
+# Hindi documents: (क), (ख), (ग) ... items (Devanagari clause numbers are matched on a digit-folded copy of the line)
+SUBCLAUSE_HI = re.compile(rf"^\(([{hindi.SUBMARKERS}])\)\s+\S")
+NOT_CLAUSE_HI = re.compile(r"^\d{1,3}(?:\.\d+)?\s*(प्रतिशत|लाख|करोड़|दिन|माह|महीन|वर्ष|साल)")
 FOOTNOTE = re.compile(r"^(\d{1,2})\s+(Substituted|Inserted|Deleted)\s+vide\b(.*)$", re.I)
 NOISE = re.compile(r"^(page \d+ of \d+|\d{1,3}|withdrawn|sample\s*[–-]\s*fictional\s*[–-]\s*for demo)$", re.I)
 TOC_LINE = re.compile(r"\.{6,}\s*\d+\s*$")
@@ -71,10 +75,10 @@ def ocr_languages():
     return [x for x in ("eng", "hin") if x in have]
 
 
-def ocr_words(page):
+def ocr_words(page, langs=None):
     """Words with boxes (PDF points, top-left origin) for a page that has no text layer: render at 300 dpi and run
     Tesseract (Apache-2.0). Every word is marked ocr=True so its quotes carry an 'OCR text, check the page image' badge."""
-    langs = ocr_languages()
+    langs = langs or ocr_languages()
     if not langs:
         raise RuntimeError("Tesseract is not installed (needed to read scanned pages)")
     img = page.to_image(resolution=OCR_DPI).original
@@ -98,13 +102,17 @@ def ocr_words(page):
         if conf < 30:
             continue
         x, y, w, h = (int(v) for v in f[6:10])
-        words.append({"text": f[11].strip(), "x0": x * k, "x1": (x + w) * k, "top": y * k, "bottom": (y + h) * k,
+        text = hindi.normalize(f[11].strip()) if hindi.DEV.search(f[11]) else f[11].strip()
+        words.append({"text": text, "x0": x * k, "x1": (x + w) * k, "top": y * k, "bottom": (y + h) * k,
                       "upright": True, "non_stroking_color": None, "ocr": True, "ocr_conf": conf})
     return words
 
 
 def read_pdf(path, ocr=False):
-    """ocr=True: a page with (almost) no text layer is read with Tesseract instead of being silently empty."""
+    """ocr=True (uploads): a page with (almost) no text layer is read with Tesseract instead of being silently empty,
+    and so is a mostly-Hindi page whose text layer is garbled (legacy font, missing ToUnicode: dropped matras,
+    replacement characters), read with Tesseract 'hin'. Devanagari words are NFC-normalised. The shipped corpus is
+    read with ocr=False, exactly as before."""
     pages = []
     with pdfplumber.open(path) as pdf:
         for pno, page in enumerate(pdf.pages, start=1):
@@ -119,16 +127,27 @@ def read_pdf(path, ocr=False):
             words = page.extract_words(use_text_flow=True, keep_blank_chars=False, extra_attrs=["non_stroking_color"])
             words = [w for w in words if w.get("upright", True)]  # drop rotated stamps ("Withdrawn") and watermarks
             words = _drop_stamp_letters(words)
-            used_ocr = False
+            used_ocr, garbled = False, []
             if ocr and len([w for w in words if not _is_white(w)]) < 5:
                 words, tables, used_ocr = ocr_words(page), [], True
+            elif ocr:
+                page_text = " ".join(w["text"] for w in words)
+                bad, garbled = hindi.garble_report(page_text)
+                if bad and hindi.is_hindi(page_text) and "hin" in ocr_languages():
+                    words, tables, used_ocr = ocr_words(page, ["eng", "hin"]), [], True  # eng first: keeps digits before Hindi words
+                else:
+                    garbled = []
+                    for w in words:
+                        if hindi.DEV.search(w["text"]):
+                            w["text"] = hindi.normalize(w["text"])
             for w in words:
                 w["hidden"] = _is_white(w)
                 w["in_table"] = any(tb["bbox"][0] - 1 <= w["x0"] and w["x1"] <= tb["bbox"][2] + 1 and
                                     tb["bbox"][1] - 1 <= w["top"] and w["bottom"] <= tb["bbox"][3] + 1 for tb in tables)
             lines, cur, cur_top = [], [], None
+            tol = 6 if used_ocr and any(hindi.DEV.search(w["text"]) for w in words) else 3  # Tesseract 'hin' word tops vary with matras above the line
             for w in sorted(words, key=lambda w: (round(w["top"]), w["x0"])):
-                if cur_top is None or abs(w["top"] - cur_top) > 3:
+                if cur_top is None or abs(w["top"] - cur_top) > tol:
                     if cur:
                         lines.append(cur)
                     cur, cur_top = [w], w["top"]
@@ -137,6 +156,7 @@ def read_pdf(path, ocr=False):
             if cur:
                 lines.append(cur)
             pages.append({"page_no": pno, "width": float(page.width), "height": float(page.height), "ocr": used_ocr,
+                          "garbled": garbled,
                           "lines": [{"text": " ".join(x["text"] for x in sorted(ln, key=lambda w: w["x0"])),
                                      "words": sorted(ln, key=lambda w: w["x0"]),
                                      "top": min(x["top"] for x in ln), "bottom": max(x["bottom"] for x in ln)}
@@ -215,6 +235,8 @@ def chunk_document(doc_id, pages, title):
     for p in pages:
         for ln in p["lines"]:
             text = ln["text"].strip()
+            if hindi.DEV.search(text):
+                text = hindi.fold_digits(text)  # '२. ...' -> '2. ...' (same length; only used to find clause numbers)
             visible = [w for w in ln["words"] if not w["in_table"]]
             if not visible or TOC_LINE.search(text):
                 continue
@@ -242,7 +264,8 @@ def chunk_document(doc_id, pages, title):
             if m_sec and not m_cl and len(text) < 95:
                 section = f"{m_sec.group(1)}. {m_sec.group(2).strip()}"
                 continue
-            if m_cl and not re.match(r"^\d{1,3}(?:\.\d+)?\s*(%|per|lakh|crore|months?|days?|years?)", text, re.I):
+            if m_cl and not re.match(r"^\d{1,3}(?:\.\d+)?\s*(%|per|lakh|crore|months?|days?|years?)", text, re.I) \
+                    and not NOT_CLAUSE_HI.match(text):
                 key = m_cl.group(1)
                 ok = last_key is None or (_key_order(key) > _key_order(last_key) and
                                           _key_order(key)[0] - _key_order(last_key)[0] <= 3)
@@ -257,7 +280,7 @@ def chunk_document(doc_id, pages, title):
                         cur = new_chunk(key, "")
                     cur.add_words(p["page_no"], visible)
                     continue
-            m_sub = SUBCLAUSE.match(text)
+            m_sub = SUBCLAUSE.match(text) or SUBCLAUSE_HI.match(text)
             if m_sub and top_key is not None:
                 marker = m_sub.group(1)
                 if marker.isdigit():

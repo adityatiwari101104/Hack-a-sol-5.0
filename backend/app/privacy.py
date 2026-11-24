@@ -54,16 +54,26 @@ def _analyzer():
 # Always on, on top of Presidio: its IN_PAN / IN_AADHAAR scores often fall under the threshold without context words
 # (red-team: a PAN reached the query-plan call). Strict shapes only, so ordinary amounts are never touched.
 ALWAYS = [("IN_PAN", r"\b[A-Z]{5}\d{4}[A-Z]\b"), ("IN_AADHAAR", r"(?<![\d,.])[2-9]\d{3}[ -]?\d{4}[ -]?\d{4}(?![\d,.])")]
+# Hindi documents: spaCy's English NER cannot see Devanagari names, so names after an honorific ('श्री रमेश कुमार
+# वर्मा') and signature lines ('(सुरेश चंद्र शर्मा)') are matched by pattern. Patterns run on a digit-folded copy, so
+# an Aadhaar or phone number written in Devanagari digits ('२३४५ ...') is caught too. No effect on English text.
+from .hindi import DEV as _DEV, HONORIFIC_NAME, SIGNATURE_NAME, fold_digits, is_hindi  # noqa: E402
+HINDI_ALWAYS = [("PERSON", HONORIFIC_NAME), ("PERSON", SIGNATURE_NAME)]  # mostly-Hindi text only (English unchanged)
 
 
 def _spans(text, entities=None):
     entities = entities or ENTITIES
-    always = [(label, m.start(), m.end()) for label, pat in ALWAYS if label in entities for m in re.finditer(pat, text)]
+    hi = is_hindi(text)
+    folded = fold_digits(text) if hi else text
+    always = [(label, m.start(), m.end()) for label, pat in ALWAYS + (HINDI_ALWAYS if hi else [])
+              if label in entities for m in re.finditer(pat, folded)]
     a = _analyzer()
     if a is not None:
         with _analyze_lock:  # spaCy/Presidio are not thread-safe: parallel calls can return different entities,
             res = a.analyze(text=text, language="en", entities=entities, score_threshold=0.5)  # i.e. a different prompt
-        return [(r.entity_type, r.start, r.end) for r in res] + always
+        # spaCy's English model tags Devanagari words ('हैं') as PERSON at random: Hindi names come from the patterns
+        return [(r.entity_type, r.start, r.end) for r in res
+                if not (hi and r.entity_type == "PERSON" and _DEV.search(text[r.start:r.end]))] + always
     out = list(always)
     for label, pat in PATTERNS:
         if label not in entities:

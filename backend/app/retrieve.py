@@ -9,7 +9,7 @@ import threading
 import bm25s
 import numpy as np
 
-from . import config, db
+from . import config, db, hindi
 
 _lock = threading.RLock()  # re-entrant: a scoped index builds on the core index
 _state = {}
@@ -44,6 +44,50 @@ def model():
 
 
 _embed_lock = threading.Lock()
+
+
+def ml_available():
+    """bge-m3 is optional (2.2 GB): without it, Hindi rows are still found through their local English translation."""
+    if "ml_ok" not in _state:
+        try:
+            from huggingface_hub import try_to_load_from_cache
+            if not any(isinstance(try_to_load_from_cache(config.EMBED_MODEL_ML, f), str)
+                       for f in ("model.safetensors", "pytorch_model.bin")):
+                raise FileNotFoundError("weights not downloaded")  # never block a request on a 2.2 GB download
+            model_ml()
+            _state["ml_ok"] = True
+        except Exception as e:  # not downloaded / offline
+            print(f"multilingual embedder unavailable ({type(e).__name__}); Hindi search uses the translation bridge")
+            _state["ml_ok"] = False
+    return _state["ml_ok"]
+
+
+def hi_view(r):
+    """Search text of a Hindi row: the verbatim Hindi plus its local English translation (opus-mt), so an English
+    question reaches a Hindi clause through BM25 and bge-small. Search only: quotes are always the verbatim Hindi."""
+    from .verify import mt_hi_en
+    return f"{_doc_text(r)} | EN: {mt_hi_en(r['text'])}"
+
+
+def model_ml():
+    """Multilingual embedder (bge-m3) for Hindi documents only: an English question finds a Hindi clause and vice
+    versa. The English corpus keeps config.EMBED_MODEL, so its recorded answers replay unchanged."""
+    with _model_lock:
+        if "ml" not in _state:
+            from sentence_transformers import SentenceTransformer
+            _state["ml"] = SentenceTransformer(config.EMBED_MODEL_ML)
+        return _state["ml"]
+
+
+def embed_ml(texts):
+    m = model_ml()
+    with _embed_lock:
+        return m.encode([hindi.normalize(t) for t in texts], normalize_embeddings=True, batch_size=16,
+                        show_progress_bar=False)
+
+
+def is_hi_row(r):
+    return hindi.is_hindi(r["text"])
 
 
 def embed(texts, query=False):
@@ -84,13 +128,28 @@ def _rows_for(con, doc_ids):
 
 
 def _doc_embeddings(doc_id, rows):
-    """Embeddings for one added document, cached per document: adding an upload embeds only its own chunks."""
+    """Embeddings for one added document, cached per document: adding an upload embeds only its own chunks. A Hindi
+    document is embedded through hi_view (Hindi + local English translation)."""
+    hi = bool(rows) and sum(map(is_hi_row, rows)) >= max(1, len(rows) // 3)
     sig = hashlib.sha256(("|".join(r["chunk_id"] + str(len(r["text"])) + str(len(r.get("prefix") or "")) for r in rows)
-                          + config.EMBED_MODEL).encode()).hexdigest()[:16]
+                          + config.EMBED_MODEL + ("|hi_view" if hi else "")).encode()).hexdigest()[:16]
     cache = config.DATA / "emb_docs" / f"{doc_id}_{sig}.npy"
     if cache.exists():
         return np.load(cache)
-    emb = embed([_doc_text(r) for r in rows]) if rows else np.zeros((0, 384), dtype=np.float32)
+    view = hi_view if hi else _doc_text
+    emb = embed([view(r) for r in rows]) if rows else np.zeros((0, 384), dtype=np.float32)
+    cache.parent.mkdir(parents=True, exist_ok=True)
+    np.save(cache, emb)
+    return emb
+
+
+def _doc_embeddings_ml(doc_id, rows):
+    sig = hashlib.sha256(("|".join(r["chunk_id"] + str(len(r["text"])) + str(len(r.get("prefix") or "")) for r in rows)
+                          + config.EMBED_MODEL_ML).encode()).hexdigest()[:16]
+    cache = config.DATA / "emb_docs" / f"{doc_id}_ml_{sig}.npy"
+    if cache.exists():
+        return np.load(cache)
+    emb = embed_ml([_doc_text(r) for r in rows])
     cache.parent.mkdir(parents=True, exist_ok=True)
     np.save(cache, emb)
     return emb
@@ -136,9 +195,17 @@ def index(doc_ids=None):
                 parts.append(_doc_embeddings(doc_id, rs))
             order.extend(rs)
         emb = np.vstack(parts) if parts else np.zeros((0, 384), dtype=np.float32)
+        # Hindi documents in scope: multilingual dense ranking over their rows, Devanagari-aware BM25 for the scope
+        hi_docs = [d for d, rs in by_doc.items() if sum(map(is_hi_row, rs)) >= max(1, len(rs) // 3)]
+        hi_idx = [i for i, r in enumerate(order) if r["doc_id"] in hi_docs]
+        tok = hindi.tokenize if hi_docs else tokenize
         bm = bm25s.BM25()
-        bm.index([tokenize(_doc_text(r)) for r in order] or [["empty"]], show_progress=False)
-        st = {"sig": sig, "rows": order, "emb": emb, "bm25": bm, "by_id": {r["chunk_id"]: i for i, r in enumerate(order)}}
+        bm.index([tok(hi_view(r) if r["doc_id"] in hi_docs else _doc_text(r)) for r in order] or [["empty"]],
+                 show_progress=False)
+        st = {"sig": sig, "rows": order, "emb": emb, "bm25": bm, "by_id": {r["chunk_id"]: i for i, r in enumerate(order)},
+              "hi": hi_idx, "tok": tok, "hi_ids": {order[i]["chunk_id"] for i in hi_idx}}
+        if hi_docs and ml_available():
+            st["emb_ml"] = np.vstack([_doc_embeddings_ml(d, by_doc[d]) for d in hi_docs])
         if len(_scoped) > 16:
             _scoped.clear()
         _scoped[key] = st
@@ -165,12 +232,19 @@ def search(query, k=config.TOP_K_CHUNKS, w_bm25=1.0, w_dense=1.0, rrf_k=60, doc_
     qv = embed([q], query=True)[0]
     dense = emb @ qv
     dense_rank = np.argsort(-dense)
-    docs, scores = st["bm25"].retrieve([tokenize(q)], k=len(rows), show_progress=False)
+    docs, scores = st["bm25"].retrieve([st.get("tok", tokenize)(q) or ["empty"]], k=len(rows), show_progress=False)
     fused = {}
     for r, i in enumerate(docs[0][:200]):
         fused[int(i)] = fused.get(int(i), 0) + w_bm25 / (rrf_k + r + 1)
     for r, i in enumerate(dense_rank[:200]):
         fused[int(i)] = fused.get(int(i), 0) + w_dense / (rrf_k + r + 1)
+    if st.get("hi") and "emb_ml" in st:  # Hindi rows: their own multilingual ranking (bge-small cannot read Devanagari)
+        dense = dense.copy()
+        ml = st["emb_ml"] @ embed_ml([q])[0]
+        for r, j in enumerate(np.argsort(-ml)):
+            i = st["hi"][int(j)]
+            fused[i] = fused.get(i, 0) + w_dense / (rrf_k + r + 1)
+            dense[i] = float(ml[j]) + config.ML_SIM_SHIFT
     order = sorted(fused, key=fused.get, reverse=True)
     if doc_filter:
         order = [i for i in order if doc_filter(rows[i])]
@@ -189,7 +263,18 @@ def reranker():
         return _state["rr"]
 
 
-def split_sentences(text):
+HI_SPLIT = re.compile(r"(?<=[।;:])\s+(?=\S)")
+
+
+def split_sentences(text, hindi_doc=False):
+    if hindi_doc:  # a Hindi document: sentences end with a danda (।); '.' after a clause number is not an end
+        spans, start = [], 0
+        for m in HI_SPLIT.finditer(text):
+            if m.start() - start > 25:
+                spans.append((start, m.start()))
+                start = m.end()
+        spans.append((start, len(text)))
+        return [(s, e) for s, e in spans if len(text[s:e].strip()) > 3]
     spans, start = [], 0
     for m in re.finditer(r"(?<=[.;:])\s+(?=(?:\((?:[ivx]{1,5}|\d{1,2}|[a-h])\)\s)|[A-Z“\"(])", text):
         if m.start() - start > 25:

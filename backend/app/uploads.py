@@ -14,7 +14,7 @@ import traceback
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime
 
-from . import audit, config, db, extract, llm, privacy, retrieve
+from . import audit, config, db, extract, hindi, llm, privacy, retrieve
 from .ingest import chunk_document, read_pdf
 from .normalize import parse_date
 
@@ -152,8 +152,18 @@ EFFECTIVE = re.compile(r"(?:with effect from|w\.e\.f\.?|effective (?:from|date|o
 DATED = re.compile(r"\b(?:dated|date[d]? of issue|issued on|date:)\s*[:\-]?\s*([A-Za-z0-9 ,./-]{6,30})", re.I)
 
 
+EFFECTIVE_HI = re.compile(r"(\d{1,2}\s+[a-z]+\s+\d{4})\s+(?:से|को)\s+(?:लागू|प्रभावी)")
+DATED_HI = re.compile(r"दिनांक\s*[:\-]?\s*(\d{1,2}\s+[a-z]+\s+\d{4})")
+
+
 def detect_dates(text):
-    """(effective_date, issue_date) found in the first pages, as ISO strings or None."""
+    """(effective_date, issue_date) found in the first pages, as ISO strings or None. Hindi: 'दिनांक: 15 जुलाई 2026',
+    '1 अगस्त 2026 से लागू होगा'."""
+    if hindi.is_hindi(text):
+        t = hindi.fact_text(text)
+        eff = next((parse_date(m.group(1)) for m in EFFECTIVE_HI.finditer(t) if parse_date(m.group(1))), None)
+        iss = next((parse_date(m.group(1)) for m in DATED_HI.finditer(t) if parse_date(m.group(1))), None)
+        return (eff.isoformat() if eff else None), (iss.isoformat() if iss else None)
     eff = next((parse_date(m.group(1)) for m in EFFECTIVE.finditer(text) if parse_date(m.group(1))), None)
     iss = next((parse_date(m.group(1)) for m in DATED.finditer(text) if parse_date(m.group(1))), None)
     return (eff.isoformat() if eff else None), (iss.isoformat() if iss else None)
@@ -163,7 +173,7 @@ def _title_from(pages, filename):
     for p in pages[:1]:
         for ln in p["lines"][:6]:
             t = ln["text"].strip()
-            if 8 <= len(t) <= 120 and re.search(r"[A-Za-z]{3}", t):
+            if 8 <= len(t) <= 120 and (re.search(r"[A-Za-z]{3}", t) or (hindi.is_hindi(t, 0.8) and len(t) >= 12)):
                 return t
     return re.sub(r"[_-]+", " ", os.path.splitext(filename or "Uploaded document")[0]).strip()[:120]
 
@@ -175,9 +185,13 @@ def _ingest(meta):
     pages = read_pdf(meta["path"], ocr=True)
     ocr_pages = [p["page_no"] for p in pages if p.get("ocr")]
     words = sum(len(ln["words"]) for p in pages for ln in p["lines"])
+    garbled = [p["page_no"] for p in pages if p.get("garbled")]
+    if garbled:
+        _set(doc_id, warnings=[f"page(s) {garbled}: the Hindi text layer was garbled ({pages[garbled[0] - 1]['garbled'][0]}); "
+                               f"read again with Hindi OCR"])
     if ocr_pages:
-        _set(doc_id, stage="ocr", counts={"ocr_pages": len(ocr_pages)},
-             warnings=[f"{len(ocr_pages)} page(s) had no text layer and were read by OCR; quotes from them are "
+        _set(doc_id, stage="ocr", counts={"ocr_pages": len(ocr_pages), "garbled_hindi_pages": len(garbled)},
+             warnings=[f"{len(ocr_pages)} page(s) had no usable text layer and were read by OCR; quotes from them are "
                        f"marked 'OCR text, check the page image'"])
     if not words:
         raise RuntimeError("no text found in the PDF, even with OCR")

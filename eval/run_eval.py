@@ -117,6 +117,19 @@ def summarize(rows, spend):
     }
 
 
+HINDI_UPLOAD = ("HI-EUCB-CIRC", HERE.parent / "corpus" / "demo" / "hindi" / "eucb-hindi-circular.pdf")
+
+
+def load_hindi_upload():
+    """Items with upload_ids (eval/hindi_docs.jsonl) search the fictional Hindi circular: ingest it once through the
+    normal upload path (garbled text layer -> Hindi OCR) if it is not in the database yet."""
+    from app import db, uploads
+    doc_id, path = HINDI_UPLOAD
+    if not db.connect().execute("SELECT 1 FROM documents WHERE doc_id=?", (doc_id,)).fetchone():
+        st = uploads.submit(path.read_bytes(), path.name, doc_kind="bank_policy", doc_id=doc_id, wait=True)
+        print("ingested", doc_id, (uploads.status(doc_id) or st).get("status"), file=sys.stderr)
+
+
 def main():
     args = sys.argv[1:]
     split = next((a for a in args if a in ("dev", "test", "canary", "all")), "dev")
@@ -137,9 +150,13 @@ def main():
     start_spend = llm.spent()
     t0 = time.time()
 
+    if any(it.get("upload_ids") for it in items):
+        load_hindi_upload()
+
     def one(it):
         try:
-            r = ask_fn(it["question"], it["as_of"], it["profile"])
+            r = (ask_fn(it["question"], it["as_of"], it["profile"], upload_ids=it["upload_ids"]) if it.get("upload_ids")
+                 else ask_fn(it["question"], it["as_of"], it["profile"]))
         except llm.BudgetExceeded:
             raise
         except Exception as e:  # a crash is graded as Incomplete, never silently dropped
