@@ -1,37 +1,55 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>DocuHelp pitch</title><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=IBM+Plex+Mono&display=swap"><style>/* VOICE calm, formal. IDEA a bound pitch book. PICTURE the real slides. COLOUR paper + ink blue (the product palette). TYPE IBM Plex. LAYOUT one column, slide then its talk track. */:root{color-scheme:light dark;--bg:light-dark(#f7f5ef,#121416);--ink:light-dark(#1b1e22,#ebe8e2);--ink2:light-dark(#474c54,#c0bcb4);--line:light-dark(#e3dfd4,#2a2e33);--acc:light-dark(#1f3a5f,#9dbbe2)}:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}*{box-sizing:border-box;min-width:0}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "IBM Plex Sans",system-ui,sans-serif;overflow-x:clip}main{max-width:1240px;margin:auto;padding:clamp(20px,4vw,56px) max(4vw,16px)}h1{font-size:clamp(30px,4vw,44px);line-height:1.08;margin:0 0 8px;text-wrap:balance}p.l{color:var(--ink2);max-width:70ch;margin:0 0 28px}nav{display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:28px}nav a{color:var(--acc)}.s{margin:0 0 44px}.s img,.app img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:6px;box-shadow:0 2px 12px #0002}figcaption{margin-top:12px}pre{white-space:pre-wrap;font:14px/1.55 "IBM Plex Mono",monospace;color:var(--ink2);margin:8px 0 0}h2{font-size:26px;margin:56px 0 16px}.app{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:16px}</style></head><body><main><h1>DocuHelp: 8-slide pitch</h1><p class=l>Hackasol 5.0 · AIML-02 · Team Gaurav and Tiwari. Each slide is followed by its speaker notes (the 3-minute talk track). Judge Q&amp;A appendix at the end. Every number replays at $0 from recorded answers.</p><nav><a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a><a href="#s7">7</a><a href="#s8">8</a><a href="#appendix">Appendix</a></nav><figure class="s" id="s1"><img src="hi-1.png" alt="Slide 1: A bank can’t act on an answer it can’t prove" loading="lazy"><figcaption><b>1/8 · A bank can’t act on an answer it can’t prove</b><pre>[0:00–0:15] SPEAKER A
-Bank staff answer loan-rule questions every day, and a wrong answer becomes a complaint.
-DocuHelp answers only with proof, or it stays silent.
-(1) Code checks every drafted sentence five ways.
-(2) Every sentence carries a verbatim quote, the page and the date it was in force.
-(3) What fails is never shown as an answer. It goes to this Withheld tray, with the reason.</pre></figcaption></figure><figure class="s" id="s2"><img src="hi-2.png" alt="Slide 2: Chatbots still cite rules that are no longer law" loading="lazy"><figcaption><b>2/8 · Chatbots still cite rules that are no longer law</b><pre>[0:15–0:40]
-Here is why this matters. This is a real RBI circular on penal charges. It came into force for fresh loans on 1 April 2024, and RBI withdrew it on 28 November 2025. The PDF still exists, so search still finds it.
-We asked a plain RAG bot with no checks: "Is the 2023 circular the rule we should cite today?" It said: "Yes, the current rule to cite."
-Ours says no: it was withdrawn, and it cites the rule in force today.
-This is not rare. Stanford found commercial legal AI tools hallucinating on 17 to 33 percent of questions. Loans are the top ground for complaints to the RBI Ombudsman. And only 18 percent of AI users in regulated entities keep audit logs.</pre></figcaption></figure><figure class="s" id="s3"><img src="hi-3.png" alt="Slide 3: Each sentence ships with its proof, or it doesn’t ship" loading="lazy"><figcaption><b>3/8 · Each sentence ships with its proof, or it doesn’t ship</b><pre>[0:40–1:00]
-This is our answer screen, a real recorded answer. Tier 3 co-op bank, a 40 lakh rupee MSE loan.
-(1) Every chip names the document, the clause, the page, and a green pip that says it is in force on the date you ask about.
-(2) Under each sentence: all five checks passed. ids, in force, quote on the page, numbers, support.
-(3) The proof meter is our faithfulness score: drafted, passed, shown, and how many we withheld. It is not 100 percent by construction.
-(4) Click a chip and the RBI page opens with the quote boxed.
-SWITCH TO THE LIVE APP NOW (presenter B drives).</pre></figcaption></figure><figure class="s" id="s4"><img src="hi-4.png" alt="Slide 4: Live: the date changes the law, and conflicts surface" loading="lazy"><figcaption><b>4/8 · Live: the date changes the law, and conflicts surface</b><pre>[1:00–1:50] LIVE DEMO (B drives, A narrates). If the app fails, stay on this slide and narrate the four tiles.
-(1) As-of switch. Same EMI-reset question at 15 Sep 2025, then 15 Oct 2025. "Shall" becomes "may, at its option". The version is rebuilt from RBI's own footnote. Line: "Same question, different date, different law, both proven."
-(2) Conflict. Clause 9.3 of our home-loan agreement charges 2 percent; RBI 261(1) says no charge. Both quotes side by side; found by code triage.
-(3) Upload. Upload corpus/demo/upload/EUCB-circular-2026-07.pdf as a bank policy. Watch the stages. The report flags a conflict with RBI 261(1) before the circular reaches a branch.
-(4) Summary and Hindi. "Summarise this document": six key points, each proven. Then the Hindi summary: Hindi beside the proof, never instead of it.
-Exact wordings and dates: docs/DEMO_SCRIPT.md. Everything replays from recordings at zero cost.</pre></figcaption></figure><figure class="s" id="s5"><img src="hi-5.png" alt="Slide 5: The AI only drafts. Code decides what you see" loading="lazy"><figcaption><b>5/8 · The AI only drafts. Code decides what you see</b><pre>[1:50–2:15]
-How it works, in one line: the AI only drafts, code decides what you see.
-Plain RAG searches, lets the AI write, and shows whatever it wrote. There is no check in between.
-We parse the PDFs into clauses with page boxes and versions, search all the documents, and apply the rules in code: tier, amount, date. Personal data is redacted first.
-The AI drafts at most four sentences, each citing evidence ids. Then every sentence goes through five checks. Pass: shown with its proof. Fail: withheld, with the reason. If nothing passes, it says "I can't prove an answer."
-The light boxes run locally; only the dashed drafting step uses AI.</pre></figcaption></figure><figure class="s" id="s6"><img src="hi-6.png" alt="Slide 6: Same fresh questions: 85% right vs 50% for plain RAG" loading="lazy"><figcaption><b>6/8 · Same fresh questions: 85% right vs 50% for plain RAG</b><pre>[2:15–2:35]
-Results, replayed at zero cost from recorded calls.
-On 34 fresh questions, we are right 85 percent of the time; plain RAG, 50.
-22 red-team attacks: injections, false premises, superseded traps. We handle all 22; plain RAG handles 10.
-Only 2.8 percent of our shown sentences are not supported by their quote, against 10.6 percent for plain RAG. Plain RAG's quotes were real; they just did not prove the sentence.
-Overall 89.5 percent on 114 questions, zero hallucinated answers, zero fabricated quotes.
-Where we lose: 12 answers are incomplete. We would rather leave a gap than guess.</pre></figcaption></figure><figure class="s" id="s7"><img src="hi-7.png" alt="Slide 7: Others cite. We prove each quote was in force on your date" loading="lazy"><figcaption><b>7/8 · Others cite. We prove each quote was in force on your date</b><pre>[2:35–2:50]
-Others cite sources. Open-source RAG links chunks. Legal AI links cases. Nobody we surveyed checks the quote on the page, abstains in code, types contradictions and knows which version was in force on your date, together.
-And it is practical for a small co-op bank: about 38 paise an answer, personal data redacted first, and an on-prem path for the drafting step.</pre></figcaption></figure><figure class="s" id="s8"><img src="hi-8.png" alt="Slide 8: Proof, or silence." loading="lazy"><figcaption><b>8/8 · Proof, or silence.</b><pre>[2:50–3:00]
-Proof, or silence. For a co-operative bank, "I can't prove that" is safer than a confident guess.
-Our plan: shadow one compliance desk read-only, then assist inside maker-checker, then move drafting on-prem.
-Our ask: one co-op bank compliance desk for a shadow pilot. Thank you.</pre></figcaption></figure><h2 id=appendix>Appendix: judge Q&amp;A</h2><div class=app><img src="hiA-1.png" alt="Appendix slide A1" loading="lazy"><img src="hiA-2.png" alt="Appendix slide A2" loading="lazy"><img src="hiA-3.png" alt="Appendix slide A3" loading="lazy"><img src="hiA-4.png" alt="Appendix slide A4" loading="lazy"><img src="hiA-5.png" alt="Appendix slide A5" loading="lazy"><img src="hiA-6.png" alt="Appendix slide A6" loading="lazy"><img src="hiA-7.png" alt="Appendix slide A7" loading="lazy"><img src="hiA-8.png" alt="Appendix slide A8" loading="lazy"></div></main></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocuHelp pitch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* VOICE quiet presenter view. IDEA a slide projector: one slide, nothing else. PICTURE the slide itself. COLOUR paper + ink blue (product palette). TYPE IBM Plex Sans. LAYOUT full-width slide stage, slim controls under it. */
+:root{color-scheme:light dark;--bg:light-dark(#efece4,#0e1012);--ink:light-dark(#1b1e22,#ebe8e2);--ink2:light-dark(#5c6169,#a9a59d);--acc:light-dark(#1f3a5f,#9dbbe2);--card:light-dark(#fffefb,#181b1e);--line:light-dark(#d9d4c6,#2a2e33)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 "IBM Plex Sans",system-ui,sans-serif;overflow-x:clip;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.stage{width:min(100%,calc((100vh - 76px) * 16 / 9));margin:0 auto;padding:12px max(1.5vw,10px) 0}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:8px;box-shadow:0 6px 30px #0003;background:var(--card)}
+.track::-webkit-scrollbar{display:none}
+.track img{flex:0 0 100%;width:100%;aspect-ratio:16/9;scroll-snap-align:center;display:block}
+.bar{display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 0 14px}
+button{font:600 15px "IBM Plex Sans",sans-serif;color:var(--acc);background:var(--card);border:1px solid var(--line);border-radius:22px;min-width:44px;height:40px;padding:0 16px;cursor:pointer}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}button:disabled{opacity:.4;cursor:default}
+.count{font-variant-numeric:tabular-nums;color:var(--ink2);min-width:64px;text-align:center}
+.present{background:var(--acc);color:var(--card);border-color:var(--acc)}
+body.show{background:#000}body.show .stage{width:min(100vw,calc(100vh * 16 / 9));padding:0}body.show .track{border-radius:0;box-shadow:none}
+body.show .bar{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .2s}body.show .bar:hover,body.show .bar:focus-within{opacity:1}
+.track img{cursor:pointer}
+</style></head><body>
+<main class="stage" aria-label="DocuHelp pitch deck">
+<div class="track" id="t" tabindex="0" aria-roledescription="carousel">
+<img src="hi-1.png" alt="Slide 1: A bank can't act on an answer it can't prove. DocuHelp landing page and Withheld tray.">
+<img src="hi-2.png" alt="Slide 2: Chatbots still cite rules that are no longer law.">
+<img src="hi-3.png" alt="Slide 3: Each sentence ships with its proof, or it doesn't ship. AIML-02 coverage 6/6, bonus 3/3.">
+<img src="hi-4.png" alt="Slide 4: Live: the date changes the law, and conflicts surface early.">
+<img src="hi-5.png" alt="Slide 5: All three bonuses built, and more the brief didn't ask for.">
+<img src="hi-6.png" alt="Slide 6: The AI only drafts. Code decides what you see. Full architecture.">
+<img src="hi-7.png" alt="Slide 7: Same fresh questions: 85% right vs 50% for plain RAG.">
+<img src="hi-8.png" alt="Slide 8: Others cite. We prove each quote was in force on your date.">
+<img src="hi-9.png" alt="Slide 9: Proof, or silence. Plan and ask.">
+</div>
+<div class="bar"><button id="p" aria-label="Previous slide">←</button><span class="count" id="c" aria-live="polite">1 / 9</span><button id="n" aria-label="Next slide">→</button><button id="f" class="present" aria-label="Present full screen">Present ⛶</button></div>
+</main>
+<script>{
+const t=document.getElementById('t'),imgs=[...t.querySelectorAll('img')],c=document.getElementById('c'),p=document.getElementById('p'),n=document.getElementById('n');
+const cur=()=>Math.round(t.scrollLeft/t.clientWidth);
+const go=i=>{i=Math.max(0,Math.min(imgs.length-1,i));t.scrollTo({left:i*t.clientWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})};
+const upd=()=>{const i=cur();c.textContent=(i+1)+' / '+imgs.length;p.disabled=i===0;n.disabled=i===imgs.length-1};
+p.addEventListener('click',()=>go(cur()-1));n.addEventListener('click',()=>go(cur()+1));
+t.addEventListener('scroll',()=>requestAnimationFrame(upd));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(cur()+1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur()-1)}if(e.key==='Home')go(0);if(e.key==='End')go(imgs.length-1)});
+const f=document.getElementById('f');
+const enter=async()=>{const i=cur();document.body.classList.add('show');f.textContent='Exit ✕';try{if(document.documentElement.requestFullscreen&&!document.fullscreenElement)await document.documentElement.requestFullscreen()}catch(e){}requestAnimationFrame(()=>t.scrollTo({left:i*t.clientWidth}))};
+const exit=async()=>{const i=cur();document.body.classList.remove('show');f.textContent='Present ⛶';try{if(document.fullscreenElement)await document.exitFullscreen()}catch(e){}requestAnimationFrame(()=>t.scrollTo({left:i*t.clientWidth}))};
+f.addEventListener('click',()=>document.body.classList.contains('show')?exit():enter());
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&document.body.classList.contains('show'))exit()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('show'))exit();if(e.key==='f'||e.key==='F')f.click()});
+imgs.forEach(im=>im.addEventListener('click',e=>{go(cur()+(e.offsetX<im.clientWidth/3?-1:1))}));
+window.addEventListener('resize',()=>{const i=Math.round(t.scrollLeft/t.clientWidth);t.scrollTo({left:i*t.clientWidth})});
+upd();
+}</script>
+</body></html>

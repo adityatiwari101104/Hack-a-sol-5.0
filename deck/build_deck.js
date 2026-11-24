@@ -24,7 +24,7 @@ const P = {
 }
 const F = { head: 'IBM Plex Sans', body: 'IBM Plex Sans', serif: 'IBM Plex Serif', mono: 'IBM Plex Mono' }
 const W = 13.333, H = 7.5, M = 0.6
-const TOTAL = 8
+const TOTAL = 9
 
 const THEME = {
   name: 'DocuHelp', headFontFace: F.head, bodyFontFace: F.body,
@@ -83,44 +83,48 @@ function tag(s, text, x, y, color, tint, o = {}) {
   return w
 }
 
+function rubric(s, text, dark = false) { // which judging criterion this slide answers (top right)
+  const w = 0.3 + text.length * 0.082, x = W - M - w
+  s.addShape('roundRect', { x, y: 0.16, w, h: 0.3, rectRadius: 0.05, fill: { color: dark ? '1C3352' : P.accentTint }, line: { color: dark ? P.navyLine : P.accent, width: 0.75 } })
+  T(s, text, { x, y: 0.16, w, h: 0.3, bold: true, fontFace: F.head, fontSize: 11, color: dark ? P.navyAccent : P.accent, align: 'center', valign: 'middle' })
+}
+
 module.exports = { P, F, W, H, M, THEME, newDeck, T, title, footer, box, arrow, dot, img, tag }
 
 // ---------- the 8 slides ----------
 async function main() {
   const pres = newDeck('DocuHelp: every sentence proven, or nothing said')
 
-  // 1 ── Hook ───────────────────────────────────────────────────────────────
+  // 1 ── Hook (light, real landing page) ───────────────────────────────────
   {
-    const s = pres.addSlide({ masterName: 'DARK' })
-    T(s, 'Hackasol 5.0  ·  Track 2 AIML  ·  AIML-02', { x: M, y: 0.5, w: 6, h: 0.3, fontSize: 13, color: P.onNavy2 })
-    T(s, 'A bank can’t act on an answer it can’t prove.', { x: M, y: 1.0, w: 5.75, h: 1.5, bold: true, fontFace: F.head, fontSize: 38, color: P.onNavy, lineSpacingMultiple: 0.95, valign: 'top' })
-    s.addShape('rect', { x: M, y: 2.78, w: 5.75, h: 1.18, fill: { color: P.hl }, line: { color: P.hl, width: 0 } })
+    const s = pres.addSlide({ masterName: 'LIGHT' })
+    rubric(s, 'Innovation & originality /25')
+    T(s, 'Hackasol 5.0  ·  Track 2 AIML  ·  AIML-02', { x: M, y: 0.5, w: 5.4, h: 0.3, fontSize: 13, color: P.ink3 })
     T(s, [
-      { text: 'DocuHelp ', options: { bold: true, fontFace: F.head } },
-      { text: 'shows every sentence with its quote, page and in-force date — or withholds it and says why.' },
-    ], { x: M + 0.22, y: 2.78, w: 5.35, h: 1.18, fontSize: 19, color: P.ink, valign: 'middle' })
-    const items = [
-      'Five code checks on every drafted sentence',
-      'A verbatim quote, page and in-force pip on every sentence',
-      'Unproven sentences go to the Withheld tray, with the reason',
-    ]
-    items.forEach((t, i) => {
-      const y = 4.32 + i * 0.66
-      dot(s, i + 1, M + 0.21, y + 0.17, { fill: P.hl, color: P.ink, ring: P.navy, d: 0.4 })
-      T(s, t, { x: M + 0.6, y: y - 0.05, w: 5.15, h: 0.48, fontSize: 16, color: P.onNavy, valign: 'middle' })
+      { text: 'Docu', options: { bold: true, fontFace: F.head, color: P.ink } },
+      { text: 'Help', options: { italic: true, fontFace: F.serif, color: P.accent } },
+    ], { x: M, y: 0.98, w: 4, h: 0.5, fontSize: 26, valign: 'middle' })
+    T(s, 'A bank can’t act on an answer it can’t prove.', { x: M, y: 1.62, w: 5.3, h: 1.5, bold: true, fontFace: F.head, fontSize: 36, color: P.ink, lineSpacingMultiple: 0.95, valign: 'top' })
+    T(s, 'DocuHelp answers compliance questions from RBI circulars and the bank’s own policies, and proves every sentence or leaves it out.', { x: M, y: 3.2, w: 5.2, h: 1.05, fontSize: 17, color: P.ink2, valign: 'top' })
+    const st = [['89.5%', 'accurate on\n114 questions'], ['0 / 375', 'quotes\nfabricated'], ['22 / 22', 'red-team attacks\nhandled']]
+    st.forEach(([n, l], i) => {
+      const x = M + i * 1.78
+      if (i) s.addShape('line', { x: x - 0.14, y: 4.55, w: 0, h: 0.95, line: { color: P.line, width: 1 } })
+      T(s, n, { x, y: 4.5, w: 1.65, h: 0.5, bold: true, fontFace: F.head, fontSize: 24, color: P.accent, valign: 'middle' })
+      T(s, l, { x, y: 5.0, w: 1.65, h: 0.55, fontSize: 12, color: P.ink3, valign: 'top' })
     })
-    T(s, 'Team: Gaurav · Tiwari', { x: M, y: 6.55, w: 4, h: 0.3, fontSize: 13, color: P.onNavy2 })
-    const r = img(s, 'hero-withheld.png', 7.05, 0.95, 5.68, 5.75, { dark: true, frameColor: P.navyLine, alt: 'DocuHelp answer: two proven sentences with citation chips and a Withheld tray showing a struck-through sentence and its reason' })
-    const C = JSON.parse(fs.readFileSync(path.join(__dirname, 'assets', 'crops', 'callouts.json'), 'utf8'))['hero-withheld.png']
-    C.forEach(([n, fx, fy]) => dot(s, n, ...r.at(fx, fy), { fill: P.hl, color: P.ink, ring: P.navy }))
-    T(s, 'Real screen · EMI-reset question, as of 15-Sep-2025 · replayed', { x: r.x, y: r.y + r.h + 0.12, w: r.w, h: 0.28, fontSize: 10.5, color: P.onNavy2, align: 'right' })
-    footer(s, 1, null, true)
+    T(s, 'Team Gaurav · Tiwari', { x: M, y: 6.45, w: 5, h: 0.3, fontSize: 13, color: P.ink3 })
+    img(s, 'landing.png', 6.05, 0.8, 6.68, 4.45, { align: 'right', alt: 'DocuHelp landing page: “Every sentence, proven. Or nothing said.” with a live graph of RBI rules, bank clauses, amendments and conflicts' })
+    img(s, 'withheld-tray.png', 6.35, 4.78, 3.95, 1.45, { alt: 'Withheld tray: a drafted sentence struck out, rejected because the cited quote does not entail it' })
+    T(s, 'Real screens: the landing page, and the Withheld tray: a drafted sentence the checks rejected.', { x: 10.5, y: 5.45, w: 2.23, h: 1.0, fontSize: 11, color: P.ink3, italic: true, valign: 'top' })
+    footer(s, 1)
     s.addNotes(N.s1)
   }
 
   // 2 ── Problem ────────────────────────────────────────────────────────────
   {
     const s = pres.addSlide({ masterName: 'LIGHT' })
+    rubric(s, 'Impact & relevance /20')
     title(s, 'Chatbots still cite rules that are no longer law')
     // timeline: RBI penal-charges circular RBI/2023-24/53
     const x0 = M + 0.15, x1 = W - M - 0.15, ay = 3.0
@@ -182,6 +186,7 @@ async function main() {
   // 3 ── The product ────────────────────────────────────────────────────────
   {
     const s = pres.addSlide({ masterName: 'LIGHT' })
+    rubric(s, 'Track fit /15 · Innovation /25')
     title(s, 'Each sentence ships with its proof, or it doesn’t ship')
     const r = img(s, 'answer-workspace.png', M + 0.42, 1.55, 8.1, 5.25, { alt: 'Answer workspace: proof meter, three proven sentences with citation chips, and the RBI page with the quote highlighted' })
     const C = JSON.parse(fs.readFileSync(path.join(__dirname, 'assets', 'crops', 'callouts.json'), 'utf8'))['answer-workspace.png']
@@ -194,20 +199,31 @@ async function main() {
     ]
     const lx = M + 8.9, lw = W - M - lx
     L.forEach(([k, t], i) => {
-      const y = 1.55 + i * 1.22
+      const y = 1.55 + i * 1.13
       dot(s, i + 1, lx + 0.2, y + 0.2)
       T(s, k, { x: lx + 0.55, y: y + 0.02, w: lw - 0.55, h: 0.3, bold: true, fontFace: F.head, fontSize: 12, color: P.accent, charSpacing: 1 })
-      T(s, t, { x: lx + 0.55, y: y + 0.33, w: lw - 0.55, h: 0.8, fontSize: 15, color: P.ink })
+      T(s, t, { x: lx + 0.55, y: y + 0.33, w: lw - 0.55, h: 0.76, fontSize: 14, color: P.ink })
     })
-    T(s, 'Labels are the brief’s own must-haves.', { x: lx, y: 6.42, w: lw, h: 0.3, fontSize: 11.5, color: P.ink3, italic: true })
-    footer(s, 3, 'Built and running. Real screen: Tier 3 UCB, ₹40 lakh MSE loan, as of 23-Nov-2026 (question q028), replayed from recorded answers at $0.')
+    // AIML-02 brief coverage (Track fit)
+    const rowsCov = [
+      ['AIML-02 must-haves  ✓ 6/6', ['Multi-PDF', 'Citations', 'Contradictions', 'Amendments', 'Abstention', 'Faithfulness %']],
+      ['Bonus ✓ 3/3 · Deliverables ✓', ['PDF highlight', 'Hindi', 'Calculations', 'Web app', 'Pipeline README']],
+    ]
+    rowsCov.forEach(([lab, chips], r) => {
+      const y = 6.22 + r * 0.38
+      T(s, lab, { x: M, y, w: 2.45, h: 0.3, bold: true, fontFace: F.head, fontSize: 12, color: P.accent, valign: 'middle' })
+      let x = M + 2.5
+      chips.forEach((c) => { x += tag(s, '✓ ' + c, x, y, P.proven, P.provenTint, { w: 0.34 + c.length * 0.092 }) + 0.08 })
+    })
+    footer(s, 3, 'Built and running. Real screen: Tier 3 UCB, ₹40 lakh MSE loan, as of 23-Nov-2026 (question q028), replayed from recorded answers.')
     s.addNotes(N.s3)
   }
 
   // 4 ── Demo moments ───────────────────────────────────────────────────────
   {
     const s = pres.addSlide({ masterName: 'LIGHT' })
-    title(s, 'Live: the date changes the law, and conflicts surface before anyone relies on them', { fontSize: 28 })
+    rubric(s, 'Presentation & demo /15 · Track fit /15')
+    title(s, 'Live: the date changes the law, and conflicts surface early', { fontSize: 30 })
     const tiles = [
       [null, 'AMENDMENT CHAINS · AS-OF DATE', 'Same question, two dates, two versions of the rule.'],
       ['conflict.png', 'CONTRADICTION · SIDE BY SIDE', 'Bank clause 9.3 charges 2%; RBI 261(1) says no charge.'],
@@ -237,80 +253,89 @@ async function main() {
         T(s, a, { x: ix + iw - 1.66, y: ry + 0.2, w: 1.7, h: 0.32, bold: true, fontFace: F.head, fontSize: 11.5, color: P.accent, valign: 'middle' })
       })
     })
-    footer(s, 4, 'All four run in the demo from recorded answers ($0). Upload: corpus/demo/upload/EUCB-circular-2026-07.pdf (fictional bank circular).')
+    footer(s, 4, 'All four run in the demo from recorded answers. Upload: corpus/demo/upload/EUCB-circular-2026-07.pdf (fictional bank circular).')
     s.addNotes(N.s4)
   }
 
-  // 5 ── How it works ───────────────────────────────────────────────────────
+  // 4b ── Bonus + beyond the brief ──────────────────────────────────────────
   {
     const s = pres.addSlide({ masterName: 'LIGHT' })
-    title(s, 'The AI only drafts. Code decides what you see')
-    const cols = [0.6, 2.48, 4.36, 6.24, 8.12, 11.08], bw = 1.6
-    // lane labels
-    T(s, 'Plain RAG', { x: M, y: 1.38, w: 3, h: 0.32, bold: true, fontFace: F.head, fontSize: 14, color: P.ink3, charSpacing: 1 })
-    T(s, 'DocuHelp', { x: M, y: 2.74, w: 3, h: 0.32, bold: true, fontFace: F.head, fontSize: 14, color: P.accent, charSpacing: 1 })
-    // plain RAG lane (grey)
-    const ry = 1.75, rh = 0.62
-    const rag = [[cols[1], 'Search'], [cols[3], 'AI writes answer + quotes'], [cols[5], 'Shown as written']]
-    rag.forEach(([x, t]) => { box(s, x, ry, bw, rh, { fill: P.surface2, line: P.lineStrong }); T(s, t, { x: x + 0.08, y: ry, w: bw - 0.16, h: rh, fontSize: 12.5, color: P.ink2, align: 'center', valign: 'middle' }) })
-    arrow(s, cols[1] + bw, ry + rh / 2, cols[3] - 0.04, ry + rh / 2, P.supersededMark)
-    arrow(s, cols[3] + bw, ry + rh / 2, cols[4] - 0.03, ry + rh / 2, P.supersededMark)
-    arrow(s, cols[4] + 2.6, ry + rh / 2, cols[5] - 0.04, ry + rh / 2, P.supersededMark)
-    box(s, cols[4], ry + 0.04, 2.6, rh - 0.08, { fill: P.paper, line: P.supersededMark, dash: 'dash' })
-    T(s, 'no check', { x: cols[4], y: ry, w: 2.6, h: rh, fontSize: 12.5, color: P.ink3, align: 'center', valign: 'middle', italic: true })
-    // our lane
-    const y = 3.12, h = 1.55
-    const ours = [
-      [cols[0], 'Parse', '22 PDFs into clauses, pages, word boxes, versions', 'local'],
-      [cols[1], 'Search', 'all 22 documents, plus amendment links', 'local'],
-      [cols[2], 'Rules by code', 'tier, amount, date; PII redacted', 'code'],
-      [cols[3], 'Draft', '≤ 4 sentences, each citing evidence ids', 'llm'],
+    rubric(s, 'Track fit /15 · Innovation /25')
+    title(s, 'All three bonuses built, and more the brief didn’t ask for', { fontSize: 30 })
+    T(s, 'AIML-02 BONUS  ✓ 3 / 3', { x: M, y: 1.42, w: 6, h: 0.3, bold: true, fontFace: F.head, fontSize: 12.5, color: P.proven, charSpacing: 1 })
+    const bonus = [
+      ['pdf-highlight.png', 'Quote boxed on the PDF page', 'Click a chip: the RBI page opens with the exact words boxed, lead-in shown.'],
+      ['summary-hi.png', 'Hindi Q&A and summaries', 'Hindi beside the verified English; numbers re-checked by code. 8/8 · 20/20.'],
+      ['calc.png', 'Calculations with the working', 'EMI, APR, interest in exact decimals by code. EMI ₹21,695.58 · APR 17.07%.'],
     ]
-    const sty = { local: { fill: P.accentTint, line: P.abstain, dash: 'solid' }, code: { fill: P.accent, line: P.accent, dash: 'solid' }, llm: { fill: P.surface, line: P.ink3, dash: 'dash' } }
-    ours.forEach(([x, a, b, k]) => {
-      const st = sty[k]; box(s, x, y, bw, h, { fill: st.fill, line: st.line, dash: st.dash, lw: 1.5 })
-      const c = k === 'code' ? 'FFFFFF' : P.ink
-      T(s, a, { x: x + 0.1, y: y + 0.16, w: bw - 0.2, h: 0.36, bold: true, fontFace: F.head, fontSize: 15, color: c, align: 'center' })
-      T(s, b, { x: x + 0.1, y: y + 0.56, w: bw - 0.2, h: 0.9, fontSize: 12, color: k === 'code' ? 'DCE4EE' : P.ink2, align: 'center' })
+    const bw = (W - 2 * M - 0.5) / 3
+    bonus.forEach(([f, t, d], i) => {
+      const x = M + i * (bw + 0.25), y = 1.78
+      box(s, x, y, bw, 2.5, { fill: P.surface, line: P.line })
+      img(s, f, x + 0.15, y + 0.12, bw - 0.3, 1.42, { align: 'center', valign: 'middle', alt: t })
+      T(s, t, { x: x + 0.18, y: y + 1.62, w: bw - 0.36, h: 0.3, bold: true, fontFace: F.head, fontSize: 14, color: P.ink })
+      T(s, d, { x: x + 0.18, y: y + 1.93, w: bw - 0.36, h: 0.5, fontSize: 12, color: P.ink2 })
     })
-    for (let i = 0; i < 3; i++) arrow(s, cols[i] + bw, y + h / 2, cols[i + 1] - 0.04, y + h / 2, P.ink3)
-    // verify box (the hero)
-    const vx = cols[4], vw = 2.6, vy = 2.98, vh = 3.62
-    box(s, vx, vy, vw, vh, { fill: P.accent, line: P.accent, lw: 1.5, shadow: true })
-    arrow(s, cols[3] + bw, y + h / 2, vx - 0.04, y + h / 2, P.ink3)
-    T(s, 'Verify each sentence', { x: vx + 0.15, y: vy + 0.14, w: vw - 0.3, h: 0.36, bold: true, fontFace: F.head, fontSize: 15.5, color: 'FFFFFF' })
-    const rungs = ['Evidence ids exist', 'In force on the as-of date', 'Quote found on the page', 'Every number is in the evidence', 'Claim supported by the quote']
-    rungs.forEach((t, i) => {
-      const ry2 = vy + 0.6 + i * 0.58
-      s.addShape('ellipse', { x: vx + 0.17, y: ry2 + 0.04, w: 0.3, h: 0.3, fill: { color: 'FFFFFF' }, line: { color: 'FFFFFF', width: 0 } })
-      T(s, String(i + 1), { x: vx + 0.17, y: ry2 + 0.04, w: 0.3, h: 0.3, bold: true, fontFace: F.head, fontSize: 11.5, color: P.accent, align: 'center', valign: 'middle' })
-      T(s, t, { x: vx + 0.58, y: ry2, w: vw - 0.7, h: 0.52, fontSize: 12.5, color: 'FFFFFF', valign: 'top' })
+    T(s, 'BEYOND THE BRIEF', { x: M, y: 4.45, w: 6, h: 0.3, bold: true, fontFace: F.head, fontSize: 12.5, color: P.accent, charSpacing: 1 })
+    const extra = [
+      ['Live PDF upload', 'redacted, OCR’d, checked on arrival', '10 conflicts found'],
+      ['Impact alerts', 'new rule vs every bank clause', 'Tier 3 ↔ 4 by code'],
+      ['Maker-checker review', 'a different person must sign off', 'self sign-off → 409'],
+      ['Tamper-evident audit', 'hash-chained log of every step', 'tamper → red row'],
+      ['Clause history', 'every version, diff, RBI footnote proof', 'law as of any date'],
+      ['Withheld tray + X-ray', 'what was blocked, what the AI saw', 'nothing hidden'],
+      ['Injection + PII guard', 'injections flagged, PII redacted', 'red-team 22 / 22'],
+      ['Insurance domain', 'same engine on a second domain', '36 vs 24 months caught'],
+    ]
+    const ew = (W - 2 * M - 0.45) / 4
+    extra.forEach(([t, d, n], i) => {
+      const x = M + (i % 4) * (ew + 0.15), y = 4.8 + Math.floor(i / 4) * 1.06
+      box(s, x, y, ew, 0.96, { fill: P.accentTint, line: P.accentTint })
+      T(s, t, { x: x + 0.15, y: y + 0.08, w: ew - 0.3, h: 0.3, bold: true, fontFace: F.head, fontSize: 13, color: P.ink })
+      T(s, d, { x: x + 0.15, y: y + 0.37, w: ew - 0.3, h: 0.28, fontSize: 11, color: P.ink2 })
+      T(s, n, { x: x + 0.15, y: y + 0.64, w: ew - 0.3, h: 0.26, bold: true, fontFace: F.head, fontSize: 11.5, color: P.accent })
     })
-    // outcomes
-    const ox = cols[5], ow = W - M - ox
-    box(s, ox, 3.0, ow, 1.42, { fill: P.provenTint, line: P.proven, lw: 1.75 })
-    T(s, '✓ Shown', { x: ox + 0.15, y: 3.1, w: ow - 0.3, h: 0.36, bold: true, fontFace: F.head, fontSize: 15.5, color: P.proven })
-    T(s, 'with quote, page, box and date', { x: ox + 0.15, y: 3.48, w: ow - 0.3, h: 0.8, fontSize: 12.5, color: P.ink })
-    box(s, ox, 4.9, ow, 1.7, { fill: P.withheldTint, line: P.withheld, lw: 1.75 })
-    T(s, '✕ Withheld', { x: ox + 0.15, y: 5.0, w: ow - 0.3, h: 0.36, bold: true, fontFace: F.head, fontSize: 15.5, color: P.withheld })
-    T(s, 'never shown as an answer; the tray says which check failed', { x: ox + 0.15, y: 5.38, w: ow - 0.3, h: 1.1, fontSize: 12.5, color: P.ink })
-    arrow(s, vx + vw, 3.71, ox - 0.04, 3.71, P.proven, 2)
-    arrow(s, vx + vw, 5.75, ox - 0.04, 5.75, P.withheld, 2)
-    // repair loop + legend
-    T(s, 'If no core sentence passes: one retry with the block reasons, same evidence, same checks. Still nothing → “I can’t prove an answer.”', { x: M, y: 4.92, w: 7.3, h: 0.62, fontSize: 12.5, color: P.ink2, italic: true })
-    const lg = [['local', 'Runs locally'], ['llm', 'AI drafting step'], ['code', 'Deterministic code']]
-    lg.forEach(([k, t], i) => {
-      const lx = M + i * 2.55, st = sty[k]
-      s.addShape('roundRect', { x: lx, y: 5.86, w: 0.36, h: 0.26, rectRadius: 0.04, fill: { color: st.fill }, line: { color: st.line, width: 1.25, dashType: st.dash } })
-      T(s, t, { x: lx + 0.46, y: 5.82, w: 2.05, h: 0.5, fontSize: 11.5, color: P.ink2, valign: 'top' })
+    footer(s, 5, 'Real screens, replayed from recorded answers. Insurance documents and the uploaded circular are fictional demo files.')
+    s.addNotes(N.s4b)
+  }
+
+  // 6 ── How it works: the detailed architecture (from the pipeline map) ───
+  {
+    const s = pres.addSlide({ masterName: 'LIGHT' })
+    rubric(s, 'Technical execution /25')
+    T(s, 'The AI only drafts. Code decides what you see', { x: M, y: 0.32, w: 9.5, h: 0.7, bold: true, fontFace: F.head, fontSize: 28, color: P.ink, valign: 'middle' })
+    const r = img(s, 'architecture.png', M - 0.15, 1.08, 9.4, 5.85, { frameColor: P.line, alt: 'DocuHelp architecture: once per document (parse, extract and link, index, store); per question (guard and plan, retrieve, evidence pack, rules by code, redact); per sentence (AI draft, five-gate verifier, shown / withheld / abstain, audit log), with repair, calculation, contradiction triage, Hindi and impact review, each block with its score' })
+    const sx = r.x + r.w + 0.3, sw = W - M - sx
+    T(s, 'HOW TO READ IT', { x: sx, y: 1.12, w: sw, h: 0.3, bold: true, fontFace: F.head, fontSize: 12, color: P.ink3, charSpacing: 1 })
+    const lg = [[P.accentTint, P.abstain, 'solid', 'Runs locally'], [P.accent, P.accent, 'solid', 'Deterministic code'], [P.surface, P.ink3, 'dash', 'AI drafting step (the only one)']]
+    lg.forEach(([fill, line, dash, t], i) => {
+      const y = 1.5 + i * 0.36
+      s.addShape('roundRect', { x: sx, y: y + 0.03, w: 0.34, h: 0.24, rectRadius: 0.04, fill: { color: fill }, line: { color: line, width: 1.25, dashType: dash } })
+      T(s, t, { x: sx + 0.45, y, w: sw - 0.45, h: 0.3, fontSize: 12, color: P.ink2, valign: 'middle' })
     })
-    footer(s, 5, 'Every step except drafting runs on the bank’s own machine. Plain RAG has no gate between writing and showing.')
+    s.addShape('roundRect', { x: sx, y: 2.62, w: 0.55, h: 0.22, rectRadius: 0.1, fill: { color: P.hl }, line: { color: P.hl, width: 0 } })
+    T(s, 'novel', { x: sx, y: 2.62, w: 0.55, h: 0.22, bold: true, fontSize: 10, color: P.ink, align: 'center', valign: 'middle' })
+    T(s, 'not combined in the tools we surveyed', { x: sx + 0.65, y: 2.58, w: sw - 0.65, h: 0.3, fontSize: 12, color: P.ink2, valign: 'middle' })
+    const pts = [
+      ['Three lanes', 'once per document → per question → per sentence.'],
+      ['Five gates', 'every drafted sentence; the first failure withholds it, with the reason.'],
+      ['Ablation', 'in-force check off → 18 wrong “current law” sentences reach users.'],
+      ['Every block is scored', 'monospace lines are measured results.'],
+    ]
+    pts.forEach(([a, t], i) => {
+      const y = 3.15 + i * 0.92
+      s.addShape('line', { x: sx, y, w: sw, h: 0, line: { color: P.line, width: 1 } })
+      T(s, a, { x: sx, y: y + 0.07, w: sw, h: 0.3, bold: true, fontFace: F.head, fontSize: 13.5, color: P.ink })
+      T(s, t, { x: sx, y: y + 0.38, w: sw, h: 0.5, fontSize: 12, color: P.ink2 })
+    })
+    footer(s, 6, 'Every step except drafting runs on the bank’s own machine. Full interactive version: the DocuHelp pipeline map.')
     s.addNotes(N.s5)
   }
 
   // 6 ── Results ────────────────────────────────────────────────────────────
   {
     const s = pres.addSlide({ masterName: 'LIGHT' })
+    rubric(s, 'Technical execution /25')
     title(s, 'Same fresh questions: 85% right vs 50% for plain RAG', { fontSize: 30 })
     const chartOpts = (o) => ({
       barDir: 'bar', barGrouping: 'clustered', barGapWidthPct: 45, chartColors: [P.accent, P.supersededMark],
@@ -319,8 +344,8 @@ async function main() {
       valAxisHidden: true, valAxisMinVal: 0, valAxisMaxVal: 118, valGridLine: { style: 'none' }, catGridLine: { style: 'none' },
       showLegend: false, catAxisOrientation: 'maxMin', catAxisHidden: true, layout: { x: 0.36, y: 0.02, w: 0.58, h: 0.96 }, ...o,
     })
-    const CX = M - 0.1, CW = 7.4
-    const catLabel = (t, cy) => T(s, t, { x: M, y: cy - 0.3, w: CW * 0.36 - 0.25, h: 0.6, fontSize: 14, color: P.ink, align: 'right', valign: 'middle' })
+    const CX = M - 0.1, CW = 6.35
+    const catLabel = (t, cy) => T(s, t, { x: M, y: cy - 0.3, w: CW * 0.36 - 0.2, h: 0.6, fontSize: 13, color: P.ink, align: 'right', valign: 'middle' })
     catLabel('Correct answers, 34 fresh questions', 1.75 + 2.75 * 0.26)
     catLabel('Red-team attacks handled, 22', 1.75 + 2.75 * 0.74)
     catLabel('Shown sentences not supported by their quote', 4.9 + 1.45 * 0.5)
@@ -340,31 +365,37 @@ async function main() {
     T(s, 'DocuHelp', { x: M + 0.34, y: 6.43, w: 1.8, h: 0.3, fontSize: 12.5, color: P.ink, valign: 'middle' })
     s.addShape('rect', { x: M + 2.2, y: 6.48, w: 0.26, h: 0.2, fill: { color: P.supersededMark }, line: { color: P.supersededMark, width: 0 } })
     T(s, 'Plain RAG: same AI, no checks', { x: M + 2.54, y: 6.43, w: 5.2, h: 0.3, fontSize: 12.5, color: P.ink, valign: 'middle' })
-    // KPI column
-    const kx = 8.25, kw = W - M - kx
-    box(s, kx - 0.25, 1.45, kw + 0.25, 5.35, { fill: P.surface, line: P.line })
+    // KPI grid: the metrics an AIML judge looks for
+    const kx = 7.15, kw = W - M - kx
+    box(s, kx - 0.15, 1.45, kw + 0.15, 5.32, { fill: P.surface, line: P.line })
     const K = [
       ['89.5%', 'accurate, 114 questions', '102/114 · 95% CI 82.5–93.9'],
-      ['0', 'hallucinated answers', '0 of 375 quotes fabricated'],
-      ['19/19', 'unanswerables refused', 'says what it searched and why'],
-      ['0.93 / 0.81', 'contradictions', 'precision / recall'],
-      ['8/8', 'Hindi questions', 'Hindi beside the English proof'],
+      ['0 / 375', 'quotes fabricated', '0 of 114 answers hallucinated'],
+      ['92% → 99%', 'right clause in top 8', 'retrieval, 75 Qs · MRR 0.74'],
+      ['18', 'wrong sentences stopped', 'ablation: in-force check off'],
+      ['0.93 / 0.81', 'contradiction P / R', 'F1 0.87 · 16 conflict Qs'],
+      ['19 / 19', 'unanswerables refused', 'over-refusal only 4.6%'],
+      ['76%', 'drafts pass all 5 checks', 'first-draft pass rate (dev)'],
+      ['8 / 8', 'Hindi questions', '20/20 pass the number check'],
     ]
+    const tw = (kw - 0.2) / 2
     K.forEach(([n, a, b], i) => {
-      const y = 1.6 + i * 0.86
-      T(s, n, { x: kx, y, w: 1.75, h: 0.62, bold: true, fontFace: F.head, fontSize: 22, color: P.accent, valign: 'middle' })
-      T(s, a, { x: kx + 1.8, y: y + 0.02, w: kw - 1.8, h: 0.3, fontSize: 13.5, color: P.ink, bold: true, fontFace: F.head })
-      if (b) T(s, b, { x: kx + 1.8, y: y + 0.33, w: kw - 1.8, h: 0.3, fontSize: 12, color: P.ink3 })
+      const x = kx + (i % 2) * (tw + 0.2), y = 1.56 + Math.floor(i / 2) * 1.06
+      if (i >= 2) s.addShape('line', { x, y: y - 0.06, w: tw - 0.1, h: 0, line: { color: P.line, width: 1 } })
+      T(s, n, { x, y, w: tw, h: 0.46, bold: true, fontFace: F.head, fontSize: 21, color: P.accent, valign: 'middle' })
+      T(s, a, { x, y: y + 0.46, w: tw, h: 0.26, bold: true, fontFace: F.head, fontSize: 12.5, color: P.ink })
+      T(s, b, { x, y: y + 0.72, w: tw, h: 0.24, fontSize: 11.5, color: P.ink3 })
     })
-    s.addShape('rect', { x: kx - 0.08, y: 5.95, w: kw - 0.07, h: 0.72, fill: { color: P.hl }, line: { color: P.hl, width: 0 } })
-    T(s, [{ text: 'Where we lose: ', options: { bold: true, fontFace: F.head } }, { text: '12 of 114 answers are incomplete. We trade a guess for a gap.' }], { x: kx + 0.05, y: 5.95, w: kw - 0.3, h: 0.72, fontSize: 13, color: P.ink, valign: 'middle' })
-    footer(s, 6, 'Replayed at $0 from recorded answers: eval/reports/critical/final_pass.json. Fresh set: 34 new questions, run once. Our baseline is weak by design.')
+    s.addShape('rect', { x: kx - 0.05, y: 5.88, w: kw - 0.05, h: 0.78, fill: { color: P.hl }, line: { color: P.hl, width: 0 } })
+    T(s, [{ text: 'Where we lose: ', options: { bold: true, fontFace: F.head } }, { text: '12 of 114 answers are incomplete, none invented. We trade a guess for a gap.' }], { x: kx + 0.08, y: 5.88, w: kw - 0.3, h: 0.78, fontSize: 13, color: P.ink, valign: 'middle' })
+    footer(s, 7, 'Replayed from recorded answers: eval/reports/critical/final_pass.json. Fresh set: 34 new questions, run once. Our baseline is weak by design.')
     s.addNotes(N.s6)
   }
 
   // 7 ── Different + practical ─────────────────────────────────────────────
   {
     const s = pres.addSlide({ masterName: 'LIGHT' })
+    rubric(s, 'Innovation /25 · Impact /20')
     title(s, 'Others cite. We prove each quote was in force on your date', { fontSize: 31 })
     const hdr = ['', 'Quote checked on the page', 'Abstains in code', 'Typed contradictions', 'As-of validity']
     const Y = (t) => ({ text: '✓ ' + t, options: { color: P.proven, bold: true, fontFace: F.head } })
@@ -393,7 +424,7 @@ async function main() {
     const px = 9.15, pw = W - M - px
     T(s, 'Practical for a Tier 3 co-op bank', { x: px, y: 1.48, w: pw, h: 0.36, bold: true, fontFace: F.head, fontSize: 15.5, color: P.accent })
     const pr = [
-      ['≈ ₹0.38 per answer', 'list price; ~$45 a month at 10,000 questions'],
+      ['No GPU needed', 'checks, search and redaction run on a laptop CPU'],
       ['Redacts before it sends', 'PII (PAN, account no., IFSC) removed on the machine first'],
       ['On-prem path', 'the drafting step can point at a server inside the bank'],
       ['Runs locally', 'checks, search, OCR and redaction stay on the machine'],
@@ -405,35 +436,47 @@ async function main() {
       T(s, a, { x: px, y: y + 0.08, w: pw, h: 0.3, bold: true, fontFace: F.head, fontSize: 14, color: P.ink })
       T(s, b, { x: px, y: y + 0.4, w: pw, h: 0.48, fontSize: 12, color: P.ink2 })
     })
-    footer(s, 7, 'Sources: competitor survey (repo reports, Nov 2026); cost and FREE-AI mapping (reports/Banking judge critique and evals.md).')
+    footer(s, 8, 'Sources: competitor survey (repo reports, Nov 2026); FREE-AI mapping (reports/Banking judge critique and evals.md).')
     s.addNotes(N.s7)
   }
 
-  // 8 ── Close ──────────────────────────────────────────────────────────────
+  // 8 ── Close (light, matches slide 1) ───────────────────────────────────
   {
-    const s = pres.addSlide({ masterName: 'DARK' })
-    T(s, 'DocuHelp: proof, or silence.', { x: M, y: 0.7, w: W - 2 * M, h: 1.0, bold: true, fontFace: F.head, fontSize: 46, color: P.onNavy, valign: 'middle' })
-    T(s, 'For a co-operative bank, “I can’t prove that” is safer than a confident guess.', { x: M, y: 1.75, w: 9.5, h: 0.5, fontSize: 20, color: P.onNavy2 })
-    T(s, 'PLAN · NEXT 90 DAYS', { x: M, y: 2.75, w: 5, h: 0.3, bold: true, fontFace: F.head, fontSize: 12.5, color: P.navyAccent, charSpacing: 1 })
+    const s = pres.addSlide({ masterName: 'LIGHT' })
+    rubric(s, 'Impact & relevance /20')
+    T(s, [
+      { text: 'Docu', options: { bold: true, fontFace: F.head, color: P.ink } },
+      { text: 'Help', options: { italic: true, fontFace: F.serif, color: P.accent } },
+    ], { x: M, y: 0.5, w: 4, h: 0.5, fontSize: 24, valign: 'middle' })
+    T(s, 'Proof, or silence.', { x: M, y: 1.08, w: 9, h: 0.85, bold: true, fontFace: F.head, fontSize: 44, color: P.ink, valign: 'middle' })
+    T(s, 'For a co-operative bank, “I can’t prove that” is safer than a confident guess.', { x: M, y: 1.95, w: 11, h: 0.5, italic: true, fontFace: F.serif, fontSize: 20, color: P.accent, valign: 'middle' })
+    T(s, 'PLAN · NEXT 90 DAYS', { x: M, y: 2.78, w: 5, h: 0.3, bold: true, fontFace: F.head, fontSize: 12.5, color: P.ink3, charSpacing: 1 })
     const steps = [
       ['Shadow', 'Run beside one UCB compliance desk on its past questions, read-only.'],
       ['Assist', 'Answers inside maker-checker review; an officer signs off every use.'],
       ['Own it', 'On-prem drafting, Hindi OCR, more RBI Master Directions.'],
     ]
-    const sw = (W - 2 * M - 0.6) / 3
+    const gap = 0.45, sw = (W - 2 * M - 2 * gap) / 3
     steps.forEach(([a, b], i) => {
-      const x = M + i * (sw + 0.3)
-      box(s, x, 3.1, sw, 1.55, { fill: '1C3352', line: P.navyLine })
-      dot(s, i + 1, x + 0.38, 3.48, { fill: P.hl, color: P.ink, ring: '1C3352', d: 0.44 })
-      T(s, a, { x: x + 0.75, y: 3.28, w: sw - 0.9, h: 0.4, bold: true, fontFace: F.head, fontSize: 18, color: P.onNavy, valign: 'middle' })
-      T(s, b, { x: x + 0.25, y: 3.82, w: sw - 0.45, h: 0.78, fontSize: 14, color: P.onNavy2 })
+      const x = M + i * (sw + gap)
+      box(s, x, 3.12, sw, 1.4, { fill: P.surface, line: P.line, shadow: true })
+      dot(s, i + 1, x + 0.38, 3.5, { d: 0.42 })
+      T(s, a, { x: x + 0.72, y: 3.3, w: sw - 0.9, h: 0.4, bold: true, fontFace: F.head, fontSize: 18, color: P.ink, valign: 'middle' })
+      T(s, b, { x: x + 0.25, y: 3.8, w: sw - 0.45, h: 0.66, fontSize: 14, color: P.ink2 })
+      if (i < 2) arrow(s, x + sw + 0.06, 3.82, x + sw + gap - 0.06, 3.82, P.ink3, 1.5)
     })
-    s.addShape('rect', { x: M, y: 5.0, w: W - 2 * M, h: 0.82, fill: { color: P.hl }, line: { color: P.hl, width: 0 } })
-    T(s, [{ text: 'Our ask: ', options: { bold: true, fontFace: F.head } }, { text: 'one co-operative bank compliance desk for a shadow pilot.' }], { x: M + 0.25, y: 5.0, w: W - 2 * M - 0.5, h: 0.82, fontSize: 20, color: P.ink, valign: 'middle' })
-    const nums = ['89.5% on 114 questions', '0 hallucinated answers', 'red-team 22/22', '≈ ₹0.38 per answer']
-    T(s, nums.join('   ·   '), { x: M, y: 6.1, w: W - 2 * M, h: 0.4, bold: true, fontFace: F.head, fontSize: 16, color: P.onNavy })
-    T(s, 'Team DocuHelp: Gaurav · Tiwari', { x: M, y: 6.6, w: 6, h: 0.3, fontSize: 13, color: P.onNavy2 })
-    footer(s, 8, null, true)
+    box(s, M, 4.82, W - 2 * M, 0.8, { fill: P.accentTint, line: P.accent, lw: 1.5 })
+    T(s, [{ text: 'Our ask:  ', options: { bold: true, fontFace: F.head, color: P.accent } }, { text: 'one co-operative bank compliance desk for a shadow pilot.', options: { color: P.ink } }], { x: M + 0.3, y: 4.82, w: W - 2 * M - 0.6, h: 0.8, fontSize: 20, valign: 'middle' })
+    const st = [['89.5%', 'accurate on 114 questions'], ['0', 'hallucinated answers'], ['22 / 22', 'red-team attacks handled'], ['19 / 19', 'unanswerables refused']]
+    st.forEach(([n, l], i) => {
+      const x = M + i * 2.35
+      if (i) s.addShape('line', { x: x - 0.17, y: 5.95, w: 0, h: 0.75, line: { color: P.line, width: 1 } })
+      T(s, n, { x, y: 5.9, w: 2.2, h: 0.45, bold: true, fontFace: F.head, fontSize: 22, color: P.accent, valign: 'middle' })
+      T(s, l, { x, y: 6.35, w: 2.2, h: 0.3, fontSize: 12, color: P.ink3 })
+    })
+    T(s, 'Team Gaurav · Tiwari', { x: W - M - 3.2, y: 6.0, w: 3.2, h: 0.35, bold: true, fontFace: F.head, fontSize: 15, color: P.ink, align: 'right', valign: 'middle' })
+    T(s, 'Thank you.', { x: W - M - 3.2, y: 6.35, w: 3.2, h: 0.3, italic: true, fontFace: F.serif, fontSize: 14, color: P.accent, align: 'right' })
+    footer(s, 9)
     s.addNotes(N.s8)
   }
 

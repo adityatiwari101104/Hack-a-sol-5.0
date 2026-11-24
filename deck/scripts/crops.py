@@ -15,6 +15,8 @@ CROPS = {
     "upload.png": ("05b-upload-report.png", t(245, 82, 862, 232)),
     "summary-hi.png": ("06b-summary-hi-full.png", t(175, 418, 668, 532)),
     "withheld-tray.png": ("02-withheld-tray.png", None),
+    "pdf-highlight.png": ("01-answer-full.png", (1830, 1140, 2860, 1590)),
+    "landing.png": ("20-landing-hero.png", (80, 0, 2800, 1800)),
     "calc.png": ("09-calc-card.png", None),
     "abstain.png": ("08a-abstain-card.png", None),
     "ins-conflict.png": ("12-ins-conflict.png", None),
@@ -37,11 +39,14 @@ for out, (src, box) in CROPS.items():
 MASKS = {
     "hero-withheld.png": [(318, 428, 552, 464), (670, 826, 900, 864)],
     "answer-workspace.png": [(340, 778, 600, 818), (340, 1270, 580, 1310)],
+    "withheld-tray.png": [(666, 312, 900, 352)],
+    "upload.png": [(1015, 128, 1330, 232)],
+    "landing.png": [(1975, 1650, 2715, 1800)],
 }
 from PIL import ImageDraw
 for name, boxes in MASKS.items():
     im = Image.open(D / "crops" / name).convert("RGB"); dr = ImageDraw.Draw(im)
     for x0, y0, x1, y1 in boxes:
-        dr.rectangle((x0, y0, x1, y1), fill=im.getpixel((x1 + 6, (y0 + y1) // 2)))
+        dr.rectangle((x0, y0, x1, y1), fill=im.getpixel((min(x1 + 6, im.width - 1) if x1 + 6 < im.width else max(x0 - 6, 0), (y0 + y1) // 2)))
     im.save(D / "crops" / name, optimize=True)
 (D / "crops" / "callouts.json").write_text(json.dumps(CALLOUTS, indent=1))

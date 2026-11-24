@@ -3,7 +3,7 @@ const path = require('path')
 const { P, F, W, M, THEME, newDeck, T, title, box, arrow, img } = require('./build_deck')
 const { applyTheme } = require('./scripts/apply_theme.js')
 
-const TOT = 8
+const TOT = 9
 function foot(s, n, src) {
   if (src) T(s, src, { x: M, y: 7.0, w: 10.6, h: 0.32, fontSize: 10.5, color: P.ink3, valign: 'bottom' })
   T(s, `Appendix · A${n}/${TOT}`, { x: W - M - 2.4, y: 7.0, w: 2.4, h: 0.32, fontSize: 10.5, color: P.ink3, align: 'right', valign: 'bottom' })
@@ -21,7 +21,7 @@ async function main() {
   // A1 method and numbers
   {
     const s = add()
-    title(s, 'How we measured: every number replays at $0')
+    title(s, 'How we measured: every number is reproducible')
     table(s, [
       ['Test', 'DocuHelp', 'Plain RAG (no checks)', 'What it means'],
       ['Gold set, 114 questions (strict grader)', '102/114 = 89.5% · CI 82.5–93.9 · 0 hallucinated', '—', 'Accurate = right outcome, right facts, right citation'],
@@ -122,15 +122,15 @@ async function main() {
     foot(s, 5, 'docs/PRIVACY.md')
   }
 
-  // A6 cost, speed, scale
+  // A6 speed and scale
   {
     const s = add()
-    title(s, 'Cost and speed for a Tier 3 co-operative bank')
+    title(s, 'Speed and scale for a Tier 3 co-operative bank')
     const K = [
-      ['≈ ₹0.38', 'per answer', '$0.0045 mean, $0.0086 p95 at list price; drafting is ~80% of it'],
-      ['~$45', 'a month at 10,000 questions', 'third-party estimate for Harvey: ~$1,000–1,200 per seat per month'],
-      ['7–15 s', 'for a live answer', 'warm local work ~1 s; the demo replays recorded calls'],
+      ['7–15 s', 'for a live answer', 'back-office speed, not chat; the demo replays recorded answers'],
+      ['1.1 s / 3.0 s', 'local work, typical / near-worst', 'search, rules and the five checks, on a laptop CPU'],
       ['1,457', 'urban co-operative banks', 'Tier 1: 838 · Tier 2: 535 · Tier 3: 78 · Tier 4: 6 (RBI, 2024-25)'],
+      ['22 → more', 'documents in the library', 'uploads are indexed one by one; no full rebuild'],
     ]
     K.forEach(([n, a, b], i) => {
       const x = M + (i % 2) * 6.15, y = 1.6 + Math.floor(i / 2) * 2.3
@@ -139,8 +139,8 @@ async function main() {
       T(s, a, { x, y: y + 0.95, w: 5.85, h: 0.38, bold: true, fontSize: 16, color: P.ink })
       T(s, b, { x, y: y + 1.35, w: 5.85, h: 0.6, fontSize: 13, color: P.ink2 })
     })
-    T(s, 'Roadmap, after judging: ~40% fewer tokens (prompt trims break today’s recordings, so we wait); stream verdicts, never draft text.', { x: M, y: 6.3, w: W - 2 * M, h: 0.5, fontSize: 13, color: P.ink2, italic: true })
-    foot(s, 6, 'Judge report §1 and §3.8; RBI Trend & Progress 2024-25 Table V.1; Spellbook (Harvey pricing, third-party)')
+    T(s, 'Roadmap, after judging: stream each verdict as it lands (never draft text), and batch the local checks for speed.', { x: M, y: 6.3, w: W - 2 * M, h: 0.5, fontSize: 13, color: P.ink2, italic: true })
+    foot(s, 6, 'Judge report §3.8 (latency); RBI Trend & Progress 2024-25, Table V.1')
   }
 
   // A7 honest limits
@@ -183,6 +183,37 @@ async function main() {
       T(s, c, { x: x + 3.95, y: y + 0.2, w: gw - 4.1, h: gh - 0.4, fontSize: 15, color: P.ink, valign: 'middle' })
     })
     foot(s, 8, 'Real screens, replay mode. Insurance documents are fictional (corpus/demo).')
+  }
+
+  // A9 retrieval + refusal metrics
+  {
+    const s = add()
+    title(s, 'Search finds the clause; refusals are measured too')
+    T(s, 'RETRIEVAL · 75 questions with a known correct clause', { x: M, y: 1.42, w: 7, h: 0.3, bold: true, fontSize: 12, color: P.ink3, charSpacing: 1 })
+    table(s, [
+      ['Search', 'Hit@1', 'Hit@3', 'Hit@8', 'Rec@8', 'MRR'],
+      ['Hybrid (keyword + semantic)', '0.61', '0.88', '0.92', '0.89', '0.74'],
+      ['Keyword only', '0.53', '0.73', '0.88', '0.85', '0.66'],
+      ['Semantic only', '0.60', '0.79', '0.92', '0.87', '0.70'],
+      ['Hybrid, sub-queries combined', '—', '—', '0.99', '0.97', '—'],
+    ], { y: 1.75, w: 7.4, colW: [3.2, 0.84, 0.84, 0.84, 0.84, 0.84], rowH: 0.42, fs: 13, hiRow: 0 })
+    T(s, 'Hit@k: right clause in the top k. MRR: mean of 1 ÷ rank of the first right clause. Answers cite a right clause in 68 of 71 (0.91). A re-ranker added nothing, so it is off.', { x: M, y: 4.05, w: 7.4, h: 0.62, fontSize: 12, color: P.ink2 })
+    const kx = M + 7.8, kw = W - M - kx
+    T(s, 'REFUSALS · 114 questions', { x: kx, y: 1.42, w: kw, h: 0.3, bold: true, fontSize: 12, color: P.ink3, charSpacing: 1 })
+    const K = [['19 / 19', 'unanswerable questions refused or answered with what is missing'], ['4.6%', 'over-refusal: answerable questions refused'], ['9.0%', 'selective risk at 87.7% coverage; 7% if only the top half is answered'], ['0.049', 'AURC (area under risk–coverage), ranked by draft pass rate']]
+    K.forEach(([n, t], i) => {
+      const y = 1.78 + i * 0.72
+      T(s, n, { x: kx, y, w: 1.35, h: 0.6, bold: true, fontSize: 22, color: P.accent, valign: 'middle' })
+      T(s, t, { x: kx + 1.4, y, w: kw - 1.4, h: 0.6, fontSize: 12.5, color: P.ink, valign: 'middle' })
+    })
+    T(s, 'CONTRADICTIONS · 16 conflict and 68 non-conflict questions', { x: M, y: 4.85, w: 8, h: 0.3, bold: true, fontSize: 12, color: P.ink3, charSpacing: 1 })
+    table(s, [
+      ['', 'Predicted conflict', 'Predicted none', 'Result'],
+      ['Actual conflict (16)', 'TP 13', 'FN 3', 'recall 13/16 = 0.81'],
+      ['Actual none (68)', 'FP 1', 'TN 67', 'precision 13/14 = 0.93 · F1 0.87'],
+    ], { y: 5.18, w: W - 2 * M, colW: [2.6, 2.4, 2.4, 4.73], rowH: 0.42, fs: 13 })
+    foot(s, 9, 'reports/Banking judge critique and evals.md §3.1, §3.3, §3.5 · deck/METRICS_GUIDE.md')
+    s.addNotes('Say: the right clause is in our top 8 for 92% of questions and 99% across sub-queries, MRR 0.74, so search is not the weak point; proving each sentence is. Contradictions: precision 0.93, recall 0.81 — we would rather miss a subtle conflict than cry wolf.')
   }
 
   const out = path.join(__dirname, 'DocuHelp-appendix.pptx')
