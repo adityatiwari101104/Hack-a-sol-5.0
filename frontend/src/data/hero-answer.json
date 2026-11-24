@@ -1,0 +1,95 @@
+{
+ "question": "At the time of interest rate reset, must the lender offer EMI-based personal loan borrowers the option to switch to a fixed rate?",
+ "as_of": "2025-09-15",
+ "profile": "ucb_tier3",
+ "outcome": "ANSWER",
+ "faithfulness": {
+  "draft_total": 3,
+  "draft_pass": 2,
+  "repair_used": false,
+  "repair_total": 0,
+  "repair_pass": 0,
+  "pre_gate_rate": 0.667,
+  "shown": 2,
+  "shown_drafted": 2,
+  "blocked": 1,
+  "code_statements": 0,
+  "final_pass": 2,
+  "final_total": 2
+ },
+ "query": "q022 (eval/gold.jsonl), replayed from eval/cassettes after the backend final pass, 24-Nov-2026",
+ "rows": [
+  {
+   "text": "Yes: at the time of reset of interest rates, REs shall provide EMI based floating rate personal loan borrowers the option to switch over to a fixed rate as per their Board approved policy.",
+   "verdict": "PASS",
+   "reason": "",
+   "attempt": 1,
+   "citations": [
+    {
+     "doc_id": "RBI-EMI-RESET-2023",
+     "title": "Reset of Floating Interest Rate on EMI based Personal Loans (updated 1 Oct 2025)",
+     "clause": "2(ii)",
+     "page": 2,
+     "text": "(ii) At the time of reset of interest rates, REs shall, provide the option to the borrowers to switch over to a fixed rate as per their Board a approved policy. The policy, inter alia, may also specify the number of t",
+     "status": "IN_FORCE"
+    },
+    {
+     "doc_id": "RBI-EMI-RESET-2023",
+     "title": "Reset of Floating Interest Rate on EMI based Personal Loans (updated 1 Oct 2025)",
+     "clause": "2(ii)",
+     "page": 2,
+     "text": "(ii) At the time of reset of interest rates, REs shall, provide the option to the borrowers to switch over to a fixed rate as per their Board a approved policy. The policy, inter alia, may also specify the number of times a borrower will be allowed to switch during the tenor of the loan. i",
+     "status": "IN_FORCE"
+    }
+   ]
+  },
+  {
+   "text": "The documents place the RBI requirement in force on 2025-09-15 for EMI based floating rate personal loans.",
+   "verdict": "PASS",
+   "reason": "",
+   "attempt": 1,
+   "citations": [
+    {
+     "doc_id": "RBI-EMI-RESET-2023",
+     "title": "Reset of Floating Interest Rate on EMI based Personal Loans (updated 1 Oct 2025)",
+     "clause": "preamble",
+     "page": 1,
+     "text": "भारतीय �रज़वर् बैंक RESERVE BANK OF INDIA RBI/2023-24/55 DOR.MCS.REC.32/01.01.003/2023-24 August 18, 2023 (Updated as on October 1, 2025) All Scheduled Commercial Banks Regional Rural Banks Primary (Urban) Co-operative Banks State Co-operative Banks and District Central Co-operative Banks Non-Banking Financial Companies (including Housing Finance Companies) Madam / Dear Sir, Reset of Floating Interest Rate on Equated Monthly Instalments (EMI) based Personal Loans1 Please refer to our circular no.",
+     "status": "IN_FORCE"
+    },
+    {
+     "doc_id": "RBI-EMI-RESET-2023",
+     "title": "Reset of Floating Interest Rate on EMI based Personal Loans (updated 1 Oct 2025)",
+     "clause": "2(ii)",
+     "page": 2,
+     "text": "(ii) At the time of reset of interest rates, REs shall, provide the option to the borrowers to switch over to a fixed rate as per their Board a approved policy. The policy, inter alia, may also specify the number of t",
+     "status": "IN_FORCE"
+    }
+   ]
+  },
+  {
+   "text": "The bank’s own policy says the Bank may, at its option, offer the borrower a choice to switch to a fixed rate at the time of reset of the floating rate, which is narrower than the in-force RBI requirement.",
+   "verdict": "BLOCKED",
+   "reason": "not supported by cited evidence (HHEM 0.06 < 0.5)",
+   "attempt": 1,
+   "citations": [
+    {
+     "doc_id": "EUCB-S1",
+     "title": "Example UCB Retail Loan Policy v3 (FICTIONAL)",
+     "clause": "6.3",
+     "page": 2,
+     "text": "6.3 At the time of reset of the floating rate, the Bank may, at its option, offer the borrower a choice to switch to a fixed rate as per its Board approved policy.",
+     "status": "IN_FORCE"
+    },
+    {
+     "doc_id": "RBI-EMI-RESET-2023",
+     "title": "Reset of Floating Interest Rate on EMI based Personal Loans (updated 1 Oct 2025)",
+     "clause": "2(ii)",
+     "page": 2,
+     "text": "(ii) At the time of reset of interest rates, REs shall, provide the option to the borrowers to switch over to a fixed rate as per their Board a approved policy. The policy, inter alia, may also specify the number of t",
+     "status": "IN_FORCE"
+    }
+   ]
+  }
+ ]
+}

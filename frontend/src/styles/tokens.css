@@ -1,0 +1,141 @@
+/* Design tokens. "Regulator's reading room": warm paper, slate neutrals, one ink-blue accent,
+   hairline borders, 6 px radius, no gradients/glass (reports/Proof or Silence next steps.md, UI section). */
+
+:root {
+  --font-sans: 'IBM Plex Sans', 'IBM Plex Sans Devanagari', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'IBM Plex Serif', 'IBM Plex Sans Devanagari', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --r: 6px;
+  --r-lg: 10px;
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+
+  --paper: #f7f5ef;
+  --surface: #fffefb;
+  --surface-2: #f1eee6;
+  --surface-3: #e9e5da;
+  --line: #e3dfd4;
+  --line-strong: #cdc8ba;
+  --ink: #1b1e22;
+  --ink-2: #474c54;
+  --ink-3: #686d75;
+  --ink-4: #767a82; /* ≥ 3.9:1 on paper (QA sweep: #8b8f96 was 2.98:1) */
+
+  --accent: #1f3a5f;
+  --accent-hover: #2a4d7b;
+  --accent-ink: #f7f5ef;
+  --accent-tint: #e5ebf3;
+  --focus: #2f6fd6;
+
+  /* Outcomes: icon + label + colour, never colour alone */
+  --ok: #2b6a3e;
+  --ok-tint: #e3efe5;
+  --ok-line: #bcd7c2;
+  --partial: #85570a;
+  --partial-tint: #f8eed8;
+  --partial-line: #e6cf9b;
+  --conflict: #962a66;
+  --conflict-tint: #f5e3ec;
+  --conflict-line: #e2bad0;
+  --abstain: #3b5a80;
+  --abstain-tint: #e6ecf3;
+  --abstain-line: #bccbdd;
+  --withheld: #8a3b2a;
+  --withheld-tint: #f6e8e3;
+
+  /* Clause validity */
+  --inforce: #2e7a49;
+  --superseded: #8b8f96;
+  --future: #85570a;
+
+  /* Amber quote highlight (Research Analysis Tool ref) */
+  --hl: #f9e3a2;
+  --hl-strong: rgba(232, 176, 34, 0.38);
+  --hl-border: #d29a12;
+
+  /* Colour-blind-safe pairs: bank purple / RBI orange; insert purple / delete orange (eCFR) */
+  --bank: #6a40a3;
+  --bank-tint: #efe8f8;
+  --rbi: #a85300;
+  --rbi-tint: #fbeadb;
+  --ins: #5b34a0;
+  --ins-tint: #ebe2f8;
+  --del: #a14b00;
+  --del-tint: #fbe6d4;
+
+  --shadow-1: 0 1px 0 rgba(27, 30, 34, 0.04);
+  --shadow-pop: 0 10px 30px -12px rgba(27, 30, 34, 0.25), 0 2px 6px rgba(27, 30, 34, 0.06);
+
+  /* one z-index scale for the whole app; page content never sets z-index above --z-raised */
+  --z-raised: 4;
+  --z-header: 40;
+  --z-drawer: 60;
+  --z-popover: 80;
+  --z-toast: 90;
+  --z-tooltip: 100;
+
+  --rail-w: 228px;
+  --top-h: 56px;
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --paper: #121416;
+  --surface: #181b1e;
+  --surface-2: #1e2125;
+  --surface-3: #262a2f;
+  --line: #2a2e33;
+  --line-strong: #3a3f45;
+  --ink: #ebe8e2;
+  --ink-2: #c0bcb4;
+  --ink-3: #9a968e;
+  --ink-4: #7a776f;
+
+  --accent: #9dbbe2;
+  --accent-hover: #b8cff0;
+  --accent-ink: #10141a;
+  --accent-tint: #1f2a38;
+  --focus: #7fb0ff;
+
+  --ok: #84c69a;
+  --ok-tint: #1b2a20;
+  --ok-line: #2d4a36;
+  --partial: #e2b765;
+  --partial-tint: #2d2516;
+  --partial-line: #54431f;
+  --conflict: #e59cc4;
+  --conflict-tint: #2e1b26;
+  --conflict-line: #553047;
+  --abstain: #a7bfdc;
+  --abstain-tint: #1c2633;
+  --abstain-line: #34465c;
+  --withheld: #e3a796;
+  --withheld-tint: #2d1e1a;
+
+  --inforce: #7cc493;
+  --superseded: #7f838a;
+  --future: #e2b765;
+
+  --hl: #5a4714;
+  --hl-strong: rgba(240, 190, 60, 0.32);
+  --hl-border: #e0b040;
+
+  --bank: #c1a2f0;
+  --bank-tint: #261f35;
+  --rbi: #f0a764;
+  --rbi-tint: #33231a;
+  --ins: #c7aef5;
+  --ins-tint: #2b2240;
+  --del: #f2ab6d;
+  --del-tint: #3a2616;
+
+  --shadow-pop: 0 12px 32px -12px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}

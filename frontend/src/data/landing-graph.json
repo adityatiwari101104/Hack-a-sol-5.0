@@ -1,0 +1,851 @@
+{
+ "generated": "2026-11-24",
+ "source": "backend/data/aiml02.sqlite (read-only copy) + contradict.scan (same code as GET /conflicts), profile ucb_tier3",
+ "nodes": [
+  {
+   "id": "FORECLOSURE-2014",
+   "lane": "rbi",
+   "row": 0,
+   "kind": "doc",
+   "doc_id": "RBI-FORECLOSURE-2014",
+   "label": "Foreclosure circular 2014",
+   "circular": "RBI/2013-14/582",
+   "issued": "2014-05-07",
+   "until": "2026-01-01",
+   "title": "Levy of Foreclosure Charges/Pre-payment Penalty on Floating Rate Term Loans (2014)",
+   "quote": "banks will not be permitted to charge foreclosure charges/ pre-payment penalties on all floating rate term loans sanctioned to individual borrowers, with immediate effect.",
+   "page": 1,
+   "clause": "",
+   "from": "2014-05-07"
+  },
+  {
+   "id": "PENAL-2023",
+   "lane": "rbi",
+   "row": 1,
+   "kind": "doc",
+   "doc_id": "RBI-PENAL-2023",
+   "label": "Penal charges 2023",
+   "circular": "RBI/2023-24/53",
+   "issued": "2023-08-18",
+   "until": "2025-11-28",
+   "title": "Fair Lending Practice - Penal Charges in Loan Accounts (2023)",
+   "quote": "भारतीय ररज़र्व बैंक RESERVE BANK OF INDIA RBI/2023-24/53 DoR.MCS.REC.28/01.01.001/2023-24 August 18, 2023 All Commercial Banks (including Small Finance Banks, Local Area Banks and Regional Rural Banks, excluding Payments Banks) All Primary (Urban) Co-operative Banks All NBFCs (including HFCs) and All India Financial Ins",
+   "page": 1,
+   "clause": "",
+   "from": "2024-04-01"
+  },
+  {
+   "id": "PENAL-EXT-2023",
+   "lane": "rbi",
+   "row": 2,
+   "kind": "doc",
+   "doc_id": "RBI-PENAL-EXT-2023",
+   "label": "Penal charges: extension",
+   "circular": "RBI/2023-24/102",
+   "issued": "2023-12-29",
+   "until": "2025-11-28",
+   "title": "Penal Charges in Loan Accounts: Extension of Timeline (2023)",
+   "quote": "RBI/2023-24/102 DoR.MCS.REC.61/01.01.001/2023-24 December 29, 2023 All Commercial Banks (including Small Finance Banks, Local Area Banks and Regional Rural Banks, excluding Payments Banks) All Primary (Urban) Co-operative Banks All NBFCs (including HFCs) and All India Financial Institutions (EXIM Bank, NABARD, NHB, SID",
+   "page": 1,
+   "clause": "",
+   "from": "2023-12-29"
+  },
+  {
+   "id": "EMI-2ii-orig",
+   "lane": "rbi",
+   "row": 3,
+   "kind": "clause",
+   "doc_id": "RBI-EMI-RESET-2023",
+   "label": "EMI reset ¶2(ii) “shall”",
+   "circular": "RBI/2023-24/55",
+   "issued": "2023-08-18",
+   "until": "2025-10-01",
+   "title": "Reset of Floating Interest Rate on EMI based Personal Loans (updated 1 Oct 2025)",
+   "quote": "(ii) At the time of reset of interest rates, REs shall, provide the option to the borrowers to switch over to a fixed rate as per their Board a approved policy. The policy, inter alia, may also specify the number of times a borrower will be allowed to switch during the tenor of the loan. i",
+   "context": " loans, in the wake of rising interest rates, several consumer grievances related to elongation of loan tenor and/or increase in EMI amount, without proper communication with and/or consent of the borrowers have been rec",
+   "page": 2,
+   "clause": "2(ii)",
+   "from": "2023-08-18"
+  },
+  {
+   "id": "EMI-2ii-sub",
+   "lane": "rbi",
+   "row": 3,
+   "kind": "clause",
+   "doc_id": "RBI-EMI-RESET-2023",
+   "label": "¶2(ii) “may, at its option”",
+   "circular": "RBI/2023-24/55",
+   "issued": "2025-09-29",
+   "until": "2025-11-28",
+   "title": "Reset of Floating Interest Rate on EMI based Personal Loans (updated 1 Oct 2025)",
+   "quote": "(ii) At the time of reset of interest rates, REs may, at its option, provide a choice to the borrowers to switch over to a fixed rate as per their Board a approved policy. The policy, inter alia, may also specify the number of times a borrower will be allowed to switch during the tenor of the loan. i",
+   "context": " loans, in the wake of rising interest rates, several consumer grievances related to elongation of loan tenor and/or increase in EMI amount, without proper communication with and/or consent of the borrowers have been rec",
+   "page": 2,
+   "clause": "2(ii)",
+   "from": "2025-10-01"
+  },
+  {
+   "id": "KFS-2024",
+   "lane": "rbi",
+   "row": 4,
+   "kind": "doc",
+   "doc_id": "RBI-KFS-2024",
+   "label": "Key Facts Statement 2024",
+   "circular": "RBI/2024-25/18",
+   "issued": "2024-04-15",
+   "until": "2025-11-28",
+   "title": "Key Facts Statement (KFS) for Loans & Advances (2024)",
+   "quote": "RBI/2024-25/18 DOR.STR.REC.13/13.03.00/2024-25 April 15, 2024 All Commercial Banks (including Small Finance Banks, Local Area Banks and Regional Rural Banks, excluding Payments Banks) All Primary (Urban) Co-operative Banks, State Co-operative Banks and Central Co- operative Banks All Non-Banking Financial Companies (in",
+   "page": 1,
+   "clause": "",
+   "from": "2024-10-01"
+  },
+  {
+   "id": "PREPAY-2025",
+   "lane": "rbi",
+   "row": 0,
+   "kind": "doc",
+   "doc_id": "RBI-PREPAY-DIR-2025",
+   "label": "Pre-payment Directions 2025",
+   "circular": "RBI/2025-26/64",
+   "issued": "2025-07-02",
+   "until": "2025-11-28",
+   "title": "Reserve Bank of India (Pre-payment Charges on Loans) Directions, 2025",
+   "quote": "(i) For all loans granted for purposes other than business to individuals, with or without co-obligant(s), an RE shall not levy pre-payment charges;",
+   "page": 2,
+   "clause": "5(i)",
+   "from": "2025-07-02",
+   "context": "5. An RE shall adhere to the following Directions regarding levy of pre-payment charges on all floating rate loans and advances:"
+  },
+  {
+   "id": "IRA-AMEND-2025",
+   "lane": "rbi",
+   "row": 2,
+   "kind": "doc",
+   "doc_id": "RBI-IRA-AMEND-2025",
+   "label": "Interest Rate amendment",
+   "circular": "RBI/2025-26/83",
+   "issued": "2025-09-29",
+   "until": null,
+   "title": "Interest Rate on Advances (Amendment Directions), 2025",
+   "quote": "भारतीय �रज़वर् बैं ________________________RESERVE BANK OF INDIA________________________ www.rbi.org.in RBI/2025-26/83 DOR.CRE.REC.51/13.03.00/2025-26 September 29, 2025 Reserve Bank of India (Interest Rate on Advances) (Amendment Directions), 2025 Please refer to the Reserve Bank of India (Interest Rate on Advances) Di",
+   "page": 1,
+   "clause": "",
+   "from": "2025-10-01"
+  },
+  {
+   "id": "WITHDRAWAL-2025",
+   "lane": "rbi",
+   "row": 5,
+   "kind": "doc",
+   "doc_id": "RBI-WITHDRAWAL-2025",
+   "label": "Withdrawal of circulars",
+   "circular": "RBI/2025-26/100",
+   "issued": "2025-11-28",
+   "until": null,
+   "title": "Consolidation of Regulations - Withdrawal of circulars (2025)",
+   "quote": "भारतीय �रज़वर् बैंक RESERVE BANK OF INDIA RBI/2025-26/100 DOR.RRC.REC.302/33-01-010/2025-26 November 28, 2025 Consolidation of Regulations – Withdrawal of circulars Please refer to the press release issued on November 28, 2025 announcing the release of 244 Master Directions consolidating the instructions currently admin",
+   "page": 1,
+   "clause": "",
+   "from": "2025-11-28"
+  },
+  {
+   "id": "MD-260",
+   "lane": "rbi",
+   "row": 1,
+   "kind": "clause",
+   "doc_id": "RBI-UCB-RBC-MD-2025",
+   "label": "UCB MD ¶260",
+   "circular": "RBI/DOR/2025-26/292",
+   "issued": "2025-11-28",
+   "until": null,
+   "title": "UCB Responsible Business Conduct Directions, 2025 (updated 1 Jul 2026)",
+   "quote": "260. In case of existing floating rate term loans sanctioned before December 31, 2025 for purposes other than business to individual borrowers with or without co- obligant(s), a UCB shall not charge pre-payment charges.",
+   "context": "",
+   "page": 80,
+   "clause": "260",
+   "from": "2025-11-28"
+  },
+  {
+   "id": "MD-261-1",
+   "lane": "rbi",
+   "row": 2,
+   "kind": "clause",
+   "doc_id": "RBI-UCB-RBC-MD-2025",
+   "label": "UCB MD ¶261(1)",
+   "circular": "RBI/DOR/2025-26/292",
+   "issued": "2025-11-28",
+   "until": null,
+   "title": "UCB Responsible Business Conduct Directions, 2025 (updated 1 Jul 2026)",
+   "quote": "(1) For all floating rate loans granted for purposes other than business to individuals, with or without co-obligant(s), a UCB shall not levy pre-payment charges.",
+   "context": "261. A UCB shall adhere to the following directions regarding levy of pre-payment charges on loans and advances sanctioned or renewed on or after January 1, 2026:",
+   "page": 81,
+   "clause": "261(1)",
+   "from": "2025-11-28"
+  },
+  {
+   "id": "MD-261-2-ii",
+   "lane": "rbi",
+   "row": 4,
+   "kind": "clause",
+   "doc_id": "RBI-UCB-RBC-MD-2025",
+   "label": "UCB MD ¶261(2)(ii)",
+   "circular": "RBI/DOR/2025-26/292",
+   "issued": "2025-11-28",
+   "until": null,
+   "title": "UCB Responsible Business Conduct Directions, 2025 (updated 1 Jul 2026)",
+   "quote": "(ii) A Tier 3 UCB shall not levy any pre-payment charges on loans with sanctioned amount / limit up to ₹50 lakh.",
+   "context": "261. A UCB shall adhere to the following directions regarding levy of pre-payment charges on loans and advances sanctioned or renewed on or after January 1, 2026: (2) For all floating rate loans granted for business purp",
+   "page": 81,
+   "clause": "261(2)(ii)",
+   "from": "2025-11-28"
+  },
+  {
+   "id": "S1-7.4",
+   "lane": "bank",
+   "row": 0,
+   "kind": "clause",
+   "doc_id": "EUCB-S1",
+   "label": "Retail Loan Policy cl. 7.4",
+   "circular": null,
+   "issued": "2023-04-01",
+   "until": null,
+   "title": "Example UCB Retail Loan Policy v3 (FICTIONAL)",
+   "quote": "7.4 Foreclosure charges of 2% plus GST on the principal outstanding shall be levied on all term loans pre-closed by the borrower.",
+   "context": "",
+   "page": 3,
+   "clause": "7.4",
+   "from": "2023-04-01"
+  },
+  {
+   "id": "S2-9.3",
+   "lane": "bank",
+   "row": 1,
+   "kind": "clause",
+   "doc_id": "EUCB-S2",
+   "label": "Home Loan Agreement cl. 9.3",
+   "circular": null,
+   "issued": "2026-02-10",
+   "until": null,
+   "title": "Home Loan Agreement (FICTIONAL)",
+   "quote": "9.3 In the event of foreclosure or pre-payment of the loan, in full or in part, the Borrower shall pay a pre-payment charge of 2% of the principal outstanding.",
+   "context": "",
+   "page": 3,
+   "clause": "9.3",
+   "from": "2026-02-10"
+  },
+  {
+   "id": "S3-9.3",
+   "lane": "bank",
+   "row": 2,
+   "kind": "clause",
+   "doc_id": "EUCB-S3",
+   "label": "Agreement copy cl. 9.3",
+   "circular": null,
+   "issued": "2026-02-10",
+   "until": null,
+   "title": "Home Loan Agreement (copy) (FICTIONAL)",
+   "quote": "9.3 In the event of foreclosure or pre-payment of the loan, in full or in part, the Borrower shall pay a pre-payment charge of 3% of the principal outstanding.",
+   "context": "",
+   "page": 3,
+   "clause": "9.3",
+   "from": "2026-02-10"
+  },
+  {
+   "id": "S5-2.2",
+   "lane": "bank",
+   "row": 3,
+   "kind": "clause",
+   "doc_id": "EUCB-S5",
+   "label": "MSE sanction letter cl. 2.2",
+   "circular": null,
+   "issued": "2026-03-15",
+   "until": null,
+   "title": "Sanction Letters – MSE business loans (FICTIONAL)",
+   "quote": "2.2 Pre-payment charges: 2% of the amount prepaid.",
+   "context": "",
+   "page": 1,
+   "clause": "2.2",
+   "from": "2026-03-15"
+  }
+ ],
+ "edges": [
+  {
+   "type": "AMENDED_BY",
+   "src": "EMI-2ii-orig",
+   "dst": "EMI-2ii-sub",
+   "date": "2025-10-01",
+   "quote": "2 Substituted vide Reserve Bank of India (Interest Rate on Advances) (Amendment Directions), 2025 dated September 29, 2025 for “shall” (w.e.f. October 1, 2025) | 3 Substituted vide Reserve Bank of India (Interest Rate on Advances) (Amendment Directions), 2025 dated September 29, 2025 for “the option” (w.e.f. October 1, 2025)",
+   "quote_doc_id": "RBI-EMI-RESET-2023",
+   "quote_page": 2,
+   "note": "substituted vide Reserve Bank of India (Interest Rate on Advances) (Amendment Directions), 2025 dated September 29, 2025"
+  },
+  {
+   "type": "WITHDRAWS",
+   "src": "WITHDRAWAL-2025",
+   "dst": "PREPAY-2025",
+   "date": "2025-11-28",
+   "quote": "circulars listed in the Annex",
+   "quote_doc_id": "RBI-WITHDRAWAL-2025",
+   "quote_page": 1,
+   "note": "Listed as S.No. 32 in RBI's 'Circulars Withdrawn' list (Department of Regulation); content restated in the RBC Master Directions"
+  },
+  {
+   "type": "WITHDRAWS",
+   "src": "WITHDRAWAL-2025",
+   "dst": "PENAL-2023",
+   "date": "2025-11-28",
+   "quote": "circulars listed in the Annex",
+   "quote_doc_id": "RBI-WITHDRAWAL-2025",
+   "quote_page": 1,
+   "note": "S.No. 165 in RBI's 'Circulars Withdrawn' list (Department of Regulation)"
+  },
+  {
+   "type": "AMENDED_BY",
+   "src": "PENAL-2023",
+   "dst": "PENAL-EXT-2023",
+   "date": "2024-04-01",
+   "quote": "fresh loans availed from April 1, 2024 onwards",
+   "quote_doc_id": "RBI-PENAL-EXT-2023",
+   "quote_page": 1,
+   "note": "effective date extended"
+  },
+  {
+   "type": "WITHDRAWS",
+   "src": "WITHDRAWAL-2025",
+   "dst": "PENAL-EXT-2023",
+   "date": "2025-11-28",
+   "quote": "circulars listed in the Annex",
+   "quote_doc_id": "RBI-WITHDRAWAL-2025",
+   "quote_page": 1,
+   "note": "S.No. 147 in RBI's 'Circulars Withdrawn' list (Department of Regulation)"
+  },
+  {
+   "type": "WITHDRAWS",
+   "src": "WITHDRAWAL-2025",
+   "dst": "KFS-2024",
+   "date": "2025-11-28",
+   "quote": "circulars listed in the Annex",
+   "quote_doc_id": "RBI-WITHDRAWAL-2025",
+   "quote_page": 1,
+   "note": "S.No. 120 in RBI's 'Circulars Withdrawn' list (Department of Regulation)"
+  },
+  {
+   "type": "WITHDRAWS",
+   "src": "WITHDRAWAL-2025",
+   "dst": "EMI-2ii-sub",
+   "date": "2025-11-28",
+   "quote": "circulars listed in the Annex",
+   "quote_doc_id": "RBI-WITHDRAWAL-2025",
+   "quote_page": 1,
+   "note": "S.No. 166 in RBI's 'Circulars Withdrawn' list (Department of Regulation)"
+  },
+  {
+   "type": "WITHDRAWS",
+   "src": "PREPAY-2025",
+   "dst": "FORECLOSURE-2014",
+   "date": "2026-01-01",
+   "quote": "5. DBOD.Dir.BC.No.110/13.03.0 May 7, 2014 Levy of Foreclosure Charges/ 0/2013-14 Pre-payment Penalty on",
+   "quote_doc_id": "RBI-PREPAY-DIR-2025",
+   "quote_page": 4,
+   "note": "listed in repeal annex"
+  }
+ ],
+ "snapshots": [
+  {
+   "date": "2014-05-07",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2023-04-01",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2023-08-18",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2023-12-29",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2024-04-01",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2024-04-15",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2024-10-01",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2025-07-02",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2025-09-29",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2025-10-01",
+   "conflicts": [
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2025-11-28",
+   "conflicts": [
+    {
+     "a": "MD-260",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S3-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "3% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S5-2.2",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2026-01-01",
+   "conflicts": [
+    {
+     "a": "MD-260",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S3-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "3% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S5-2.2",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2026-02-10",
+   "conflicts": [
+    {
+     "a": "MD-260",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S3-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "3% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S5-2.2",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2026-03-15",
+   "conflicts": [
+    {
+     "a": "MD-260",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S3-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "3% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S5-2.2",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "conflicts": [
+    {
+     "a": "MD-260",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-1",
+     "b": "S3-9.3",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "3% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "MD-261-2-ii",
+     "b": "S5-2.2",
+     "subject": "prepayment_charge",
+     "kind": "conflict",
+     "pill": "2% vs not permitted"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S1-7.4",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    },
+    {
+     "a": "S3-9.3",
+     "b": "S2-9.3",
+     "subject": "prepayment_charge",
+     "kind": "internal",
+     "pill": "bank documents disagree"
+    }
+   ]
+  }
+ ]
+}
