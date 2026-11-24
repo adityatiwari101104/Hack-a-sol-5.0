@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence explicitly states: “For individual borrowers on floating rate loans for non-business purposes, no foreclosure charge applies,” which directly matches the claim."}, "usage": {"prompt_tokens": 175, "completion_tokens": 63}}

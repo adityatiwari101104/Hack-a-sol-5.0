@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "In the KFS Annex B illustration for computation of APR, the net disbursed amount is ₹19,600.", "cites": ["E5", "R8"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 3017, "completion_tokens": 183}}

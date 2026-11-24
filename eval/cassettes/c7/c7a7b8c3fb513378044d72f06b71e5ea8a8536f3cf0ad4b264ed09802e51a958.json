@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "Yes—this KFS discloses an Annual Percentage Rate (APR) of 8.70% for the loan product.", "cites": ["E2", "E1"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2679, "completion_tokens": 204}}

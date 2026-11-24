@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "accurate", "reason": "The answer states the total repayable amount as ₹23,274, which matches the reference key fact and expected pattern."}, "usage": {"prompt_tokens": 254, "completion_tokens": 46}}

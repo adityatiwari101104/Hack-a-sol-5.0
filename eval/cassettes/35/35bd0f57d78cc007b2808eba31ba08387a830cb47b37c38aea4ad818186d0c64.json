@@ -1,0 +1,1 @@
+{"request_name": "general_terms", "model": "gpt-5.4-nano-2026-03-17", "output": {"terms": [{"term": "grace period for renewal premium payment", "value": "30", "unit": "days", "condition": "for renewal premium payment", "quote": "A grace period of 30 days is allowed for renewal premium payment."}]}, "usage": {"prompt_tokens": 324, "completion_tokens": 54}}

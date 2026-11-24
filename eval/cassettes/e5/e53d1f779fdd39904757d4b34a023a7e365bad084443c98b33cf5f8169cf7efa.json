@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited Schedule II source explicitly lists a documentation fee of ₹500, payable once at execution, which matches the sentence. The Schedule II heading is also supported by the surrounding text."}, "usage": {"prompt_tokens": 331, "completion_tokens": 52}}

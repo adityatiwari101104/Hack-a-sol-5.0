@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source span directly states that the EMI on the date of sanction is ₹21,696, which matches the sentence’s claim about the EMI amount recorded at the time the loan was sanctioned."}, "usage": {"prompt_tokens": 269, "completion_tokens": 54}}

@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence shows that the Key Facts Statement (item 10.1, “Penal charges”) specifies ₹500 per month of default."}, "usage": {"prompt_tokens": 257, "completion_tokens": 45}}

@@ -1,5 +1,8 @@
 """Contradiction triage over value tuples: CONFLICT vs SUPERSESSION (amendment) vs DIFFERENT_CONDITION vs CONSISTENT."""
+import difflib
+import functools
 import json
+import re
 from datetime import date
 
 from . import db
@@ -61,12 +64,18 @@ def _regulator_ok(con, t, profile, as_of):
     return True
 
 
-def scan(subjects=None, profile=None, as_of=None):
-    """Pairs across documents with the same subject: regulator-vs-bank and bank-vs-bank."""
+def scan(subjects=None, profile=None, as_of=None, doc_ids=None):
+    """Pairs across documents with the same subject: regulator-vs-bank and bank-vs-bank.
+    doc_ids: documents in scope (None = the shipped banking corpus; uploads join only when named)."""
     con = db.connect()
     rows = [dict(r) for r in con.execute(
-        "SELECT t.*, d.issuer, d.is_synthetic, d.title, d.applies_to_json, c.clause_key, c.breadcrumb FROM value_tuples t "
-        "JOIN documents d USING(doc_id) JOIN chunks c USING(chunk_id) WHERE t.verified=1")]
+        "SELECT t.*, d.issuer, d.is_synthetic, d.title, d.applies_to_json, d.source, d.collection, c.clause_key, "
+        "c.breadcrumb FROM value_tuples t JOIN documents d USING(doc_id) JOIN chunks c USING(chunk_id) WHERE t.verified=1 "
+        "AND t.subject NOT LIKE 'term:%'")]
+    if doc_ids is None:
+        rows = [r for r in rows if (r["source"] or "corpus") == "corpus" and (r["collection"] or "banking") == "banking"]
+    else:
+        rows = [r for r in rows if r["doc_id"] in doc_ids]
     if subjects:
         rows = [r for r in rows if r["subject"] in subjects]
     from .applicability import product_scope
@@ -85,7 +94,34 @@ def scan(subjects=None, profile=None, as_of=None):
     return out
 
 
+def _tok(x):
+    return re.sub(r"[^0-9a-z₹%]", "", x.lower())
+
+
+@functools.lru_cache(maxsize=4096)
+def quote_bboxes(chunk_id, quote):
+    """{page: [[x0, top, x1, bottom], ...]} for the words of `quote` inside its chunk (token alignment, so line breaks
+    and hyphenation in the PDF do not matter). Empty if fewer than 80% of the quote's words can be placed."""
+    r = db.connect().execute("SELECT words_json FROM chunks WHERE chunk_id=?", (chunk_id,)).fetchone()
+    if not r or not quote:
+        return {}
+    words = [w for w in json.loads(r["words_json"]) if _tok(w.get("t", ""))]
+    ct, qt = [_tok(w["t"]) for w in words], [t for t in (_tok(x) for x in quote.split()) if t]
+    if not qt:
+        return {}
+    blocks = [b for b in difflib.SequenceMatcher(None, ct, qt, autojunk=False).get_matching_blocks() if b.size]
+    if sum(b.size for b in blocks) < 0.8 * len(qt):
+        return {}
+    lo, hi = min(b.a for b in blocks), max(b.a + b.size for b in blocks)
+    out = {}
+    for w in words[lo:hi]:
+        if not w.get("h"):  # never box hidden (white) text
+            out.setdefault(str(w["p"]), []).append([w["x0"], w["top"], w["x1"], w["bottom"]])
+    return out
+
+
 def _brief(t):
     return {"tuple_id": t["tuple_id"], "doc_id": t["doc_id"], "title": t["title"], "clause": t["clause_key"],
             "chunk_id": t["chunk_id"], "page": t["page"], "quote": t["quote"], "permitted": t["permitted"],
-            "value": t["value_num"], "unit": t["unit"], "condition": json.loads(t["condition_json"])}
+            "value": t["value_num"], "unit": t["unit"], "condition": json.loads(t["condition_json"]),
+            "bboxes": quote_bboxes(t["chunk_id"], t["quote"])}

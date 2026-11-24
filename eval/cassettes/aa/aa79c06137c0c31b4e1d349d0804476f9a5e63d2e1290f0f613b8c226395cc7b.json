@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "Evidence states the pre-payment charge is 2% of the amount prepaid. Applying 2% to Rs 2,400,000 gives 0.02 × 2,400,000 = 48,000, matching the claim of ₹48,000.00."}, "usage": {"prompt_tokens": 173, "completion_tokens": 102}}

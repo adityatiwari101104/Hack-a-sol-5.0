@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "In the table, the row for instalment No. 2 shows an 'Outstanding Principal (in Rupees)' value of 19,280, matching the claim."}, "usage": {"prompt_tokens": 480, "completion_tokens": 51}}

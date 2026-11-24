@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans explicitly state that the home loan rate is 8.50% per annum / 8.5% p.a. and that it is floating (linked to the policy repo rate)."}, "usage": {"prompt_tokens": 644, "completion_tokens": 55}}

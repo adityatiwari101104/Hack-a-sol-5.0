@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence table lists “Date of sanction” (No. 5) as “10 February 2026,” which matches the claim."}, "usage": {"prompt_tokens": 406, "completion_tokens": 45}}

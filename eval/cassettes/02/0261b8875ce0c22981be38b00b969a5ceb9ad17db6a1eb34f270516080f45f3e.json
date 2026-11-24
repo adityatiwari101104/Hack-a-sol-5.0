@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "Yes — the KFS Annex B illustration states the total amount to be paid by the borrower as 23,2749 (in Rupees).", "cites": ["E5"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 3401, "completion_tokens": 231}}

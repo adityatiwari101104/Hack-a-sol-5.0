@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "accurate", "reason": "The answer says UCB shall not levy pre-payment/foreclosure charges on a floating-rate loan to an individual, and the loan was sanctioned after 1 January 2026 (March 2026), matching the reference."}, "usage": {"prompt_tokens": 305, "completion_tokens": 61}}

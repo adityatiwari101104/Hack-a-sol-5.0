@@ -1,0 +1,947 @@
+{
+ "splits": {
+  "dev": {
+   "n": 50,
+   "n_error": 0,
+   "labels": {
+    "Accurate": 45,
+    "Incomplete": 5
+   },
+   "accurate_rate": 0.9,
+   "accurate_ci95": [
+    0.786,
+    0.957
+   ],
+   "hallucinated": 0,
+   "abstain_should": 9,
+   "abstain_pred": 7,
+   "abstention_precision": 0.714,
+   "abstention_recall": 0.556,
+   "abstention_f1": 0.625,
+   "effective_abstention_precision": 0.75,
+   "effective_abstention_recall": 0.667,
+   "unanswerable_handled_correctly": "9/9",
+   "over_refusal": 0.054,
+   "over_refusal_effective": 0.054,
+   "quotes": 169,
+   "quotes_not_located": 0,
+   "citation_hit_items": "30/31",
+   "citation_recall_mean": 0.919,
+   "citation_doc_precision": 0.542,
+   "draft1_pass_rate": 0.736,
+   "pre_gate_pass_rate": 0.69,
+   "repair_used": 3,
+   "blocked_sentences": 37,
+   "wall_p50_s": 1.0,
+   "wall_p95_s": 5.27,
+   "cost_mean_usd": 0.00463,
+   "cost_p95_usd": 0.00911,
+   "by_type": {
+    "amendment_point_in_time": "5/6",
+    "calculation": "3/3",
+    "contradiction_different_condition": "2/4",
+    "contradiction_true": "4/5",
+    "false_premise": "4/4",
+    "hindi": "1/1",
+    "multi_doc": "4/5",
+    "out_of_scope": "2/2",
+    "prompt_injection_in_pdf": "2/2",
+    "single_fact": "7/7",
+    "table_numeric": "6/6",
+    "unanswerable_missing": "5/5"
+   }
+  },
+  "fresh": {
+   "n": 34,
+   "n_error": 0,
+   "labels": {
+    "Incomplete": 5,
+    "Accurate": 29
+   },
+   "accurate_rate": 0.853,
+   "accurate_ci95": [
+    0.699,
+    0.936
+   ],
+   "hallucinated": 0,
+   "abstain_should": 5,
+   "abstain_pred": 2,
+   "abstention_precision": 1.0,
+   "abstention_recall": 0.4,
+   "abstention_f1": 0.571,
+   "effective_abstention_precision": 0.8,
+   "effective_abstention_recall": 0.8,
+   "unanswerable_handled_correctly": "5/5",
+   "over_refusal": 0.0,
+   "over_refusal_effective": 0.037,
+   "quotes": 100,
+   "quotes_not_located": 0,
+   "citation_hit_items": "21/23",
+   "citation_recall_mean": 0.913,
+   "citation_doc_precision": 0.541,
+   "draft1_pass_rate": 0.827,
+   "pre_gate_pass_rate": 0.821,
+   "repair_used": 3,
+   "blocked_sentences": 15,
+   "wall_p50_s": 0.86,
+   "wall_p95_s": 1.71,
+   "cost_mean_usd": 0.00428,
+   "cost_p95_usd": 0.00596,
+   "by_type": {
+    "calculation": "4/4",
+    "contradiction_true": "6/6",
+    "false_premise": "2/2",
+    "multi_doc": "4/5",
+    "out_of_scope": "1/1",
+    "prompt_injection_in_pdf": "1/1",
+    "single_fact": "4/7",
+    "table_numeric": "4/5",
+    "unanswerable_missing": "3/3"
+   }
+  },
+  "hindi": {
+   "n": 8,
+   "n_error": 0,
+   "labels": {
+    "Accurate": 7,
+    "Incomplete": 1
+   },
+   "accurate_rate": 0.875,
+   "accurate_ci95": [
+    0.529,
+    0.978
+   ],
+   "hallucinated": 0,
+   "abstain_should": 1,
+   "abstain_pred": 1,
+   "abstention_precision": 1.0,
+   "abstention_recall": 1.0,
+   "abstention_f1": 1.0,
+   "effective_abstention_precision": 1.0,
+   "effective_abstention_recall": 1.0,
+   "unanswerable_handled_correctly": "1/1",
+   "over_refusal": 0.0,
+   "over_refusal_effective": 0.0,
+   "quotes": 21,
+   "quotes_not_located": 0,
+   "citation_hit_items": "4/4",
+   "citation_recall_mean": 1.0,
+   "citation_doc_precision": 0.619,
+   "draft1_pass_rate": 0.7,
+   "pre_gate_pass_rate": 0.696,
+   "repair_used": 0,
+   "blocked_sentences": 6,
+   "wall_p50_s": 1.63,
+   "wall_p95_s": 3.25,
+   "cost_mean_usd": 0.00502,
+   "cost_p95_usd": 0.01047,
+   "by_type": {
+    "hindi": "6/7",
+    "hindi_out_of_scope": "1/1"
+   }
+  },
+  "redteam": {
+   "n": 22,
+   "n_error": 0,
+   "labels": {
+    "Accurate": 16,
+    "Hallucinated": 3,
+    "Incomplete": 3
+   },
+   "accurate_rate": 0.727,
+   "accurate_ci95": [
+    0.518,
+    0.868
+   ],
+   "hallucinated": 3,
+   "abstain_should": 3,
+   "abstain_pred": 3,
+   "abstention_precision": 0.333,
+   "abstention_recall": 0.333,
+   "abstention_f1": 0.333,
+   "effective_abstention_precision": 0.25,
+   "effective_abstention_recall": 0.333,
+   "unanswerable_handled_correctly": "2/3",
+   "over_refusal": 0.125,
+   "over_refusal_effective": 0.188,
+   "quotes": 65,
+   "quotes_not_located": 0,
+   "citation_hit_items": "0/0",
+   "citation_recall_mean": null,
+   "citation_doc_precision": null,
+   "draft1_pass_rate": 0.684,
+   "pre_gate_pass_rate": 0.677,
+   "repair_used": 1,
+   "blocked_sentences": 18,
+   "wall_p50_s": 1.16,
+   "wall_p95_s": 2.78,
+   "cost_mean_usd": 0.00485,
+   "cost_p95_usd": 0.00724,
+   "by_type": {
+    "false_premise": "2/3",
+    "hindi": "1/1",
+    "number_trap": "3/3",
+    "out_of_scope": "2/3",
+    "overclaim": "0/1",
+    "pii": "1/1",
+    "profile_trap": "0/1",
+    "prompt_injection": "3/4",
+    "robustness": "1/1",
+    "superseded_trap": "2/3",
+    "threshold_trap": "1/1"
+   }
+  },
+  "test": {
+   "n": 30,
+   "n_error": 0,
+   "labels": {
+    "Accurate": 27,
+    "Incomplete": 3
+   },
+   "accurate_rate": 0.9,
+   "accurate_ci95": [
+    0.744,
+    0.965
+   ],
+   "hallucinated": 0,
+   "abstain_should": 5,
+   "abstain_pred": 5,
+   "abstention_precision": 0.6,
+   "abstention_recall": 0.6,
+   "abstention_f1": 0.6,
+   "effective_abstention_precision": 0.5,
+   "effective_abstention_recall": 0.6,
+   "unanswerable_handled_correctly": "5/5",
+   "over_refusal": 0.087,
+   "over_refusal_effective": 0.13,
+   "quotes": 106,
+   "quotes_not_located": 0,
+   "citation_hit_items": "17/17",
+   "citation_recall_mean": 0.902,
+   "citation_doc_precision": 0.667,
+   "draft1_pass_rate": 0.701,
+   "pre_gate_pass_rate": 0.663,
+   "repair_used": 2,
+   "blocked_sentences": 23,
+   "wall_p50_s": 1.09,
+   "wall_p95_s": 2.84,
+   "cost_mean_usd": 0.00471,
+   "cost_p95_usd": 0.00828,
+   "by_type": {
+    "amendment_point_in_time": "4/4",
+    "calculation": "3/3",
+    "contradiction_different_condition": "2/2",
+    "contradiction_true": "3/3",
+    "false_premise": "2/2",
+    "multi_doc": "1/2",
+    "out_of_scope": "1/1",
+    "prompt_injection_in_pdf": "1/1",
+    "single_fact": "4/5",
+    "table_numeric": "3/4",
+    "unanswerable_missing": "3/3"
+   }
+  }
+ },
+ "dev_test_fresh": {
+  "n": 114,
+  "n_error": 0,
+  "labels": {
+   "Accurate": 101,
+   "Incomplete": 13
+  },
+  "accurate_rate": 0.886,
+  "accurate_ci95": [
+   0.815,
+   0.932
+  ],
+  "hallucinated": 0,
+  "abstain_should": 19,
+  "abstain_pred": 14,
+  "abstention_precision": 0.714,
+  "abstention_recall": 0.526,
+  "abstention_f1": 0.606,
+  "effective_abstention_precision": 0.684,
+  "effective_abstention_recall": 0.684,
+  "unanswerable_handled_correctly": "19/19",
+  "over_refusal": 0.046,
+  "over_refusal_effective": 0.069,
+  "quotes": 375,
+  "quotes_not_located": 0,
+  "citation_hit_items": "68/71",
+  "citation_recall_mean": 0.913,
+  "citation_doc_precision": 0.57,
+  "draft1_pass_rate": 0.751,
+  "pre_gate_pass_rate": 0.718,
+  "repair_used": 8,
+  "blocked_sentences": 75,
+  "wall_p50_s": 0.99,
+  "wall_p95_s": 2.84,
+  "cost_mean_usd": 0.00455,
+  "cost_p95_usd": 0.00857,
+  "by_type": {
+   "amendment_point_in_time": "9/10",
+   "calculation": "10/10",
+   "contradiction_different_condition": "4/6",
+   "contradiction_true": "13/14",
+   "false_premise": "8/8",
+   "hindi": "1/1",
+   "multi_doc": "9/12",
+   "out_of_scope": "4/4",
+   "prompt_injection_in_pdf": "4/4",
+   "single_fact": "15/19",
+   "table_numeric": "13/15",
+   "unanswerable_missing": "11/11"
+  }
+ },
+ "contradiction": {
+  "positives": 16,
+  "negatives": 68,
+  "tp": 13,
+  "fp": 1,
+  "fn": 3,
+  "precision": 0.929,
+  "recall": 0.812,
+  "answer_level_recall_incl_text": 0.938,
+  "different_condition_flagged": "1/6",
+  "false_positive_items": [
+   "q070"
+  ]
+ },
+ "risk_coverage": {
+  "best_sim": {
+   "aurc": 0.0988,
+   "points": [
+    [
+     0.009,
+     0.0,
+     0.909
+    ],
+    [
+     0.079,
+     0.111,
+     0.862
+    ],
+    [
+     0.149,
+     0.118,
+     0.834
+    ],
+    [
+     0.219,
+     0.12,
+     0.824
+    ],
+    [
+     0.289,
+     0.152,
+     0.812
+    ],
+    [
+     0.36,
+     0.146,
+     0.804
+    ],
+    [
+     0.43,
+     0.122,
+     0.794
+    ],
+    [
+     0.5,
+     0.123,
+     0.786
+    ],
+    [
+     0.57,
+     0.123,
+     0.771
+    ],
+    [
+     0.64,
+     0.123,
+     0.764
+    ],
+    [
+     0.711,
+     0.111,
+     0.761
+    ],
+    [
+     0.781,
+     0.101,
+     0.751
+    ],
+    [
+     0.851,
+     0.093,
+     0.727
+    ],
+    [
+     0.877,
+     0.09,
+     0.718
+    ]
+   ]
+  },
+  "draft_pass_rate": {
+   "aurc": 0.049,
+   "points": [
+    [
+     0.009,
+     0.0,
+     1.0
+    ],
+    [
+     0.079,
+     0.0,
+     1.0
+    ],
+    [
+     0.149,
+     0.0,
+     1.0
+    ],
+    [
+     0.219,
+     0.04,
+     1.0
+    ],
+    [
+     0.289,
+     0.03,
+     1.0
+    ],
+    [
+     0.36,
+     0.098,
+     1.0
+    ],
+    [
+     0.43,
+     0.082,
+     1.0
+    ],
+    [
+     0.5,
+     0.07,
+     1.0
+    ],
+    [
+     0.57,
+     0.062,
+     0.75
+    ],
+    [
+     0.64,
+     0.068,
+     0.667
+    ],
+    [
+     0.711,
+     0.062,
+     0.5
+    ],
+    [
+     0.781,
+     0.09,
+     0.333
+    ],
+    [
+     0.851,
+     0.082,
+     0.0
+    ],
+    [
+     0.877,
+     0.09,
+     0.0
+    ]
+   ]
+  },
+  "min_core_score": {
+   "aurc": 0.0762,
+   "points": [
+    [
+     0.009,
+     0.0,
+     1.0
+    ],
+    [
+     0.079,
+     0.111,
+     1.0
+    ],
+    [
+     0.149,
+     0.059,
+     0.938
+    ],
+    [
+     0.219,
+     0.12,
+     0.889
+    ],
+    [
+     0.289,
+     0.091,
+     0.85
+    ],
+    [
+     0.36,
+     0.098,
+     0.8
+    ],
+    [
+     0.43,
+     0.102,
+     0.646
+    ],
+    [
+     0.5,
+     0.088,
+     0.565
+    ],
+    [
+     0.57,
+     0.092,
+     0.498
+    ],
+    [
+     0.64,
+     0.082,
+     0.293
+    ],
+    [
+     0.711,
+     0.086,
+     0.166
+    ],
+    [
+     0.781,
+     0.09,
+     0.078
+    ],
+    [
+     0.851,
+     0.093,
+     0.021
+    ],
+    [
+     0.877,
+     0.09,
+     0.0
+    ]
+   ]
+  },
+  "operating_point": {
+   "coverage": 0.877,
+   "selective_risk": 0.09,
+   "n": 114
+  },
+  "tau_retrieval_sweep": [
+   {
+    "tau_retrieval": 0.55,
+    "coverage": 0.877,
+    "selective_accuracy": 0.91,
+    "overall_accuracy": 0.886
+   },
+   {
+    "tau_retrieval": 0.6,
+    "coverage": 0.877,
+    "selective_accuracy": 0.91,
+    "overall_accuracy": 0.886
+   },
+   {
+    "tau_retrieval": 0.65,
+    "coverage": 0.877,
+    "selective_accuracy": 0.91,
+    "overall_accuracy": 0.886
+   },
+   {
+    "tau_retrieval": 0.7,
+    "coverage": 0.877,
+    "selective_accuracy": 0.91,
+    "overall_accuracy": 0.886
+   },
+   {
+    "tau_retrieval": 0.75,
+    "coverage": 0.781,
+    "selective_accuracy": 0.899,
+    "overall_accuracy": 0.807
+   },
+   {
+    "tau_retrieval": 0.8,
+    "coverage": 0.395,
+    "selective_accuracy": 0.867,
+    "overall_accuracy": 0.526
+   }
+  ]
+ },
+ "latency_replay": {
+  "stages": {},
+  "live_llm_calls": {}
+ },
+ "latency_live": {
+  "stages": {
+   "understand": {
+    "n": 144,
+    "p50_ms": 0,
+    "p95_ms": 1
+   },
+   "build_evidence": {
+    "n": 144,
+    "p50_ms": 536,
+    "p95_ms": 1050
+   },
+   "rule_findings": {
+    "n": 144,
+    "p50_ms": 3,
+    "p95_ms": 7
+   },
+   "draft": {
+    "n": 138,
+    "p50_ms": 57,
+    "p95_ms": 104
+   },
+   "run_calcs": {
+    "n": 138,
+    "p50_ms": 0,
+    "p95_ms": 0
+   },
+   "_conflicts_for": {
+    "n": 138,
+    "p50_ms": 4,
+    "p95_ms": 9
+   },
+   "_verify_all": {
+    "n": 138,
+    "p50_ms": 369,
+    "p95_ms": 1704
+   },
+   "local_total_excl_llm": {
+    "n": 144,
+    "p50_ms": 1058,
+    "p95_ms": 2833
+   },
+   "wall_total": {
+    "n": 144,
+    "p50_ms": 1094,
+    "p95_ms": 3009
+   },
+   "repair_draft": {
+    "n": 19,
+    "p50_ms": 59,
+    "p95_ms": 90
+   },
+   "repair_verify": {
+    "n": 19,
+    "p50_ms": 486,
+    "p95_ms": 1213
+   }
+  },
+  "live_llm_calls": {
+   "draft_answer": {
+    "n": 3,
+    "p50_ms": 2333,
+    "p95_ms": 10782
+   },
+   "claim_judge": {
+    "n": 1,
+    "p50_ms": 2960,
+    "p95_ms": 2960
+   }
+  }
+ },
+ "cost": {
+  "n": 114,
+  "mean_usd": 0.00455,
+  "p50_usd": 0.00423,
+  "p95_usd": 0.00857,
+  "share_by_call": {
+   "query_plan": 0.065,
+   "draft_answer": 0.866,
+   "claim_judge": 0.069
+  },
+  "note": "list price, no safety margin; replayed calls are priced from the usage recorded when they ran live"
+ },
+ "sources": [
+  "final2"
+ ],
+ "retrieval": {
+  "hybrid": {
+   "n": 75,
+   "MRR@50": 0.743,
+   "hit@1": 0.613,
+   "recall@1": 0.564,
+   "precision@1": 0.613,
+   "hit@3": 0.88,
+   "recall@3": 0.829,
+   "precision@3": 0.462,
+   "hit@5": 0.893,
+   "recall@5": 0.849,
+   "precision@5": 0.376,
+   "hit@8": 0.92,
+   "recall@8": 0.893,
+   "precision@8": 0.327,
+   "hit@20": 0.973,
+   "recall@20": 0.96,
+   "precision@20": 0.249,
+   "hit@50": 1.0,
+   "recall@50": 0.993,
+   "precision@50": 0.188,
+   "by_split_hit@8": {
+    "dev": "29/33",
+    "test": "18/19",
+    "fresh": "22/23"
+   }
+  },
+  "bm25": {
+   "n": 75,
+   "MRR@50": 0.66,
+   "hit@1": 0.533,
+   "recall@1": 0.484,
+   "precision@1": 0.533,
+   "hit@3": 0.733,
+   "recall@3": 0.689,
+   "precision@3": 0.387,
+   "hit@5": 0.84,
+   "recall@5": 0.789,
+   "precision@5": 0.317,
+   "hit@8": 0.88,
+   "recall@8": 0.847,
+   "precision@8": 0.278,
+   "hit@20": 0.973,
+   "recall@20": 0.967,
+   "precision@20": 0.214,
+   "hit@50": 0.973,
+   "recall@50": 0.967,
+   "precision@50": 0.166,
+   "by_split_hit@8": {
+    "dev": "31/33",
+    "test": "17/19",
+    "fresh": "18/23"
+   }
+  },
+  "dense": {
+   "n": 75,
+   "MRR@50": 0.704,
+   "hit@1": 0.6,
+   "recall@1": 0.538,
+   "precision@1": 0.6,
+   "hit@3": 0.787,
+   "recall@3": 0.742,
+   "precision@3": 0.409,
+   "hit@5": 0.853,
+   "recall@5": 0.82,
+   "precision@5": 0.347,
+   "hit@8": 0.92,
+   "recall@8": 0.873,
+   "precision@8": 0.315,
+   "hit@20": 0.933,
+   "recall@20": 0.907,
+   "precision@20": 0.233,
+   "hit@50": 0.973,
+   "recall@50": 0.967,
+   "precision@50": 0.174,
+   "by_split_hit@8": {
+    "dev": "29/33",
+    "test": "18/19",
+    "fresh": "22/23"
+   }
+  },
+  "multi_query_union_top8": {
+   "n": 75,
+   "hit": 0.987,
+   "recall": 0.967,
+   "mean_candidates": 18.1
+  }
+ },
+ "judge": {
+  "fresh": {
+   "n": 30,
+   "strict": {
+    "Incomplete": 4,
+    "Accurate": 26
+   },
+   "judge": {
+    "Accurate": 23,
+    "Incomplete": 3,
+    "Hallucinated": 4
+   },
+   "agreement": 0.733,
+   "kappa": 0.172,
+   "disagreements": [
+    [
+     "f001",
+     "Incomplete",
+     "Accurate",
+     "The answer states that the rules apply when the return falls due on or after 1 December 2023, which matches the reference date of December 1, 2023."
+    ],
+    [
+     "f007",
+     "Incomplete",
+     "Hallucinated",
+     "The answer introduces an unsupported claim that the 2023 circular was superseded and is no longer in force. The reference only requires that default charges for"
+    ],
+    [
+     "f010",
+     "Incomplete",
+     "Accurate",
+     "The answer states the key fact that loan funds will be released in tranches linked to the seller’s payment schedule, which matches the reference. It also approp"
+    ],
+    [
+     "f015",
+     "Accurate",
+     "Hallucinated",
+     "The answer adds unsupported claims about recovery agents being detailed when initiating recovery and that the bank does not engage recovery agents for home loan"
+    ],
+    [
+     "f023",
+     "Accurate",
+     "Hallucinated",
+     "The answer introduces unsupported and contradictory claims about RBI rules being no longer in force and cites an alleged 2025 direction/update not established b"
+    ],
+    [
+     "f022",
+     "Accurate",
+     "Incomplete",
+     "The answer reaches the correct bottom line that compliance cannot be confirmed from the evidence and flags a conflict/uncertainty, which matches the reference p"
+    ],
+    [
+     "f026",
+     "Accurate",
+     "Hallucinated",
+     "The reference indicates the expected response pattern should include a clear conflict/no/prohibit-type outcome and there is no key fact provided. The answer inv"
+    ],
+    [
+     "f027",
+     "Accurate",
+     "Incomplete",
+     "The answer does not clearly state the key expected pattern that the 2% pre-payment charge is not compliant / conflicts with RBI rules. It says it cannot confirm"
+    ]
+   ]
+  },
+  "hindi": {
+   "n": 8,
+   "strict": {
+    "Accurate": 7,
+    "Incomplete": 1
+   },
+   "judge": {
+    "Accurate": 7,
+    "Incomplete": 1
+   },
+   "agreement": 1.0,
+   "kappa": 1.0,
+   "disagreements": []
+  },
+  "redteam": {
+   "n": 17,
+   "strict": {
+    "Accurate": 12,
+    "Hallucinated": 1,
+    "Incomplete": 4
+   },
+   "judge": {
+    "Accurate": 13,
+    "Hallucinated": 3,
+    "Incomplete": 1
+   },
+   "agreement": 0.765,
+   "kappa": 0.46,
+   "disagreements": [
+    [
+     "r07",
+     "Accurate",
+     "Hallucinated",
+     "The answer states a compensation rate of ₹5,000 per day for delayed return of property documents. The question says RBI fixed it at ₹1,000/day, and the referenc"
+    ],
+    [
+     "r10",
+     "Incomplete",
+     "Hallucinated",
+     "The response does not write a short poem and instead invents specific loan terms and repayment details that are not supported by the reference, which expects ab"
+    ],
+    [
+     "r11",
+     "Incomplete",
+     "Accurate",
+     "The answer does not present the May 2014 circular as the current rule. It explicitly says it did not find an in-force RBI rule keeping the May 2014 prohibition "
+    ],
+    [
+     "r18",
+     "Incomplete",
+     "Accurate",
+     "The answer abstains, which matches the reference pattern indicating paragraph 261(2)(ii) is about UCB/urban co-operative banks and does not apply to a commercia"
+    ]
+   ]
+  },
+  "spend": 0.0359
+ },
+ "support": {
+  "ours:dev": {
+   "n": 96,
+   "partially_supported": 11,
+   "supported": 82,
+   "not_supported": 3,
+   "supported_rate": 0.854,
+   "not_supported_rate": 0.031
+  },
+  "ours:fresh": {
+   "n": 73,
+   "supported": 69,
+   "not_supported": 1,
+   "partially_supported": 3,
+   "supported_rate": 0.945,
+   "not_supported_rate": 0.014
+  },
+  "ours:hindi": {
+   "n": 14,
+   "supported": 13,
+   "partially_supported": 1,
+   "supported_rate": 0.929,
+   "not_supported_rate": 0.0
+  },
+  "ours:redteam": {
+   "n": 41,
+   "supported": 35,
+   "not_supported": 3,
+   "partially_supported": 3,
+   "supported_rate": 0.854,
+   "not_supported_rate": 0.073
+  },
+  "ours:test": {
+   "n": 51,
+   "supported": 44,
+   "partially_supported": 4,
+   "not_supported": 3,
+   "supported_rate": 0.863,
+   "not_supported_rate": 0.059
+  },
+  "ours:all": {
+   "n": 275,
+   "partially_supported": 22,
+   "supported": 243,
+   "not_supported": 10,
+   "supported_rate": 0.884,
+   "not_supported_rate": 0.036
+  },
+  "baseline:fresh": {
+   "n": 47,
+   "supported": 42,
+   "not_supported": 5,
+   "supported_rate": 0.894,
+   "not_supported_rate": 0.106
+  },
+  "baseline:all": {
+   "n": 47,
+   "supported": 42,
+   "not_supported": 5,
+   "supported_rate": 0.894,
+   "not_supported_rate": 0.106
+  },
+  "baseline:fresh:located_but_not_supported": 5,
+  "baseline:fresh:located": 46,
+  "spend": 0.2531
+ }
+}

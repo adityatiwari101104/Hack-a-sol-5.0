@@ -1,0 +1,1 @@
+{"request_name": "translate_hi", "model": "gpt-5.4-nano-2026-03-17", "output": {"sentences": [{"n": 1, "hi": "हाँ—KFS (मुख्य तथ्य विवरण) के परिशिष्ट B (Annex B) में, APR (वार्षिक प्रतिशत दर) की गणना के लिए दिए गए उदाहरण में, वार्षिक प्रतिशत दर (APR) 17.07% (प्रतिशत में) है।"}]}, "usage": {"prompt_tokens": 257, "completion_tokens": 80}}

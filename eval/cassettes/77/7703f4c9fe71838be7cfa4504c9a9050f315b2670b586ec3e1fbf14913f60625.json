@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source states that the pre-payment charge is 2% of the amount prepaid. Applying 2% to Rs 2,400,000 gives 48,000, so the sentence is supported by the span."}, "usage": {"prompt_tokens": 288, "completion_tokens": 60}}

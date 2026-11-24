@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "accurate", "reason": "The answer states the APR as 17.07%, which matches the reference pattern '17.07'."}, "usage": {"prompt_tokens": 244, "completion_tokens": 38}}

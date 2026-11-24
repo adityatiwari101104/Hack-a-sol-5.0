@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence explicitly states: “A UCB shall not levy any charges where pre-payment is effected at the instance of the bank.” This matches the claim exactly."}, "usage": {"prompt_tokens": 211, "completion_tokens": 49}}

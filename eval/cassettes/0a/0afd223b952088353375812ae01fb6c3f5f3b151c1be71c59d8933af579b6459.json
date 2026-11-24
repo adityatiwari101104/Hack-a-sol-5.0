@@ -1,0 +1,1 @@
+{"request_name": "followup_rewrite", "model": "gpt-5.4-nano-2026-03-17", "output": {"standalone_question": "At the time of interest rate reset, on 15 Oct 2025, must the lender offer EMI-based personal loan borrowers (UCB Tier 3) the option to switch to a fixed rate?"}, "usage": {"prompt_tokens": 216, "completion_tokens": 56}}

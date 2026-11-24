@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited Key Facts Statement explicitly says: “Pre-payment / foreclosure charges Nil.” This directly supports the sentence’s claim that the home loan KFS shows nil pre-payment/foreclosure charges."}, "usage": {"prompt_tokens": 478, "completion_tokens": 60}}

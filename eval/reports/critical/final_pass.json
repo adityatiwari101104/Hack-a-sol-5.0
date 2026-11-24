@@ -1,0 +1,18 @@
+{
+ "date": "2026-11-24",
+ "what": "Backend final pass: before = judge report capture (final2.pkl.gz, v1 prompts); after = final3_*.pkl.gz (v2 prompts + Phase 1/U/G/3 code), all replayed at $0 from eval/cassettes",
+ "strict_accuracy": {"before": {"dev": "45/50", "test": "27/30", "fresh": "29/34", "all114": "101/114 (88.6%, CI 81.5-93.2)"},
+                     "after":  {"dev": "46/50", "test": "27/30", "fresh": "29/34", "all114": "102/114 (89.5%, CI 82.5-93.9)"},
+                     "hallucinated": {"before": 0, "after": 0}},
+ "redteam_22": {"before": "16 accurate, 3 flagged hallucinated, 3 incomplete", "after": "22/22 accurate"},
+ "hindi_8": {"before": "7/8, answers in English", "after": "8/8; 20/20 translated sentences passed the code number/clause check"},
+ "upload_demo_2": "2/2", "insurance_demo_4": "4/4",
+ "first_draft_pass_rate": {"dev": [0.736, 0.757], "test": [0.707, 0.764], "fresh": [0.846, 0.745], "redteam": [0.675, 0.574], "hindi": [0.702, 0.929]},
+ "misgrounded_not_supported_rate": {"before": "10/275 = 3.6%", "after": "7/247 = 2.8%", "plain_rag_fresh": "5/47 = 10.6%",
+                                     "fully_supported": {"before": 0.884, "after": 0.887}},
+ "phase2_gate_dev": {"v1": {"accurate": 46, "first_draft_pass": 0.736, "misgrounded": "3/96 = 3.1%"},
+                     "v2": {"accurate": 46, "first_draft_pass": 0.757, "misgrounded": "2/95 = 2.1%"},
+                     "redteam": {"v1": "22/22", "v2": "22/22"}, "decision": "keep v2 (better or equal on every gate number)"},
+ "query_classes_seen": "see final3_*.pkl.gz result.query_class",
+ "spend_usd_ledger": {"start": 3.99, "end": 5.14}
+}

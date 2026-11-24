@@ -33,10 +33,27 @@ def _parent_key(key):
     return m.group(1) if m else None
 
 
-def ingest_doc(con, meta):
-    path = config.CORPUS / meta["file"]
-    pages = read_pdf(path)
-    chunks, footnotes = chunk_document(meta["doc_id"], pages, meta.get("short") or meta["title"])
+def warn_if_no_text(doc_id, pages, chunks):
+    """A scanned (image-only) PDF has no text layer: it would silently give 0 chunks and never be cited.
+    Say so loudly; pages with no words are listed so the officer knows what needs OCR."""
+    empty = [p["page_no"] for p in pages if not (p.get("words") or p.get("lines") or p.get("text"))]
+    if not chunks:
+        print(f"\n  !!! WARNING: {doc_id}: 0 text chunks from {len(pages)} page(s). This looks like a scanned PDF "
+              f"with no text layer; it needs OCR before it can be searched or cited.\n", file=sys.stderr)
+    elif empty and len(empty) >= max(1, len(pages) // 2):
+        print(f"  ! WARNING: {doc_id}: {len(empty)} of {len(pages)} pages have no extractable text "
+              f"(pages {empty[:10]}{'…' if len(empty) > 10 else ''}); they may need OCR.", file=sys.stderr)
+    return bool(chunks)
+
+
+def ingest_doc(con, meta, pages=None, chunked=None):
+    """Write one document's rows. The corpus path reads the PDF here; an upload passes pages/chunks it already parsed
+    (with OCR) so the rows can be written in one short transaction at the end."""
+    path = config.CORPUS / meta["file"] if not meta.get("path") else meta["path"]
+    if pages is None:
+        pages = read_pdf(path)
+    chunks, footnotes = chunked or chunk_document(meta["doc_id"], pages, meta.get("short") or meta["title"])
+    warn_if_no_text(meta["doc_id"], pages, chunks)
     con.execute("DELETE FROM documents WHERE doc_id=?", (meta["doc_id"],))
     for t in ("chunks", "pages", "provision_versions", "value_tuples"):
         con.execute(f"DELETE FROM {t} WHERE doc_id=?", (meta["doc_id"],))
@@ -47,6 +64,10 @@ def ingest_doc(con, meta):
                  json.dumps({"entities": meta.get("applies_to", []), "sanction_date": meta.get("sanction_date")}),
                  meta.get("source_url"), str(path), sha256_file(path), meta.get("is_synthetic", 0), len(pages),
                  datetime.now().isoformat(timespec="seconds")))
+    if meta.get("source"):  # uploads and demo sets; the shipped corpus leaves these NULL (= corpus / banking)
+        con.execute("UPDATE documents SET source=?, collection=?, doc_kind=?, ocr_pages=? WHERE doc_id=?",
+                    (meta["source"], meta.get("collection"), meta.get("doc_kind"),
+                     json.dumps([p["page_no"] for p in pages if p.get("ocr")]), meta["doc_id"]))
     for p in pages:
         con.execute("INSERT INTO pages VALUES (?,?,?,?)", (meta["doc_id"], p["page_no"], p["width"], p["height"]))
     by_key = {c.clause_key: c for c in chunks}
@@ -257,8 +278,13 @@ def audit_tuples(con, workers=6):
 
 def main():
     args = set(sys.argv[1:])
-    if "--reset" in args and config.DB_PATH.exists():
-        config.DB_PATH.unlink()
+    if "--reset" in args:
+        for suffix in ("", "-wal", "-shm"):  # WAL mode keeps two side files
+            f = config.DB_PATH.with_name(config.DB_PATH.name + suffix)
+            if f.exists():
+                f.unlink()
+        db._ready.discard(str(config.DB_PATH))
+    db.reset_corpus_hash()
     con = db.connect()
     metas = registry_docs()
     con.execute("DELETE FROM edges")

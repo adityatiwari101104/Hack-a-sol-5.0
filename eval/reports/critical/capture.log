@@ -1,0 +1,123 @@
+114 items, LLM_MODE=replay, ledger $2.7705
+W1124 00:25:44.752000 8243 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/BAAI/bge-small-en-v1.5: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'BAAI/bge-small-en-v1.5'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 5941.74it/s]
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 10780.31it/s]
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 16410.52it/s]
+[1/114] q001 Accurate     ANSWER    28.0s
+[2/114] q002 Accurate     ANSWER     4.8s
+[3/114] q003 Accurate     ANSWER     3.5s
+[4/114] q004 Accurate     ANSWER     1.6s
+[5/114] q005 Accurate     ANSWER     1.3s
+[6/114] q006 Incomplete   ERROR      3.3s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[7/114] q007 Incomplete   ERROR      2.6s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[8/114] q008 Incomplete   ERROR      1.5s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[9/114] q009 Incomplete   ERROR      2.8s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[10/114] q010 Accurate     ANSWER    10.5s
+[11/114] q011 Incomplete   ABSTAIN   12.8s
+[12/114] q012 Incomplete   ERROR      2.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[13/114] q013 Incomplete   ERROR      2.2s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[14/114] q014 Incomplete   ERROR      2.5s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[15/114] q015 Accurate     ANSWER     2.4s
+[16/114] q016 Accurate     ANSWER     6.5s
+[17/114] q017 Accurate     ANSWER     1.7s
+[18/114] q018 Accurate     ANSWER     3.5s
+[19/114] q019 Incomplete   ERROR      3.8s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[20/114] q020 Accurate     ANSWER     5.6s
+[21/114] q021 Incomplete   ERROR      3.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[22/114] q022 Accurate     ANSWER    16.2s
+[23/114] q023 Incomplete   ERROR      2.2s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[24/114] q024 Accurate     ANSWER     7.3s
+[25/114] q025 Incomplete   ERROR      3.4s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[26/114] q026 Incomplete   ERROR      2.0s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[27/114] q027 Incomplete   ERROR      2.4s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[28/114] q028 Incomplete   ERROR      2.5s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[29/114] q029 Accurate     CONFLICT  10.9s
+[30/114] q030 Incomplete   ERROR      4.3s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[31/114] q031 Incomplete   ERROR      2.3s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[32/114] q032 Incomplete   ERROR      1.9s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[33/114] q033 Incomplete   PARTIAL    8.7s
+[34/114] q034 Incomplete   ERROR      2.9s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[35/114] q035 Incomplete   ERROR      2.5s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[36/114] q036 Incomplete   ERROR      3.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[37/114] q037 Incomplete   ERROR      1.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[38/114] q038 Incomplete   ERROR      2.6s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[39/114] q039 Incomplete   ERROR      1.4s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[40/114] q040 Incomplete   ERROR      2.0s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[41/114] q041 Incomplete   ERROR      1.3s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[42/114] q042 Accurate     PARTIAL    3.6s
+[43/114] q043 Accurate     PARTIAL    3.1s
+[44/114] q044 Incomplete   ERROR      1.5s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[45/114] q045 Incomplete   ERROR      0.9s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[46/114] q046 Incomplete   ERROR      1.1s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[47/114] q047 Incomplete   ERROR      1.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[48/114] q048 Accurate     ANSWER     5.1s
+[49/114] q049 Incomplete   ERROR      1.4s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[50/114] q050 Accurate     ABSTAIN    0.9s
+[51/114] q051 Incomplete   ERROR      2.5s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[52/114] q052 Accurate     ABSTAIN    5.0s
+[53/114] q053 Incomplete   ERROR      1.1s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[54/114] q054 Incomplete   ERROR      1.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[55/114] q055 Incomplete   ERROR      1.5s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[56/114] q056 Incomplete   ERROR      1.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[57/114] q057 Incomplete   ABSTAIN   11.4s
+[58/114] q058 Incomplete   ERROR      1.9s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[59/114] q059 Incomplete   ERROR      2.2s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[60/114] q060 Incomplete   ERROR      2.4s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[61/114] q061 Incomplete   ERROR      2.2s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[62/114] q062 Accurate     ANSWER     1.1s
+[63/114] q063 Incomplete   ERROR      3.3s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[64/114] q064 Accurate     ANSWER     1.4s
+[65/114] q065 Incomplete   ERROR      1.0s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[66/114] q066 Accurate     PARTIAL   13.1s
+[67/114] q067 Incomplete   ERROR      3.1s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[68/114] q068 Incomplete   ERROR      1.8s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[69/114] q069 Incomplete   ERROR      2.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[70/114] q070 Incomplete   CONFLICT   2.6s
+[71/114] q071 Incomplete   ANSWER     1.3s
+[72/114] q072 Incomplete   ERROR      1.6s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[73/114] q073 Incomplete   ERROR      1.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[74/114] q074 Incomplete   ERROR      2.6s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[75/114] q075 Incomplete   ERROR      1.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[76/114] q076 Incomplete   ERROR      1.6s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (761 > 512). Running this sequence through the model will result in indexing errors
+[77/114] q077 Accurate     PARTIAL    7.8s
+[78/114] q078 Accurate     ABSTAIN    3.1s
+[79/114] q079 Incomplete   ERROR      2.4s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[80/114] q080 Incomplete   ERROR      1.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[81/114] f001 Incomplete   ANSWER     1.3s
+[82/114] f002 Accurate     ANSWER     5.1s
+[83/114] f003 Incomplete   ERROR      2.3s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[84/114] f004 Incomplete   ERROR      3.3s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[85/114] f005 Accurate     ANSWER     7.5s
+[86/114] f006 Incomplete   ABSTAIN    4.8s
+[87/114] f007 Incomplete   PARTIAL    2.5s
+[88/114] f008 Accurate     ANSWER     2.5s
+[89/114] f009 Accurate     ANSWER     1.4s
+[90/114] f010 Incomplete   PARTIAL    2.9s
+[91/114] f011 Accurate     ANSWER     1.0s
+[92/114] f012 Accurate     ANSWER     1.0s
+[93/114] f013 Accurate     ANSWER     0.7s
+[94/114] f014 Accurate     ANSWER     1.4s
+[95/114] f015 Accurate     ANSWER     1.2s
+[96/114] f016 Accurate     ANSWER     0.9s
+[97/114] f017 Accurate     ANSWER     0.8s
+[98/114] f018 Accurate     ANSWER     1.1s
+[99/114] f019 Accurate     PARTIAL    1.6s
+[100/114] f020 Accurate     PARTIAL    2.6s
+[101/114] f021 Incomplete   ERROR      0.8s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[102/114] f022 Incomplete   ERROR      0.9s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[103/114] f023 Accurate     PARTIAL    2.0s
+[104/114] f024 Accurate     PARTIAL    1.9s
+[105/114] f025 Incomplete   ERROR      1.0s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[106/114] f026 Incomplete   ERROR      1.7s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[107/114] f027 Incomplete   ERROR      1.5s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[108/114] f028 Accurate     ABSTAIN    2.1s
+[109/114] f029 Accurate     PARTIAL    2.6s
+[110/114] f030 Accurate     ABSTAIN    1.6s
+[111/114] f031 Incomplete   ERROR      0.9s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+[112/114] f032 Accurate     PARTIAL    3.0s
+[113/114] f033 Accurate     ABSTAIN    3.8s
+[114/114] f034 Incomplete   ERROR      1.6s  ERR CacheMiss: replay mode and no recorded response for draft_answer
+saved /Users/gaurav/Hack-a-sol-5.0/eval/reports/critical/capture.pkl.gz; spend this run $0.0521; ledger $2.8227

@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "prepayment_charge", "permitted": "yes", "reason": "The quote explicitly imposes a 2% foreclosure charge on prepaid amounts for fixed rate term loans, so prepayment charges are permitted and set by the circular."}, "usage": {"prompt_tokens": 289, "completion_tokens": 103}}

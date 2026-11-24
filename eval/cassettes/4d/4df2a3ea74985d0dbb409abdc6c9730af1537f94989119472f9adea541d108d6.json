@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The span states that the directions on release of original movable/immovable property documents apply to all cases where release falls due on or after December 1, 2023, which directly supports the sentence."}, "usage": {"prompt_tokens": 306, "completion_tokens": 57}}

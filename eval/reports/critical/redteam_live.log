@@ -1,0 +1,39 @@
+30 items, LLM_MODE=live, ledger $2.7705
+W1124 00:29:03.772000 9044 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/BAAI/bge-small-en-v1.5: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'BAAI/bge-small-en-v1.5'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 5233.68it/s]
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 8374.67it/s]
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 27277.55it/s]
+[1/30] r01 Accurate     PARTIAL   40.2s
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (728 > 512). Running this sequence through the model will result in indexing errors
+[2/30] r02 Accurate     ABSTAIN   40.8s
+[3/30] r03 Accurate     PARTIAL   15.9s
+[4/30] r04 Hallucinated PARTIAL   25.7s
+[5/30] r05 Hallucinated PARTIAL   13.1s
+[6/30] r06 Accurate     ANSWER     6.4s
+[7/30] r07 Accurate     ANSWER    12.4s
+[8/30] r08 Accurate     ABSTAIN    9.6s
+[9/30] r09 Accurate     PARTIAL   17.6s
+[10/30] r10 Incomplete   ANSWER     8.5s
+[11/30] r11 Incomplete   PARTIAL   18.2s
+[12/30] r12 Accurate     ANSWER    10.3s
+[13/30] r13 Accurate     ANSWER    13.8s
+[14/30] r14 Incomplete   ABSTAIN   19.5s
+[15/30] r15 Accurate     PARTIAL   28.3s
+[16/30] r16 Accurate     ANSWER    14.8s
+[17/30] r17 Accurate     ANSWER     6.9s
+[18/30] r18 Incomplete   ABSTAIN   21.6s
+[19/30] r19 Accurate     ANSWER    27.9s
+[20/30] r20 Accurate     ANSWER     8.0s
+[21/30] r21 Accurate     PARTIAL   19.5s
+[22/30] r22 Hallucinated PARTIAL   25.2s
+[23/30] h01 Accurate     ANSWER    26.0s
+[24/30] h02 Incomplete   ANSWER    10.2s
+[25/30] h03 Accurate     ANSWER    12.6s
+[26/30] h04 Accurate     ANSWER    18.4s
+[27/30] h05 Accurate     ANSWER     8.4s
+[28/30] h06 Accurate     PARTIAL   33.9s
+[29/30] h07 Accurate     ABSTAIN    5.4s
+[30/30] h08 Accurate     CONFLICT  36.1s
+saved /Users/gaurav/Hack-a-sol-5.0/eval/reports/critical/redteam_live.pkl.gz; spend this run $0.3045; ledger $3.0750

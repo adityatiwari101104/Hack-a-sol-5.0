@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited spans explicitly state that on foreclosure or pre-payment, the borrower shall pay a pre-payment charge of 3% of the principal outstanding. This matches the sentence’s claim."}, "usage": {"prompt_tokens": 361, "completion_tokens": 52}}

@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "accurate", "reason": "The answer gives the expected EMI pattern for ₹10,00,000 at 9% for 120 months: ₹12,667.58, which matches the reference. The extra text does not contradict the required result."}, "usage": {"prompt_tokens": 411, "completion_tokens": 67}}

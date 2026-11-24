@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The Key Facts Statement lists penal charges of ₹500 per month of default. ", "cites": ["E9", "E10"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2970, "completion_tokens": 155}}

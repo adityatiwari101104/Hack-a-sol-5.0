@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "The EMI is ₹21,696.", "source": "S1", "quote": "The EMI on the date of sanction is ₹21,696."}]}, "usage": {"prompt_tokens": 667, "completion_tokens": 129}}

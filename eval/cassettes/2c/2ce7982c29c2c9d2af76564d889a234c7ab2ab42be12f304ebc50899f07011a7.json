@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence explicitly states: “Tenor and repayment: 84 months, including a moratorium of 6 months, repayable in 78 equated monthly instalments,” which matches the claim."}, "usage": {"prompt_tokens": 252, "completion_tokens": 57}}

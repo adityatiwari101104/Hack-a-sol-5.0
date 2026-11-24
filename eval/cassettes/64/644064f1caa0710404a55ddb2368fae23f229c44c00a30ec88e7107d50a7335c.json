@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "Yes — for fresh loans, RBI’s instructions on penal charges apply to loans availed from April 1, 2024 onwards.", "cites": ["R2"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 3271, "completion_tokens": 200}}

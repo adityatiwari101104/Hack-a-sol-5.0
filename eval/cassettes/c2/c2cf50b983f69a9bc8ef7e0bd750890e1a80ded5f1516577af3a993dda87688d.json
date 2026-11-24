@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence shows a home loan of ₹25,00,000 with interest rate 8.5% p.a. (floating) and loan term 240 months, and it states the Equated Monthly Instalments (EMI) amount is ₹21,696."}, "usage": {"prompt_tokens": 597, "completion_tokens": 71}}

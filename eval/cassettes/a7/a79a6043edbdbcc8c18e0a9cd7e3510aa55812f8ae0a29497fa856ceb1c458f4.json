@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "hallucinated", "reason": "The reference required rejecting the premise and not computing 4%, but the answer explicitly computes ₹80,000.00 before noting the prohibition. That contradicts the expected behavior."}, "usage": {"prompt_tokens": 362, "completion_tokens": 58}}

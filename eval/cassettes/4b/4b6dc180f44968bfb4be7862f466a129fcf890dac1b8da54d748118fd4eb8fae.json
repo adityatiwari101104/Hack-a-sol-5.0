@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited in-force home-loan document explicitly states an EMI amount of ₹21,696 and 240 monthly instalments. The sentence accurately restates those facts."}, "usage": {"prompt_tokens": 472, "completion_tokens": 49}}

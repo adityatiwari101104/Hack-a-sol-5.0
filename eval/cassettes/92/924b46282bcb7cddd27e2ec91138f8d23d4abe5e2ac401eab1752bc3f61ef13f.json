@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence (KFS Annex B, table row for “Total Interest Amount to be charged during the entire tenor of the loan…”) states the total interest amount is 3,274 rupees, matching the claim of ₹3,274."}, "usage": {"prompt_tokens": 292, "completion_tokens": 87}}

@@ -1,0 +1,69 @@
+60 items, LLM_MODE=live, ledger $2.8786
+W1124 00:34:07.629000 10365 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/BAAI/bge-small-en-v1.5: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'BAAI/bge-small-en-v1.5'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4609.56it/s]
+[1/60] q006 Incomplete   ABSTAIN   17.2s
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 3673.25it/s]
+[2/60] q007 Accurate     ANSWER     6.1s
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 23676.60it/s]
+[3/60] q008 Accurate     PARTIAL   14.7s
+[4/60] q009 Accurate     ANSWER     8.3s
+[5/60] q012 Accurate     ANSWER    10.7s
+[6/60] q013 Accurate     ANSWER     3.2s
+[7/60] q014 Incomplete   ABSTAIN    5.6s
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (805 > 512). Running this sequence through the model will result in indexing errors
+[8/60] q019 Accurate     ANSWER     7.5s
+[9/60] q021 Accurate     PARTIAL   17.0s
+[10/60] q023 Accurate     ANSWER     9.7s
+[11/60] q025 Accurate     ANSWER     7.9s
+[12/60] q026 Incomplete   ABSTAIN    7.2s
+[13/60] q027 Accurate     PARTIAL    6.0s
+[14/60] q028 Accurate     ANSWER     4.5s
+[15/60] q030 Accurate     ANSWER     5.5s
+[16/60] q031 Accurate     PARTIAL    4.7s
+[17/60] q032 Accurate     CONFLICT  10.1s
+[18/60] q034 Accurate     CONFLICT  13.8s
+[19/60] q035 Accurate     CONFLICT  16.8s
+[20/60] q036 Accurate     CONFLICT  11.9s
+[21/60] q037 Accurate     PARTIAL   10.2s
+[22/60] q038 Accurate     PARTIAL    5.5s
+[23/60] q039 Accurate     PARTIAL   30.5s
+[24/60] q040 Accurate     ANSWER     9.1s
+[25/60] q041 Accurate     PARTIAL   22.2s
+[26/60] q044 Accurate     ABSTAIN   30.9s
+[27/60] q045 Accurate     ABSTAIN   30.1s
+[28/60] q046 Accurate     ABSTAIN    6.7s
+[29/60] q047 Accurate     ANSWER    15.8s
+[30/60] q049 Accurate     PARTIAL   13.4s
+[31/60] q051 Accurate     ABSTAIN    2.1s
+[32/60] q053 Accurate     ABSTAIN   18.7s
+[33/60] q054 Accurate     CONFLICT  10.6s
+[34/60] q055 Accurate     ANSWER     3.8s
+[35/60] q056 Accurate     ANSWER     5.1s
+[36/60] q058 Accurate     ANSWER     4.7s
+[37/60] q059 Accurate     ANSWER     3.9s
+[38/60] q060 Accurate     CONFLICT  10.4s
+[39/60] q061 Accurate     PARTIAL    4.1s
+[40/60] q063 Accurate     CONFLICT   7.7s
+[41/60] q065 Incomplete   ANSWER     4.2s
+[42/60] q067 Accurate     ANSWER    17.9s
+[43/60] q068 Accurate     CONFLICT  16.9s
+[44/60] q069 Accurate     CONFLICT  18.5s
+[45/60] q072 Accurate     PARTIAL   14.9s
+[46/60] q073 Accurate     PARTIAL   23.0s
+[47/60] q074 Accurate     PARTIAL   22.8s
+[48/60] q075 Accurate     PARTIAL    9.9s
+[49/60] q076 Accurate     PARTIAL    5.0s
+[50/60] q079 Incomplete   ABSTAIN    6.7s
+[51/60] q080 Accurate     ABSTAIN   14.1s
+[52/60] f003 Accurate     PARTIAL   10.4s
+[53/60] f004 Accurate     PARTIAL    7.3s
+[54/60] f021 Accurate     ANSWER     9.8s
+[55/60] f022 Accurate     CONFLICT  11.1s
+[56/60] f025 Accurate     CONFLICT  11.7s
+[57/60] f026 Accurate     CONFLICT  12.6s
+[58/60] f027 Accurate     CONFLICT  21.1s
+[59/60] f031 Accurate     ANSWER     4.7s
+[60/60] f034 Accurate     ABSTAIN   11.4s
+saved /Users/gaurav/Hack-a-sol-5.0/eval/reports/critical/devtest_live.pkl.gz; spend this run $0.4073; ledger $3.2858

@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans explicitly state that in the KFS Annex B illustration for computation of APR, the Annual Percentage Rate / effective annualized interest rate is 17.07% (in percentage)."}, "usage": {"prompt_tokens": 398, "completion_tokens": 53}}

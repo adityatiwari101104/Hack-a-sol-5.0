@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source directly states that there should be no capitalization of penal charges, meaning no further interest is computed on those charges. This matches the sentence’s two claims."}, "usage": {"prompt_tokens": 293, "completion_tokens": 48}}

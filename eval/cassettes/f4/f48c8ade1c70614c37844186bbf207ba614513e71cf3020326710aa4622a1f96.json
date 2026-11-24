@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans explicitly state that the loan is a home loan (term loan), individual, non-business purpose, with a loan term of 240 months and 240 monthly instalments. This matches the sentence exactly."}, "usage": {"prompt_tokens": 601, "completion_tokens": 64}}

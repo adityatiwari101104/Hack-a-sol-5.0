@@ -5,7 +5,11 @@ demo watermark are stripped. White/invisible text is kept in the text layer but 
 never become evidence (prompt-injection defence).
 """
 import hashlib
+import os
 import re
+import shutil
+import subprocess
+import tempfile
 from collections import Counter
 
 import pdfplumber
@@ -54,7 +58,53 @@ def _drop_stamp_letters(words):
                                      (round(w["x0"] / 6) in bad or w["text"] not in "aAIi"))]
 
 
-def read_pdf(path):
+TESSERACT = os.getenv("TESSERACT", shutil.which("tesseract") or "/opt/homebrew/bin/tesseract")
+OCR_DPI = 300
+
+
+def ocr_languages():
+    try:
+        out = subprocess.run([TESSERACT, "--list-langs"], capture_output=True, text=True, timeout=20).stdout
+    except (OSError, subprocess.SubprocessError):
+        return []
+    have = {ln.strip() for ln in out.splitlines()[1:]}
+    return [x for x in ("eng", "hin") if x in have]
+
+
+def ocr_words(page):
+    """Words with boxes (PDF points, top-left origin) for a page that has no text layer: render at 300 dpi and run
+    Tesseract (Apache-2.0). Every word is marked ocr=True so its quotes carry an 'OCR text, check the page image' badge."""
+    langs = ocr_languages()
+    if not langs:
+        raise RuntimeError("Tesseract is not installed (needed to read scanned pages)")
+    img = page.to_image(resolution=OCR_DPI).original
+    with tempfile.TemporaryDirectory() as tmp:
+        png = os.path.join(tmp, "page.png")
+        img.save(png)
+        out = subprocess.run([TESSERACT, png, "stdout", "-l", "+".join(langs), "--psm", "3", "tsv"],
+                             capture_output=True, text=True, timeout=120)
+    if out.returncode != 0:
+        raise RuntimeError(f"tesseract failed: {out.stderr[:200]}")
+    k = 72.0 / OCR_DPI
+    words = []
+    for line in out.stdout.splitlines()[1:]:
+        f = line.split("\t")
+        if len(f) < 12 or f[0] != "5" or not f[11].strip():
+            continue
+        try:
+            conf = float(f[10])
+        except ValueError:
+            continue
+        if conf < 30:
+            continue
+        x, y, w, h = (int(v) for v in f[6:10])
+        words.append({"text": f[11].strip(), "x0": x * k, "x1": (x + w) * k, "top": y * k, "bottom": (y + h) * k,
+                      "upright": True, "non_stroking_color": None, "ocr": True, "ocr_conf": conf})
+    return words
+
+
+def read_pdf(path, ocr=False):
+    """ocr=True: a page with (almost) no text layer is read with Tesseract instead of being silently empty."""
     pages = []
     with pdfplumber.open(path) as pdf:
         for pno, page in enumerate(pdf.pages, start=1):
@@ -69,6 +119,9 @@ def read_pdf(path):
             words = page.extract_words(use_text_flow=True, keep_blank_chars=False, extra_attrs=["non_stroking_color"])
             words = [w for w in words if w.get("upright", True)]  # drop rotated stamps ("Withdrawn") and watermarks
             words = _drop_stamp_letters(words)
+            used_ocr = False
+            if ocr and len([w for w in words if not _is_white(w)]) < 5:
+                words, tables, used_ocr = ocr_words(page), [], True
             for w in words:
                 w["hidden"] = _is_white(w)
                 w["in_table"] = any(tb["bbox"][0] - 1 <= w["x0"] and w["x1"] <= tb["bbox"][2] + 1 and
@@ -83,7 +136,7 @@ def read_pdf(path):
                     cur.append(w)
             if cur:
                 lines.append(cur)
-            pages.append({"page_no": pno, "width": float(page.width), "height": float(page.height),
+            pages.append({"page_no": pno, "width": float(page.width), "height": float(page.height), "ocr": used_ocr,
                           "lines": [{"text": " ".join(x["text"] for x in sorted(ln, key=lambda w: w["x0"])),
                                      "words": sorted(ln, key=lambda w: w["x0"]),
                                      "top": min(x["top"] for x in ln), "bottom": max(x["bottom"] for x in ln)}
@@ -125,6 +178,8 @@ class _Chunk:
             self.words.append({"t": w["text"], "p": page_no, "x0": round(w["x0"], 1), "top": round(w["top"], 1),
                                "x1": round(w["x1"], 1), "bottom": round(w["bottom"], 1), "s": start,
                                "e": start + len(w["text"]), "h": bool(w.get("hidden"))})
+            if w.get("ocr"):
+                self.words[-1]["o"] = 1  # read by OCR (only uploads; the shipped corpus has a text layer)
 
 
 def _key_order(key):

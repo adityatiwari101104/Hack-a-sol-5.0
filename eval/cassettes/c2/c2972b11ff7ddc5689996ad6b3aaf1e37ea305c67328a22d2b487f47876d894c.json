@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans state that a UCB must provide a KFS to all prospective borrowers, and that it must be in the standardised format given in Annex XIII. This matches the sentence's claim."}, "usage": {"prompt_tokens": 374, "completion_tokens": 55}}

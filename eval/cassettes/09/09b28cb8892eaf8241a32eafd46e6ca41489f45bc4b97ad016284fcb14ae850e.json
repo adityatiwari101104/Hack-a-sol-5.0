@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans directly state that clause 9.3 in one document requires a 2% pre-payment charge and clause 9.3 in the other requires a 3% pre-payment charge, both calculated on the principal outstanding."}, "usage": {"prompt_tokens": 383, "completion_tokens": 62}}

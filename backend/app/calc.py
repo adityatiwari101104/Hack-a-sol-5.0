@@ -18,6 +18,19 @@ def emi(principal, annual_rate_pct, months):
     return p * r * f / (f - 1)
 
 
+def inr(v):
+    """Indian digit grouping without float noise: 2500000 -> '25,00,000', 8.5 -> '8.5', 21695.58 -> '21,695.58'
+    (lakh/crore grouping applies to the integer part)."""
+    v = float(v)
+    whole, frac = f"{abs(v):.2f}".split(".")
+    head, tail = whole[:-3], whole[-3:]
+    while len(head) > 2:
+        tail, head = head[-2:] + "," + tail, head[:-2]
+    grouped = (head + "," + tail) if head else tail
+    frac = frac.rstrip("0")
+    return ("-" if v < 0 else "") + grouped + (f".{frac}" if frac else "")
+
+
 def money(x):
     return Decimal(x).quantize(PAISE, rounding=ROUND_HALF_UP)
 

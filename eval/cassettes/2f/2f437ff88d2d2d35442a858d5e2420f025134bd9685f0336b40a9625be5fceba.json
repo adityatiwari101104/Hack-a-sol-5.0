@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "accurate", "reason": "The answer gives the expected EMI amount of ₹14,295.19, matching the reference pattern. The extra surrounding text does not contradict the reference."}, "usage": {"prompt_tokens": 378, "completion_tokens": 52}}

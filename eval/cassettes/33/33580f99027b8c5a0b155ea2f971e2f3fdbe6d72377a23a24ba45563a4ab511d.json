@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited RBI-UCB rule directly says there shall be no capitalization of penal charges, meaning no further interest may be computed on such charges. This matches the sentence exactly."}, "usage": {"prompt_tokens": 395, "completion_tokens": 50}}

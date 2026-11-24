@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "not_supported", "reason": "The cited FAQ spans only define what a gold loan is and its tenure. They do not mention any pre-payment charge, nor do they support the claim that such a charge is absent from the FAQ."}, "usage": {"prompt_tokens": 334, "completion_tokens": 63}}

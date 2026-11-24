@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "incomplete", "reason": "The answer says RBI directions require penal charges to be reasonable and tied to default, but it does not answer the key reference point that no upper limit has been prescribed. It is therefore incomplete."}, "usage": {"prompt_tokens": 294, "completion_tokens": 60}}

@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "span": "Processing fee ₹400 (one-time)", "reason": "The evidence explicitly states the processing fee as “₹400 (one-time)”, which matches the claim that it is ₹400 (one-time) rather than Rs 4,000."}, "usage": {"prompt_tokens": 474, "completion_tokens": 92}}

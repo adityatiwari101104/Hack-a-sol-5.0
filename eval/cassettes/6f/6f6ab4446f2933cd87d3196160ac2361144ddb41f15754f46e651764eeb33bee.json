@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence table lists a “Documentation fee” with amount/rate ₹500 and the “When payable” condition as “Once, at execution,” which matches the claim."}, "usage": {"prompt_tokens": 299, "completion_tokens": 51}}

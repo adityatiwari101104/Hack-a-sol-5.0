@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The span directly states that a UCB must remove charges registered with any registry within 30 days after full repayment/settlement. The sentence paraphrases this requirement accurately."}, "usage": {"prompt_tokens": 305, "completion_tokens": 56}}

@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source span states the 'Total amount to be paid by the borrower (sum of 1 and 5)' as 23,274 rupees, which directly supports the sentence that the overall rupee amount to repay in total is ₹23,274."}, "usage": {"prompt_tokens": 297, "completion_tokens": 68}}

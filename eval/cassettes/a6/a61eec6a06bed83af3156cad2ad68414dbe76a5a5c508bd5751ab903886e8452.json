@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans state that the bank is a Tier 3 UCB and that the directions apply to all UCBs, which directly supports the sentence."}, "usage": {"prompt_tokens": 336, "completion_tokens": 46}}

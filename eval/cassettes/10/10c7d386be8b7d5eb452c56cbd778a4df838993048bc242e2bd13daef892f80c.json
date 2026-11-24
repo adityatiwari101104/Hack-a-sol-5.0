@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited span explicitly states row 3 is a pre-payment charge of 3% of principal outstanding on pre-payment or foreclosure, which supports the sentence’s claim that the excerpt shows 3% rather than 2%."}, "usage": {"prompt_tokens": 308, "completion_tokens": 61}}

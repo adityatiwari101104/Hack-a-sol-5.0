@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited spans explicitly state a ₹25,00,000 home loan at 8.5% p.a. for a 240-month term and give the EMI amount as ₹21,696. The sentence matches those facts."}, "usage": {"prompt_tokens": 670, "completion_tokens": 62}}

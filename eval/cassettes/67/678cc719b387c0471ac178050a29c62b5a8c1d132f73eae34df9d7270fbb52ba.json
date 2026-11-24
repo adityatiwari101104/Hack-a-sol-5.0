@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited span directly states that for individual borrowers on floating rate loans for non-business purposes, no foreclosure charge applies, which matches the sentence exactly."}, "usage": {"prompt_tokens": 287, "completion_tokens": 45}}

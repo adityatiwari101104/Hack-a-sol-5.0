@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence shows Schedule II includes a 'Documentation fee' of ₹500 with 'When payable: Once, at execution' (row No. 2). This matches the claim."}, "usage": {"prompt_tokens": 253, "completion_tokens": 53}}

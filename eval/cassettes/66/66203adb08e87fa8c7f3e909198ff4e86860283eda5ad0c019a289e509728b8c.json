@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited spans directly state that the loan shall be repaid in 240 monthly instalments, which matches the sentence’s claim about 240 monthly payments under the home loan agreement."}, "usage": {"prompt_tokens": 312, "completion_tokens": 52}}

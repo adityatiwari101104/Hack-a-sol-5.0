@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "accurate", "reason": "The answer matches the reference key fact that merely referring to the online schedule in the sanction letter and loan documents “shall not suffice,” and it correctly says this is not compliant."}, "usage": {"prompt_tokens": 343, "completion_tokens": 51}}

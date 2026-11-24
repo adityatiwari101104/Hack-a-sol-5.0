@@ -2,41 +2,44 @@
  "summary": {
   "n": 30,
   "labels": {
-   "Accurate": 25,
-   "Incomplete": 5,
+   "Accurate": 27,
+   "Incomplete": 3,
    "Hallucinated": 0
   },
-  "accurate_rate": 0.833,
+  "accurate_rate": 0.9,
   "accurate_ci95": [
-   0.664,
-   0.927
+   0.744,
+   0.965
   ],
   "hallucinated_rate": 0.0,
   "fabricated_quotes": 0,
-  "quotes_checked": 70,
-  "fabricated_upper95_rule_of_three": 0.043,
-  "abstention_precision": 0.5,
-  "abstention_recall": 0.6,
-  "answer_rate": 0.8,
-  "over_refusal": 0.13,
-  "point_in_time_accuracy": 1.0,
+  "quotes_checked": 89,
+  "fabricated_upper95_rule_of_three": 0.034,
+  "abstention_precision": 0.714,
+  "abstention_recall": 1.0,
+  "answer_rate": 0.767,
+  "over_refusal": 0.087,
+  "point_in_time_accuracy": 0.75,
   "contradiction_recall": 1.0,
   "different_condition_false_positive": 0.0,
-  "calc_accuracy": 0.667,
-  "draft_faithfulness_mean": 0.614,
-  "latency_p50_ms": 4822,
-  "latency_p95_ms": 8080,
-  "spend_usd_upper_bound": 0.1575,
-  "cost_per_query_usd_upper_bound": 0.00525,
+  "calc_accuracy": 1.0,
+  "draft_faithfulness_mean": 0.764,
+  "pre_gate_rate_mean": 0.779,
+  "blocked_sentences": 17,
+  "shown_verified_rate": 1.0,
+  "latency_p50_ms": 1101,
+  "latency_p95_ms": 4582,
+  "spend_usd_upper_bound": 0.0,
+  "cost_per_query_usd_upper_bound": 0.0,
   "by_type": {
    "amendment_point_in_time": {
-    "Accurate": 4,
-    "Incomplete": 0,
+    "Accurate": 3,
+    "Incomplete": 1,
     "Hallucinated": 0
    },
    "calculation": {
-    "Accurate": 2,
-    "Incomplete": 1,
+    "Accurate": 3,
+    "Incomplete": 0,
     "Hallucinated": 0
    },
    "contradiction_different_condition": {
@@ -75,8 +78,8 @@
     "Hallucinated": 0
    },
    "table_numeric": {
-    "Accurate": 1,
-    "Incomplete": 3,
+    "Accurate": 3,
+    "Incomplete": 1,
     "Hallucinated": 0
    },
    "unanswerable_missing": {
@@ -103,21 +106,35 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 3,
+   "n_quotes": 5,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 2,
     "draft_total": 2,
+    "draft_pass": 2,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 2,
+    "shown_drafted": 2,
+    "blocked": 0,
+    "code_statements": 0,
     "final_pass": 2,
-    "final_total": 2,
-    "code_statements": 0
+    "final_total": 2
    },
-   "latency_ms": 5790,
+   "latency_ms": 7842,
    "question": "What compensation must a UCB pay a borrower for delay in releasing original property documents after full repayment?",
-   "answer": "A UCB must release the original property documents and remove the charge within 30 days after full repayment or settlement of the loan account. If the delay in releasing the original property documents is attributable to the UCB, it must compensate the borrower at the rate of ₹5,000 for each day of delay.",
+   "answer": "Yes — if the delay in releasing the original movable / immovable property documents beyond 30 days after full repayment / settlement is attributable to a UCB, it shall compensate the borrower at the rate of ₹5,000 for each day of delay. If the delay is not attributable to the UCB, it shall communicate reasons for such delay to the borrower.",
    "blocked": [],
-   "query_id": "c968217854c4"
+   "query_id": "fa3c58230797",
+   "best_sim": 0.873,
+   "gate_reason": null,
+   "subjects": [
+    "other"
+   ],
+   "case": {},
+   "n_rules": 0
   },
   {
    "id": "q006",
@@ -125,7 +142,7 @@
    "split": "test",
    "canary": false,
    "label": "Accurate",
-   "outcome": "PARTIAL",
+   "outcome": "ANSWER",
    "expected": [
     "ANSWER",
     "PARTIAL"
@@ -139,17 +156,38 @@
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 2,
-    "draft_total": 2,
-    "final_pass": 2,
-    "final_total": 2,
-    "code_statements": 0
+    "draft_total": 3,
+    "draft_pass": 3,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 3,
+    "shown_drafted": 3,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 3,
+    "final_total": 3
    },
-   "latency_ms": 8269,
+   "latency_ms": 2800,
    "question": "Can a UCB charge any fee that is not mentioned in the KFS?",
-   "answer": "For new retail and MSME term loans sanctioned on or after 1 October 2024 by a UCB, fees or charges not mentioned in the KFS cannot be charged to the borrower at any stage during the loan term without the borrower’s explicit consent.  The available facts do not include the sanction date, so I cannot confirm from the record whether this specific loan falls within that UCB rule’s stated scope. ",
+   "answer": "No: for all new retail and MSME term loans sanctioned on or after October 1, 2024, a UCB cannot charge any fees, charges, etc. not mentioned in the KFS at any stage during the term of the loan without explicit consent of the borrower. The KFS is the standardised statement of the key terms of a loan, including the annual percentage rate (APR), the fees and charges and the repayment schedule, provided to the borrower before execution of the loan contract. For this case, the bank is Example UCB (fictional) · Tier 3 UCB and the sanction date is 2026-02-10, so the cited UCB rule applies.",
    "blocked": [],
-   "query_id": "0d0f9b3f7e28"
+   "query_id": "30843670a778",
+   "best_sim": 0.812,
+   "gate_reason": null,
+   "subjects": [
+    "fees_not_in_kfs"
+   ],
+   "case": {
+    "rate_type": "floating",
+    "borrower": "individual",
+    "purpose": "non_business",
+    "facility": "term_loan",
+    "amount_inr": 2500000.0,
+    "sanction_date": "2026-02-10"
+   },
+   "n_rules": 1
   },
   {
    "id": "q007",
@@ -167,21 +205,35 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 3,
+   "n_quotes": 4,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 3,
     "draft_total": 3,
+    "draft_pass": 3,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 3,
+    "shown_drafted": 3,
+    "blocked": 0,
+    "code_statements": 0,
     "final_pass": 3,
-    "final_total": 3,
-    "code_statements": 0
+    "final_total": 3
    },
-   "latency_ms": 8080,
+   "latency_ms": 667,
    "question": "Can a UCB levy charges when pre-payment of a loan happens at the instance of the bank itself?",
-   "answer": "No; a UCB shall not levy any charges where pre-payment is effected at the instance of the bank.  The current UCB directions on pre-payment charges apply to loans and advances sanctioned or renewed on or after January 1, 2026.  The earlier RBI directions on pre-payment charges are no longer in force on 2026-11-23. ",
+   "answer": "No, a UCB shall not levy any charges where pre-payment is effected at the instance of the bank. This rule is stated for loans and advances sanctioned or renewed on or after January 1, 2026. The documents do not state any exception to that no-charge rule for pre-payment at the instance of the bank.",
    "blocked": [],
-   "query_id": "9b280ef30f44"
+   "query_id": "6e1832c1d9d4",
+   "best_sim": 0.856,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge"
+   ],
+   "case": {},
+   "n_rules": 5
   },
   {
    "id": "q009",
@@ -199,58 +251,91 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 5,
+   "n_quotes": 4,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 3,
     "draft_total": 3,
+    "draft_pass": 3,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 3,
+    "shown_drafted": 3,
+    "blocked": 0,
+    "code_statements": 0,
     "final_pass": 3,
-    "final_total": 3,
-    "code_statements": 0
+    "final_total": 3
    },
-   "latency_ms": 7164,
+   "latency_ms": 637,
    "question": "How must a UCB disclose whether pre-payment charges apply to a loan?",
-   "answer": "A UCB must clearly disclose whether pre-payment charges apply in the sanction letter and the loan agreement. Where a key fact statement is required, the same disclosure must also be mentioned in the key fact statement. A UCB must not charge pre-payment charges that were not disclosed as required.",
+   "answer": "Yes: the applicability or otherwise of pre-payment charges shall be clearly disclosed in the sanction letter and loan agreement. For loans and advances where KFS is to be provided as specified in paragraph 256, the same shall also be mentioned in the KFS. No pre-payment charges which have not been disclosed as specified herein shall be charged by a UCB.",
    "blocked": [],
-   "query_id": "b45bf0e27bca"
+   "query_id": "87dbe4634a20",
+   "best_sim": 0.83,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge",
+    "apr_disclosure",
+    "fees_not_in_kfs",
+    "other"
+   ],
+   "case": {},
+   "n_rules": 9
   },
   {
    "id": "q012",
    "type": "table_numeric",
    "split": "test",
    "canary": false,
-   "label": "Incomplete",
-   "outcome": "ABSTAIN",
+   "label": "Accurate",
+   "outcome": "ANSWER",
    "expected": [
     "ANSWER",
     "PARTIAL"
    ],
-   "outcome_ok": false,
-   "facts_ok": false,
-   "cite_ok": false,
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 0,
+   "n_quotes": 1,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 0,
     "draft_total": 1,
-    "final_pass": 0,
-    "final_total": 0,
-    "code_statements": 0
+    "draft_pass": 1,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 1,
+    "shown_drafted": 1,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 1,
+    "final_total": 1
    },
-   "latency_ms": 3503,
+   "latency_ms": 541,
    "question": "In RBI's KFS APR illustration, what is the total interest amount charged over the tenor?",
-   "answer": "",
-   "blocked": [
-    [
-     "The total interest amount charged over the entire tenor in the KFS APR illustration is ₹3,274. ",
-     "number/date not in cited evidence: ['rs:3274']"
-    ]
+   "answer": "Yes — the total interest amount to be charged during the entire tenor is 3,274.",
+   "blocked": [],
+   "query_id": "4e71362fc84e",
+   "best_sim": 0.747,
+   "gate_reason": null,
+   "subjects": [
+    "apr_disclosure"
    ],
-   "query_id": "1a884c199c96"
+   "case": {
+    "rate_type": "floating",
+    "borrower": "individual",
+    "purpose": "non_business",
+    "facility": "term_loan",
+    "amount_inr": 2500000.0,
+    "sanction_date": "2026-02-10"
+   },
+   "n_rules": 3
   },
   {
    "id": "q013",
@@ -272,63 +357,89 @@
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
+    "draft_total": 1,
     "draft_pass": 0,
-    "draft_total": 2,
+    "repair_used": false,
+    "repair_total": 1,
+    "repair_pass": 0,
+    "pre_gate_rate": 0.0,
+    "shown": 0,
+    "shown_drafted": 0,
+    "blocked": 1,
+    "code_statements": 0,
     "final_pass": 0,
-    "final_total": 0,
-    "code_statements": 0
+    "final_total": 0
    },
-   "latency_ms": 5023,
+   "latency_ms": 4582,
    "question": "In RBI's KFS APR illustration, what is the net disbursed amount?",
    "answer": "",
    "blocked": [
     [
-     "The evidence shows the hypothetical APR illustration uses a loan amount of ₹20,000, but it does not state the net disbursed amount as a separate figure. ",
-     "rs:20000 appears in the evidence but not next to the claim's subject"
-    ],
-    [
-     "The in-force directions say APR is computed on the net disbursed amount using the IRR approach, but they do not provide the net disbursed amount in the cited il",
-     "not supported by cited evidence (HHEM 0.05 < 0.5)"
+     "Yes — in the KFS APR illustration, the net disbursed amount is 19,600.",
+     "not supported by cited evidence (HHEM 0.09 < 0.5)"
     ]
    ],
-   "query_id": "e1d7087662b3"
+   "query_id": "f671e43e8c1f",
+   "best_sim": 0.742,
+   "gate_reason": null,
+   "subjects": [
+    "apr_disclosure"
+   ],
+   "case": {
+    "rate_type": "floating",
+    "borrower": "individual",
+    "purpose": "non_business",
+    "facility": "term_loan",
+    "amount_inr": 2500000.0,
+    "sanction_date": "2026-02-10"
+   },
+   "n_rules": 3
   },
   {
    "id": "q014",
    "type": "table_numeric",
    "split": "test",
    "canary": false,
-   "label": "Incomplete",
-   "outcome": "ABSTAIN",
+   "label": "Accurate",
+   "outcome": "ANSWER",
    "expected": [
     "ANSWER",
     "PARTIAL"
    ],
-   "outcome_ok": false,
-   "facts_ok": false,
-   "cite_ok": false,
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 0,
+   "n_quotes": 1,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 0,
     "draft_total": 1,
-    "final_pass": 0,
-    "final_total": 0,
-    "code_statements": 0
+    "draft_pass": 1,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 1,
+    "shown_drafted": 1,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 1,
+    "final_total": 1
    },
-   "latency_ms": 3680,
+   "latency_ms": 1678,
    "question": "In RBI's illustrative repayment schedule, what is the interest component of the first instalment?",
-   "answer": "",
-   "blocked": [
-    [
-     "In the RBI illustrative repayment schedule, the interest component of the first instalment is ₹250.",
-     "number/date not in cited evidence: ['rs:250']"
-    ]
+   "answer": "Yes, in the illustrative repayment schedule the interest component of the first instalment is 250.",
+   "blocked": [],
+   "query_id": "41e360c254a3",
+   "best_sim": 0.794,
+   "gate_reason": null,
+   "subjects": [
+    "other"
    ],
-   "query_id": "06a1f4baf5e9"
+   "case": {},
+   "n_rules": 0
   },
   {
    "id": "q019",
@@ -336,7 +447,65 @@
    "split": "test",
    "canary": false,
    "label": "Accurate",
-   "outcome": "ANSWER",
+   "outcome": "PARTIAL",
+   "expected": [
+    "ANSWER",
+    "PARTIAL"
+   ],
+   "outcome_ok": true,
+   "facts_ok": true,
+   "cite_ok": true,
+   "missing_ok": true,
+   "forbid_hit": [],
+   "n_quotes": 0,
+   "fabricated": 0,
+   "conflict_flag": false,
+   "faith": {
+    "draft_total": 1,
+    "draft_pass": 0,
+    "repair_used": false,
+    "repair_total": 2,
+    "repair_pass": 0,
+    "pre_gate_rate": 0.0,
+    "shown": 1,
+    "shown_drafted": 0,
+    "blocked": 1,
+    "code_statements": 1,
+    "final_pass": 1,
+    "final_total": 1
+   },
+   "latency_ms": 2662,
+   "question": "What is the EMI for the KFS illustration loan of Rs 20,000 at 15% per annum for 24 months?",
+   "answer": "Emi computed by code: ₹969.73 (inputs from your question: principal=20,000, annual_rate_pct=15, months=24; formula P·r·(1+r)^n / ((1+r)^n − 1), r = annual rate / 1200). Working, instalment 1: interest ₹250.00 on opening balance ₹20000.00, principal ₹719.73.",
+   "blocked": [
+    [
+     "The documents do not state the EMI amount for the Rs 20,000 KFS illustration at 15% per annum for 24 months; they state those inputs in the APR illustration but",
+     "not supported by cited evidence (HHEM 0.39 < 0.5)"
+    ]
+   ],
+   "query_id": "010e0369724c",
+   "best_sim": 0.707,
+   "gate_reason": null,
+   "subjects": [
+    "other"
+   ],
+   "case": {
+    "amount_inr": 20000.0,
+    "rate_type": "floating",
+    "borrower": "individual",
+    "purpose": "non_business",
+    "facility": "term_loan",
+    "sanction_date": "2026-02-10"
+   },
+   "n_rules": 0
+  },
+  {
+   "id": "q021",
+   "type": "calculation",
+   "split": "test",
+   "canary": false,
+   "label": "Accurate",
+   "outcome": "PARTIAL",
    "expected": [
     "ANSWER",
     "PARTIAL"
@@ -350,95 +519,87 @@
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
+    "draft_total": 2,
     "draft_pass": 1,
-    "draft_total": 4,
-    "final_pass": 1,
-    "final_total": 1,
-    "code_statements": 0
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 0.5,
+    "shown": 2,
+    "shown_drafted": 1,
+    "blocked": 1,
+    "code_statements": 1,
+    "final_pass": 2,
+    "final_total": 2
    },
-   "latency_ms": 4836,
-   "question": "What is the EMI for the KFS illustration loan of Rs 20,000 at 15% per annum for 24 months?",
-   "answer": "The KFS illustration for a sanctioned loan amount of ₹20,000 at 15% with a monthly EPI for 24 instalments shows an EMI of ₹970 per month.",
-   "blocked": [
-    [
-     "The illustration for a sanctioned loan amount of ₹20,000 at 15% with a monthly EPI for 24 instalments shows an EMI of ₹970 per month.",
-     "number/date not in cited evidence: ['rs:970']"
-    ]
-   ],
-   "query_id": "e8d7269ef3fb"
-  },
-  {
-   "id": "q021",
-   "type": "calculation",
-   "split": "test",
-   "canary": false,
-   "label": "Incomplete",
-   "outcome": "ANSWER",
-   "expected": [
-    "ANSWER",
-    "PARTIAL"
-   ],
-   "outcome_ok": true,
-   "facts_ok": false,
-   "cite_ok": true,
-   "missing_ok": true,
-   "forbid_hit": [],
-   "n_quotes": 3,
-   "fabricated": 0,
-   "conflict_flag": false,
-   "faith": {
-    "draft_pass": 1,
-    "draft_total": 4,
-    "final_pass": 1,
-    "final_total": 1,
-    "code_statements": 0
-   },
-   "latency_ms": 5916,
+   "latency_ms": 857,
    "question": "What is the total interest payable over the full tenor on Rs 25,00,000 at 8.5% for 240 months?",
-   "answer": "The loan amount is ₹25,00,000, the interest rate is 8.5% per annum, and the loan term is 240 months.",
+   "answer": "Total Interest computed by code: ₹2,706,939.40 (inputs from your question: principal=25,00,000, annual_rate_pct=8.5, months=240; formula EMI × n − P). Working, instalment 1: interest ₹17708.33 on opening balance ₹2500000.00, principal ₹3987.25. The documents do not state the total interest payable for ₹25,00,000 at 8.50% for 240 months; they state that interest is calculated on the daily reducing balance of the Loan and applied with monthly rests, and they state the sanctioned amount ₹25,00,000, the rate of interest 8.50% per annum, floating, and the tenor 240 months.",
    "blocked": [
     [
-     "The total interest payable over the full tenor is ₹2,706,939.40. [E5]",
-     "not supported by cited evidence (HHEM 0.02 < 0.5)"
-    ],
-    [
-     "The total interest payable over the full tenor is ₹2,706,939.40.",
-     "not supported by cited evidence (HHEM 0.02 < 0.5)"
+     "A calculation is needed to derive the total interest payable over the full tenor from the principal, annual rate, and months.",
+     "not supported by cited evidence (HHEM 0.42 < 0.5)"
     ]
    ],
-   "query_id": "b42fa57669ec"
+   "query_id": "372af649bd76",
+   "best_sim": 0.749,
+   "gate_reason": null,
+   "subjects": [
+    "other"
+   ],
+   "case": {
+    "amount_inr": 2500000.0
+   },
+   "n_rules": 0
   },
   {
    "id": "q023",
    "type": "amendment_point_in_time",
    "split": "test",
    "canary": false,
-   "label": "Accurate",
-   "outcome": "ANSWER",
+   "label": "Incomplete",
+   "outcome": "ABSTAIN",
    "expected": [
     "ANSWER",
     "PARTIAL"
    ],
-   "outcome_ok": true,
+   "outcome_ok": false,
    "facts_ok": true,
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 3,
+   "n_quotes": 6,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 2,
-    "draft_total": 2,
-    "final_pass": 2,
-    "final_total": 2,
-    "code_statements": 0
+    "draft_total": 3,
+    "draft_pass": 3,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 3,
+    "shown_drafted": 3,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 3,
+    "final_total": 3
    },
-   "latency_ms": 2452,
+   "latency_ms": 809,
    "question": "At the time of interest rate reset, must the lender offer EMI-based personal loan borrowers the option to switch to a fixed rate?",
-   "answer": "No; at the time of reset of interest rates, the applicable directions say the lender may, at its option, provide a choice to switch to a fixed rate as per its Board-approved policy. The bank’s own policy is consistent with that wording, because it says the Bank may, at its option, offer the borrower a choice to switch to a fixed rate at the time of reset of the floating rate.",
+   "answer": "No, the documents do not state that the lender must offer EMI-based personal loan borrowers the option to switch to a fixed rate at reset; they state that the REs \"may, at its option,\" provide that choice as per their Board approved policy. The applicable reset rule is for \"EMI based floating rate personal loans\" and covers the time of reset of interest rates. The documents also state that the policy may specify the number of times a borrower will be allowed to switch during the tenor of the loan, if such an option is provided.",
    "blocked": [],
-   "query_id": "52ef7e71e279"
+   "query_id": "c84dff681d91",
+   "best_sim": 0.784,
+   "gate_reason": null,
+   "subjects": [
+    "fixed_rate_switch_offer"
+   ],
+   "case": {
+    "borrower": "individual",
+    "purpose": "non_business"
+   },
+   "n_rules": 0
   },
   {
    "id": "q025",
@@ -460,17 +621,31 @@
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 1,
     "draft_total": 1,
+    "draft_pass": 1,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 1,
+    "shown_drafted": 1,
+    "blocked": 0,
+    "code_statements": 0,
     "final_pass": 1,
-    "final_total": 1,
-    "code_statements": 0
+    "final_total": 1
    },
-   "latency_ms": 2693,
+   "latency_ms": 919,
    "question": "From when do RBI's penal charges instructions apply to fresh loans?",
-   "answer": "The instructions apply to fresh loans availed from April 1, 2024 onwards.",
+   "answer": "Yes — for fresh loans, RBI’s instructions on penal charges apply to loans availed from April 1, 2024 onwards.",
    "blocked": [],
-   "query_id": "6ef346e482dc"
+   "query_id": "19eac5b6de19",
+   "best_sim": 0.842,
+   "gate_reason": null,
+   "subjects": [
+    "penal_charges"
+   ],
+   "case": {},
+   "n_rules": 3
   },
   {
    "id": "q028",
@@ -489,21 +664,42 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 2,
+   "n_quotes": 4,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 2,
-    "draft_total": 2,
-    "final_pass": 2,
-    "final_total": 2,
-    "code_statements": 0
+    "draft_total": 3,
+    "draft_pass": 3,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 3,
+    "shown_drafted": 3,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 3,
+    "final_total": 3
    },
-   "latency_ms": 744,
+   "latency_ms": 928,
    "question": "Can a Tier 3 UCB levy a pre-payment charge on a Rs 40 lakh floating-rate business loan to an MSE proprietor sanctioned on 15 March 2026?",
-   "answer": "No: for a floating-rate business loan to an MSE sanctioned on or after 1 January 2026, a Tier 3 UCB shall not levy any pre-payment charges when the sanctioned amount/limit is up to ₹50 lakh, and this case is within that bracket. The older RBI pre-payment-charge directions are no longer in force on the as-of date, so they do not govern this case.",
+   "answer": "No, a Tier 3 UCB shall not levy any pre-payment charges on this floating rate business loan to an MSE when the sanctioned amount is ₹40 lakh and the sanction date is 15 March 2026. The applicable direction covers floating rate loans granted for business purpose to Micro and Small Enterprises, and for a Tier 3 UCB it says no pre-payment charges on loans with sanctioned amount / limit up to ₹50 lakh. The earlier pre-payment-charge directions were superseded and are no longer in force on 2026-11-23.",
    "blocked": [],
-   "query_id": "d07225283d29"
+   "query_id": "30cc26b685a8",
+   "best_sim": 0.883,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge"
+   ],
+   "case": {
+    "rate_type": "floating",
+    "borrower": "mse",
+    "purpose": "business",
+    "facility": "term_loan",
+    "amount_inr": 4000000.0,
+    "sanction_date": "2026-03-15"
+   },
+   "n_rules": 2
   },
   {
    "id": "q031",
@@ -522,21 +718,40 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 2,
+   "n_quotes": 3,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 3,
-    "draft_total": 3,
-    "final_pass": 3,
-    "final_total": 3,
-    "code_statements": 0
+    "draft_total": 2,
+    "draft_pass": 2,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 2,
+    "shown_drafted": 2,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 2,
+    "final_total": 2
    },
-   "latency_ms": 2231,
+   "latency_ms": 604,
    "question": "Can a UCB charge foreclosure charges on a floating rate home loan to an individual sanctioned in 2023?",
-   "answer": "No, a UCB shall not charge pre-payment charges on an existing floating rate term loan sanctioned before December 31, 2025 to an individual for a purpose other than business. The same result applies to this case because the borrower is an individual, the facility is a term loan, the rate is floating, the purpose is non-business, and the sanction date is before December 31, 2025. The earlier 2014 floating-rate foreclosure-charge circular is no longer in force, and the current UCB directions control instead.",
+   "answer": "No— for existing floating rate term loans sanctioned before December 31, 2025 for purposes other than business to individual borrowers, a UCB shall not charge pre-payment charges. “Foreclosure” means pre-payment of the loan in full, so this covers foreclosure charges.",
    "blocked": [],
-   "query_id": "578f715b99ed"
+   "query_id": "f8d550571679",
+   "best_sim": 0.831,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge"
+   ],
+   "case": {
+    "rate_type": "floating",
+    "borrower": "individual",
+    "purpose": "non_business",
+    "sanction_date": "2023-01-01"
+   },
+   "n_rules": 1
   },
   {
    "id": "q034",
@@ -555,34 +770,42 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 4,
+   "n_quotes": 6,
    "fabricated": 0,
    "conflict_flag": true,
    "faith": {
-    "draft_pass": 2,
-    "draft_total": 6,
-    "final_pass": 3,
-    "final_total": 3,
-    "code_statements": 1
+    "draft_total": 3,
+    "draft_pass": 3,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 4,
+    "shown_drafted": 3,
+    "blocked": 0,
+    "code_statements": 1,
+    "final_pass": 4,
+    "final_total": 4
    },
-   "latency_ms": 7956,
+   "latency_ms": 663,
    "question": "Is the 2% pre-payment charge in the Rs 40 lakh MSE sanction letter allowed for our Tier 3 UCB?",
-   "answer": "The bank’s MSE business loan sanction letters say pre-payment charges are 2% of the amount prepaid. For a UCB’s loans sanctioned or renewed on or after 2026-01-01, the current RBI directions say a Tier 3 UCB shall not levy any pre-payment charges on business-purpose loans to MSEs with a sanctioned amount or limit up to ₹50 lakh. Conflict on prepayment charge: UCB Responsible Business Conduct Directions, 2025 (updated 1 Jul 2026) §261(2)(ii) (p.81) says \"A Tier 3 UCB shall not levy any pre-payment charges on loans with sanctioned amount / limit up to ₹50 lakh.\", while Sanction Letters – MSE bus",
-   "blocked": [
-    [
-     "If the loan was sanctioned or renewed on or after 2026-01-01, a Tier 3 UCB shall not levy any pre-payment charges on business-purpose loans to MSEs with sanctio",
-     "not supported by cited evidence (HHEM 0.16 < 0.5)"
-    ],
-    [
-     "The sanction date was not provided, so I could not confirm whether the January 1, 2026 rule applies to this specific sanction letter. ",
-     "date:2026-01-01 appears in the evidence but not next to the claim's subject"
-    ],
-    [
-     "Because the sanction date was not provided, I cannot confirm whether this specific sanction letter falls under that in-force direction.",
-     "not supported by cited evidence (HHEM 0.48 < 0.5)"
-    ]
+   "answer": "No, the documents say a Tier 3 UCB shall not levy any pre-payment charges on business-purpose loans to Micro and Small Enterprises with sanctioned amount / limit up to ₹50 lakh, and this applies to loans sanctioned or renewed on or after January 1, 2026. Your case facts match that rule because the borrower is mse, the purpose is business, the bank is Tier 3 UCB, the amount is ₹4,000,000, and the sanction date is 2026-03-15. The documents also state that no pre-payment charges which have not been disclosed as specified may be charged by a UCB. Conflict on prepayment charge: UCB Responsible Busi",
+   "blocked": [],
+   "query_id": "4b23ced1c09a",
+   "best_sim": 0.812,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge"
    ],
-   "query_id": "0bde63ab3471"
+   "case": {
+    "borrower": "mse",
+    "purpose": "business",
+    "amount_inr": 4000000.0,
+    "rate_type": "floating",
+    "facility": "term_loan",
+    "sanction_date": "2026-03-15"
+   },
+   "n_rules": 2
   },
   {
    "id": "q037",
@@ -605,22 +828,48 @@
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 2,
     "draft_total": 3,
-    "final_pass": 2,
-    "final_total": 2,
-    "code_statements": 0
+    "draft_pass": 1,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 0.333,
+    "shown": 1,
+    "shown_drafted": 1,
+    "blocked": 2,
+    "code_statements": 0,
+    "final_pass": 1,
+    "final_total": 1
    },
-   "latency_ms": 3647,
+   "latency_ms": 1098,
    "question": "Can we charge the Rs 500 documentation fee in the home loan agreement when the KFS lists only a processing fee?",
-   "answer": "For a UCB, fees and charges not mentioned in the KFS cannot be charged at any stage during the term of the loan without the borrower’s explicit consent.  Whether that restriction applies here is not fully answered because the rule finding says applicability is unknown and needs the sanction date. ",
+   "answer": "No, a ₹500 documentation fee cannot be charged by a UCB at any stage during the term of the loan if it is not mentioned in the KFS, without explicit consent of the borrower.",
    "blocked": [
     [
-     "The current loan agreement lists a ₹500 documentation fee payable at execution, while the KFS lists only a ₹400 processing fee as a one-time charge, so the two ",
-     "not supported by cited evidence (HHEM 0.11 < 0.5)"
+     "The KFS item shown in the documents lists only “Processing fee ₹400 (one-time)”.",
+     "not supported by cited evidence (HHEM 0.09 < 0.5)"
+    ],
+    [
+     "The home loan agreement also shows “Documentation fee ₹500 Once, at execution”.",
+     "not supported by cited evidence (HHEM 0.20 < 0.5)"
     ]
    ],
-   "query_id": "61deabb80747"
+   "query_id": "4c55c7cd43fd",
+   "best_sim": 0.734,
+   "gate_reason": null,
+   "subjects": [
+    "documentation_fee",
+    "fees_not_in_kfs"
+   ],
+   "case": {
+    "borrower": "individual",
+    "purpose": "non_business",
+    "facility": "term_loan",
+    "rate_type": "floating",
+    "amount_inr": 2500000.0,
+    "sanction_date": "2026-02-10"
+   },
+   "n_rules": 1
   },
   {
    "id": "q039",
@@ -628,7 +877,7 @@
    "split": "test",
    "canary": false,
    "label": "Accurate",
-   "outcome": "PARTIAL",
+   "outcome": "ANSWER",
    "expected": [
     "ANSWER",
     "PARTIAL"
@@ -638,26 +887,47 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 8,
+   "n_quotes": 6,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 3,
-    "draft_total": 4,
+    "draft_total": 3,
+    "draft_pass": 2,
+    "repair_used": true,
+    "repair_total": 3,
+    "repair_pass": 3,
+    "pre_gate_rate": 0.833,
+    "shown": 3,
+    "shown_drafted": 3,
+    "blocked": 1,
+    "code_statements": 0,
     "final_pass": 3,
-    "final_total": 3,
-    "code_statements": 0
+    "final_total": 3
    },
-   "latency_ms": 770,
+   "latency_ms": 1423,
    "question": "Is the 2% pre-payment charge in the Rs 80 lakh MSE sanction letter a violation for our Tier 3 UCB?",
-   "answer": "For cases other than those covered by that no-charge rule, pre-payment charges may be as per the UCB’s approved policy, and for term loans any levied charge must be based on the amount being prepaid. The directions also require the applicability or otherwise of pre-payment charges to be clearly disclosed in the sanction letter and loan agreement, and they say charges not disclosed as specified there shall not be charged. I cannot determine from the provided evidence whether the 2% charge is a violation, because the sanction date and the actual sanction-letter wording for the 2% charge are not ",
+   "answer": "No: the documents do not state that a 2% pre-payment charge in this Rs 80 lakh MSE sanction letter is a violation for a Tier 3 UCB, because the no-charge rule for a Tier 3 UCB applies to business purpose loans to Micro and Small Enterprises with sanctioned amount / limit up to ₹50 lakh, and this case is above that amount. For cases other than those mentioned at paragraph 261(1) and (2), pre-payment charges, if any, shall be as per the approved policy of a UCB, and for term loans the charge, if levied, shall be based on the amount being prepaid. The applicability or otherwise of pre-payment cha",
    "blocked": [
     [
-     "For a Tier 3 UCB, the in-force rule for loans to MSEs says no pre-payment charges apply only when the sanctioned amount/limit is up to ₹50 lakh, and the case fa",
-     "not supported by cited evidence (HHEM 0.11 < 0.5)"
+     "No: the documents do not state that a 2% pre-payment charge in this Rs 80 lakh MSE sanction letter is a violation for a Tier 3 UCB, because loans for business p",
+     "not supported by cited evidence (HHEM 0.08 < 0.5)"
     ]
    ],
-   "query_id": "70eb61825b78"
+   "query_id": "2ded88c50e94",
+   "best_sim": 0.804,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge"
+   ],
+   "case": {
+    "borrower": "mse",
+    "purpose": "business",
+    "amount_inr": 8000000.0,
+    "rate_type": "floating",
+    "facility": "term_loan",
+    "sanction_date": "2026-03-15"
+   },
+   "n_rules": 2
   },
   {
    "id": "q041",
@@ -665,7 +935,7 @@
    "split": "test",
    "canary": false,
    "label": "Accurate",
-   "outcome": "PARTIAL",
+   "outcome": "ABSTAIN",
    "expected": [
     "ABSTAIN",
     "PARTIAL"
@@ -675,30 +945,44 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 3,
+   "n_quotes": 1,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 2,
-    "draft_total": 4,
-    "final_pass": 2,
-    "final_total": 2,
-    "code_statements": 0
+    "draft_total": 3,
+    "draft_pass": 1,
+    "repair_used": false,
+    "repair_total": 3,
+    "repair_pass": 2,
+    "pre_gate_rate": 0.5,
+    "shown": 1,
+    "shown_drafted": 1,
+    "blocked": 2,
+    "code_statements": 0,
+    "final_pass": 1,
+    "final_total": 1
    },
-   "latency_ms": 4566,
+   "latency_ms": 1765,
    "question": "What is the pre-payment penalty on our gold loans?",
-   "answer": "For UCBs, the in-force directions say pre-payment charges on loans and advances sanctioned or renewed on or after 1 January 2026 are subject to paragraph 261, but applicability is unknown without the sanction date and other facts.  So the pre-payment penalty on gold loans cannot be answered from the provided evidence, and the searched materials did not include a gold-loan clause stating the charge or a sanction date for the loan. ",
+   "answer": "For loans and advances sanctioned or renewed on or after January 1, 2026, paragraph 261(5) says that in cases other than those mentioned at paragraph 261(1) and (2) above, pre-payment charges, if any, shall be as per the approved policy of a UCB.",
    "blocked": [
     [
-     "The evidence does not show a gold-loan-specific pre-payment penalty for this bank, and the only gold-loan document says gold loans are granted for up to 12 mont",
-     "not supported by cited evidence (HHEM 0.09 < 0.5)"
+     "The documents do not state a specific pre-payment penalty for gold loans.",
+     "not supported by cited evidence (HHEM 0.03 < 0.5)"
     ],
     [
-     "The only bank documents stating a pre-payment charge are home-loan clauses, and they conflict because one says 2% of the principal outstanding while another say",
-     "pct:3 appears in the evidence but not next to the claim's subject"
+     "The documents mention 2% of the principal outstanding in one Home Loan Agreement and 3% of the principal outstanding in a copy of that agreement, but they do no",
+     "not supported by cited evidence (HHEM 0.02 < 0.5)"
     ]
    ],
-   "query_id": "ed72ea4ec9b7"
+   "query_id": "39d4dde85c79",
+   "best_sim": 0.766,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge"
+   ],
+   "case": {},
+   "n_rules": 5
   },
   {
    "id": "q045",
@@ -706,7 +990,7 @@
    "split": "test",
    "canary": false,
    "label": "Accurate",
-   "outcome": "PARTIAL",
+   "outcome": "ABSTAIN",
    "expected": [
     "ABSTAIN",
     "PARTIAL"
@@ -716,30 +1000,48 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 2,
+   "n_quotes": 0,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 2,
-    "draft_total": 4,
-    "final_pass": 2,
-    "final_total": 2,
-    "code_statements": 0
+    "draft_total": 3,
+    "draft_pass": 0,
+    "repair_used": false,
+    "repair_total": 2,
+    "repair_pass": 0,
+    "pre_gate_rate": 0.0,
+    "shown": 0,
+    "shown_drafted": 0,
+    "blocked": 3,
+    "code_statements": 0,
+    "final_pass": 0,
+    "final_total": 0
    },
-   "latency_ms": 3194,
+   "latency_ms": 2429,
    "question": "What is the processing fee for our gold loans?",
-   "answer": "Gold loans are governed by the bank’s Gold Loan Operational Guidelines, read with the Retail Loan Policy. The policy says processing fee and documentation charges are recovered as applicable at the time of sanction.",
+   "answer": "",
    "blocked": [
     [
-     "The evidence does not state a specific processing-fee amount for gold loans.",
-     "not supported by cited evidence (HHEM 0.41 < 0.5)"
+     "The documents do not state a processing fee for gold loans.",
+     "not supported by cited evidence (HHEM 0.05 < 0.5)"
     ],
     [
-     "Other loan documents in the evidence show different processing-fee amounts for other products, but they do not provide a gold-loan processing fee. ",
-     "not supported by cited evidence (HHEM 0.01 < 0.5)"
+     "The gold-loan documents say gold loans shall be governed by the Gold Loan Operational Guidelines of the Bank, but they do not give a processing-fee amount there",
+     "not supported by cited evidence (HHEM 0.02 < 0.5)"
+    ],
+    [
+     "A processing fee of ₹400 appears in the Home Loan Agreement, but that document is for home loans, not gold loans.",
+     "not supported by cited evidence (HHEM 0.29 < 0.5)"
     ]
    ],
-   "query_id": "82f2b4f21b0f"
+   "query_id": "965f8d3a6f9f",
+   "best_sim": 0.745,
+   "gate_reason": null,
+   "subjects": [
+    "processing_fee"
+   ],
+   "case": {},
+   "n_rules": 0
   },
   {
    "id": "q047",
@@ -758,26 +1060,52 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 4,
+   "n_quotes": 2,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 2,
     "draft_total": 3,
-    "final_pass": 2,
-    "final_total": 2,
-    "code_statements": 0
+    "draft_pass": 1,
+    "repair_used": true,
+    "repair_total": 3,
+    "repair_pass": 1,
+    "pre_gate_rate": 0.333,
+    "shown": 1,
+    "shown_drafted": 1,
+    "blocked": 4,
+    "code_statements": 0,
+    "final_pass": 1,
+    "final_total": 1
    },
-   "latency_ms": 3769,
+   "latency_ms": 2892,
    "question": "Since RBI capped penal charges at 2%, what is the maximum penal charge we can levy?",
-   "answer": "The current UCB directions instead require penal charges, if charged, to be treated as penal charges and not as penal interest, and they must not be levied on the earlier outstanding amount of penal charges. Your bank’s sanction letters state penal charges of 1% per annum on the amount in default for the period of default, with no interest computed on penal charges.",
+   "answer": "The documents state only that such penal charges shall be reasonable and levied only on the amount under default in a non-discriminatory manner as per the Board approved policy.",
    "blocked": [
     [
-     "The assumption that RBI has capped penal charges at 2% is not supported by the in-force UCB directions, which say no upper limit or cap for penal charges has be",
-     "not supported by cited evidence (HHEM 0.06 < 0.5)"
+     "No—the documents do not state a 2% cap; the current RBI direction says no upper limit / cap for penal charges has been prescribed.",
+     "not supported by cited evidence (HHEM 0.08 < 0.5)"
+    ],
+    [
+     "The bank’s own documents state ₹500 per month of default in the home loan agreement and KFS, and 1% per annum on the amount in default for MSE business loans.",
+     "not supported by cited evidence (HHEM 0.04 < 0.5)"
+    ],
+    [
+     "No—the documents do not state a 2% cap for penal charges, and the current RBI direction says no upper limit / cap for penal charges has been prescribed.",
+     "not supported by cited evidence (HHEM 0.08 < 0.5)"
+    ],
+    [
+     "The bank’s own documents state ₹500 per month of default in the home loan agreement and KFS, and 1% per annum on the amount in default for MSE business loans.",
+     "not supported by cited evidence (HHEM 0.04 < 0.5)"
     ]
    ],
-   "query_id": "12517443afe3"
+   "query_id": "2bf75113bb0f",
+   "best_sim": 0.745,
+   "gate_reason": null,
+   "subjects": [
+    "penal_charges"
+   ],
+   "case": {},
+   "n_rules": 3
   },
   {
    "id": "q050",
@@ -797,23 +1125,17 @@
    "n_quotes": 0,
    "fabricated": 0,
    "conflict_flag": false,
-   "faith": {
-    "draft_pass": 0,
-    "draft_total": 1,
-    "final_pass": 0,
-    "final_total": 0,
-    "code_statements": 0
-   },
-   "latency_ms": 4424,
+   "faith": {},
+   "latency_ms": 980,
    "question": "Who won the 2024 T20 cricket world cup?",
    "answer": "",
-   "blocked": [
-    [
-     "The provided evidence and rule findings are about RBI banking directions and do not state who won the 2024 T20 cricket world cup, so the question cannot be answ",
-     "states a current fact but cites text that is SUPERSEDED on the as-of date (E8); only type=chain may cite it"
-    ]
-   ],
-   "query_id": "c2e2247a9968"
+   "blocked": [],
+   "query_id": "d3dcddcc5405",
+   "best_sim": 0.521,
+   "gate_reason": "retrieval gate: best evidence similarity 0.52",
+   "subjects": [],
+   "case": {},
+   "n_rules": 0
   },
   {
    "id": "q053",
@@ -831,26 +1153,40 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 0,
+   "n_quotes": 3,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 0,
-    "draft_total": 1,
-    "final_pass": 0,
-    "final_total": 0,
-    "code_statements": 0
+    "draft_total": 2,
+    "draft_pass": 1,
+    "repair_used": false,
+    "repair_total": 3,
+    "repair_pass": 2,
+    "pre_gate_rate": 0.6,
+    "shown": 1,
+    "shown_drafted": 1,
+    "blocked": 1,
+    "code_statements": 0,
+    "final_pass": 1,
+    "final_total": 1
    },
-   "latency_ms": 4822,
+   "latency_ms": 1534,
    "question": "What does our gold loan FAQ say about the pre-payment charge percentage?",
-   "answer": "",
+   "answer": "The Gold Loan FAQ says only that gold loans are granted against the security of gold ornaments pledged with the Bank, that the loan amount is a percentage of the assessed value of the gold ornaments, and that gold loans are granted for a period of up to 12 months.",
    "blocked": [
     [
-     "The gold loan FAQ does not state any pre-payment charge percentage in the covered sections, and the listed FAQ topics are about what a gold loan is, how much ca",
-     "not supported by cited evidence (HHEM 0.34 < 0.5)"
+     "The Gold Loan FAQ does not state any pre-payment charge percentage.",
+     "not supported by cited evidence (HHEM 0.02 < 0.5)"
     ]
    ],
-   "query_id": "9bae5e0875b2"
+   "query_id": "fa3c531babde",
+   "best_sim": 0.813,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge"
+   ],
+   "case": {},
+   "n_rules": 5
   },
   {
    "id": "q055",
@@ -868,21 +1204,35 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 1,
+   "n_quotes": 2,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 1,
-    "draft_total": 1,
-    "final_pass": 1,
-    "final_total": 1,
-    "code_statements": 0
+    "draft_total": 2,
+    "draft_pass": 2,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 2,
+    "shown_drafted": 2,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 2,
+    "final_total": 2
    },
-   "latency_ms": 3299,
+   "latency_ms": 650,
    "question": "Within how many days after full repayment must a UCB release the original property documents?",
-   "answer": "A UCB must release all original movable or immovable property documents within 30 days after full repayment or settlement of the loan account.",
+   "answer": "Yes—UCB must release all the original movable / immovable property documents within a period of 30 days after full repayment/ settlement of the loan account. The documents also state that, if release is delayed beyond 30 days after full repayment/ settlement of the loan account, the bank must communicate the reasons for the delay.",
    "blocked": [],
-   "query_id": "e5a2e4fef7a4"
+   "query_id": "f851335ef048",
+   "best_sim": 0.883,
+   "gate_reason": null,
+   "subjects": [
+    "other"
+   ],
+   "case": {},
+   "n_rules": 0
   },
   {
    "id": "q058",
@@ -901,21 +1251,42 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 1,
+   "n_quotes": 2,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 1,
-    "draft_total": 1,
-    "final_pass": 1,
-    "final_total": 1,
-    "code_statements": 0
+    "draft_total": 2,
+    "draft_pass": 2,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 2,
+    "shown_drafted": 2,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 2,
+    "final_total": 2
    },
-   "latency_ms": 4270,
+   "latency_ms": 1101,
    "question": "What penal charge does the Key Facts Statement for our home loan list?",
-   "answer": "The Key Facts Statement lists penal charges as ₹500 per month of default. ",
+   "answer": "The KFS for the home loan lists penal charges of ₹500 per month of default. The Home Loan Agreement says penal charges shall be disclosed in the KFS and in Schedule II.",
    "blocked": [],
-   "query_id": "2b320e45621e"
+   "query_id": "e7df3a8ce86d",
+   "best_sim": 0.83,
+   "gate_reason": null,
+   "subjects": [
+    "penal_charges"
+   ],
+   "case": {
+    "borrower": "individual",
+    "purpose": "non_business",
+    "rate_type": "floating",
+    "facility": "term_loan",
+    "amount_inr": 2500000.0,
+    "sanction_date": "2026-02-10"
+   },
+   "n_rules": 3
   },
   {
    "id": "q061",
@@ -923,7 +1294,7 @@
    "split": "test",
    "canary": false,
    "label": "Accurate",
-   "outcome": "PARTIAL",
+   "outcome": "ANSWER",
    "expected": [
     "ANSWER",
     "PARTIAL",
@@ -934,21 +1305,42 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 6,
+   "n_quotes": 2,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 2,
-    "draft_total": 2,
-    "final_pass": 2,
-    "final_total": 2,
-    "code_statements": 0
+    "draft_total": 1,
+    "draft_pass": 1,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 1,
+    "shown_drafted": 1,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 1,
+    "final_total": 1
    },
-   "latency_ms": 3882,
+   "latency_ms": 563,
    "question": "What date of agreement and loan amount does our home loan agreement record?",
-   "answer": "The agreement record shows a date of sanction of 10 February 2026, and it does not state a separate agreement date in the cited text.  The loan amount recorded is ₹25,00,000. ",
+   "answer": "Yes — the Home Loan Agreement was made on 10 February 2026, and the Loan is ₹25,00,000.",
    "blocked": [],
-   "query_id": "3610420ee38a"
+   "query_id": "cdc2bc0bcbb2",
+   "best_sim": 0.829,
+   "gate_reason": null,
+   "subjects": [
+    "fees_not_in_kfs"
+   ],
+   "case": {
+    "borrower": "individual",
+    "purpose": "non_business",
+    "rate_type": "floating",
+    "facility": "term_loan",
+    "amount_inr": 2500000.0,
+    "sanction_date": "2026-02-10"
+   },
+   "n_rules": 1
   },
   {
    "id": "q065",
@@ -966,21 +1358,40 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 2,
+   "n_quotes": 9,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 3,
-    "draft_total": 3,
-    "final_pass": 3,
-    "final_total": 3,
-    "code_statements": 0
+    "draft_total": 2,
+    "draft_pass": 2,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 2,
+    "shown_drafted": 2,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 2,
+    "final_total": 2
    },
-   "latency_ms": 5388,
+   "latency_ms": 705,
    "question": "Does our Retail Loan Policy allow the bank to offer a switch to a fixed rate at reset, and is that consistent with RBI's current rule for UCBs?",
-   "answer": "The Retail Loan Policy allows the bank, at the time of reset of a floating rate, to offer the borrower a choice to switch to a fixed rate as per its Board-approved policy. That option is consistent with the current RBI rule for UCBs, which also permits a UCB, at its option, to provide a choice to switch over to a fixed rate at the time of reset of interest rates as per its Board-approved policy. The earlier RBI circular on reset of floating interest rate on EMI-based personal loans was withdrawn and was no longer in force on the as-of date. ",
+   "answer": "Yes, the Retail Loan Policy allows the Bank, at the time of reset of the floating rate, to offer the borrower a choice to switch to a fixed rate as per its Board approved policy. Yes, that is consistent with the current UCB rule, which says a UCB may, at its option, provide a choice to the borrowers to switch over to a fixed rate at the time of reset of interest rates as per its Board approved policy, and disclose applicable charges for switching from floating to fixed rate.",
    "blocked": [],
-   "query_id": "709c91b289fa"
+   "query_id": "40a829fc402b",
+   "best_sim": 0.825,
+   "gate_reason": null,
+   "subjects": [
+    "fixed_rate_switch_offer",
+    "apr_disclosure",
+    "other"
+   ],
+   "case": {
+    "borrower": "non_individual",
+    "purpose": "non_business"
+   },
+   "n_rules": 4
   },
   {
    "id": "q067",
@@ -998,26 +1409,37 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 3,
+   "n_quotes": 6,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 1,
     "draft_total": 2,
-    "final_pass": 1,
-    "final_total": 1,
-    "code_statements": 0
+    "draft_pass": 2,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 3,
+    "shown_drafted": 2,
+    "blocked": 0,
+    "code_statements": 1,
+    "final_pass": 3,
+    "final_total": 3
    },
-   "latency_ms": 7026,
+   "latency_ms": 1270,
    "question": "What is the APR for a net disbursed amount of Rs 19,600 repaid in 24 monthly instalments of Rs 969.73?",
-   "answer": "For a net disbursed amount of ₹19,600 repaid in 24 monthly instalments of ₹969.73, the APR is 17.07% under the applicable UCB Responsible Business Conduct Directions illustration.",
-   "blocked": [
-    [
-     "The APR is 17.07% for a net disbursed amount of ₹19,600 under the UCB Responsible Business Conduct Directions illustration.",
-     "pct:17.07 appears in the evidence but not next to the claim's subject"
-    ]
+   "answer": "Apr Irr computed by code: 17.07% (inputs from your question: net_disbursed=19,600, instalment=969.73, months=24; formula solve net disbursed = Σ EMI/(1+i)^t; APR = 12·i). Yes — the APR is 17.07% for a net disbursed amount of Rs 19,600 repaid in 24 monthly instalments of Rs 969.73. The documents state that APR means the annual cost of credit and that it is computed on net disbursed amount using IRR approach and reducing balance method.",
+   "blocked": [],
+   "query_id": "e01000354bbf",
+   "best_sim": 0.749,
+   "gate_reason": null,
+   "subjects": [
+    "apr_disclosure"
    ],
-   "query_id": "b45c755801a0"
+   "case": {
+    "amount_inr": 19600.0
+   },
+   "n_rules": 3
   },
   {
    "id": "q068",
@@ -1036,26 +1458,42 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 3,
+   "n_quotes": 4,
    "fabricated": 0,
    "conflict_flag": true,
    "faith": {
-    "draft_pass": 3,
     "draft_total": 4,
-    "final_pass": 6,
-    "final_total": 6,
-    "code_statements": 3
+    "draft_pass": 4,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 7,
+    "shown_drafted": 4,
+    "blocked": 0,
+    "code_statements": 3,
+    "final_pass": 7,
+    "final_total": 7
    },
-   "latency_ms": 6658,
+   "latency_ms": 1044,
    "question": "Is clause 9.3 of the copy of our home loan agreement compliant with RBI's pre-payment rules?",
-   "answer": "The copy of clause 9.3 says a pre-payment charge of 3% of the principal outstanding is payable on foreclosure or pre-payment, so it does impose a pre-payment charge. The Reserve Bank of India (Pre-payment Charges on Loans) Directions, 2025 are no longer in force as of 2026-11-23, and the earlier 2014 foreclosure-charge circular was also withdrawn. On the evidence provided, I cannot confirm that clause 9.3 is compliant with the currently applicable RBI pre-payment rules, because the current UCB rule findings that could decide this still need the missing facility, rate_type, and sanction_date. C",
-   "blocked": [
-    [
-     "For an individual loan for a non-business purpose, the 2025 directions said an RE shall not levy pre-payment charges on all floating rate loans, but the code-ve",
-     "states a current fact but cites text that is SUPERSEDED on the as-of date (E10); only type=chain may cite it"
-    ]
+   "answer": "No, clause 9.3 of the copy is not compliant with the applicable RBI pre-payment rule for this case. The copy says that, in the event of foreclosure or pre-payment of the loan, in full or in part, the Borrower shall pay a pre-payment charge of 3% of the principal outstanding. For a UCB, where the borrower is an individual, the purpose is non_business, the rate type is floating, and the loan was sanctioned on 2026-02-10, pre-payment charge is not permitted. The documents therefore show a conflict between the copy’s 3% charge and the applicable RBI direction that no pre-payment charge is permitte",
+   "blocked": [],
+   "query_id": "188784502e38",
+   "best_sim": 0.755,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge"
    ],
-   "query_id": "e4496d36e07e"
+   "case": {
+    "borrower": "individual",
+    "purpose": "non_business",
+    "rate_type": "floating",
+    "facility": "term_loan",
+    "amount_inr": 2500000.0,
+    "sanction_date": "2026-02-10"
+   },
+   "n_rules": 2
   },
   {
    "id": "q072",
@@ -1074,34 +1512,42 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 1,
+   "n_quotes": 6,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 1,
-    "draft_total": 4,
-    "final_pass": 1,
-    "final_total": 1,
-    "code_statements": 0
+    "draft_total": 3,
+    "draft_pass": 3,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 3,
+    "shown_drafted": 3,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 3,
+    "final_total": 3
    },
-   "latency_ms": 7419,
+   "latency_ms": 2864,
    "question": "Does a 2% foreclosure charge on a fixed-rate term loan to a private limited company conflict with RBI's pre-payment rules for UCBs?",
-   "answer": "The bank’s own product note says a 2% foreclosure charge applies to non-individual corporate borrowers on a term loan.",
-   "blocked": [
-    [
-     "On the evidence provided, the cited UCB pre-payment restrictions expressly prohibit pre-payment charges for floating-rate loans in the stated cases, while “othe",
-     "not supported by cited evidence (HHEM 0.19 < 0.5)"
-    ],
-    [
-     "The evidence also says the dual/special-rate rule depends on whether the loan is on floating rate at the time of pre-payment, which does not describe a fixed-ra",
-     "not supported by cited evidence (HHEM 0.46 < 0.5)"
-    ],
-    [
-     "I could not confirm whether the loan was sanctioned or renewed on or after 2026-01-01, so I could not fully test the timing condition in the UCB directions.",
-     "date:2026-01-01 appears in the evidence but not next to the claim's subject"
-    ]
+   "answer": "No, the documents do not state that a 2% foreclosure charge on a fixed-rate term loan to a private limited company conflicts with the RBI pre-payment rules for UCBs; this case falls under the residual rule that, in cases other than those in paragraph 261(1) and (2), pre-payment charges, if any, shall be as per the approved policy of a UCB. The documents state that paragraph 261(1) covers floating rate loans for purposes other than business to individuals, and paragraph 261(2) covers floating rate loans for business purpose to individuals and Micro and Small Enterprises, so they do not state a ",
+   "blocked": [],
+   "query_id": "0269d3c07542",
+   "best_sim": 0.787,
+   "gate_reason": null,
+   "subjects": [
+    "prepayment_charge",
+    "apr_disclosure",
+    "other"
    ],
-   "query_id": "330855268f91"
+   "case": {
+    "rate_type": "fixed",
+    "borrower": "non_individual",
+    "purpose": "business",
+    "facility": "term_loan"
+   },
+   "n_rules": 5
   },
   {
    "id": "q074",
@@ -1119,34 +1565,43 @@
    "cite_ok": true,
    "missing_ok": true,
    "forbid_hit": [],
-   "n_quotes": 0,
+   "n_quotes": 1,
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 0,
-    "draft_total": 3,
-    "final_pass": 0,
-    "final_total": 0,
-    "code_statements": 0
+    "draft_total": 2,
+    "draft_pass": 1,
+    "repair_used": false,
+    "repair_total": 2,
+    "repair_pass": 1,
+    "pre_gate_rate": 0.5,
+    "shown": 1,
+    "shown_drafted": 1,
+    "blocked": 1,
+    "code_statements": 0,
+    "final_pass": 1,
+    "final_total": 1
    },
-   "latency_ms": 7213,
+   "latency_ms": 1805,
    "question": "What minimum credit score do we require for home loans?",
-   "answer": "",
+   "answer": "The home-loan materials state that a credit information report shall be obtained from at least one credit information company for every borrower, co-borrower and guarantor before sanction.",
    "blocked": [
     [
-     "The evidence does not state any minimum credit score for home loans.",
-     "not supported by cited evidence (HHEM 0.03 < 0.5)"
-    ],
-    [
-     "The in-force materials I found for housing loans address the loan purpose and interest-rate presentation, not a credit-score threshold.",
-     "not supported by cited evidence (HHEM 0.06 < 0.5)"
-    ],
-    [
-     "The withdrawn circulars in the record are about loan disclosure and floating-rate reset instructions, and they do not provide a minimum credit score either.",
-     "states a current fact but cites text that is SUPERSEDED on the as-of date (E11); only type=chain may cite it"
+     "The documents do not state a minimum credit score for home loans.",
+     "not supported by cited evidence (HHEM 0.08 < 0.5)"
     ]
    ],
-   "query_id": "a5c2edf09c0b"
+   "query_id": "14b6de50593b",
+   "best_sim": 0.674,
+   "gate_reason": null,
+   "subjects": [
+    "other"
+   ],
+   "case": {
+    "borrower": "individual",
+    "purpose": "non_business"
+   },
+   "n_rules": 0
   },
   {
    "id": "q076",
@@ -1169,17 +1624,38 @@
    "fabricated": 0,
    "conflict_flag": false,
    "faith": {
-    "draft_pass": 4,
-    "draft_total": 4,
-    "final_pass": 4,
-    "final_total": 4,
-    "code_statements": 0
+    "draft_total": 3,
+    "draft_pass": 3,
+    "repair_used": false,
+    "repair_total": 0,
+    "repair_pass": 0,
+    "pre_gate_rate": 1.0,
+    "shown": 3,
+    "shown_drafted": 3,
+    "blocked": 0,
+    "code_statements": 0,
+    "final_pass": 3,
+    "final_total": 3
    },
-   "latency_ms": 5585,
+   "latency_ms": 1218,
    "question": "Given that RBI abolished the Key Facts Statement in 2025, what replaces it?",
-   "answer": "The withdrawn RBI circular on the Key Facts Statement (KFS) for Loans & Advances does not show any replacement document in the evidence provided. For a Tier 3 UCB, the in-force UCB Responsible Business Conduct Directions still require a KFS to be provided to prospective borrowers in the standardised format in Annex XIII.  Those in-force UCB directions also require the KFS to include the APR computation sheet, the amortisation schedule, and the summary box as part of the loan agreement.  If you want the exact replacement under a different RBI instrument, the evidence searched here does not iden",
+   "answer": "The documents do not state that anything replaces KFS. The 2024 KFS for Loans & Advances is repealed by the 2025 withdrawal with effect from 2025-11-28. The current UCB Responsible Business Conduct Directions, 2025 still define Key Facts Statement (KFS) as a statement of key facts of a loan agreement, in simple and easier to understand language, provided to the borrower in a standardised format.",
    "blocked": [],
-   "query_id": "85797448e837"
+   "query_id": "87dd7503bb08",
+   "best_sim": 0.755,
+   "gate_reason": null,
+   "subjects": [
+    "other"
+   ],
+   "case": {
+    "rate_type": "floating",
+    "borrower": "individual",
+    "purpose": "non_business",
+    "facility": "term_loan",
+    "amount_inr": 2500000.0,
+    "sanction_date": "2026-02-10"
+   },
+   "n_rules": 0
   }
  ]
 }

@@ -1,0 +1,1 @@
+{"request_name": "general_terms", "model": "gpt-5.4-nano-2026-03-17", "output": {"terms": [{"term": "room rent coverage limit percentage", "value": "1%", "unit": "pct", "condition": "", "quote": "1% of the sum insured per day"}]}, "usage": {"prompt_tokens": 330, "completion_tokens": 42}}

@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "penal_charges", "permitted": "yes", "reason": "The quote expressly allows penal charges for delayed EMI payment by prescribing a charge of ₹750 per month, and it also states they shall not be added to the interest rate."}, "usage": {"prompt_tokens": 297, "completion_tokens": 125}}

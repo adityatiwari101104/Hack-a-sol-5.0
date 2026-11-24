@@ -1,0 +1,43 @@
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+W1124 01:11:10.038000 17190 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 20761.15it/s]
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 49244.76it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (805 > 512). Running this sequence through the model will result in indexing errors
+sanity: mirrored ladder reproduces 414/415 captured verdicts
+full {'off': [], 'pass': 288, 'blocked': 127, 'blocked_to_pass': 0, 'pass_to_blocked': 0, 'items_with_new_pass': 0, 'judge_unavailable': 0, 'b2p_by_step_in_full': {}}
+no_status {'off': ['status'], 'pass': 306, 'blocked': 109, 'blocked_to_pass': 18, 'pass_to_blocked': 0, 'items_with_new_pass': 16, 'judge_unavailable': 0, 'b2p_by_step_in_full': {'b': 18}}
+no_quote_locate {'off': ['quote'], 'pass': 288, 'blocked': 127, 'blocked_to_pass': 0, 'pass_to_blocked': 0, 'items_with_new_pass': 0, 'judge_unavailable': 0, 'b2p_by_step_in_full': {}}
+no_numbers {'off': ['binding', 'numbers'], 'pass': 294, 'blocked': 121, 'blocked_to_pass': 7, 'pass_to_blocked': 1, 'items_with_new_pass': 5, 'judge_unavailable': 0, 'b2p_by_step_in_full': {'d': 4, 'd2': 3}}
+no_numeric_binding {'off': ['binding'], 'pass': 291, 'blocked': 124, 'blocked_to_pass': 3, 'pass_to_blocked': 0, 'items_with_new_pass': 2, 'judge_unavailable': 0, 'b2p_by_step_in_full': {'d2': 3}}
+no_coverage_lexical_shortcut {'off': ['coverage'], 'pass': 278, 'blocked': 137, 'blocked_to_pass': 0, 'pass_to_blocked': 10, 'items_with_new_pass': 0, 'judge_unavailable': 0, 'b2p_by_step_in_full': {}}
+no_hhem {'off': ['hhem'], 'pass': 270, 'blocked': 145, 'blocked_to_pass': 0, 'pass_to_blocked': 18, 'items_with_new_pass': 0, 'judge_unavailable': 0, 'b2p_by_step_in_full': {}}
+no_minicheck {'off': ['minicheck'], 'pass': 285, 'blocked': 130, 'blocked_to_pass': 0, 'pass_to_blocked': 3, 'items_with_new_pass': 0, 'judge_unavailable': 0, 'b2p_by_step_in_full': {}}
+no_llm_judge {'off': ['judge'], 'pass': 255, 'blocked': 160, 'blocked_to_pass': 0, 'pass_to_blocked': 33, 'items_with_new_pass': 0, 'judge_unavailable': 0, 'b2p_by_step_in_full': {}}
+no_rule_fallback {'off': ['rule'], 'pass': 255, 'blocked': 160, 'blocked_to_pass': 0, 'pass_to_blocked': 33, 'items_with_new_pass': 0, 'judge_unavailable': 0, 'b2p_by_step_in_full': {}}
+no_entailment_tier {'off': ['entail'], 'pass': 378, 'blocked': 37, 'blocked_to_pass': 90, 'pass_to_blocked': 0, 'items_with_new_pass': 55, 'judge_unavailable': 0, 'b2p_by_step_in_full': {'e': 90}}
+entailment_only {'off': ['binding', 'numbers', 'quote', 'status'], 'pass': 312, 'blocked': 103, 'blocked_to_pass': 25, 'pass_to_blocked': 1, 'items_with_new_pass': 21, 'judge_unavailable': 0, 'b2p_by_step_in_full': {'d': 4, 'd2': 3, 'b': 18}}
+hhem_only_tier_e {'off': ['coverage', 'judge', 'minicheck', 'rule'], 'pass': 175, 'blocked': 240, 'blocked_to_pass': 0, 'pass_to_blocked': 113, 'items_with_new_pass': 0, 'judge_unavailable': 0, 'b2p_by_step_in_full': {}}
+judge_only_tier_e {'off': ['coverage', 'hhem', 'judge_unlimited', 'minicheck', 'rule'], 'pass': 208, 'blocked': 207, 'blocked_to_pass': 1, 'pass_to_blocked': 81, 'items_with_new_pass': 1, 'judge_unavailable': 0, 'b2p_by_step_in_full': {'e': 1}}
+{
+ "sanity_agree": 414,
+ "sanity_total": 415,
+ "n_sentences": 415,
+ "blocked_in_full_by_step": {
+  "e": 90,
+  "d": 9,
+  "d2": 4,
+  "b": 23,
+  "a": 1
+ },
+ "pass_in_full_by_rule": {
+  "e:coverage": 103,
+  "e:lexical": 1,
+  "e:hhem": 90,
+  "e:minicheck": 7,
+  "e:rule": 33,
+  "e:calc": 2,
+  "e:llm-judge": 51,
+  "e:triage": 1
+ },
+ "spend": 0.031622939999999655
+}

@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "accurate", "reason": "The answer correctly says the RBI penal charges instructions were not yet applicable to fresh loans on 15 March 2024 and identifies 1 April 2024 as the effective date."}, "usage": {"prompt_tokens": 291, "completion_tokens": 58}}

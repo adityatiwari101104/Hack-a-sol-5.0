@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "Evidence states that Schedule II (Schedule of Charges) includes a “Documentation fee” with amount ₹500, payable “Once, at execution.” This matches the claim."}, "usage": {"prompt_tokens": 237, "completion_tokens": 50}}

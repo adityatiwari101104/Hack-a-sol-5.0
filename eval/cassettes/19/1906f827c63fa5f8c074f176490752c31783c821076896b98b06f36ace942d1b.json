@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "In RBI’s KFS Annex B illustration for APR computation, the annual percentage rate is 17.07%.", "cites": ["E3", "E7"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2782, "completion_tokens": 195}}

@@ -29,6 +29,9 @@ TAU_ENTAIL = float(os.getenv("TAU_ENTAIL", "0.5"))
 TAU_LEXICAL = float(os.getenv("TAU_LEXICAL", "90"))     # token-set similarity for near-verbatim sentences
 FUZZ_CUTOFF = float(os.getenv("FUZZ_CUTOFF", "95"))
 TAU_RETRIEVAL = float(os.getenv("TAU_RETRIEVAL", "0.55"))  # cosine of best evidence sentence
+# Off-topic gate (before drafting): no compliance subject, no case facts, no rule finding, and the best evidence
+# sentence is only this similar to the question -> ABSTAIN without calling the drafter. 0 disables it.
+TAU_OFFTOPIC = float(os.getenv("TAU_OFFTOPIC", "0.70"))  # calibrated on replay dev+test+fresh: off-topic 0.52-0.68, answerable >= 0.73
 TOP_K_CHUNKS = int(os.getenv("TOP_K_CHUNKS", "8"))
 MAX_EVIDENCE = int(os.getenv("MAX_EVIDENCE", "18"))
 

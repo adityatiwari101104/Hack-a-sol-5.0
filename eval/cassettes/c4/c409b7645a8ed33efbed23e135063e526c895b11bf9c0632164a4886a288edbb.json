@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "span": "2 19,280 729 241 970", "reason": "The evidence table shows that for instalment number 2, the outstanding principal is 19,280 (at the start of instalment 2)."}, "usage": {"prompt_tokens": 635, "completion_tokens": 61}}

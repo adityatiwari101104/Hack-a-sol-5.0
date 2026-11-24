@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "span": "Home loan (term loan), individual, non-business purpose", "reason": "The evidence explicitly states the loan type is \"Home loan (term loan), individual, non-business purpose,\" which matches the claim."}, "usage": {"prompt_tokens": 415, "completion_tokens": 57}}

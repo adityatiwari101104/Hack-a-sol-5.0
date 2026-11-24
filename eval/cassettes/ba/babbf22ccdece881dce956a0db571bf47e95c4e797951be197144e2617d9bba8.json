@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence table shows a charge titled “Cheque/Electronic Clearing Services (ECS) bounce” with amount/rate “₹300 per instance,” and “When payable” as “Per dishonoured instrument,” matching the claim."}, "usage": {"prompt_tokens": 242, "completion_tokens": 63}}

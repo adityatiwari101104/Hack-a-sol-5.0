@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans state that the interest rate is 8.50%/8.5% per annum and that it is floating, linked to the policy repo rate / external benchmark lending rate. That fully supports the sentence."}, "usage": {"prompt_tokens": 648, "completion_tokens": 60}}

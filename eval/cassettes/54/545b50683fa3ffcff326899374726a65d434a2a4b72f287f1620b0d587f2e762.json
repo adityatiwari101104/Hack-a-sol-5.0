@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence lists an EMI amount of ₹21,696 and a number of EMIs as 240 monthly instalments for the described home loan (term loan, individual, non-business purpose)."}, "usage": {"prompt_tokens": 426, "completion_tokens": 55}}

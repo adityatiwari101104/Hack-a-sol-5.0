@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "Yes — the Home Loan Agreement was made on 10 February 2026, and the Loan is ₹25,00,000.", "cites": ["E10", "E2"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2374, "completion_tokens": 106}}

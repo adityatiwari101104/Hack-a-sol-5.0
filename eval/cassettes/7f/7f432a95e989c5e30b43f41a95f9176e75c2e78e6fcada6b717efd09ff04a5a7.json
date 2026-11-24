@@ -1,0 +1,1 @@
+{"request_name": "general_terms", "model": "gpt-5.4-nano-2026-03-17", "output": {"terms": [{"term": "waiting period for specified illnesses", "value": "24", "unit": "months", "condition": "for specified illnesses such as cataract, hernia and joint replacement", "quote": "after a waiting period of 24 months"}]}, "usage": {"prompt_tokens": 334, "completion_tokens": 55}}

@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source span directly states that APR means the annual cost of credit to the borrower, including the interest rate and all other charges associated with the credit facility, which matches the sentence."}, "usage": {"prompt_tokens": 299, "completion_tokens": 52}}

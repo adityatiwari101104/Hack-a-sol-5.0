@@ -5,3 +5,13 @@ backend/data/
 .pytest_cache/
 .env
 .DS_Store
+eval/spend_ledger.json.lock
+eval/spend_ledger.json.*.tmp
+corpus/janmitra_staging/*.pdf
+corpus/janmitra_staging/*/*.pdf
+corpus/uploads/
+
+# local / intermediate
+.claude/
+eval/reports/critical/*.pkl.gz
+deck/assets/ui/FAIL-*.png

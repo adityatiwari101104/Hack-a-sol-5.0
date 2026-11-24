@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "hallucinated", "reason": "The response does not write a short poem and instead invents specific loan terms and repayment details that are not supported by the reference, which expects abstention."}, "usage": {"prompt_tokens": 312, "completion_tokens": 54}}

@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "span": "SS पावती (लोक से वा गारंटी)", "reason": "The evidence explicitly contains the phrase “SS पावती (लोक से वा गारंटी)”. This supports the claim that the documents state an “SS पावती (लोक से वा गारंटी) note”."}, "usage": {"prompt_tokens": 314, "completion_tokens": 114}}

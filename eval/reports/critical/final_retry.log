@@ -1,0 +1,41 @@
+32 items, LLM_MODE=live, ledger $3.8000
+W1124 01:02:27.566000 15582 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/BAAI/bge-small-en-v1.5: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'BAAI/bge-small-en-v1.5'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 10536.99it/s]
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 18798.84it/s]
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 58927.25it/s]
+[1/32] q037 Incomplete   ABSTAIN   19.1s
+[2/32] q039 Accurate     ANSWER    19.0s
+[3/32] q049 Accurate     ANSWER     4.6s
+[4/32] q054 Accurate     CONFLICT  13.3s
+[5/32] q058 Accurate     ANSWER     3.1s
+[6/32] q059 Accurate     ANSWER     6.0s
+[7/32] q060 Accurate     CONFLICT   3.2s
+[8/32] q061 Accurate     ANSWER     4.9s
+[9/32] q062 Accurate     ANSWER     2.9s
+[10/32] q068 Accurate     CONFLICT  10.1s
+[11/32] q069 Accurate     CONFLICT  12.7s
+[12/32] q070 Incomplete   CONFLICT   7.4s
+[13/32] q076 Accurate     PARTIAL    9.4s
+[14/32] q079 Accurate     ANSWER     2.8s
+[15/32] f002 Accurate     ANSWER     5.7s
+[16/32] f003 Accurate     ANSWER     3.7s
+[17/32] f008 Accurate     ANSWER     2.4s
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (526 > 512). Running this sequence through the model will result in indexing errors
+[18/32] f009 Accurate     ANSWER     3.2s
+[19/32] f010 Incomplete   ANSWER     5.2s
+[20/32] f012 Accurate     ANSWER     6.1s
+[21/32] f013 Incomplete   ANSWER     6.7s
+[22/32] f014 Accurate     ANSWER     2.9s
+[23/32] f015 Accurate     ANSWER     4.5s
+[24/32] f017 Accurate     ANSWER     2.1s
+[25/32] f022 Accurate     CONFLICT  10.7s
+[26/32] f024 Accurate     PARTIAL   10.9s
+[27/32] f025 Accurate     CONFLICT   3.2s
+[28/32] f026 Accurate     CONFLICT  11.5s
+[29/32] f027 Accurate     CONFLICT   4.8s
+[30/32] f031 Accurate     PARTIAL    4.3s
+[31/32] r05 Hallucinated PARTIAL    5.0s
+[32/32] r06 Accurate     ANSWER     6.2s
+saved /Users/gaurav/Hack-a-sol-5.0/eval/reports/critical/final_retry.pkl.gz; spend this run $0.1455; ledger $3.9455

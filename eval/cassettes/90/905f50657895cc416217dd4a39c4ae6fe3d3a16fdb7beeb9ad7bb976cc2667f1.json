@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited RBI span explicitly says that no upper limit/cap for penal charges has been prescribed. This directly supports the sentence."}, "usage": {"prompt_tokens": 335, "completion_tokens": 41}}

@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited span explicitly says that penal interest shall not be levied and that it is not permitted for this case. The sentence matches this prohibition, and no extra unsupported detail is needed."}, "usage": {"prompt_tokens": 349, "completion_tokens": 53}}

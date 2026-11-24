@@ -1,0 +1,1 @@
+{"request_name": "tuple_check", "model": "gpt-5.4-mini-2026-03-17", "output": {"subject": "penal_capitalisation", "permitted": "no", "reason": "The quote says delayed-payment penal charges are ₹750 per month and expressly states they shall not be added to the rate of interest, which prohibits penal capitalisation."}, "usage": {"prompt_tokens": 298, "completion_tokens": 166}}

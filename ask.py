@@ -28,7 +28,9 @@ PROFILES = ("ucb_tier3", "ucb_tier4", "commercial_bank")
 def render(r, debug):
     f = r["faithfulness"]
     print(f"\n{COLOR.get(r['outcome'], '')}{B}{r['outcome']}{X}  "
-          f"{D}verified {f.get('draft_pass', '-')}/{f.get('draft_total', '-')} drafted sentences · {r['latency_ms']} ms · as of {r['as_of']} · {r['bank_profile']}{X}\n")
+          f"{D}{service.faithfulness_line(f)} · {r['latency_ms']} ms · as of {r['as_of']} · {r['bank_profile']}{X}\n")
+    if r.get("gate_reason"):
+        print(f"  {D}{r['gate_reason']}{X}")
     retried = any(s.get("attempt") == 2 for s in r["sentences"] + r["blocked"])
     if retried:
         print(f"  {D}Draft 1 was rejected by the verifier; this is Draft 2 (one retry, same evidence, same checks).{X}")

@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "Yes—the KFS says the loan funds will be released in tranches linked to the payment schedule of the seller. ", "cites": ["E8", "E9"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2445, "completion_tokens": 181}}

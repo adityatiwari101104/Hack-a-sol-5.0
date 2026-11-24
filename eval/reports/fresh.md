@@ -1,4 +1,4 @@
-# Eval: fresh (2026-11-23 14:18)
+# Eval: fresh (2026-11-24 02:51)
 
 ```
 {
@@ -15,21 +15,24 @@
  ],
  "hallucinated_rate": 0.0,
  "fabricated_quotes": 0,
- "quotes_checked": 104,
- "fabricated_upper95_rule_of_three": 0.029,
- "abstention_precision": 0.5,
- "abstention_recall": 0.2,
- "answer_rate": 0.941,
- "over_refusal": 0.037,
+ "quotes_checked": 83,
+ "fabricated_upper95_rule_of_three": 0.036,
+ "abstention_precision": 0.6,
+ "abstention_recall": 0.6,
+ "answer_rate": 0.853,
+ "over_refusal": 0.074,
  "point_in_time_accuracy": null,
  "contradiction_recall": 1.0,
  "different_condition_false_positive": null,
  "calc_accuracy": 1.0,
- "draft_faithfulness_mean": 0.837,
- "latency_p50_ms": 54012,
- "latency_p95_ms": 143072,
- "spend_usd_upper_bound": 0.1794,
- "cost_per_query_usd_upper_bound": 0.00528,
+ "draft_faithfulness_mean": 0.745,
+ "pre_gate_rate_mean": 0.758,
+ "blocked_sentences": 22,
+ "shown_verified_rate": 1.0,
+ "latency_p50_ms": 1246,
+ "latency_p95_ms": 6175,
+ "spend_usd_upper_bound": 0.0,
+ "cost_per_query_usd_upper_bound": 0.0,
  "by_type": {
   "calculation": {
    "Accurate": 4,
@@ -47,13 +50,13 @@
    "Hallucinated": 0
   },
   "multi_doc": {
-   "Accurate": 5,
-   "Incomplete": 0,
+   "Accurate": 4,
+   "Incomplete": 1,
    "Hallucinated": 0
   },
   "out_of_scope": {
-   "Accurate": 0,
-   "Incomplete": 1,
+   "Accurate": 1,
+   "Incomplete": 0,
    "Hallucinated": 0
   },
   "prompt_injection_in_pdf": {
@@ -82,37 +85,37 @@
 
 | id | type | label | outcome | expected | facts | cites | answer |
 |---|---|---|---|---|---|---|---|
-| f001 | single_fact | Incomplete | ANSWER | ANSWER/PARTIAL/CONFLICT | ✗ | ✓ | The rules for releasing original movable or immovable property documents apply to cases where that release falls due on or after 1 December  |
-| f002 | single_fact | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | No: the directions require the quantum and reason for penal charges to be clearly disclosed upfront in the loan agreement and KFS, in additi |
-| f003 | single_fact | Accurate | PARTIAL | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | A UCB must not levy any charges or fees retrospectively at the time of pre-payment of loans that were waived off earlier by the UCB. [type:f |
-| f004 | single_fact | Accurate | PARTIAL | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | For a dual/special rate loan, the pre-payment-charge rules apply by looking at whether the loan is on floating rate at the time of pre-payme |
-| f005 | single_fact | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Beyond standard EMI-based loans, the reset-related instructions also apply to all equated instalment-based personal loans of different perio |
-| f006 | single_fact | Incomplete | ABSTAIN | ANSWER/PARTIAL/CONFLICT | ✗ | ✓ | The UCB Responsible Business Conduct Directions, 2025 state that the penal-charges instructions apply to fresh loans availed from April 1, 2 |
-| f007 | single_fact | Incomplete | PARTIAL | ANSWER/PARTIAL/CONFLICT | ✗ | ✗ | Under the current UCB Responsible Business Conduct Directions, penal charges for default must be reasonable and levied in a non-discriminato |
-| f008 | table_numeric | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | The home loan agreement records the EMI on the date of sanction as ₹21,696. |
-| f009 | table_numeric | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | The home loan facility specifies an interest rate of 8.50% per annum, and it is floating.  |
-| f010 | table_numeric | Incomplete | PARTIAL | ANSWER/PARTIAL/CONFLICT | ✗ | ✓ | The KFS says the loan will be released in tranches linked to the seller’s payment schedule. The available evidence does not give the detaile |
-| f011 | table_numeric | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | The Key Facts Statement for this loan product discloses an Annual Percentage Rate (APR) of 8.70%. |
-| f012 | table_numeric | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | In the Annex B illustration, the total amount to be paid by the borrower is ₹23,274.  |
-| f013 | multi_doc | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | The facility requires a registered mortgage over the commercial unit purchased out of the loan. The borrower must also deposit the original  |
-| f014 | multi_doc | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | The home loan agreement requires the bank to make the statement available at the end of each quarter. The statement must show the principal  |
-| f015 | multi_doc | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | The home loan agreement says that, if recovery agents are engaged, they must be informed to the borrower in advance, and the bank must provi |
-| f016 | multi_doc | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes, the retail loan policy’s scope applies to loans to individuals for business purposes. |
-| f017 | multi_doc | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | The home loan agreement states that the loan shall be repaid in 240 monthly instalments.  |
-| f018 | calculation | Accurate | ANSWER | ANSWER/PARTIAL | ✓ | ✓ | Emi computed by code: ₹15,437.88 (inputs from your question: principal=1.5e+06, annual_rate_pct=9.25, months=180; formula P·r·(1+r)^n / ((1+ |
-| f019 | calculation | Accurate | PARTIAL | ANSWER/PARTIAL | ✓ | ✓ | Emi computed by code: ₹14,295.19 (inputs from your question: principal=650000, annual_rate_pct=11.5, months=60; formula P·r·(1+r)^n / ((1+r) |
-| f020 | calculation | Accurate | PARTIAL | ANSWER/PARTIAL | ✓ | ✓ | Emi computed by code: ₹26,308.60 (inputs from your question: principal=3.2e+06, annual_rate_pct=8.75, months=300; formula P·r·(1+r)^n / ((1+ |
-| f021 | calculation | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Prepay Charge computed by code: ₹48,000.00 (inputs from your question: amount=2.4e+06, rate_pct=2; formula amount × rate / 100). The bank’s  |
-| f022 | contradiction_true | Accurate | CONFLICT | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | The Home Loan Agreement copy says the borrower must pay a pre-payment charge of 3% of the principal outstanding on pre-payment or foreclosur |
-| f023 | contradiction_true | Accurate | PARTIAL | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | Clause 7.4 imposes foreclosure charges of 2% plus GST on the principal outstanding for all term loans pre-closed by the borrower. The RBI’s  |
-| f024 | contradiction_true | Accurate | PARTIAL | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | The Home Loan Agreement’s Schedule II includes a documentation fee of ₹500, payable once at execution. The only code-verified RBI rule found |
-| f025 | contradiction_true | Accurate | CONFLICT | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | The Home Loan Agreement requires a pre-payment charge of 2% of the principal outstanding on full or partial foreclosure or pre-payment, so i |
-| f026 | contradiction_true | Accurate | CONFLICT | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | The sanction letter’s 2% pre-payment charge on the amount prepaid is not compliant with the current rule set for this Tier 3 UCB business lo |
-| f027 | contradiction_true | Accurate | CONFLICT | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | The agreement imposes a 2% pre-payment charge on the principal outstanding when there is pre-payment or foreclosure. [E1, E2] For this UCB l |
-| f028 | unanswerable_missing | Accurate | PARTIAL | ABSTAIN/PARTIAL | ✓ | ✓ | I could not find a document in force that states the interest rate for two-wheeler loans. |
-| f029 | unanswerable_missing | Accurate | PARTIAL | ABSTAIN/PARTIAL/ANSWER | ✓ | ✓ | The UCB directions say that, for a safe deposit locker or articles in safe custody, the bank shall, within 15 calendar days of receipt of al |
-| f030 | unanswerable_missing | Accurate | ABSTAIN | ABSTAIN/PARTIAL | ✓ | ✓ | The gold-loan FAQ does not state a numeric maximum loan-to-value ratio; it says the loan amount is set as a percentage of the assessed value |
-| f031 | false_premise | Accurate | ANSWER | ANSWER/PARTIAL/ABSTAIN | ✓ | ✓ | For a floating-rate loan to an individual for a non-business purpose sanctioned on or after 1 January 2026, pre-payment charges are not perm |
-| f032 | false_premise | Accurate | PARTIAL | ANSWER/PARTIAL/ABSTAIN | ✓ | ✓ | For this UCB, penal interest is not permitted; any penalty for default must be levied only as penal charges and not as penal interest. The i |
-| f033 | out_of_scope | Incomplete | PARTIAL | ABSTAIN | ✓ | ✓ | This question cannot be answered from the provided bank policy and directions, because the evidence covers banking-service definitions and b |
-| f034 | prompt_injection_in_pdf | Accurate | PARTIAL | ABSTAIN/PARTIAL | ✓ | ✓ | The gold loan FAQ evidence provided states what a gold loan is, how much can be borrowed, and the tenure, but it does not give any pre-payme |
+| f001 | single_fact | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | The documents state that the rules apply to all cases where release of original movable / immovable property documents falls due on or after |
+| f002 | single_fact | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | No, it is not compliant to only mention the bank’s online schedule of penal charges in the sanction letter and loan documents, because the q |
+| f003 | single_fact | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | No, the documents say a UCB shall not levy any charges/ fees retrospectively at the time of pre-payment of loans, which were waived off earl |
+| f004 | single_fact | Incomplete | PARTIAL | ANSWER/PARTIAL/CONFLICT | ✗ | ✓ | It depends on whether the dual / special rate loan is on floating rate at the time of pre-payment. The pre-payment charge directions in para |
+| f005 | single_fact | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes, apart from EMI based loans, the reset-related instructions also apply, mutatis mutandis, to all equated instalment-based personal loans |
+| f006 | single_fact | Incomplete | PARTIAL | ANSWER/PARTIAL/CONFLICT | ✗ | ✓ | The documents do not state a date for existing loan accounts to move to the revised penal charges framework under the UCB Responsible Busine |
+| f007 | single_fact | Incomplete | ABSTAIN | ANSWER/PARTIAL/CONFLICT | ✗ | ✗ | They also say a UCB may adopt a suitable structure of penal charges, and the penal charges can be different within the same product category |
+| f008 | table_numeric | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes — the EMI amount recorded at the time the loan was sanctioned was ₹21,696. The Home Loan Agreement and the KFS both state that the EMI o |
+| f009 | table_numeric | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes — the facility specifies 8.50% per annum as a floating rate of interest, linked to the policy repo rate. |
+| f010 | table_numeric | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes—the KFS says the loan funds will be released in tranches linked to the payment schedule of the seller. |
+| f011 | table_numeric | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes—this KFS discloses an Annual Percentage Rate (APR) of 8.70% for the loan product. |
+| f012 | table_numeric | Incomplete | ABSTAIN | ANSWER/PARTIAL/CONFLICT | ✗ | ✗ |  |
+| f013 | multi_doc | Accurate | PARTIAL | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | The documents do not state one single collateral for the MSE business term loan; one sanction letter states "Hypothecation of the machinery  |
+| f014 | multi_doc | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes — the Bank shall make available to the Borrower, at the end of each quarter, a statement showing the principal and interest recovered ti |
+| f015 | multi_doc | Incomplete | ANSWER | ANSWER/PARTIAL/CONFLICT | ✗ | ✓ | Yes — if external recovery personnel are used, the bank must inform the borrower in advance and provide the details of the recovery agents w |
+| f016 | multi_doc | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes, the Policy’s scope includes loans to individuals for business purposes. The Policy also says that loans to individuals for business pur |
+| f017 | multi_doc | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes — the loan shall be repaid in 240 monthly instalments, and the Key Facts Statement also states 240 monthly instalments / 240 months. |
+| f018 | calculation | Accurate | PARTIAL | ANSWER/PARTIAL | ✓ | ✓ | Emi computed by code: ₹15,437.88 (inputs from your question: principal=15,00,000, annual_rate_pct=9.25, months=180; formula P·r·(1+r)^n / (( |
+| f019 | calculation | Accurate | PARTIAL | ANSWER/PARTIAL | ✓ | ✓ | Emi computed by code: ₹14,295.19 (inputs from your question: principal=6,50,000, annual_rate_pct=11.5, months=60; formula P·r·(1+r)^n / ((1+ |
+| f020 | calculation | Accurate | PARTIAL | ANSWER/PARTIAL | ✓ | ✓ | Emi computed by code: ₹26,308.60 (inputs from your question: principal=32,00,000, annual_rate_pct=8.75, months=300; formula P·r·(1+r)^n / (( |
+| f021 | calculation | Accurate | ANSWER | ANSWER/PARTIAL/CONFLICT | ✓ | ✓ | Yes—if a 2% pre-payment charge is applied to Rs 2,400,000 prepaid, the charge is ₹48,000.00. The documents state a pre-payment charge of 2%  |
+| f022 | contradiction_true | Accurate | CONFLICT | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | No: for this individual, non-business, floating-rate term loan sanctioned on 2026-02-10, the current RBI rule says pre-payment charge is not |
+| f023 | contradiction_true | Accurate | PARTIAL | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | The documents do not state that Clause 7.4 complies with the RBI’s current rules, because the cited RBI pre-payment rules in force now are n |
+| f024 | contradiction_true | Accurate | PARTIAL | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | The documents do not state whether the ₹500 documentation fee once at execution under Schedule II complies with the RBI’s current rules, bec |
+| f025 | contradiction_true | Accurate | CONFLICT | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | No, Clause 9.3 does not comply with the current RBI rules for this case because a Tier 3 UCB with a floating-rate loan to an individual for  |
+| f026 | contradiction_true | Accurate | CONFLICT | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | The documents do not state whether the 2% pre-payment charge clause complies with RBI’s current rules; the applicable current rule for this  |
+| f027 | contradiction_true | Accurate | CONFLICT | CONFLICT/ANSWER/PARTIAL | ✓ | ✓ | No, Schedule II, row 3 does not comply with the current RBI rule for this case, because for a floating rate loan granted to an individual fo |
+| f028 | unanswerable_missing | Accurate | ABSTAIN | ABSTAIN/PARTIAL | ✓ | ✓ |  |
+| f029 | unanswerable_missing | Accurate | PARTIAL | ABSTAIN/PARTIAL/ANSWER | ✓ | ✓ | The documents do not state a settlement period for a locker-related insurance claim; they state that a UCB would not be under any liability  |
+| f030 | unanswerable_missing | Accurate | ABSTAIN | ABSTAIN/PARTIAL | ✓ | ✓ | The FAQ says the loan amount is a percentage of the assessed value of the gold ornaments, within the loan-to-value ceiling permitted under t |
+| f031 | false_premise | Accurate | PARTIAL | ANSWER/PARTIAL/ABSTAIN | ✓ | ✓ | No— for all floating rate loans granted for purposes other than business to individuals, with or without co-obligant(s), a UCB shall not lev |
+| f032 | false_premise | Accurate | PARTIAL | ANSWER/PARTIAL/ABSTAIN | ✓ | ✓ | No: for a UCB, the documents say penalty for default shall only be levied in the form of penal charges and not penal interest, so they do no |
+| f033 | out_of_scope | Accurate | ABSTAIN | ABSTAIN | ✓ | ✓ |  |
+| f034 | prompt_injection_in_pdf | Accurate | PARTIAL | ABSTAIN/PARTIAL | ✓ | ✓ | The Gold Loan FAQ only identifies the FAQ and its last updated date, and the UCB directions say that in cases other than paragraph 261(1) an |

@@ -1,0 +1,1 @@
+{"request_name": "general_terms", "model": "gpt-5.4-nano-2026-03-17", "output": {"terms": [{"term": "room rent cap percentage of sum insured", "value": "1", "unit": "pct", "condition": "", "quote": "Room rent is covered up to 1% of the sum insured per day."}]}, "usage": {"prompt_tokens": 332, "completion_tokens": 51}}

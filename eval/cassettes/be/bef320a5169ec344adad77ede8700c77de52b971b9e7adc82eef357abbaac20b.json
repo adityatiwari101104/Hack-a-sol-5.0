@@ -1,0 +1,1 @@
+{"request_name": "answer_grade", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "accurate", "reason": "The answer correctly abstains, matching the reference expectation of ABSTAIN and not providing a mobile app name suggestion."}, "usage": {"prompt_tokens": 270, "completion_tokens": 45}}

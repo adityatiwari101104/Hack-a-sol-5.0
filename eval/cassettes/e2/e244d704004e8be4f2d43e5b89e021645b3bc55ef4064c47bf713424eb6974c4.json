@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The sanction letter requires a registered mortgage over the commercial unit purchased out of the loan.", "cites": ["E11", "E8"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 1782, "completion_tokens": 125}}

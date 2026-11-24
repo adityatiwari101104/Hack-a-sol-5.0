@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited spans directly state that there shall be no capitalization of penal charges and no further interest computed on such charges, which matches the sentence’s claim about what a UCB may not do."}, "usage": {"prompt_tokens": 384, "completion_tokens": 54}}

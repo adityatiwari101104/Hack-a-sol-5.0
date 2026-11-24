@@ -1,0 +1,1 @@
+{"request_name": "general_terms", "model": "gpt-5.4-nano-2026-03-17", "output": {"terms": [{"term": "application date", "value": "02-10-2026", "unit": "date", "condition": "", "quote": "आवेदन  दनांक 02-10-2026"}]}, "usage": {"prompt_tokens": 382, "completion_tokens": 49}}

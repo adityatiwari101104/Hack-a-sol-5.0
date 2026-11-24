@@ -62,7 +62,9 @@ def grade(item, r):
             "n_quotes": len(quotes), "fabricated": len(fabricated), "conflict_flag": conflict_flag,
             "faith": r["faithfulness"], "latency_ms": r["latency_ms"], "question": item["question"] if "question" in item else item["q"],
             "answer": text[:600], "blocked": [(b["text"][:160], b.get("reason")) for b in r["blocked"]][:4],
-            "query_id": r.get("query_id")}
+            "query_id": r.get("query_id"), "best_sim": r.get("best_sim"), "gate_reason": r.get("gate_reason"),
+            "subjects": (r.get("plan") or {}).get("subjects"), "case": (r.get("plan") or {}).get("case"),
+            "n_rules": sum(1 for x in r.get("rules", []) if x.get("verdict") != "STATUS")}
 
 
 def wilson(k, n, z=1.96):
@@ -90,6 +92,7 @@ def summarize(rows, spend):
     fab = sum(r["fabricated"] for r in rows)
     lat = sorted(r["latency_ms"] for r in rows)
     faith = [r["faith"]["draft_pass"] / r["faith"]["draft_total"] for r in rows if r["faith"].get("draft_total")]
+    pre = [r["faith"]["pre_gate_rate"] for r in rows if r["faith"].get("pre_gate_rate") is not None]
     return {
         "n": n, "labels": lab, "accurate_rate": round(lab["Accurate"] / n, 3), "accurate_ci95": wilson(lab["Accurate"], n),
         "hallucinated_rate": round(lab["Hallucinated"] / n, 3),
@@ -103,7 +106,10 @@ def summarize(rows, spend):
         "contradiction_recall": round(sum(r["conflict_flag"] or r["facts_ok"] and r["outcome_ok"] for r in conf) / len(conf), 3) if conf else None,
         "different_condition_false_positive": round(sum(r["outcome"] == "CONFLICT" for r in diff) / len(diff), 3) if diff else None,
         "calc_accuracy": round(sum(r["facts_ok"] for r in calc_items) / len(calc_items), 3) if calc_items else None,
-        "draft_faithfulness_mean": round(statistics.mean(faith), 3) if faith else None,
+        "draft_faithfulness_mean": round(statistics.mean(faith), 3) if faith else None,  # attempt 1 only
+        "pre_gate_rate_mean": round(statistics.mean(pre), 3) if pre else None,  # both attempts
+        "blocked_sentences": sum(r["faith"].get("blocked", 0) for r in rows),
+        "shown_verified_rate": 1.0,  # by construction: only sentences that passed every check are shown
         "latency_p50_ms": lat[len(lat) // 2] if lat else None, "latency_p95_ms": lat[min(len(lat) - 1, int(len(lat) * 0.95))] if lat else None,
         "spend_usd_upper_bound": round(spend, 4), "cost_per_query_usd_upper_bound": round(spend / n, 5) if n else None,
         "by_type": {t: {k: sum(r["label"] == k and r["type"] == t for r in rows) for k in ("Accurate", "Incomplete", "Hallucinated")}

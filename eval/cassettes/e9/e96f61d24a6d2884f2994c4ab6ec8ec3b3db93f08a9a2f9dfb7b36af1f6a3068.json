@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The RBI’s KFS Annex B illustration gives the annual percentage rate as 17.07% (in percentage).", "cites": ["E3", "R8"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2723, "completion_tokens": 129}}

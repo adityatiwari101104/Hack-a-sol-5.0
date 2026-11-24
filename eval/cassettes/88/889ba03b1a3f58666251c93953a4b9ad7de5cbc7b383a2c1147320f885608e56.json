@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans explicitly state that the EMI on the date of sanction / EMI amount at sanction was ₹21,696, which matches the sentence."}, "usage": {"prompt_tokens": 491, "completion_tokens": 44}}

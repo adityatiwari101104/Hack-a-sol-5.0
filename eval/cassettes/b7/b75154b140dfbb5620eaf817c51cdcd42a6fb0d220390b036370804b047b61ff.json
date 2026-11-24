@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence states: (1) the bank does not engage recovery agents for home loans, and (2) any change shall be informed to the borrower in advance. This matches the claim."}, "usage": {"prompt_tokens": 190, "completion_tokens": 69}}

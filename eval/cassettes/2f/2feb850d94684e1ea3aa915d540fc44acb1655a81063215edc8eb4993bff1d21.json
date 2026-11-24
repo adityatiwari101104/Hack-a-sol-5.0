@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans directly state that the Key Facts Statement includes the Annual Percentage Rate (APR) and give the APR value as 8.70% for the loan product. The sentence matches this exactly."}, "usage": {"prompt_tokens": 346, "completion_tokens": 55}}

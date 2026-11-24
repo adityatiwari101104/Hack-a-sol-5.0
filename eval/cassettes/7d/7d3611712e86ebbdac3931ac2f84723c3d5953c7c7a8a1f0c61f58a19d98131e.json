@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "not_supported", "reason": "The evidence states compensation is ₹5,000 for each day of delay (when delay is attributable to a UCB). For a 10-day delay, the supported amount would be ₹5,000 × 10 = ₹50,000, not ₹500.00."}, "usage": {"prompt_tokens": 179, "completion_tokens": 111}}

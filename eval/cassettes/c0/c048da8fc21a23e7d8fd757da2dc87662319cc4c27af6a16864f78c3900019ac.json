@@ -1,0 +1,1 @@
+{"request_name": "baseline_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"answer_sentences": [{"text": "A 4% charge on Rs 20,00,000 would be Rs 80,000.", "source": "S4", "quote": "(ii) A Tier 3 UCB shall not levy any pre-payment charges on loans with sanctioned amount / limit up to ₹50 lakh."}]}, "usage": {"prompt_tokens": 606, "completion_tokens": 592}}

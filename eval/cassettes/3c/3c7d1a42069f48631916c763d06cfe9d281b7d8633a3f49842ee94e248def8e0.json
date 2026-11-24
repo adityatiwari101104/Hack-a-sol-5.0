@@ -1,0 +1,1 @@
+{"request_name": "general_terms", "model": "gpt-5.4-nano-2026-03-17", "output": {"terms": [{"term": "total payment fee", "value": "30.0", "unit": "other", "condition": "", "quote": "कुल भुगतान शुल्क 30.0 · eWallet"}]}, "usage": {"prompt_tokens": 376, "completion_tokens": 44}}

@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence defines APR as the annual cost of credit to the borrower, including the interest rate and all other charges associated with the credit facility. This matches the claim exactly."}, "usage": {"prompt_tokens": 223, "completion_tokens": 51}}

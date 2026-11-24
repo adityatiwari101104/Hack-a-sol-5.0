@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "Yes — the facility specifies 8.50% per annum as a floating rate of interest, linked to the policy repo rate.", "cites": ["E4", "E7", "E12"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 2664, "completion_tokens": 152}}

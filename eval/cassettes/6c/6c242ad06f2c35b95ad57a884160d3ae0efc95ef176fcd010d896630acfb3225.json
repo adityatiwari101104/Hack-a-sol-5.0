@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "The EMI recorded at the time the loan was sanctioned was ₹21,696.", "cites": ["E7", "E10"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 1913, "completion_tokens": 155}}

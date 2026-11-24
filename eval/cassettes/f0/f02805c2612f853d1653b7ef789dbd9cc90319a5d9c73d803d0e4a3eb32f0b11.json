@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source span explicitly says there must be no capitalization of penal charges and explains this as no further interest being computed on those charges. The sentence matches this exactly."}, "usage": {"prompt_tokens": 300, "completion_tokens": 48}}

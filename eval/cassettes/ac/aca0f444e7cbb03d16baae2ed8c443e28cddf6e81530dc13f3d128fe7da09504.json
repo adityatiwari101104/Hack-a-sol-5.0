@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence states that the sanctioned amount (loan amount under the agreement) is ₹25,00,000, and defines “Loan” as the ₹25,00,000 granted under the Agreement."}, "usage": {"prompt_tokens": 396, "completion_tokens": 57}}

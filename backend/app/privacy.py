@@ -19,7 +19,10 @@ PATTERNS = [
 ]
 ENTITIES = ["PERSON", "EMAIL_ADDRESS", "PHONE_NUMBER", "IN_PAN", "IN_AADHAAR", "IN_VOTER", "IN_PASSPORT", "IN_GSTIN",
             "IFSC", "BANK_ACCOUNT"]
-_engine, _lock = {}, threading.Lock()
+# Structured identifiers only. Used on the question before it reaches the LLM: the PERSON detector misfires on
+# question text ("T20", "Raipur", "Schedule II"), which would change what is sent and break recorded responses.
+STRUCTURED = [e for e in ENTITIES if e != "PERSON"]
+_engine, _lock, _analyze_lock = {}, threading.Lock(), threading.Lock()
 
 
 def _analyzer():
@@ -48,24 +51,35 @@ def _analyzer():
         return _engine["a"]
 
 
-def _spans(text):
+# Always on, on top of Presidio: its IN_PAN / IN_AADHAAR scores often fall under the threshold without context words
+# (red-team: a PAN reached the query-plan call). Strict shapes only, so ordinary amounts are never touched.
+ALWAYS = [("IN_PAN", r"\b[A-Z]{5}\d{4}[A-Z]\b"), ("IN_AADHAAR", r"(?<![\d,.])[2-9]\d{3}[ -]?\d{4}[ -]?\d{4}(?![\d,.])")]
+
+
+def _spans(text, entities=None):
+    entities = entities or ENTITIES
+    always = [(label, m.start(), m.end()) for label, pat in ALWAYS if label in entities for m in re.finditer(pat, text)]
     a = _analyzer()
     if a is not None:
-        res = a.analyze(text=text, language="en", entities=ENTITIES, score_threshold=0.5)
-        return [(r.entity_type, r.start, r.end) for r in res]
-    out = []
+        with _analyze_lock:  # spaCy/Presidio are not thread-safe: parallel calls can return different entities,
+            res = a.analyze(text=text, language="en", entities=entities, score_threshold=0.5)  # i.e. a different prompt
+        return [(r.entity_type, r.start, r.end) for r in res] + always
+    out = list(always)
     for label, pat in PATTERNS:
+        if label not in entities:
+            continue
         for m in re.finditer(pat, text):
             g = m.lastindex or 0
             out.append((label, m.start(g), m.end(g)))
     return out
 
 
-def redact(texts):
-    """texts: list[str] -> (redacted list, mapping placeholder->original, mapping hash)."""
+def redact(texts, entities=None, prefix=""):
+    """texts: list[str] -> (redacted list, mapping placeholder->original, mapping hash).
+    prefix keeps placeholders from two separate redactions apart (e.g. <Q_IN_PAN_1> for the question)."""
     mapping, reverse, counters, out = {}, {}, {}, []
     for t in texts:
-        spans = sorted(_spans(t), key=lambda x: (x[1], -(x[2] - x[1])))
+        spans = sorted(_spans(t, entities), key=lambda x: (x[1], -(x[2] - x[1])))
         kept, last_end = [], -1
         for s in spans:  # drop overlaps, keep the longest at each start
             if s[1] >= last_end:
@@ -75,7 +89,7 @@ def redact(texts):
             val = t[s:e]
             if val not in reverse:
                 counters[label] = counters.get(label, 0) + 1
-                ph = f"<{label}_{counters[label]}>"
+                ph = f"<{prefix}{label}_{counters[label]}>"
                 mapping[ph], reverse[val] = val, ph
             t = t[:s] + reverse[val] + t[e:]
         out.append(t)

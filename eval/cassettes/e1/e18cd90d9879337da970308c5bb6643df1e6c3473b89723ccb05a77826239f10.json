@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The span explicitly says the effective date for fresh loans was extended so that the instructions apply to fresh loans availed from April 1, 2024 onwards. The sentence matches that timing and scope."}, "usage": {"prompt_tokens": 354, "completion_tokens": 56}}

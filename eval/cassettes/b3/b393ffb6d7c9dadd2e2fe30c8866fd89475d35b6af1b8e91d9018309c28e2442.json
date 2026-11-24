@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited RBI KFS table explicitly states that the total interest amount to be charged during the entire tenor is 3,274 rupees, matching the sentence."}, "usage": {"prompt_tokens": 387, "completion_tokens": 54}}

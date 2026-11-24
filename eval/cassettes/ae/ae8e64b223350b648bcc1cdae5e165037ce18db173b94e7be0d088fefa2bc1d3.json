@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source explicitly says the KFS shall include a computation sheet of Annual Percentage Rate (APR) and the amortisation schedule of the loan over the loan tenor, which directly supports the sentence."}, "usage": {"prompt_tokens": 298, "completion_tokens": 54}}

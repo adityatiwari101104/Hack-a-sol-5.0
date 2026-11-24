@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The repayment schedule shows for instalment number 1: Interest (in Rupees) = 250, so the interest component of the first instalment is ₹250."}, "usage": {"prompt_tokens": 474, "completion_tokens": 51}}

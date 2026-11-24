@@ -1,0 +1,1 @@
+{"request_name": "general_terms", "model": "gpt-5.4-nano-2026-03-17", "output": {"terms": [{"term": "notice period for planned hospitalisation", "value": "48", "unit": "days", "condition": "before admission", "quote": "At least 48 hours before admission"}]}, "usage": {"prompt_tokens": 326, "completion_tokens": 44}}

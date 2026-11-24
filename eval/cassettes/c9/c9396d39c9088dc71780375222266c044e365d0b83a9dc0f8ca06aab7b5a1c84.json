@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source span explicitly states: 'Pre-payment charges: 2% of the amount prepaid.' This directly supports the sentence that the sanction letter states pre-payment charges of 2% of the amount prepaid."}, "usage": {"prompt_tokens": 282, "completion_tokens": 57}}

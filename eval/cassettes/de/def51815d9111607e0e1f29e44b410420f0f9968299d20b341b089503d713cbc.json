@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "In the illustrative repayment schedule, the interest component of the first instalment is ₹250.", "cites": ["E13"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 3396, "completion_tokens": 127}}

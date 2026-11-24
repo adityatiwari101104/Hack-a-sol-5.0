@@ -8,7 +8,7 @@ from app import service  # noqa: E402
 
 def show(r):
     print(f"\n=== {r['question']}\n    as_of={r['as_of']} profile={r['bank_profile']}  OUTCOME={r['outcome']}  "
-          f"faithfulness draft {r['faithfulness'].get('draft_pass','-')}/{r['faithfulness'].get('draft_total','-')}  "
+          f"faithfulness: {service.faithfulness_line(r['faithfulness'])}  best_sim={r.get('best_sim')}  "
           f"latency {r['latency_ms']}ms  case={r['plan']['case']}")
     for s in r["sentences"]:
         cites = ", ".join(f"{c.get('eid', c.get('rid'))}:{c['doc_id']} p.{c['page']} {c.get('clause','')} [{c['status']}]" for c in s["citations"])

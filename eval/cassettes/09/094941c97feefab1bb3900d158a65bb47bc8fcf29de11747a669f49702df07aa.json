@@ -1,0 +1,1 @@
+{"request_name": "draft_answer", "model": "gpt-5.4-mini-2026-03-17", "output": {"sentences": [{"text": "Yes — in the KFS APR illustration, the net disbursed amount is 19,600. [E4]", "cites": ["E4"], "type": "fact", "core": true}], "calc_requests": [], "missing": []}, "usage": {"prompt_tokens": 3375, "completion_tokens": 135}}

@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source explicitly states the disbursal schedule is 'in tranches linked to the payment schedule of the seller,' which directly supports the sentence."}, "usage": {"prompt_tokens": 468, "completion_tokens": 45}}

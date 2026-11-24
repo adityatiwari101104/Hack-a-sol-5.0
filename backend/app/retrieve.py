@@ -11,7 +11,7 @@ import numpy as np
 
 from . import config, db
 
-_lock = threading.Lock()
+_lock = threading.RLock()  # re-entrant: a scoped index builds on the core index
 _state = {}
 SYNONYMS = {"foreclosure": "pre-payment prepayment foreclosure", "foreclose": "pre-payment prepayment foreclosure",
             "preclosure": "pre-payment prepayment", "prepay": "pre-payment prepayment", "penalty": "penal charges penalty",
@@ -54,29 +54,112 @@ def embed(texts, query=False):
         return m.encode(texts, normalize_embeddings=True, batch_size=64, show_progress_bar=False)
 
 
-def index():
+CORE = "core"  # the shipped banking corpus: every document that is not an upload and not in another collection
+
+
+def core_doc_ids(con=None, collection="banking"):
+    """Documents searched by default for a collection: the shipped corpus (source 'corpus') and pre-loaded demo sets
+    (source 'demo'). Uploads join a search only when the request names them."""
+    con = con or db.connect()
+    return {r[0] for r in con.execute("SELECT doc_id FROM documents WHERE COALESCE(source,'corpus') IN ('corpus','demo') "
+                                      "AND COALESCE(collection,'banking')=?", (collection,))}
+
+
+def scope_key(doc_ids):
+    return CORE if doc_ids is None else "|".join(sorted(doc_ids))
+
+
+def _doc_text(r):
+    return f"{r['breadcrumb']}. {r.get('prefix') or ''} {r['context'] or ''} {r['text']}"
+
+
+def _rows_for(con, doc_ids):
+    q = ("SELECT c.*, d.title, d.doc_type, d.issuer, d.is_synthetic FROM chunks c JOIN documents d USING(doc_id) "
+         "WHERE c.kind != 'footnote'")
+    if doc_ids is None:  # the banking corpus exactly as shipped (same rows, same order, same cached embeddings)
+        q += " AND COALESCE(d.source,'corpus')='corpus' AND COALESCE(d.collection,'banking')='banking'"
+        return [dict(r) for r in con.execute(q + " ORDER BY c.doc_id, c.seq")]
+    marks = ",".join("?" * len(doc_ids))
+    return [dict(r) for r in con.execute(q + f" AND c.doc_id IN ({marks}) ORDER BY c.doc_id, c.seq", sorted(doc_ids))]
+
+
+def _doc_embeddings(doc_id, rows):
+    """Embeddings for one added document, cached per document: adding an upload embeds only its own chunks."""
+    sig = hashlib.sha256(("|".join(r["chunk_id"] + str(len(r["text"])) + str(len(r.get("prefix") or "")) for r in rows)
+                          + config.EMBED_MODEL).encode()).hexdigest()[:16]
+    cache = config.DATA / "emb_docs" / f"{doc_id}_{sig}.npy"
+    if cache.exists():
+        return np.load(cache)
+    emb = embed([_doc_text(r) for r in rows]) if rows else np.zeros((0, 384), dtype=np.float32)
+    cache.parent.mkdir(parents=True, exist_ok=True)
+    np.save(cache, emb)
+    return emb
+
+
+def index(doc_ids=None):
+    """Search index for a scope. doc_ids=None: the shipped banking corpus (unchanged, so recorded answers replay).
+    Otherwise: the core corpus rows the scope shares reuse the core embeddings, and each other document is embedded once
+    and cached on its own (incremental: an upload never re-embeds the corpus). BM25 is rebuilt over the scope (fast)."""
     with _lock:
+        key = scope_key(doc_ids)
         con = db.connect()
-        rows = [dict(r) for r in con.execute(
-            "SELECT c.*, d.title, d.doc_type, d.issuer, d.is_synthetic FROM chunks c JOIN documents d USING(doc_id) "
-            "WHERE c.kind != 'footnote' ORDER BY c.doc_id, c.seq")]
-        sig = hashlib.sha256(("|".join(r["chunk_id"] + str(len(r["text"])) + str(len(r.get("prefix") or "")) for r in rows)
-                              + config.EMBED_MODEL).encode()).hexdigest()[:16]
-        if _state.get("sig") == sig:
+        if key == CORE:
+            rows = _rows_for(con, None)
+            sig = hashlib.sha256(("|".join(r["chunk_id"] + str(len(r["text"])) + str(len(r.get("prefix") or "")) for r in rows)
+                                  + config.EMBED_MODEL).encode()).hexdigest()[:16]
+            if _state.get("sig") == sig:
+                return _state
+            cache = config.DATA / f"emb_{sig}.npy"
+            emb = np.load(cache) if cache.exists() else embed([_doc_text(r) for r in rows])
+            if not cache.exists():
+                np.save(cache, emb)
+            bm = bm25s.BM25()
+            bm.index([tokenize(_doc_text(r)) for r in rows], show_progress=False)
+            _state.update({"sig": sig, "rows": rows, "emb": emb, "bm25": bm, "by_id": {r["chunk_id"]: i for i, r in enumerate(rows)}})
             return _state
-        docs = [f"{r['breadcrumb']}. {r.get('prefix') or ''} {r['context'] or ''} {r['text']}" for r in rows]
-        cache = config.DATA / f"emb_{sig}.npy"
-        emb = np.load(cache) if cache.exists() else embed(docs)
-        if not cache.exists():
-            np.save(cache, emb)
+        rows = _rows_for(con, doc_ids)
+        sig = hashlib.sha256(("|".join(r["chunk_id"] + str(len(r["text"])) + str(len(r.get("prefix") or "")) for r in rows)
+                              ).encode()).hexdigest()[:16]
+        cached = _scoped.get(key)
+        if cached and cached["sig"] == sig:
+            return cached
+        core = index(None)
+        core_pos = core["by_id"]
+        parts, order = [], []
+        by_doc = {}
+        for r in rows:
+            by_doc.setdefault(r["doc_id"], []).append(r)
+        for doc_id, rs in by_doc.items():
+            if all(r["chunk_id"] in core_pos for r in rs):
+                parts.append(core["emb"][[core_pos[r["chunk_id"]] for r in rs]])
+            else:
+                parts.append(_doc_embeddings(doc_id, rs))
+            order.extend(rs)
+        emb = np.vstack(parts) if parts else np.zeros((0, 384), dtype=np.float32)
         bm = bm25s.BM25()
-        bm.index([tokenize(d) for d in docs], show_progress=False)
-        _state.update({"sig": sig, "rows": rows, "emb": emb, "bm25": bm, "by_id": {r["chunk_id"]: i for i, r in enumerate(rows)}})
-        return _state
+        bm.index([tokenize(_doc_text(r)) for r in order] or [["empty"]], show_progress=False)
+        st = {"sig": sig, "rows": order, "emb": emb, "bm25": bm, "by_id": {r["chunk_id"]: i for i, r in enumerate(order)}}
+        if len(_scoped) > 16:
+            _scoped.clear()
+        _scoped[key] = st
+        return st
 
 
-def search(query, k=config.TOP_K_CHUNKS, w_bm25=1.0, w_dense=1.0, rrf_k=60, doc_filter=None):
-    st = index()
+_scoped = {}
+
+
+def forget(doc_id=None):
+    """Drop cached scoped indexes (after an upload is added or deleted)."""
+    _scoped.clear()
+    if doc_id:
+        for f in (config.DATA / "emb_docs").glob(f"{doc_id}_*.npy") if (config.DATA / "emb_docs").exists() else []:
+            f.unlink()
+
+
+def search(query, k=config.TOP_K_CHUNKS, w_bm25=1.0, w_dense=1.0, rrf_k=60, doc_filter=None, doc_ids=None):
+    st = index(doc_ids)
+    if not st["rows"]:
+        return []
     rows, emb = st["rows"], st["emb"]
     q = expand_query(query)
     qv = embed([q], query=True)[0]
@@ -127,6 +210,6 @@ def graph_expand(chunk_ids, cap=6):
     return extra[:cap]
 
 
-def rows_by_ids(ids):
-    st = index()
+def rows_by_ids(ids, doc_ids=None):
+    st = index(doc_ids)
     return [st["rows"][st["by_id"][i]] for i in ids if i in st["by_id"]]

@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The table for the illustrative repayment schedule shows the first instalment with an interest component of 250."}, "usage": {"prompt_tokens": 549, "completion_tokens": 42}}

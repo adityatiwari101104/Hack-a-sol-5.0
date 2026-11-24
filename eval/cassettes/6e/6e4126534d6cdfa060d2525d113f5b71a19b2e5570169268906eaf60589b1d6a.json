@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans explicitly state the sanctioned amount is ₹25,00,000, the interest rate is 8.50% per annum, the tenor/loan term is 240 months, and the EMI amount is ₹21,696. The sentence matches these facts."}, "usage": {"prompt_tokens": 602, "completion_tokens": 69}}

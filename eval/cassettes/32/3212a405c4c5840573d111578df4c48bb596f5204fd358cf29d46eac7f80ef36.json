@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The span explicitly states that the RBI circular was withdrawn/repealed with effect from 2025-11-28 and that on 2026-11-23 it is no longer in force, which directly supports the sentence."}, "usage": {"prompt_tokens": 388, "completion_tokens": 62}}

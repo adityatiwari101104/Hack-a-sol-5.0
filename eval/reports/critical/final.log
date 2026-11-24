@@ -1,0 +1,153 @@
+144 items, LLM_MODE=live, ledger $3.6816
+W1124 00:57:24.689000 14583 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/BAAI/bge-small-en-v1.5: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'BAAI/bge-small-en-v1.5'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 8876.41it/s]
+[transformers] You are using a model of type `HHEMv2Config` to instantiate a model of type `HHEMv2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 21576.82it/s]
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 57152.20it/s]
+[1/144] q001 Accurate     ANSWER    11.1s
+[2/144] q002 Accurate     ANSWER     0.7s
+[3/144] q003 Accurate     ANSWER     1.0s
+[4/144] q004 Accurate     ANSWER     0.6s
+[5/144] q005 Accurate     ANSWER     4.4s
+[6/144] q006 Incomplete   ABSTAIN    3.1s
+[7/144] q007 Accurate     ANSWER     0.6s
+[8/144] q008 Accurate     PARTIAL    0.8s
+[9/144] q009 Accurate     ANSWER     0.9s
+[10/144] q010 Accurate     ANSWER     0.9s
+[11/144] q011 Accurate     ANSWER     2.3s
+[12/144] q012 Accurate     ANSWER     2.7s
+[13/144] q013 Accurate     ANSWER     2.9s
+[14/144] q014 Incomplete   ABSTAIN    1.0s
+[15/144] q015 Accurate     ANSWER     2.4s
+[16/144] q016 Accurate     ANSWER     4.2s
+[17/144] q017 Accurate     ANSWER     2.1s
+[18/144] q018 Accurate     ANSWER     0.9s
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (789 > 512). Running this sequence through the model will result in indexing errors
+[19/144] q019 Accurate     ANSWER    10.0s
+[20/144] q020 Accurate     ANSWER     0.6s
+[21/144] q021 Accurate     PARTIAL    1.2s
+[22/144] q022 Accurate     ANSWER     0.9s
+[23/144] q023 Accurate     ANSWER     1.3s
+[24/144] q024 Accurate     ANSWER     0.7s
+[25/144] q025 Accurate     ANSWER     1.0s
+[26/144] q026 Incomplete   ABSTAIN    0.9s
+[27/144] q027 Accurate     ABSTAIN    6.6s
+[28/144] q028 Accurate     ANSWER    14.0s
+[29/144] q029 Accurate     CONFLICT   1.2s
+[30/144] q030 Accurate     ANSWER     1.4s
+[31/144] q031 Accurate     PARTIAL    0.6s
+[32/144] q032 Accurate     CONFLICT   1.4s
+[33/144] q033 Incomplete   PARTIAL    1.7s
+[34/144] q034 Accurate     CONFLICT   7.9s
+[35/144] q035 Accurate     CONFLICT  13.4s
+[36/144] q036 Accurate     CONFLICT   4.9s
+[37/144] q037 Incomplete   ERROR      0.7s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[38/144] q038 Accurate     PARTIAL    1.3s
+[39/144] q039 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[40/144] q040 Accurate     ANSWER     0.8s
+[41/144] q041 Accurate     PARTIAL    1.4s
+[42/144] q042 Accurate     PARTIAL    1.6s
+[43/144] q043 Accurate     PARTIAL    1.6s
+[44/144] q044 Accurate     ABSTAIN    3.7s
+[45/144] q045 Accurate     ABSTAIN    2.1s
+[46/144] q046 Accurate     ABSTAIN    1.3s
+[47/144] q047 Accurate     ANSWER     2.1s
+[48/144] q048 Accurate     ANSWER     1.1s
+[49/144] q049 Incomplete   ERROR      0.6s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[50/144] q050 Accurate     ABSTAIN    0.6s
+[51/144] q051 Accurate     ABSTAIN    0.9s
+[52/144] q052 Accurate     ABSTAIN    1.0s
+[53/144] q053 Accurate     ABSTAIN    1.2s
+[54/144] q054 Incomplete   ERROR      0.6s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[55/144] q055 Accurate     ANSWER     0.7s
+[56/144] q056 Accurate     ANSWER     0.7s
+[57/144] q057 Accurate     ANSWER     0.9s
+[58/144] q058 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[59/144] q059 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[60/144] q060 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[61/144] q061 Incomplete   ERROR      0.4s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[62/144] q062 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[63/144] q063 Accurate     CONFLICT   0.9s
+[64/144] q064 Accurate     ANSWER     0.6s
+[65/144] q065 Incomplete   ANSWER     0.6s
+[66/144] q066 Accurate     PARTIAL    1.2s
+[67/144] q067 Accurate     ANSWER     2.5s
+[68/144] q068 Incomplete   ERROR      0.6s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[69/144] q069 Incomplete   ERROR      0.8s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[70/144] q070 Incomplete   ERROR      0.6s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[71/144] q071 Incomplete   ANSWER     0.8s
+[72/144] q072 Accurate     PARTIAL    1.8s
+[73/144] q073 Accurate     PARTIAL    2.8s
+[74/144] q074 Accurate     PARTIAL    2.3s
+[75/144] q075 Accurate     PARTIAL    1.0s
+[76/144] q076 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[77/144] q077 Accurate     PARTIAL    1.7s
+[78/144] q078 Accurate     ABSTAIN    0.8s
+[79/144] q079 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[80/144] q080 Accurate     ABSTAIN    0.9s
+[81/144] f001 Incomplete   ANSWER     0.4s
+[82/144] f002 Incomplete   ERROR      0.8s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[83/144] f003 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[84/144] f004 Accurate     PARTIAL    0.9s
+[85/144] f005 Accurate     ANSWER     0.7s
+[86/144] f006 Incomplete   ABSTAIN    1.6s
+[87/144] f007 Incomplete   PARTIAL    1.1s
+[88/144] f008 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[89/144] f009 Incomplete   ERROR      0.4s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[90/144] f010 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[91/144] f011 Accurate     ANSWER     0.5s
+[92/144] f012 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[93/144] f013 Incomplete   ERROR      0.4s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[94/144] f014 Incomplete   ERROR      0.7s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[95/144] f015 Incomplete   ERROR      0.6s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[96/144] f016 Accurate     ANSWER     0.5s
+[97/144] f017 Incomplete   ERROR      0.4s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[98/144] f018 Accurate     ANSWER     0.4s
+[99/144] f019 Accurate     PARTIAL    0.7s
+[100/144] f020 Accurate     PARTIAL    1.5s
+[101/144] f021 Accurate     ANSWER     0.6s
+[102/144] f022 Incomplete   ERROR      0.6s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[103/144] f023 Accurate     PARTIAL    1.0s
+[104/144] f024 Incomplete   ERROR      0.4s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[105/144] f025 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[106/144] f026 Incomplete   ERROR      0.8s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[107/144] f027 Incomplete   ERROR      0.7s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[108/144] f028 Accurate     ABSTAIN    1.2s
+[109/144] f029 Accurate     PARTIAL    1.2s
+[110/144] f030 Accurate     ABSTAIN    0.7s
+[111/144] f031 Incomplete   ERROR      0.6s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[112/144] f032 Accurate     PARTIAL    1.2s
+[113/144] f033 Accurate     ABSTAIN    0.9s
+[114/144] f034 Accurate     ABSTAIN    1.1s
+[115/144] r01 Accurate     PARTIAL    1.6s
+[116/144] r02 Accurate     ABSTAIN    0.4s
+[117/144] r03 Accurate     PARTIAL    1.2s
+[118/144] r04 Hallucinated PARTIAL    1.2s
+[119/144] r05 Incomplete   ERROR      0.8s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[120/144] r06 Incomplete   ERROR      0.5s  ERR JSONDecodeError: Extra data: line 1 column 146 (char 145)
+[121/144] r07 Accurate     ANSWER     0.7s
+[122/144] r08 Accurate     ABSTAIN    0.9s
+[123/144] r09 Accurate     PARTIAL    1.5s
+[124/144] r10 Incomplete   ANSWER     0.4s
+[125/144] r11 Incomplete   PARTIAL    1.2s
+[126/144] r12 Accurate     ANSWER     0.7s
+[127/144] r13 Accurate     ANSWER     1.0s
+[128/144] r14 Incomplete   ABSTAIN    6.1s
+[129/144] r15 Accurate     PARTIAL    2.3s
+[130/144] r16 Accurate     PARTIAL   11.8s
+[131/144] r17 Accurate     ANSWER     7.4s
+[132/144] r18 Incomplete   ABSTAIN    1.4s
+[133/144] r19 Accurate     ANSWER    12.4s
+[134/144] r20 Accurate     ANSWER    11.6s
+[135/144] r21 Accurate     PARTIAL   12.9s
+[136/144] r22 Hallucinated PARTIAL    2.1s
+[137/144] h01 Accurate     ANSWER     3.7s
+[138/144] h02 Incomplete   ANSWER     1.0s
+[139/144] h03 Accurate     ANSWER     1.1s
+[140/144] h04 Accurate     ANSWER     1.4s
+[141/144] h05 Accurate     ANSWER     2.5s
+[142/144] h06 Accurate     PARTIAL    2.0s
+[143/144] h07 Accurate     ABSTAIN    0.7s
+[144/144] h08 Accurate     CONFLICT   1.5s
+saved /Users/gaurav/Hack-a-sol-5.0/eval/reports/critical/final.pkl.gz; spend this run $0.1184; ledger $3.8000

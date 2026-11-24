@@ -1,0 +1,1 @@
+{"request_name": "claim_judge", "model": "gpt-5.4-nano-2026-03-17", "output": {"verdict": "supported", "reason": "The evidence explicitly states: “Additional / fresh penal charges shall not be levied on the earlier outstanding amount of penal charges,” which matches the claim."}, "usage": {"prompt_tokens": 266, "completion_tokens": 61}}

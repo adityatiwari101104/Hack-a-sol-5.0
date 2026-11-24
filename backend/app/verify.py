@@ -47,15 +47,37 @@ import contextvars
 _judge_budget = contextvars.ContextVar("judge_budget", default=3)  # max judge calls per answer (latency)
 
 
+JUDGE_SCHEMA_V2 = {"type": "object", "additionalProperties": False, "required": ["verdict", "span", "reason"],
+                   "properties": {"verdict": {"type": "string", "enum": ["supported", "not_supported", "partially_supported"]},
+                                  "span": {"type": "string", "description": "the exact words of the EVIDENCE that support "
+                                           "the claim, copied verbatim; '' if not supported"},
+                                  "reason": {"type": "string"}}}
+JUDGE_SYSTEM_V2 = JUDGE_SYSTEM + (" If supported, copy into span the exact evidence words that support the claim, "
+                                  "verbatim (no paraphrase); otherwise leave span empty.")
+
+
 def llm_judge(premise, hypothesis):
     """Third tier, used only when quote, status and number checks already passed and both NLI models said no.
-    Uses a different (smaller) model than the drafter; logged as e:llm-judge so it is never hidden."""
+    Uses a different (smaller) model than the drafter; logged as e:llm-judge so it is never hidden.
+    v2: the judge must quote the supporting span, and code checks that span is really in the evidence; a 'supported'
+    verdict without a locatable span counts as not supported (the only LLM checker becomes a checkable one)."""
+    from . import service
+    from .extract import locate
+    v2 = service.PROMPTS != "v1"
     try:
-        out, _ = llm.structured(config.LLM_MODEL_EXTRACT, JUDGE_SYSTEM,
-                                f"EVIDENCE: {premise[-3000:]}\n\nCLAIM: {hypothesis}", JUDGE_SCHEMA, "claim_judge")
-        return out["verdict"] == "supported", out["reason"]
-    except (llm.BudgetExceeded, llm.CacheMiss):
+        out, _ = llm.structured(config.LLM_MODEL_EXTRACT, JUDGE_SYSTEM_V2 if v2 else JUDGE_SYSTEM,
+                                f"EVIDENCE: {premise[-3000:]}\n\nCLAIM: {hypothesis}",
+                                JUDGE_SCHEMA_V2 if v2 else JUDGE_SCHEMA, "claim_judge")
+    except Exception:  # budget, replay miss, refusal, timeout: fail closed (the sentence stays blocked)
         return False, "judge unavailable"
+    if out["verdict"] != "supported":
+        return False, out["reason"]
+    if v2:
+        span = (out.get("span") or "").strip()
+        if len(span) < 12 or not locate(span, premise[-3000:]):
+            return False, "judge said supported but its span is not in the evidence"
+        return True, f'span: "{span[:160]}"'
+    return True, out["reason"]
 
 
 def minicheck(premise, hypothesis):
@@ -112,6 +134,45 @@ def lexical_support(sentence, premise):
     return fuzz.token_set_ratio(a, b)
 
 
+# Hand-checked expansions (the extracted glossary has no UCB entry and truncates some, e.g. 'and Small Enterprises').
+CANON_TERMS = {"UCB": ["Urban Co-operative Bank", "Primary Urban Co-operative Bank"], "KFS": ["Key Facts Statement", "Key Fact Statement"],
+               "APR": ["Annual Percentage Rate"], "EMI": ["Equated Monthly Instalment", "Equated Monthly Installment"],
+               "EBLR": ["External Benchmark Lending Rate"], "FPC": ["Fair Practices Code"], "KYC": ["Know Your Customer"]}
+_WORD = re.compile(r"[A-Za-z][A-Za-z'-]*")
+
+
+def _norm_phrase(words):
+    return " ".join(re.sub(r"[-']", "", w).lower().rstrip("s") for w in words)
+
+
+def bad_expansion(text, glossary, premise=""):
+    """A defined abbreviation spelled out wrongly ('Upper Co-operative Bank' for UCB). Only flags a run of capitalised
+    words whose initials spell a known 3+ letter term, that differs from every known expansion, and that does not
+    itself appear in the cited evidence. Returns (term, phrase, expected) or None."""
+    terms = {t: list(v) for t, v in CANON_TERMS.items()}
+    for t, e in (glossary or {}).items():  # glossary entries are trusted only if their initials spell the term
+        ws = _WORD.findall(e or "")
+        if len(t) >= 3 and len(ws) == len(t) and "".join(w[0] for w in ws).upper() == t.upper():
+            terms.setdefault(t.upper(), []).append(e)
+    words = _WORD.findall(text)
+    prem = " " + _norm_phrase(_WORD.findall(premise)) + " "
+    for t, exps in terms.items():
+        n = len(t)
+        if n < 3:
+            continue
+        allowed = {_norm_phrase(_WORD.findall(e)) for e in exps}
+        for i in range(len(words) - n + 1):
+            win = words[i:i + n]
+            if not all(w[0].isupper() for w in win) or "".join(w[0] for w in win).upper() != t.upper():
+                continue
+            if any(w.isupper() and len(w) > 1 for w in win):
+                continue  # 'RBI Circular ...' style runs of acronyms are not expansions
+            ph = _norm_phrase(win)
+            if ph not in allowed and f" {ph} " not in prem:
+                return t, " ".join(win), exps[0]
+    return None
+
+
 def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau=None, conflict_chunks=frozenset()):
     """sent: {text, cites, type}; pack: eid -> evidence; rules: rid -> rule finding.
     Returns dict(verdict, reason, checks, score)."""
@@ -148,6 +209,10 @@ def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau
                 not any(f[2:] in x for x in allowed)}
     if missing:
         return {"verdict": "BLOCKED", "reason": f"number/date not in cited evidence: {sorted(missing)}", "checks": checks}
+    bad = bad_expansion(sent["text"], glossary, premise + " " + rule_text)
+    if bad:
+        return {"verdict": "BLOCKED", "reason": f"spells out {bad[0]} as '{bad[1]}'; the defined term is '{bad[2]}'",
+                "checks": checks}
     checks.append("d:numbers")
     own = {f for f in facts(sent["text"]) if not f.startswith(("n:", "year:"))} - question_facts - calc_facts
     for f in own:  # numeric binding: the number must sit in the same evidence unit that supports the claim
@@ -190,7 +255,7 @@ def verify_sentence(sent, pack, rules, question_facts, calc_facts, glossary, tau
     ok, why = (False, "") if _judge_budget.get() <= 0 else llm_judge(p, h)
     _judge_budget.set(_judge_budget.get() - 1)
     if ok:
-        checks.append(f"e:llm-judge (hhem {score:.2f}, minicheck {mc:.2f})")
+        checks.append(f"e:llm-judge (hhem {score:.2f}, minicheck {mc:.2f}){' ' + why if why.startswith('span') else ''}")
         return {"verdict": "PASS", "reason": "", "checks": checks, "score": round(score, 3)}
     if rls and all(r["verified"] for r in rls) and _polarity_ok(sent["text"], rls):
         checks.append(f"e:rule ({score:.2f})")

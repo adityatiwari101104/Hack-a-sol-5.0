@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The span states that for cases other than those in paragraphs 261(1) and (2), any pre-payment charges, if any, are as per the approved policy of a UCB. The sentence restates this rule accurately."}, "usage": {"prompt_tokens": 320, "completion_tokens": 63}}

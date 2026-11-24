@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The spans explicitly state that the older 2025 pre-payment charge directions were withdrawn/repealed and were no longer in force by 2026-11-23. The sentence matches that claim."}, "usage": {"prompt_tokens": 583, "completion_tokens": 62}}

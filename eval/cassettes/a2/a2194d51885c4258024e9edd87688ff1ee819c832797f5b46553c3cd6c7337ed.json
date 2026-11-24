@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited span explicitly states the tenor and repayment terms: 84 months, including a 6-month moratorium, repayable in 78 equated monthly instalments. This matches the sentence exactly."}, "usage": {"prompt_tokens": 371, "completion_tokens": 56}}

@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The span explicitly states that the 2014 foreclosure-charge circular was withdrawn/repealed by the RBI (Pre-payment Charges on Loans) Directions, 2025, effective 2026-01-01. The sentence matches that claim."}, "usage": {"prompt_tokens": 439, "completion_tokens": 64}}

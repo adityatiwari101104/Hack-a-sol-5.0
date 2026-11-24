@@ -7,5 +7,6 @@ serve:      ; cd backend && ../.venv/bin/uvicorn app.api:app --reload
 test:       ; cd backend && ../$(PY) -m pytest -q tests
 gate:       ; LLM_MODE=replay $(PY) -m pytest -q eval/test_gate.py
 eval-dev:   ; $(PY) eval/run_eval.py dev
+audit-reset: ; cd backend && ../$(PY) -m app.audit reset --yes
 eval-test:  ; $(PY) eval/run_eval.py test && $(PY) eval/run_eval.py test --baseline
-.PHONY: setup manifest synthetic ingest serve test gate eval-dev eval-test
+.PHONY: setup manifest synthetic ingest serve test gate eval-dev eval-test audit-reset

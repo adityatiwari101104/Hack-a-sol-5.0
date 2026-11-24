@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The cited source states that the rate of interest is 8.50% per annum, floating, and linked to the policy repo rate, which matches the sentence."}, "usage": {"prompt_tokens": 281, "completion_tokens": 49}}

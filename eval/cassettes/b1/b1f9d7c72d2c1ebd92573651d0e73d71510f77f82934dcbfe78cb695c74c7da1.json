@@ -1,0 +1,1 @@
+{"request_name": "support_audit", "model": "gpt-5.4-mini-2026-03-17", "output": {"label": "supported", "reason": "The source span exactly states that the APR shall include all charges levied by a UCB, which directly answers what the Key Facts Statement must include about the Annual Percentage Rate."}, "usage": {"prompt_tokens": 270, "completion_tokens": 51}}
