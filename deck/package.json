@@ -1,0 +1,13 @@
+{
+  "name": "proof-or-silence-deck",
+  "private": true,
+  "description": "Builds the Proof-or-Silence pitch deck (.pptx) with pptxgenjs",
+  "scripts": {
+    "build": "node build_deck.js"
+  },
+  "dependencies": {
+    "@ibm/plex": "^6.4.1",
+    "playwright-core": "^1.49.1",
+    "pptxgenjs": "^3.12.0"
+  }
+}
