@@ -38,7 +38,7 @@ export function GovernancePage() {
       <header className="page-head">
         <div>
           <h1 className="page-h">AI governance</h1>
-          <p className="page-sub">How Docuhelp maps to RBI’s FREE-AI framework (Framework for Responsible and Ethical Enablement of AI, 13 Aug 2025) and the June 2026 draft guidance on model risk. FREE-AI-aligned by design; not a certification.</p>
+          <p className="page-sub">How DocuHelp maps to RBI’s FREE-AI framework (Framework for Responsible and Ethical Enablement of AI, 13 Aug 2025) and the June 2026 draft guidance on model risk. FREE-AI-aligned by design; not a certification.</p>
         </div>
       </header>
 

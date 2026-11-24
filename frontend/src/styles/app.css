@@ -1,4 +1,4 @@
-/* Docuhelp — paper, hairlines, one ink accent. See frontend/DESIGN.md for the research behind each rule. */
+/* DocuHelp — paper, hairlines, one ink accent. See frontend/DESIGN.md for the research behind each rule. */
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body, #root { height: 100%; }

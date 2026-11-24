@@ -1,4 +1,4 @@
-// Typed client for the Docuhelp FastAPI backend (backend/app/api.py, service._result).
+// Typed client for the DocuHelp FastAPI backend (backend/app/api.py, service._result).
 // Fields marked optional may not exist yet in the backend; every screen degrades when they are missing.
 
 export type Outcome = 'ANSWER' | 'PARTIAL' | 'CONFLICT' | 'ABSTAIN' | 'NEEDS_INFO'

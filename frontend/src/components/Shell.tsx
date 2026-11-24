@@ -118,9 +118,9 @@ export function TopBar() {
   const [, , go] = useRoute()
   return (
     <header className="topbar">
-      <button type="button" className="brand" onClick={() => go('home')} aria-label="Docuhelp home">
+      <button type="button" className="brand" onClick={() => go('home')} aria-label="DocuHelp home">
         <span className="brand-mark" aria-hidden="true"><svg viewBox="0 0 20 20" width="20" height="20"><rect width="20" height="20" rx="5" fill="currentColor" /><path d="M5.5 10.3l3 3 6-6.6" fill="none" stroke="var(--paper)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
-        <span className="brand-name">Docu<span className="brand-or">help</span></span>
+        <span className="brand-name">Docu<span className="brand-or">Help</span></span>
       </button>
       <div className="topbar-ctx">
         <DomainControl />

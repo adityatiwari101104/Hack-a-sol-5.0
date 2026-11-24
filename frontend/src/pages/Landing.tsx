@@ -111,7 +111,7 @@ export function Landing({ onStart, onOpen }: { onStart: (r: Rehearsed) => void; 
     <div className="landing">
       <nav className={`lnav ${scrolled ? 'scrolled' : ''}`} aria-label="Landing">
         <div className="lnav-bar">
-          <span className="lnav-brand"><span className="brand-mark" aria-hidden="true"><svg viewBox="0 0 20 20" width="20" height="20"><rect width="20" height="20" rx="5" fill="currentColor" /><path d="M5.5 10.3l3 3 6-6.6" fill="none" stroke="var(--paper)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span><span>Docu<span className="brand-or">help</span></span></span>
+          <span className="lnav-brand"><span className="brand-mark" aria-hidden="true"><svg viewBox="0 0 20 20" width="20" height="20"><rect width="20" height="20" rx="5" fill="currentColor" /><path d="M5.5 10.3l3 3 6-6.6" fill="none" stroke="var(--paper)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span><span>Docu<span className="brand-or">Help</span></span></span>
           <span className="lnav-links">
             <button type="button" onClick={() => go('earn')}>Withheld</button>
             <button type="button" onClick={() => go('law')}>Law over time</button>
@@ -162,7 +162,7 @@ export function Landing({ onStart, onOpen }: { onStart: (r: Rehearsed) => void; 
       <section className="lsec" id="earn">
         <div className="lsec-head">
           <h2 className="lsec-h serif">Every sentence has to earn its place.</h2>
-          <p className="lsec-p">Most compliance AI writes an answer and adds citations. Docuhelp starts from the citations, and drops any sentence it can’t prove. This is a recorded answer, replayed sentence by sentence.</p>
+          <p className="lsec-p">Most compliance AI writes an answer and adds citations. DocuHelp starts from the citations, and drops any sentence it can’t prove. This is a recorded answer, replayed sentence by sentence.</p>
         </div>
         <EarnItsPlace />
       </section>
